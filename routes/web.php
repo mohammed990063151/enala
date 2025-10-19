@@ -21,7 +21,7 @@ Route::get('/dashboard', function () {
 Auth::routes(['register' => false]);
 
 Route::get('/contact', function () {
-    return view('frontend.contact');
+    return view('frontend.Contact');
 })->name('contact');
 
 // صفحة "خدمتنا"
