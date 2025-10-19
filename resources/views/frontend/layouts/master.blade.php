@@ -8,7 +8,7 @@
     <link rel="profile" href="https://gmpg.org/xfn/11">
 
 
-    <title>RTL GrassRoot Site – Your SUPER-powered WP Engine Site</title>
+    <title>مجموعة إناله للفنادق والمنتجعات</title>
 
 
 @include('frontend.layouts.head')
