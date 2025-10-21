@@ -2,47 +2,68 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use Laratrust\Traits\HasRolesAndPermissions;
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use
+        HasRolesAndPermissions,
+        Notifiable;
 
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
     /**
      * The attributes that are mass assignable.
      *
-     * @var list<string>
+     * @var array
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'first_name', 'last_name', 'email', 'password', 'image'
     ];
 
+    protected $appends = ['image_path'];
+
     /**
-     * The attributes that should be hidden for serialization.
+     * The attributes that should be hidden for arrays.
      *
-     * @var list<string>
+     * @var array
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        'password', 'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    public function getFirstNameAttribute($value)
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return ucfirst($value);
+
+    }//end of get first name
+
+    public function getLastNameAttribute($value)
+    {
+        return ucfirst($value);
+
+    }//end of get last name
+
+    public function getImagePathAttribute()
+    {
+        return asset('uploads/user_images/' . $this->image);
+
+    }//end of get image path
+
+    // علاقة User مع Role
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
     }
-}
+
+    // علاقة User مع Permission
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class, 'permission_user', 'user_id', 'permission_id');
+    }
+
+}//end of model

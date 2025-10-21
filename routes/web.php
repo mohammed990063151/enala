@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\BlogController;
 Route::get('/custom-login', function() {
     return view('auth.custom-login');
@@ -12,11 +13,12 @@ Route::get('/custom-login', function() {
 Route::get('/', function () {
     return view('frontend.home'); // تشير إلى resources/views/frontend/home.blade.php
 })->name('frontend.home');
-
+Route::middleware(['auth', 'web'])->name('dashboard.')->group(function () {
 // 🔹 مثال لمسار لوحة التحكم (backend)
 Route::get('/dashboard', function () {
-    return view('dashboard.welcome');
+    return view('admin.home');
 })->name('dashboard.welcome');
+});
 
 Auth::routes(['register' => false]);
 
@@ -67,6 +69,9 @@ Route::get('/rooms', function () {
 
 
 
-Auth::routes();
-
+// Auth::routes();
+Route::middleware(['auth', 'web'])->prefix('dashboard')->name('dashboard.')->group(function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('settings', [SettingController::class, 'edit'])->name('settings.edit');
+    Route::put('settings', [SettingController::class, 'update'])->name('settings.update');
+});
