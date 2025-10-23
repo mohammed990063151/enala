@@ -18,6 +18,11 @@
                     <i class="fa fa-cogs"></i> <span>اعدادات</span>
                 </a>
             </li>
+             <li>
+        <a href="{{ route('dashboard.sections.edit') }}">
+            <i class="fa fa-leaf"></i> <span>أقسام الحدائق والخدمات</span>
+        </a>
+    </li>
         </ul>
     </section>
 </aside>

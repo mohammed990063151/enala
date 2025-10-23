@@ -5,20 +5,19 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\Frontend\HomeController;
 Route::get('/custom-login', function() {
     return view('auth.custom-login');
 })->name('custom-login');
 
 // 🔹 الصفحة الرئيسية للموقع (الفرونت إند)
-Route::get('/', function () {
-    return view('frontend.home'); // تشير إلى resources/views/frontend/home.blade.php
-})->name('frontend.home');
-Route::middleware(['auth', 'web'])->name('dashboard.')->group(function () {
-// 🔹 مثال لمسار لوحة التحكم (backend)
-Route::get('/dashboard', function () {
-    return view('admin.home');
-})->name('dashboard.welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('frontend.home');
+// Route::middleware(['auth', 'web'])->name('dashboard.')->group(function () {
+// // 🔹 مثال لمسار لوحة التحكم (backend)
+// Route::get('/dashboard', function () {
+//     return view('admin.home');
+// })->name('dashboard.welcome');
+// });
 
 Auth::routes(['register' => false]);
 
@@ -72,6 +71,13 @@ Route::get('/rooms', function () {
 // Auth::routes();
 Route::middleware(['auth', 'web'])->prefix('dashboard')->name('dashboard.')->group(function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// settings
 Route::get('settings', [SettingController::class, 'edit'])->name('settings.edit');
     Route::put('settings', [SettingController::class, 'update'])->name('settings.update');
+
+// sections
+    Route::get('section/edit', [App\Http\Controllers\Dashboard\SectionController::class, 'edit'])->name('sections.edit');
+    Route::put('section/update', [App\Http\Controllers\Dashboard\SectionController::class, 'update'])->name('sections.update');
+
+
 });

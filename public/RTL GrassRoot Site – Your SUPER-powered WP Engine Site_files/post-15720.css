@@ -22,8 +22,9 @@
 
 .elementor-15720 .elementor-element.elementor-element-244fe39:not(.elementor-motion-effects-element-type-background),
 .elementor-15720 .elementor-element.elementor-element-244fe39>.elementor-motion-effects-container>.elementor-motion-effects-layer {
-    /* background: url("../img/1.jpg") 50% 50%; */
-    background: url("https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/02/Hero1-bg.jpg") 50% 50%;
+    /* background: url("{{ ../asset($section->image) }}") 50% 50%; */
+    /* background: url("../dashboard_files/img/logos/1761229090.jpg") 50% 50%; */
+    /* background: url("https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/02/Hero1-bg.jpg") 50% 50%; */
     background-size: cover;
 }
 

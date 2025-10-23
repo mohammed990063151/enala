@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Cairo:400,700" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('dashboard_files/css/bootstrap-rtl.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dashboard_files/css/rtl.css') }}">
-@livewireStyles
+{{-- @livewireStyles --}}
     <style>
         body,
         h1,
