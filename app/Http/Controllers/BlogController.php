@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use App\Models\Pagservice;
 
 class BlogController  extends Controller
 {
@@ -104,5 +105,11 @@ class BlogController  extends Controller
         ];
 
         return view('frontend.blog.show', compact('post'));
+    }
+      public function Pagservice($slug)
+    {
+        $pag_service = Pagservice::where('slug', $slug)->get();
+// return  $pag_service;
+        return view('frontend.our_services', compact('pag_service'));
     }
 }

@@ -39,7 +39,8 @@
                                                                      d="M86.4,36.6C80.1,30.3,72,26.4,63.2,25.2c-2.3-0.3-4.4,1.3-4.6,3.6c-0.3,2.3,1.3,4.4,3.6,4.6 c7,0.9,13.4,4,18.4,9c5,5,8.1,11.4,9,18.4c0.3,2.1,2.1,3.6,4.1,3.6c0.2,0,0.4,0,0.5,0c2.3-0.3,3.9-2.4,3.6-4.6 C96.7,51,92.7,43,86.4,36.6L86.4,36.6z">
                                                                  </path>
                                                              </svg> </span>
-                                                         <span class="elementor-icon-list-text">{{ $setting->phone ?? '' }}</span>
+                                                         <span
+                                                             class="elementor-icon-list-text">{{ $setting->phone ?? '' }}</span>
                                                      </a>
                                                  </li>
                                                  <li class="elementor-icon-list-item elementor-inline-item">
@@ -52,8 +53,9 @@
                                                                  d="M48.1,5C29.1,6,14,21.3,14,40c0,7.9,2.7,15.2,7.2,21h0l24.4,31.8c2.2,2.9,6.6,2.9,8.8,0L78.8,61h0 c4.2-5.4,6.8-11.9,7.2-19.1C87.1,21.2,69.4,4,48.1,5z M74,41c0,13.3-10.7,24-24,24S26,54.3,26,41s10.7-24,24-24S74,27.7,74,41z">
                                                              </path>
                                                          </svg> </span>
-                                                     <span class="elementor-icon-list-text">{{ $setting->address ?? '' }}
-                                                         </span>
+                                                     <span
+                                                         class="elementor-icon-list-text">{{ $setting->address ?? '' }}
+                                                     </span>
                                                  </li>
                                                  <li class="elementor-icon-list-item elementor-inline-item">
                                                      <a href="mailto:reservations@enala.sa">
@@ -96,7 +98,8 @@
                                              <div class="wdt-heading-holder " id="wdt-heading-b8849b1">
                                                  <h6
                                                      class="wdt-heading-title-wrapper wdt-heading-align- wdt-heading-deco-wrapper">
-                                                     <span class="wdt-heading-title">We are Social:</span></h6>
+                                                     <span class="wdt-heading-title">We are Social:</span>
+                                                 </h6>
                                              </div>
                                          </div>
                                      </div>
@@ -138,8 +141,7 @@
 
                                                  <!-- YouTube -->
                                                  <li class="elementor-icon-list-item elementor-inline-item">
-                                                     <a href="{{ $setting->youtube ?? '' }}"
-                                                         target="_blank">
+                                                     <a href="{{ $setting->youtube ?? '' }}" target="_blank">
                                                          <i class="fab fa-youtube"></i>
                                                      </a>
                                                  </li>
@@ -185,7 +187,8 @@
                                                                      rel="home"><img loading="lazy"
                                                                          src="{{ asset($setting->logo) }}"
                                                                          alt="RTL GrassRoot Site" width="350"
-                                                                         height="80"></a></div>
+                                                                         height="80"></a>
+                                                             </div>
                                                          </div>
                                                      </div>
                                                  </div>
@@ -209,36 +212,67 @@
                                                                                  aria-current="page"><span
                                                                                      data-text="%1$s">الرئيسية</span></a>
                                                                          </li>
-                                                                                         <li>
-                                                                                      <a href="{{ route('guests.reviews') }}"
+                                                                         <li>
+                                                                             <a href="{{ route('guests.reviews') }}"
                                                                                  aria-current="page"><span
-                                                                                     data-text="%1$s">اراء النزلاء</span></a>
+                                                                                     data-text="%1$s">اراء
+                                                                                     النزلاء</span></a>
 
                                                                          </li>
                                                                          <li>
-                                                                            <a href="{{ route('frontend.rooms') }}"><span
+                                                                             <a href="{{ route('frontend.rooms') }}"><span
                                                                                      data-text="%1$s">قسم
                                                                                      الغرف</span></a>
-                                                                          
+
                                                                          </li>
                                                                          <li>
-                                                                            <a
+                                                                             <a
                                                                                  href="{{ route('frontend.about-us') }}"><span
                                                                                      data-text="%1$s">من نحن</span></a>
-                                                                            
+
                                                                          </li>
                                                                          <li>
-                                                                            <a
-                                                                                 href="{{ route('frontend.our-services') }}"><span
-                                                                                     data-text="%1$s">خدماتنا</span></a>
-                                                                            
-                                                                         </li>
+                                                                             <span
+                                                                                     data-text="%1$s">خدماتنا</span>
+                                                                             <ul class="sub-menu is-hidden">
+                                                                                 <li class="close-nav"><a
+                                                                                         href="javascript:void(0);"></a>
+                                                                                 </li>
+                                                                                 <li class="go-back"><a
+                                                                                         href="javascript:void(0);"></a>
+                                                                                 </li>
+                                                                                 <li class="see-all"></li>
+
+                                                                                 @php
+                                                                                     $pagservices = \App\Models\Pagservice::orderBy(
+                                                                                         'sort_order',
+                                                                                     )->get();
+                                                                                 @endphp
+
+
+                                                                                     @foreach ($pagservices as $service)
+                                                                                         {{-- <li><a
+                                                                                                 href="{{ route('service.show', $service->slug) }}">{{ $service->title }}</a>
+                                                                                         </li> --}}
+                                                                                         <li
+                                                                                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16216 menu-item-depth-1">
+                                                                                             <a
+                                                                                                 href="{{ route('servicepag.show', $service->slug) }}"><span
+                                                                                                     data-text="%1$s">{{ $service->title }}</span></a>
+                                                                                         </li>
+                                                                                     @endforeach
+
+
+
+
+                                                                             </ul>
                                                                          <li>
-                                                                            <a href="{{ route('contact') }}"><span
+                                                                             <a href="{{ route('contact') }}"><span
                                                                                      data-text="%1$s">تواصل
-                                                                                     معنا</span></a></li>
-                                                                     {{-- </ul> --}}
-                                                                     <div class="sub-menu-overlay"></div>
+                                                                                     معنا</span></a>
+                                                                         </li>
+                                                                         {{-- </ul> --}}
+                                                                         <div class="sub-menu-overlay"></div>
                                                                  </div>
                                                                  <div class="mobile-nav-container mobile-nav-offcanvas-right"
                                                                      data-menu="2"><a
@@ -256,8 +290,8 @@
                                              <div class="elementor-column elementor-col-25 elementor-inner-column elementor-element elementor-element-3a029dc wdt-order-2"
                                                  data-id="3a029dc" data-element_type="column">
                                                  <div class="elementor-widget-wrap elementor-element-populated">
-                                                   <div class="elementor-widget-container">
-                                                   </div>
+                                                     <div class="elementor-widget-container">
+                                                     </div>
                                                      <div class="elementor-element elementor-element-e395455 elementor-widget__width-auto elementor-hidden-mobile elementor-hidden-tablet_extra elementor-hidden-tablet elementor-hidden-mobile_extra elementor-widget elementor-widget-wdt-button"
                                                          data-id="e395455" data-element_type="widget"
                                                          data-settings="{&quot;item_hover_background_background&quot;:&quot;classic&quot;,&quot;wdt_animation_effect&quot;:&quot;none&quot;}"
@@ -285,7 +319,7 @@
                                                                          <li><a href="{{ route('frontend.home') }}"
                                                                                  aria-current="page"><span
                                                                                      data-text="%1$s">الرئسية</span></a>
-                                                                           
+
                                                                          </li>
                                                                          <li><a href="{{ route('guests.reviews') }}"><span
                                                                                      data-text="%1$s">
@@ -310,9 +344,9 @@
                                                                          </li>
                                                                          <li
                                                                              class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7567 menu-item-depth-0">
-                                                                             <a
-                                                                                 href="{{ route('contact') }}"><span
-                                                                                     data-text="%1$s">تواصل معنا</span></a>
+                                                                             <a href="{{ route('contact') }}"><span
+                                                                                     data-text="%1$s">تواصل
+                                                                                     معنا</span></a>
                                                                          </li>
                                                                      </ul>
                                                                      <div class="sub-menu-overlay"></div>

@@ -2,11 +2,10 @@
 <style>
     .elementor-15720 .elementor-element.elementor-element-244fe39:not(.elementor-motion-effects-element-type-background),
 .elementor-15720 .elementor-element.elementor-element-244fe39>.elementor-motion-effects-container>.elementor-motion-effects-layer {
-    background: url('{{ asset($section->image) }}') 50% 50%;
-    /* background: url("../dashboard_files/img/logos/1761229090.jpg") 50% 50%; */
-    /* background: url("https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/02/Hero1-bg.jpg") 50% 50%; */
-    /* background-size: cover; */
+    background: url('{{ asset($section->image  ?? '') }}') 50% 50%;
 }
+
+
 .hotel-about {
     padding: 80px 20px;
     background: #fff;
@@ -323,7 +322,7 @@
                     </div>
                 </section>
 
-              
+{{--
 <section class="hotel-about">
     <div class="hotel-container">
 
@@ -346,6 +345,43 @@
                 <li>🪴 بذور زهور وخضار ونباتات برية</li>
                 <li>🚿 مضخات وغطاسات للآبار الزراعية والمنزلية</li>
                 <li>🐞 مكافحة آفات الصحة العامة والآفات الزراعية</li>
+            </ul>
+
+            <a href="{{ route('contact') }}" class="btn">تواصل معنا</a>
+        </div>
+
+    </div>
+</section> --}}
+
+<section class="hotel-about">
+    <div class="hotel-container">
+
+        <div class="hotel-images">
+            @if($about->image1)
+                <img src="{{ asset($about->image1) }}" alt="image1" class="hotel-img main">
+            @else
+                <img src="../img/farm3.jpg" class="hotel-img main">
+            @endif
+
+            @if($about->image2)
+                <img src="{{ asset($about->image2) }}" alt="image2" class="hotel-img overlay">
+            @else
+                <img src="../img/farm2.jpg" class="hotel-img overlay">
+            @endif
+        </div>
+
+        <div class="hotel-text">
+            <h2>{{ $about->title }}</h2>
+
+            <p>
+                {{ $about->description }}
+            </p>
+
+            <ul>
+                @if($about->point1)<li>{{ $about->point1 }}</li>@endif
+                @if($about->point2)<li>{{ $about->point2 }}</li>@endif
+                @if($about->point3)<li>{{ $about->point3 }}</li>@endif
+                @if($about->point4)<li>{{ $about->point4 }}</li>@endif
             </ul>
 
             <a href="{{ route('contact') }}" class="btn">تواصل معنا</a>
@@ -415,8 +451,8 @@
                                                                         class="wdt-heading-deco-inner wdt-right-part"></span></span>
                                                             </div>
                                                             <h2 class="wdt-heading-title-wrapper wdt-heading-align- "><span
-                                                                    class="wdt-heading-title">الغرف الاكثر طلبا</span></h2>
-                                                                    <p>تحقق من أفضل غرفنا الآن</p>
+                                                                    class="wdt-heading-title">{{ $whyus->title }}</span></h2>
+                                                                    <p>{{ $whyus->description }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -478,16 +514,20 @@
                                                                                         <div class="wdt-content-image"><a
                                                                                                 href=""
                                                                                                 target="_blank"
-                                                                                               ><img
+                                                                                               >
+                                                                                               {{-- <img
                                                                                                     loading="lazy"
                                                                                                     decoding="async"
                                                                                                     width="766"
                                                                                                     height="800"
-                                                                                                    src="../img/bedroom-5664221_1280.jpg"
+                                                                                                    src="{{ asset($whyus->image1) }}"
                                                                                                     class="attachment-full size-full wp-image-15748"
                                                                                                     alt=""
-                                                                                                    srcset="../img/bedroom-5664221_1280.jpg"
-                                                                                                    sizes="(max-width: 766px) 100vw, 766px"></a>
+                                                                                                    srcset="{{ asset($whyus->image1) }}"
+                                                                                                    sizes="(max-width: 766px) 100vw, 766px"> --}}
+                                                                                                    <img src="{{ asset($whyus->image1) }}" class="whyus-img" alt="">
+
+                                                                                                </a>
                                                                                         </div>
                                                                                     </div>
                                                                                     <div
@@ -506,8 +546,8 @@
                                                                             <div class="wdt-content-detail-group">
                                                                                 <div class="wdt-content-title">
                                                                                     <h5><a href="{{ route('rooms.show') }}"
-                                                                                            >سوبيريور
-                                                                                            كينج</a></h5>
+                                                                                            >
+                                                                                            </a></h5>
                                                                                 </div>
                                                                                 <div class="wdt-content-description">
                                                                                      </div>
@@ -526,16 +566,19 @@
                                                                                         <div class="wdt-content-image"><a
                                                                                                 href="{{ route('rooms.show') }}"
                                                                                                 target="_blank"
-                                                                                                rel="nofollow"><img
+                                                                                                rel="nofollow">
+                                                                                                {{-- <img
                                                                                                     loading="lazy"
                                                                                                     decoding="async"
                                                                                                     width="766"
                                                                                                     height="800"
-                                                                                                    src="./RTL GrassRoot Site – Your SUPER-powered WP Engine Site_files/Service-img-2.jpg"
+                                                                                                    src="{{ asset($whyus->image2) }}"
                                                                                                     class="attachment-full size-full wp-image-15749"
                                                                                                     alt=""
-                                                                                                    srcset="../img/bedroom-7349893_1280.jpg"
-                                                                                                    sizes="(max-width: 766px) 100vw, 766px"></a>
+                                                                                                    srcset="{{ asset($whyus->image2) }}"
+                                                                                                    sizes="(max-width: 766px) 100vw, 766px"> --}}
+                                                                                                     <img src="{{ asset($whyus->image2) }}" class="whyus-img" alt="">
+                                                                                                </a>
                                                                                         </div>
                                                                                     </div>
                                                                                     <div
@@ -556,8 +599,8 @@
                                                                                 <div class="wdt-content-title">
                                                                                     <h5><a href="{{ route('rooms.show') }}"
                                                                                             target="_blank"
-                                                                                            rel="nofollow">غرفة ديلوكس
-                                                                                            كينج</a></h5>
+                                                                                            rel="nofollow">
+                                                                                            </a></h5>
                                                                                 </div>
                                                                                 <div class="wdt-content-description">
                                                                                 </div>
@@ -576,16 +619,19 @@
                                                                                         <div class="wdt-content-image"><a
                                                                                                 href="{{ route('rooms.show') }}"
                                                                                                 target="_blank"
-                                                                                                rel="nofollow"><img
+                                                                                                rel="nofollow">
+                                                                                                {{-- <img
                                                                                                     loading="lazy"
                                                                                                     decoding="async"
                                                                                                     width="766"
                                                                                                     height="800"
-                                                                                                    src="./RTL GrassRoot Site – Your SUPER-powered WP Engine Site_files/Service-img-3.jpg"
+                                                                                                    src="{{ asset($whyus->image3) }}"
                                                                                                     class="attachment-full size-full wp-image-15750"
                                                                                                     alt=""
-                                                                                                    srcset="../img/break-649351_1280.jpg"
-                                                                                                    sizes="(max-width: 766px) 100vw, 766px" style="height: 230px;"></a>
+                                                                                                    srcset="{{ asset($whyus->image3) }}"
+                                                                                                    sizes="(max-width: 766px) 100vw, 766px" style="height: 230px;"> --}}
+                                                                                                     <img src="{{ asset($whyus->image3) }}" class="whyus-img" alt="">
+                                                                                                </a>
                                                                                         </div>
                                                                                     </div>
                                                                                     <div
@@ -606,8 +652,8 @@
                                                                                 <div class="wdt-content-title">
                                                                                     <h5><a href="{{ route('rooms.show') }}"
                                                                                             target="_blank"
-                                                                                            rel="nofollow">غرفة ديلوكس
-                                                                                            كينغ</a></h5>
+                                                                                            rel="nofollow">
+                                                                                            </a></h5>
                                                                                 </div>
                                                                                 <div class="wdt-content-description"></div>
                                                                             </div>
@@ -625,16 +671,19 @@
                                                                                         <div class="wdt-content-image"><a
                                                                                                 href="{{ route('rooms.show') }}"
                                                                                                 target="_blank"
-                                                                                                rel="nofollow"><img
+                                                                                                rel="nofollow">
+                                                                                                {{-- <img
                                                                                                     loading="lazy"
                                                                                                     decoding="async"
                                                                                                     width="766"
                                                                                                     height="800"
-                                                                                                    src="./RTL GrassRoot Site – Your SUPER-powered WP Engine Site_files/Service-img-4.jpg"
+                                                                                                    src="{{ asset($whyus->image4) }}"
                                                                                                     class="attachment-full size-full wp-image-15751"
                                                                                                     alt=""
-                                                                                                    srcset="../img/bedroom-349701_1280.jpg"
-                                                                                                    sizes="(max-width: 766px) 100vw, 766px" style="height: 230px;"></a>
+                                                                                                    srcset="{{ asset($whyus->image4) }}"
+                                                                                                    sizes="(max-width: 766px) 100vw, 766px" style="height: 230px;"> --}}
+                                                                                                     <img src="{{ asset($whyus->image4) }}" class="whyus-img" alt="">
+                                                                                                </a>
                                                                                         </div>
                                                                                     </div>
                                                                                     <div
@@ -655,8 +704,8 @@
                                                                                 <div class="wdt-content-title">
                                                                                     <h5><a href=""
                                                                                             target="_blank"
-                                                                                            rel="nofollow">غرفة ديلوكس كينغ
-                                                                                            مع إطلالة على المدينة</a></h5>
+                                                                                            rel="nofollow">
+                                                                                               </a></h5>
                                                                                 </div>
                                                                                 <div class="wdt-content-description">
                                                                                 </div>
@@ -695,15 +744,15 @@
                 <div class="container" style="
     text-align: center;
 ">
-                    <h1>معرض الصور</h1>
-                    <p>معرض صور الفنادق والمنتجعات</p>
+                    <h1>{{ $settinggallery->title }} </h1>
+                    <p> {{ $settinggallery->description }}  </p>
                 </div>
                 <!-- معرض الصور -->
-                <div class="owl-carousel owl-theme" id="hotel-gallery">
+                {{-- <div class="owl-carousel owl-theme" id="hotel-gallery">
                     <div class="item">
                         <img src="../img/break-649351_1280.jpg" alt="فندق اناله تبوك" style="
-    height: 186px;
-">
+                             height: 186px;
+                            ">
                         <p class="caption">فندق اناله تبوك</p>
                     </div>
                     <div class="item">
@@ -718,7 +767,19 @@
                         <img src="../img/657dc1172faec_azy-34961jpg.jpg" alt="منتجع كيو ريزورت">
                         <p class="caption">منتجع كيو ريزورت</p>
                     </div>
-                </div>
+                </div> --}}
+
+                <div class="owl-carousel owl-theme" id="hotel-gallery">
+
+    @foreach($gallery as $item)
+        <div class="item">
+            <img src="{{ asset($item->image) }}" alt="{{ $item->caption }}" style="height: 186px; object-fit: cover;">
+            <p class="caption">{{ $item->caption }}</p>
+        </div>
+    @endforeach
+
+</div>
+
 
                 <style>
                     h1 {
@@ -830,11 +891,11 @@
                                                                                                         </path>
                                                                                                     </g>
                                                                                                 </g>
-                                                                                            </svg></i></span></span></span></span></span>خدماتنا الرائعة<span
+                                                                                            </svg></i></span></span></span></span></span> {{ $services->title }}<span
                                                                         class="wdt-heading-deco-inner wdt-right-part"></span></span>
                                                             </div>
                                                             <h2 class="wdt-heading-title-wrapper wdt-heading-align-1 ">
-                                                                <span class="wdt-heading-title">تحقق من خدماتنا الرائعة</span></h2>
+                                                                <span class="wdt-heading-title"> {{ $services->description }}  </span></h2>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -902,7 +963,7 @@
                                                                                     data-media-gallery="[&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-01.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-02.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-03.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-04.jpg&quot;]">
                                                                                     <div
                                                                                         class="wdt-listings-feature-image-holder ">
-                                                                                        <img src="../img/6315b138554a6_restaurant.webp"
+                                                                                        <img src="{{ asset($services->image1) }}"
                                                                                             title="Featured Image"
                                                                                             alt="Featured Image"
                                                                                             width="1000" height="1000">
@@ -942,7 +1003,7 @@
                                                                                     </div>
                                                                                     <div class="wdt-listings-item-title">
                                                                                         <a
-                                                                                            href="{{ route('rooms.show') }}">مطاعم</a>
+                                                                                            href="{{ route('rooms.show') }}">{{ $services->caption1 }}</a>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -954,7 +1015,7 @@
                                                                                     data-media-gallery="[&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-02.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-03.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-05.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-11.jpg&quot;]">
                                                                                     <div
                                                                                         class="wdt-listings-feature-image-holder ">
-                                                                                        <img src="../img/657dc1172faec_azy-34961jpg.jpg"
+                                                                                        <img src="{{ asset($services->image2) }}"
                                                                                             title="Featured Image"
                                                                                             alt="Featured Image"
                                                                                             width="1000" height="1000">
@@ -990,7 +1051,7 @@
                                                                                         </ul>
                                                                                     </div>
                                                                                     <div class="wdt-listings-item-title"><a
-                                                                                            href="{{ route('rooms.show') }}">قاعة اجتماعات </a></div>
+                                                                                            href="{{ route('rooms.show') }}"> {{ $services->caption2 }} </a></div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -1001,7 +1062,7 @@
                                                                                     data-media-gallery="[&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-03.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-04.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-05.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-06.jpg&quot;]">
                                                                                     <div
                                                                                         class="wdt-listings-feature-image-holder ">
-                                                                                        <img src="../img/6323224c2d9c5_63136758b69271662216024.webp"
+                                                                                        <img src="{{ asset($services->image3) }}"
                                                                                             title="Featured Image"
                                                                                             alt="Featured Image"
                                                                                             width="1000" height="1000">
@@ -1032,7 +1093,7 @@
                                                                                         <ul
                                                                                             class="wdt-listings-taxonomy-list">
                                                                                             <li><a
-                                                                                                    href="{{ route('rooms.show') }}"><span>حمام سباحة</span></a>
+                                                                                                    href="{{ route('rooms.show') }}"><span> {{ $services->caption3 }}</span></a>
                                                                                             </li>
                                                                                         </ul>
                                                                                     </div>
@@ -1048,7 +1109,7 @@
                                                                                     data-media-gallery="[&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-10.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-05.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-06.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-07.jpg&quot;]">
                                                                                     <div
                                                                                         class="wdt-listings-feature-image-holder ">
-                                                                                        <img src="../img/cheese-4797440_1280.jpg"
+                                                                                        <img src="{{ asset($services->image4) }}"
                                                                                             title="Featured Image"
                                                                                             alt="Featured Image"
                                                                                             width="1000" height="1000">
@@ -1080,7 +1141,7 @@
                                                                                         <ul
                                                                                             class="wdt-listings-taxonomy-list">
                                                                                             <li><a
-                                                                                                    href="{{ route('rooms.show') }}"><span>خدمة الغرف</span></a>
+                                                                                                    href="{{ route('rooms.show') }}"><span> {{ $services->caption4 }}</span></a>
                                                                                             </li>
                                                                                         </ul>
                                                                                     </div>
@@ -1096,7 +1157,7 @@
                                                                                     data-media-gallery="[&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-05.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-06.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-07.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-08.jpg&quot;]">
                                                                                     <div
                                                                                         class="wdt-listings-feature-image-holder ">
-                                                                                        <img src="../img/architecture-4376923_1280.jpg"
+                                                                                        <img src="{{ asset($services->image5) }}"
                                                                                             title="Featured Image"
                                                                                             alt="Featured Image"
                                                                                             width="1000" height="1000">
@@ -1128,7 +1189,7 @@
                                                                                         <ul
                                                                                             class="wdt-listings-taxonomy-list">
                                                                                             <li><a
-                                                                                                    href="{{ route('rooms.show') }}"><span>مواقف السيارات </span></a>
+                                                                                                    href="{{ route('rooms.show') }}"><span> {{ $services->caption5 }} </span></a>
                                                                                             </li>
                                                                                         </ul>
                                                                                     </div>
@@ -1145,7 +1206,7 @@
                                                                                     data-media-gallery="[&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-06.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-07.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-09.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-12.jpg&quot;]">
                                                                                     <div
                                                                                         class="wdt-listings-feature-image-holder ">
-                                                                                        <img src="../img/657dc085f1dcb_151jpg.jpg"
+                                                                                        <img src="{{ asset($services->image6) }}"
                                                                                             title="Featured Image"
                                                                                             alt="Featured Image"
                                                                                             width="1000" height="1000">
@@ -1177,7 +1238,7 @@
                                                                                         <ul
                                                                                             class="wdt-listings-taxonomy-list">
                                                                                             <li><a
-                                                                                                    href="{{ route('rooms.show') }}"><span>صالة العاب رياضية</span></a>
+                                                                                                    href="{{ route('rooms.show') }}"><span>{{ $services->caption6 }}</span></a>
                                                                                             </li>
                                                                                         </ul>
                                                                                     </div>
@@ -1227,7 +1288,7 @@
                     </div>
                 </section>
 
-
+{{-- 
                 <section
                     class="elementor-section elementor-top-section elementor-element elementor-element-c017382 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
                     data-id="c017382" data-element_type="section"
@@ -1430,10 +1491,112 @@
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> --}}
+        <style>
+#counters {
+    background: #fff;
+}
+
+#counters .counter-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    gap: 30px;
+    justify-items: center;
+    align-items: center;
+}
+
+.counter-box {
+    background: #f9f9f9;
+    border-radius: 12px;
+    padding: 25px 15px;
+    width: 220px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.05);
+    transition: .3s;
+    border: 1px solid #eee;
+}
+
+.counter-box:hover {
+    transform: translateY(-6px);
+    background: #f6fef6;
+    border-color: #87d89c;
+}
+
+.counter-icon {
+    width: 55px;
+    height: 55px;
+    background: #e8f9ec;
+    border-radius: 50%;
+    margin: 0 auto 12px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #2e7d51;
+    font-size: 27px;
+}
+
+.counter-box h2 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #2e7d51;
+}
+
+.counter-box p {
+    font-size: .95rem;
+    font-weight: 600;
+    color: #555;
+    margin-top: 6px;
+}
+</style>
+
+
+<section id="counters" class="py-5" style="direction:rtl; background:#fff;">
+    <div class="container text-center">
+
+        <div class="counter-container">
+
+            @foreach([1,2,3,4] as $i)
+            <div class="counter-box">
+
+                <div class="counter-icon">
+                    @if($i==1) 🚚 @endif
+                    @if($i==2) 👨‍🌾 @endif
+                    @if($i==3) 🌳 @endif
+                    @if($i==4) ⚙️ @endif
+                </div>
+
+                <h2 data-count="{{ $counter->{'count'.$i} }}">0</h2>
+                <p>{{ $counter->{'title'.$i} }}</p>
+
+            </div>
+            @endforeach
+
+        </div>
+
+    </div>
+</section>
+
+
 
 
             </div>
         </div><!-- ** Container End ** -->
     </div><!-- **Main - End ** -->
+ <script>
+document.querySelectorAll("[data-count]").forEach(el => {
+    let target = +el.getAttribute("data-count");
+    let count = 0;
+    let speed = target / 50;
+    
+    let update = setInterval(function(){
+        count += speed;
+        el.innerText = Math.floor(count);
+        if(count >= target){
+            el.innerText = target + "+";
+            clearInterval(update);
+        }
+    }, 40);
+});
+</script>
+
 @endsection

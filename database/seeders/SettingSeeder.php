@@ -10,7 +10,7 @@ class SettingSeeder extends Seeder
     {
         Setting::create([
             'name'      => 'شركة  عتاب التجارية',
-            'logo'      => 'logo.png', // صورة افتراضية لازم تضعها
+            'logo'      => 'dashboard_files/img/logos/logo.png', // صورة افتراضية لازم تضعها
             'email'     => 'info@future-tech.com',
             'phone'     => '+966500000000',
             'address'   => 'الخرطوم  - جمهورية السودان',

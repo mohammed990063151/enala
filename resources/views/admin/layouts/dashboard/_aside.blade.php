@@ -23,6 +23,42 @@
             <i class="fa fa-leaf"></i> <span>أقسام الحدائق والخدمات</span>
         </a>
     </li>
+    <li>
+        <a href="{{ route('dashboard.about.index') }}">
+            <i class="fa fa-leaf"></i> <span>نبذه عنا</span>
+        </a>
+    </li>
+    <li>
+        <a href="{{ route('dashboard.whyus.index') }}">
+            <i class="fa fa-leaf"></i> <span>لماذا نحنا</span>
+        </a>
+    </li>
+    <li>
+        <a href="{{ route('dashboard.gallery.index') }}">
+            <i class="fa fa-leaf"></i> <span> معرض الصور</span>
+        </a>
+    </li>
+    <li>
+        <a href="{{ route('dashboard.services.index') }}">
+            <i class="fa fa-leaf"></i> <span>خدماتنا</span>
+        </a>
+    </li>
+    <li>
+        <a href="{{ route('dashboard.counters.index') }}">
+            <i class="fa fa-leaf"></i> <span> إعدادات الإحصائيات</span>
+        </a>
+    </li>
+
+    <li>
+        <a href="{{ route('dashboard.company_about.index') }}">
+            <i class="fa fa-leaf"></i> <span>  من نحنا</span>
+        </a>
+    </li>
+    <li>
+        <a href="{{ route('dashboard.Pag_services.index') }}">
+            <i class="fa fa-leaf"></i> <span>  خدمتنا </span>
+        </a>
+    </li>
         </ul>
     </section>
 </aside>

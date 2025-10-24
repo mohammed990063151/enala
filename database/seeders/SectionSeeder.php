@@ -16,7 +16,7 @@ class SectionSeeder extends Seeder
                 'description' => 'نحن نقدم حلول احترافية للمناظر الطبيعية وصيانة الحدائق.',
                 'button_text' => 'استكشف خدماتنا',
                 'clients_count' => 10000,
-                'image' => null
+                'image' => 'dashboard_files/img/logos/1761232305.jpg',
             ]
         );
     }

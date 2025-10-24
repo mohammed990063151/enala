@@ -50,7 +50,7 @@
                                                            <div class="wdt-heading-holder " id="wdt-heading-fe3a6aa">
                                                                <h2
                                                                    class="wdt-heading-title-wrapper wdt-heading-align- wdt-heading-deco-wrapper">
-                                                                   <span class="wdt-heading-title">الهدوء و الرفاهية</span></h2>
+                                                                   <span class="wdt-heading-title"> جودة نضمنها دائماً </span></h2>
                                                            </div>
                                                        </div>
                                                    </div>
@@ -94,7 +94,7 @@
                                                                                </div>
                                                                                <div class="wdt-content-detail-group">
                                                                                    <div class="wdt-content-description">
-                                                                                       <p>الرياض، المملكة العربية السعودية</p>
+                                                                                       <p>{{ $setting->address }}</p>
                                                                                        {{-- <p>Street, MD, USA 4508</p> --}}
                                                                                    </div>
                                                                                </div>
@@ -139,16 +139,16 @@
                                                                                        <div
                                                                                            class="wdt-content-button wdt-button-clone">
                                                                                            <a
-                                                                                               href="mailto:reservations@enala.sa">
+                                                                                               href="mailto:{{ $setting->email }}">
                                                                                                <div
                                                                                                    class="wdt-button-text">
-                                                                                                   <span>reservations@enala.sa</span>
+                                                                                                   <span>{{ $setting->email }}</span>
                                                                                                </div>
                                                                                            </a></div>
                                                                                        <div
                                                                                            class="wdt-content-button wdt-button-clone">
                                                                                            <a
-                                                                                               href="mailto:contact@example.com">
+                                                                                               href="mailto:{{ $setting->email }}">
                                                                                                <div
                                                                                                    class="wdt-button-text">
                                                                                                    <span></span>
@@ -194,10 +194,10 @@
                                                                                        <div
                                                                                            class="wdt-content-button wdt-button-clone">
                                                                                            <a
-                                                                                               href="tel:(+966)50 555 7749">
+                                                                                               href="tel:{{ $setting->phone }}">
                                                                                                <div
                                                                                                    class="wdt-button-text">
-                                                                                                   <span>050 555 7749</span></div>
+                                                                                                   <span>{{ $setting->phone }}</span></div>
                                                                                            </a></div>
                                                                                        <div
                                                                                            class="wdt-content-button wdt-button-clone">
@@ -246,7 +246,7 @@
                                                            <div id="grassroot-394fb59" class="wdt-logo-container"> <a
                                                                    href="{{ route('frontend.home') }}"
                                                                    rel="home"><img loading="lazy"
-                                                                       src="../img/logo.png"
+                                                                       src="{{ asset($setting->logo) }}"
                                                                        alt="RTL GrassRoot Site" width="350"
                                                                        height="80"></a></div>
                                                        </div>
@@ -257,7 +257,7 @@
                                                        data-widget_type="wdt-heading.default">
                                                        <div class="elementor-widget-container">
                                                            <div class="wdt-heading-holder " id="wdt-heading-20c16b4">
-                                                               <div class="wdt-heading-content-wrapper">شركة إناله هي شركة سعودية رائدة في مجال إدارة وتشغيل الفنادق والمنتجعات، تأسست في عام 2013. تلتزم الشركة بتقديم خدماتها وفقًا لأعلى المعايير العالمية في مجال الضيافة والاستجمام، وذلك بهدف تحقيق تطلعات رؤية المملكة 2030.</div>
+                                                               <div class="wdt-heading-content-wrapper">شركة مضياف هي شركة سعودية متخصصة في مجال الخدمات الزراعية والبيئية، تأسست بهدف دعم تنمية القطاع الزراعي وتطوير الممارسات المهنية الحديثة. تعمل الشركة وفق أعلى المعايير المعتمدة في مجالات المشاتل الزراعية، تنسيق الحدائق، مكافحة الآفات، وتركيب وتشغيل المضخات والغطاسات.</div>
                                                            </div>
                                                        </div>
                                                    </div>
@@ -270,7 +270,7 @@
                                                                class="elementor-icon-list-items elementor-inline-items">
                                                                <li
                                                                    class="elementor-icon-list-item elementor-inline-item">
-                                                                   <a href="https://www.facebook.com/enala.sau">
+                                                                   <a href="{{ $setting->facebook }}">
 
                                                                        <span class="elementor-icon-list-icon">
                                                                            <svg aria-hidden="true"
@@ -286,7 +286,7 @@
                                                                </li>
                                                                <li
                                                                    class="elementor-icon-list-item elementor-inline-item">
-                                                                   <a href="https://twitter.com/enala_sa">
+                                                                   <a href="{{ $setting->twitter }}">
 
                                                                        <span class="elementor-icon-list-icon">
                                                                            <svg xmlns="http://www.w3.org/2000/svg"
@@ -303,7 +303,7 @@
                                                                </li>
                                                                <li
                                                                    class="elementor-icon-list-item elementor-inline-item">
-                                                                   <a href="https://in.linkedin.com/">
+                                                                   <a href="{{ $setting->linkedin }}">
 
                                                                        <span class="elementor-icon-list-icon">
                                                                            <svg aria-hidden="true"
@@ -317,7 +317,7 @@
                                                                        <span class="elementor-icon-list-text"></span>
                                                                    </a>
                                                                </li>
-                                                               <li
+                                                               {{-- <li
                                                                    class="elementor-icon-list-item elementor-inline-item">
                                                                    <a href="https://www.google.com/">
 
@@ -339,7 +339,7 @@
                                                                            </svg> </span>
                                                                        <span class="elementor-icon-list-text"></span>
                                                                    </a>
-                                                               </li>
+                                                               </li> --}}
                                                            </ul>
                                                        </div>
                                                    </div>
@@ -381,7 +381,7 @@
                                                                                    src="./RTL GrassRoot Site – Your SUPER-powered WP Engine Site_files/footer-gallery-img-1.jpg"
                                                                                    class="attachment-full size-full"
                                                                                    alt="" decoding="async"
-                                                                                   srcset="../img/break-649351_1280.jpg"
+                                                                                   srcset="{{ asset('dashboard_files/img/services/1761304116_image1.jpg') }}"
                                                                                    sizes="(max-width: 800px) 100vw, 800px"></a>
                                                                        </div>
                                                                    </figure>
@@ -391,13 +391,13 @@
                                                                                data-elementor-lightbox-slideshow="9ee7309"
                                                                                data-elementor-lightbox-title="footer-gallery-img-2"
                                                                                data-e-action-hash="#elementor-action%3Aaction%3Dlightbox%26settings%3DeyJpZCI6MTU4NTgsInVybCI6Imh0dHBzOlwvXC93ZHRncmFzc3Jvb3Qud3BlbmdpbmUuY29tXC9ydGwtZGVtb1wvd3AtY29udGVudFwvdXBsb2Fkc1wvc2l0ZXNcLzNcLzIwMjVcLzAxXC9mb290ZXItZ2FsbGVyeS1pbWctMi5qcGciLCJzbGlkZXNob3ciOiI5ZWU3MzA5In0%3D"
-                                                                               href="https://www.instagram.com/enala.sa/"><img
+                                                                               href="{{ $setting->instagram }}"><img
                                                                                    loading="lazy" width="800"
                                                                                    height="800"
-                                                                                   src="./RTL GrassRoot Site – Your SUPER-powered WP Engine Site_files/footer-gallery-img-2.jpg"
+                                                                                   src="{{ asset('dashboard_files/img/services/1761304116_image1.jpg') }}"
                                                                                    class="attachment-full size-full"
                                                                                    alt="" decoding="async"
-                                                                                   srcset="../img/6315b138554a6_restaurant.webp"
+                                                                                   srcset="{{ asset('dashboard_files/img/services/1761304116_image1.jpg') }}"
                                                                                    sizes="(max-width: 800px) 100vw, 800px"></a>
                                                                        </div>
                                                                    </figure>
@@ -407,13 +407,13 @@
                                                                                data-elementor-lightbox-slideshow="9ee7309"
                                                                                data-elementor-lightbox-title="footer-gallery-img-3"
                                                                                data-e-action-hash="#elementor-action%3Aaction%3Dlightbox%26settings%3DeyJpZCI6MTU4NTksInVybCI6Imh0dHBzOlwvXC93ZHRncmFzc3Jvb3Qud3BlbmdpbmUuY29tXC9ydGwtZGVtb1wvd3AtY29udGVudFwvdXBsb2Fkc1wvc2l0ZXNcLzNcLzIwMjVcLzAxXC9mb290ZXItZ2FsbGVyeS1pbWctMy5qcGciLCJzbGlkZXNob3ciOiI5ZWU3MzA5In0%3D"
-                                                                               href="https://www.instagram.com/enala.sa/"><img
+                                                                               href="{{ $setting->instagram }}"><img
                                                                                    loading="lazy" width="800"
                                                                                    height="800"
-                                                                                   src="./RTL GrassRoot Site – Your SUPER-powered WP Engine Site_files/footer-gallery-img-3.jpg"
+                                                                                   src="{{ asset('dashboard_files/img/services/1761304116_image1.jpg') }}"
                                                                                    class="attachment-full size-full"
                                                                                    alt="" decoding="async"
-                                                                                   srcset="../img/to-travel-1677347_1280.jpg"
+                                                                                   srcset="{{ asset('dashboard_files/img/services/1761304116_image1.jpg') }}"
                                                                                    sizes="(max-width: 800px) 100vw, 800px"></a>
                                                                        </div>
                                                                    </figure>
@@ -423,13 +423,13 @@
                                                                                data-elementor-lightbox-slideshow="9ee7309"
                                                                                data-elementor-lightbox-title="footer-gallery-img-4"
                                                                                data-e-action-hash="#elementor-action%3Aaction%3Dlightbox%26settings%3DeyJpZCI6MTU4NjAsInVybCI6Imh0dHBzOlwvXC93ZHRncmFzc3Jvb3Qud3BlbmdpbmUuY29tXC9ydGwtZGVtb1wvd3AtY29udGVudFwvdXBsb2Fkc1wvc2l0ZXNcLzNcLzIwMjVcLzAxXC9mb290ZXItZ2FsbGVyeS1pbWctNC5qcGciLCJzbGlkZXNob3ciOiI5ZWU3MzA5In0%3D"
-                                                                               href="https://www.instagram.com/enala.sa/"><img
+                                                                               href="{{ $setting->instagram }}"><img
                                                                                    loading="lazy" width="800"
                                                                                    height="800"
-                                                                                   src="./RTL GrassRoot Site – Your SUPER-powered WP Engine Site_files/footer-gallery-img-4.jpg"
+                                                                                   src="{{ asset('dashboard_files/img/services/1761304116_image1.jpg') }}"
                                                                                    class="attachment-full size-full"
                                                                                    alt="" decoding="async"
-                                                                                   srcset="../img/bedroom-5664221_1280.jpg"
+                                                                                   srcset="{{ asset('dashboard_files/img/services/1761304116_image1.jpg') }}"
                                                                                    sizes="(max-width: 800px) 100vw, 800px"></a>
                                                                        </div>
                                                                    </figure>
@@ -439,13 +439,13 @@
                                                                                data-elementor-lightbox-slideshow="9ee7309"
                                                                                data-elementor-lightbox-title="footer-gallery-img-5"
                                                                                data-e-action-hash="#elementor-action%3Aaction%3Dlightbox%26settings%3DeyJpZCI6MTU4NjEsInVybCI6Imh0dHBzOlwvXC93ZHRncmFzc3Jvb3Qud3BlbmdpbmUuY29tXC9ydGwtZGVtb1wvd3AtY29udGVudFwvdXBsb2Fkc1wvc2l0ZXNcLzNcLzIwMjVcLzAxXC9mb290ZXItZ2FsbGVyeS1pbWctNS5qcGciLCJzbGlkZXNob3ciOiI5ZWU3MzA5In0%3D"
-                                                                               href="https://www.instagram.com/enala.sa/"><img
+                                                                               href="{{ $setting->instagram }}"><img
                                                                                    loading="lazy" width="800"
                                                                                    height="800"
-                                                                                   src="./RTL GrassRoot Site – Your SUPER-powered WP Engine Site_files/footer-gallery-img-5.jpg"
+                                                                                   src="{{ asset('dashboard_files/img/services/1761304116_image1.jpg') }}"
                                                                                    class="attachment-full size-full"
                                                                                    alt="" decoding="async"
-                                                                                   srcset="../img/bedroom-349701_1280.jpg"
+                                                                                   srcset="{{ asset('dashboard_files/img/services/1761304116_image1.jpg') }}"
                                                                                    sizes="(max-width: 800px) 100vw, 800px"></a>
                                                                        </div>
                                                                    </figure>
@@ -455,13 +455,13 @@
                                                                                data-elementor-lightbox-slideshow="9ee7309"
                                                                                data-elementor-lightbox-title="footer-gallery-img-6"
                                                                                data-e-action-hash="#elementor-action%3Aaction%3Dlightbox%26settings%3DeyJpZCI6MTU4NjIsInVybCI6Imh0dHBzOlwvXC93ZHRncmFzc3Jvb3Qud3BlbmdpbmUuY29tXC9ydGwtZGVtb1wvd3AtY29udGVudFwvdXBsb2Fkc1wvc2l0ZXNcLzNcLzIwMjVcLzAxXC9mb290ZXItZ2FsbGVyeS1pbWctNi5qcGciLCJzbGlkZXNob3ciOiI5ZWU3MzA5In0%3D"
-                                                                               href="https://www.instagram.com/enala.sa/"><img
+                                                                               href="{{ $setting->instagram }}"><img
                                                                                    loading="lazy" width="800"
                                                                                    height="800"
                                                                                    src="./RTL GrassRoot Site – Your SUPER-powered WP Engine Site_files/footer-gallery-img-6.jpg"
                                                                                    class="attachment-full size-full"
                                                                                    alt="" decoding="async"
-                                                                                   srcset="../img/6323224c2d9c5_63136758b69271662216024.webp"
+                                                                                   srcset="{{ asset('dashboard_files/img/services/1761304116_image1.jpg') }}"
                                                                                    sizes="(max-width: 800px) 100vw, 800px"></a>
                                                                        </div>
                                                                    </figure>
@@ -471,187 +471,41 @@
                                                    </div>
                                                </div>
                                            </div>
-                                           <div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-7352c06"
-                                               data-id="7352c06" data-element_type="column">
-                                               <div class="elementor-widget-wrap elementor-element-populated">
-                                                   <div class="elementor-element elementor-element-4786dd5 elementor-widget elementor-widget-wdt-accordion-and-toggle"
-                                                       data-id="4786dd5" data-element_type="widget"
-                                                       data-settings="{&quot;wdt_animation_effect&quot;:&quot;none&quot;}"
-                                                       data-widget_type="wdt-accordion-and-toggle.default">
-                                                       <div class="elementor-widget-container">
-                                                           <div class="wdt-accordion-toggle-holder wdt-module-toggle wdt-template-default wdt-expand-collapse-position-end accordion ui-accordion ui-accordion-icons ui-widget ui-helper-reset"
-                                                               id="wdt-accordion-and-toggle-4786dd5">
-                                                               <div class="wdt-accordion-toggle-wrapper">
-                                                                   <div
-                                                                       class="wdt-accordion-toggle-title-holder ui-accordion-header ui-state-default ui-corner-top ui-corner-bottom">
-                                                                       <div class="wdt-accordion-toggle-title">آخر المواضيع</div>
-                                                                       <div class="wdt-accordion-toggle-icon">
-                                                                           <div
-                                                                               class="wdt-accordion-toggle-icon-expand">
-                                                                               <svg aria-hidden="true"
-                                                                                   class="e-font-icon-svg e-fas-plus"
-                                                                                   viewBox="0 0 448 512"
-                                                                                   xmlns="http://www.w3.org/2000/svg">
-                                                                                   <path
-                                                                                       d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z">
-                                                                                   </path>
-                                                                               </svg></div>
-                                                                           <div
-                                                                               class="wdt-accordion-toggle-icon-collapse">
-                                                                               <svg aria-hidden="true"
-                                                                                   class="e-font-icon-svg e-fas-minus"
-                                                                                   viewBox="0 0 448 512"
-                                                                                   xmlns="http://www.w3.org/2000/svg">
-                                                                                   <path
-                                                                                       d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z">
-                                                                                   </path>
-                                                                               </svg></div>
-                                                                       </div>
-                                                                   </div>
-                                                                   <div class="wdt-accordion-toggle-description ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom"
-                                                                       style="display: none;">
-                                                                       <style>
-                                                                           .elementor-widget-icon-list .elementor-icon-list-item:not(:last-child):after {
-                                                                               border-color: var(--e-global-color-text);
-                                                                           }
+                                           <div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-992gxy3"
+     data-id="992gxy3" data-element_type="column">
+    <div class="elementor-widget-wrap elementor-element-populated">
 
-                                                                           .elementor-widget-icon-list .elementor-icon-list-icon i {
-                                                                               color: var(--e-global-color-primary);
-                                                                           }
+        {{-- ✅ القسم: أخطاء زراعية شائعة --}}
+        <div class="elementor-element elementor-element-4786dd5 elementor-widget elementor-widget-wdt-accordion-and-toggle"
+            data-id="4786dd6" data-element_type="widget">
+            <div class="elementor-widget-container">
+                <div class="wdt-accordion-toggle-holder wdt-module-toggle accordion ui-accordion">
+                    <div class="wdt-accordion-toggle-wrapper">
+                        <div class="wdt-accordion-toggle-title-holder ui-accordion-header">
+                            <div class="wdt-accordion-toggle-title">أخطاء زراعية شائعة</div>
+                        </div>
 
-                                                                           .elementor-widget-icon-list .elementor-icon-list-icon svg {
-                                                                               fill: var(--e-global-color-primary);
-                                                                           }
+                        <div class="wdt-accordion-toggle-description ui-accordion-content" style="display:none;">
+                            <ul style="list-style:none; padding:0; text-align:right;">
 
-                                                                           .elementor-widget-icon-list .elementor-icon-list-item>.elementor-icon-list-text,
-                                                                           .elementor-widget-icon-list .elementor-icon-list-item>a {
-                                                                               font-family: var(--e-global-typography-text-font-family), Sans-serif;
-                                                                               font-weight: var(--e-global-typography-text-font-weight);
-                                                                               line-height: var(--e-global-typography-text-line-height);
-                                                                           }
+                                <li>❌ الإفراط في الري يسبب تعفن الجذور.</li>
+                                <li>⚠️ تجاهل تحليل التربة يقلل جودة المحصول.</li>
+                                <li>🐛 عدم مكافحة الآفات مبكرًا يزيد الضرر.</li>
+                                <li>💧 الري في الظهيرة يسرّع التبخر.</li>
+                                <li>🌱 استخدام بذور مجهولة المصدر خطير جدًا.</li>
+                                <li>🧪 عدم التسميد الدوري يضعف النمو.</li>
 
-                                                                           .elementor-widget-icon-list .elementor-icon-list-text {
-                                                                               color: var(--e-global-color-secondary);
-                                                                           }
+                            </ul>
+                        </div>
 
-                                                                           .elementor-15851 .elementor-element.elementor-element-9d93d7b .elementor-icon-list-icon i {
-                                                                               transition: color 0.3s;
-                                                                           }
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                                                                           .elementor-15851 .elementor-element.elementor-element-9d93d7b .elementor-icon-list-icon svg {
-                                                                               transition: fill 0.3s;
-                                                                           }
+    </div>
+</div>
 
-                                                                           .elementor-15851 .elementor-element.elementor-element-9d93d7b {
-                                                                               --e-icon-list-icon-size: 14px;
-                                                                               --icon-vertical-offset: 0px;
-                                                                           }
-
-                                                                           .elementor-15851 .elementor-element.elementor-element-9d93d7b .elementor-icon-list-text {
-                                                                               transition: color 0.3s;
-                                                                           }
-
-                                                                           @media(max-width:1540px) {
-
-                                                                               .elementor-widget-icon-list .elementor-icon-list-item>.elementor-icon-list-text,
-                                                                               .elementor-widget-icon-list .elementor-icon-list-item>a {
-                                                                                   line-height: var(--e-global-typography-text-line-height);
-                                                                               }
-                                                                           }
-
-                                                                           @media(max-width:1024px) {
-
-                                                                               .elementor-widget-icon-list .elementor-icon-list-item>.elementor-icon-list-text,
-                                                                               .elementor-widget-icon-list .elementor-icon-list-item>a {
-                                                                                   line-height: var(--e-global-typography-text-line-height);
-                                                                               }
-                                                                           }
-
-                                                                           @media(max-width:479px) {
-
-                                                                               .elementor-widget-icon-list .elementor-icon-list-item>.elementor-icon-list-text,
-                                                                               .elementor-widget-icon-list .elementor-icon-list-item>a {
-                                                                                   line-height: var(--e-global-typography-text-line-height);
-                                                                               }
-                                                                           }
-                                                                       </style>
-                                                                       <div data-elementor-type="section"
-                                                                           data-elementor-id="15851"
-                                                                           class="elementor elementor-15851">
-                                                                           <section
-                                                                               class="elementor-section elementor-top-section elementor-element elementor-element-1f1e026 elementor-section-full_width elementor-section-height-default elementor-section-height-default"
-                                                                               data-id="1f1e026"
-                                                                               data-element_type="section"
-                                                                               data-settings="{&quot;wdt_bg_image&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;wdt_bg_image_laptop&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;wdt_bg_image_tablet_extra&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;wdt_bg_image_tablet&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;wdt_bg_image_mobile_extra&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;wdt_bg_image_mobile&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;wdt_bg_position&quot;:&quot;center center&quot;,&quot;wdt_animation_effect&quot;:&quot;none&quot;}">
-                                                                               <div
-                                                                                   class="elementor-container elementor-column-gap-no">
-                                                                                   <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-5a13fd5"
-                                                                                       data-id="5a13fd5"
-                                                                                       data-element_type="column">
-                                                                                       <div
-                                                                                           class="elementor-widget-wrap elementor-element-populated">
-                                                                                           <div class="elementor-element elementor-element-9d93d7b elementor-list-item-link-inline elementor-icon-list--layout-traditional elementor-widget elementor-widget-icon-list"
-                                                                                               data-id="9d93d7b"
-                                                                                               data-element_type="widget"
-                                                                                               data-settings="{&quot;wdt_animation_effect&quot;:&quot;none&quot;}"
-                                                                                               data-widget_type="icon-list.default">
-                                                                                               <div
-                                                                                                   class="elementor-widget-container">
-                                                                                                   <ul
-                                                                                                       class="elementor-icon-list-items">
-                                                                                                       <li
-                                                                                                           class="elementor-icon-list-item">
-                                                                                                           <a
-                                                                                                               href="{{ route('blog.index') }} ">
-
-                                                                                                               <span
-                                                                                                                   class="elementor-icon-list-text"> أ. فالح الفالح رئيس لجنة السياحة والترفيه والفعاليات بـ #غرفة_الرياض متحدثاً عن تطلعات اللجنة نحو خدمة القطاع</span>
-                                                                                                           </a>
-                                                                                                       </li>
-                                                                                                       <li
-                                                                                                           class="elementor-icon-list-item">
-                                                                                                           <a
-                                                                                                               href="{{ route('blog.index') }} ">
-
-                                                                                                               <span
-                                                                                                                   class="elementor-icon-list-text"> اليوم العالمي للرجل ومنتجعات إناله السياحية في الرياض
-                                                                                                               </span>
-                                                                                                           </a>
-                                                                                                       </li>
-                                                                                                       <li
-                                                                                                           class="elementor-icon-list-item">
-                                                                                                           <a
-                                                                                                               href="{{ route('blog.index') }} ">
-
-                                                                                                               <span
-                                                                                                                   class="elementor-icon-list-text">أملج: بوابة الجمال والتاريخ على ساحل البحر الأحمر</span>
-                                                                                                           </a>
-                                                                                                       </li>
-                                                                                                       <li
-                                                                                                           class="elementor-icon-list-item">
-                                                                                                           <a
-                                                                                                               href="{{ route('blog.index') }} ">
-
-                                                                                                               <span
-                                                                                                                   class="elementor-icon-list-text"> استمتع بتجربة استثنائية في المنتجعات الأولى</span>
-                                                                                                           </a>
-                                                                                                       </li>
-
-                                                                                                   </ul>
-                                                                                               </div>
-                                                                                           </div>
-                                                                                       </div>
-                                                                                   </div>
-                                                                               </div>
-                                                                           </section>
-                                                                       </div>
-                                                                   </div>
-                                                               </div>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                               </div>
-                                           </div>
                                            <div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-609698a"
                                                data-id="609698a" data-element_type="column">
                                                <div class="elementor-widget-wrap elementor-element-populated">
@@ -843,67 +697,43 @@
                                                    </div>
                                                </div>
                                            </div>
-                                           {{-- <div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-4375aec"
-                                               data-id="4375aec" data-element_type="column">
-                                               <div class="elementor-widget-wrap elementor-element-populated">
-                                                   <div class="elementor-element elementor-element-aaab735 elementor-widget elementor-widget-wdt-heading"
-                                                       data-id="aaab735" data-element_type="widget"
-                                                       data-settings="{&quot;wdt_animation_effect&quot;:&quot;none&quot;}"
-                                                       data-widget_type="wdt-heading.default">
-                                                       <div class="elementor-widget-container">
-                                                           <div class="wdt-heading-holder " id="wdt-heading-aaab735">
-                                                               <h4
-                                                                   class="wdt-heading-title-wrapper wdt-heading-align- wdt-heading-deco-wrapper">
-                                                                   <span class="wdt-heading-title">Subscribe
-                                                                       Newsletter</span></h4>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="elementor-element elementor-element-40f0e95 elementor-widget-tablet_extra__width-initial elementor-widget elementor-widget-wdt-mailchimp"
-                                                       data-id="40f0e95" data-element_type="widget"
-                                                       data-settings="{&quot;wdt_animation_effect&quot;:&quot;none&quot;}"
-                                                       data-widget_type="wdt-mailchimp.default">
-                                                       <div class="elementor-widget-container">
-                                                           <div class="wdt-mailchimp-holder wdt-template-type5"
-                                                               id="wdt-mailchimp-40f0e95">
-                                                               <div class="wdt-mailchimp-wrapper">
-                                                                   <form
-                                                                       class="wdt-mailchimp-subscribe-form with-btn-icon"
-                                                                       name="mailchimpSubscribeForm"
-                                                                       action="https://wdtgrassroot.wpengine.com/rtl-demo/#"
-                                                                       method="post"><input type="email"
-                                                                           name="wdt_mc_emailid" required="required"
-                                                                           placeholder="Your Email*" value=""
-                                                                           fdprocessedid="sqmdk9"><input
-                                                                           type="hidden" name="wdt_mc_apikey"
-                                                                           value=""><input type="hidden"
-                                                                           name="wdt_mc_listid" value="">
-                                                                       <div
-                                                                           class="wdt-mailchimp-subscription-button-holder">
-                                                                           <button type="submit" name="wdt_mc_submit"
-                                                                               fdprocessedid="vf96f"><svg
-                                                                                   aria-hidden="true"
-                                                                                   class="e-font-icon-svg e-far-paper-plane"
-                                                                                   viewBox="0 0 512 512"
-                                                                                   xmlns="http://www.w3.org/2000/svg">
-                                                                                   <path
-                                                                                       d="M440 6.5L24 246.4c-34.4 19.9-31.1 70.8 5.7 85.9L144 379.6V464c0 46.4 59.2 65.5 86.6 28.6l43.8-59.1 111.9 46.2c5.9 2.4 12.1 3.6 18.3 3.6 8.2 0 16.3-2.1 23.6-6.2 12.8-7.2 21.6-20 23.9-34.5l59.4-387.2c6.1-40.1-36.9-68.8-71.5-48.9zM192 464v-64.6l36.6 15.1L192 464zm212.6-28.7l-153.8-63.5L391 169.5c10.7-15.5-9.5-33.5-23.7-21.2L155.8 332.6 48 288 464 48l-59.4 387.3z">
-                                                                                   </path>
-                                                                               </svg></button></div>
-                                                                       <div><input type="checkbox"
-                                                                               class="wdt-terms-and-conditions"
-                                                                               required="required"><span
-                                                                               class="wdt-terms-condition-lbl">I agree
-                                                                               with the Terms and Conditions</span>
-                                                                       </div>
-                                                                   </form>
-                                                                   <div class="wdt-mailchimp-subscription-msg"></div>
-                                                               </div>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                               </div>
-                                           </div> --}}
+                                          
+<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-7352c06"
+     data-id="7352c06" data-element_type="column">
+    <div class="elementor-widget-wrap elementor-element-populated">
+
+        {{-- ✅ القسم: نصائح زراعية --}}
+        <div class="elementor-element elementor-element-4786dd5 elementor-widget elementor-widget-wdt-accordion-and-toggle"
+            data-id="4786dd5" data-element_type="widget">
+            <div class="elementor-widget-container">
+                <div class="wdt-accordion-toggle-holder wdt-module-toggle accordion ui-accordion">
+                    <div class="wdt-accordion-toggle-wrapper">
+                        <div class="wdt-accordion-toggle-title-holder ui-accordion-header">
+                            <div class="wdt-accordion-toggle-title">نصائح زراعية مهمة</div>
+                        </div>
+
+                        <div class="wdt-accordion-toggle-description ui-accordion-content" style="display:none;">
+                            <ul style="list-style:none; padding:0; text-align:right;">
+
+                                <li>✅ الري المنتظم يساعد على زيادة الإنتاج الزراعي.</li>
+                                <li>🌿 اختيار البذور الجيدة يرفع جودة المحصول.</li>
+                                <li>🐞 مكافحة الآفات مبكرًا تمنع خسائر كبيرة.</li>
+                                <li>🚿 تركيب مضخات فعّالة يوفر استهلاك الماء.</li>
+                                <li>💧 حافظ على رطوبة التربة بطرق حديثة.</li>
+                                <li>🌱 الأسمدة العضوية أفضل لصحة الأرض.</li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
                                        </div>
                                    </section>
                                    <section
@@ -920,7 +750,7 @@
                                                        data-widget_type="text-editor.default">
                                                        <div class="elementor-widget-container">
                                                            <p><a
-                                                                   href="{{ route('frontend.home') }}">Enala Hotel</a>&nbsp;
+                                                                   href="{{ route('frontend.home') }}">{{ $setting->name }}</a>&nbsp;
                                                                © 2024 &nbsp; </p>
                                                        </div>
                                                    </div>

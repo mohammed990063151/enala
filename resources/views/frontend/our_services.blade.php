@@ -1,4 +1,4 @@
-@extends('frontend.layouts.master')
+{{-- @extends('frontend.layouts.master')
 <style>
     body {
         font-family: 'Cairo', sans-serif;
@@ -246,4 +246,115 @@
 @endsection
 
 <!-- ===== CSS Section ===== -->
+ --}}
+{{-- resources/views/frontend/services.blade.php --}}
+{{-- @extends('frontend.layouts.master')
 
+@section('title', 'خدماتنا - مضياف')
+
+@section('content')
+
+<section style="padding:80px 20px;text-align:center;background:#fff;">
+    <h2 style="font-size:2.8rem;color:#1a1a1a;margin-bottom:15px;">خدماتنا</h2>
+    <p style="max-width:700px;margin:auto;color:#666;">
+        نقدم مجموعة متنوعة من الخدمات الزراعية والبيئية المتكاملة وفق أعلى معايير الجودة.
+    </p>
+</section>
+
+<section style="padding:60px 0;background:#f7f9f8;">
+    <div class="container">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px;">
+
+            @foreach($pagservices as $service)
+            <div style="background:#fff;border-radius:18px;padding:25px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.05);transition:.3s;">
+                <div style="font-size:40px;color:#27ae60;margin-bottom:10px;">
+                    <i class="{{ $service->icon }}"></i>
+                </div>
+                <h3 style="font-size:1.3rem;color:#1b3b26;margin-bottom:8px;">{{ $service->title }}</h3>
+                <p style="font-size:.95rem;color:#555;">{{ $service->description }}</p>
+
+                @if($service->image)
+                    <img src="{{ asset($service->image) }}" style="width:80%;border-radius:12px;margin-top:10px;">
+                @endif
+            </div>
+            @endforeach
+
+        </div>
+    </div>
+</section>
+
+@endsection --}}
+
+
+
+@extends('frontend.layouts.master')
+
+@section('title', 'خدماتنا')
+
+@section('content')
+<style>
+    .service-card {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 25px;
+        text-align: center;
+        border: 1px solid #eee;
+        transition: .3s;
+        height: 100%;
+    }
+    .service-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 0 20px rgba(0,0,0,0.10);
+        border-color: #28a745;
+    }
+    .service-icon {
+        font-size: 45px;
+        color: #28a745;
+        margin-bottom: 15px;
+    }
+    .service-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #34495e;
+        margin-bottom: 10px;
+    }
+    .service-desc {
+        font-size: 15px;
+        color: #666;
+        min-height: 70px;
+        line-height: 1.7;
+    }
+</style>
+
+{{-- <section class="py-5" style="direction: rtl;">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">خدمات شركة مضياف</h2>
+            <p class="text-muted">تعرف على أبرز خدماتنا الزراعية</p>
+        </div>
+
+        <div class="row g-4">
+            @forelse($pag_service as $service)
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <i class="{{ $service->icon }} service-icon"></i>
+
+                        <h3 class="service-title">{{ $service->title }}</h3>
+
+                        <p class="service-desc">{{ $service->description }}</p>
+
+                        <a href="{{ url('service/'.$service->slug) }}" class="btn btn-success btn-sm rounded-pill mt-2">
+                            تفاصيل أكثر
+                        </a>
+                    </div>
+                </div>
+            @empty
+                <p class="text-center">لا توجد خدمات مسجلة حاليًا</p>
+            @endforelse
+        </div>
+
+    </div>
+</section> --}}
+
+@endsection

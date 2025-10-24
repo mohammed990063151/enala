@@ -18,6 +18,22 @@ class DatabaseSeeder extends Seeder
         // $this->call(ClientsTableSeeder::class);
          $this->call(SettingSeeder::class);
          $this->call(SectionSeeder::class);
+         $this->call(AboutSeeder::class);
+         $this->call(WhyUsSeeder::class);
+         $this->call([
+    GallerySettingSeeder::class,
+    GalleryItemSeeder::class,
+]);
+$this->call(ServiceSeeder::class);
+$this->call(CounterSeeder::class);
+// database/seeders/DatabaseSeeder.php
+$this->call([
+    CompanyAboutSeeder::class,
+]);
+$this->call([
+    PagserviceSeeder::class,
+]);
+
 
     }//end of run
 
