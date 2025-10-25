@@ -13,6 +13,13 @@ use App\Http\Controllers\Dashboard\ServiceController;
 use App\Http\Controllers\Dashboard\CounterController;
 use App\Http\Controllers\Dashboard\CompanyAboutController;
 use App\Http\Controllers\Dashboard\PagserviceController;
+use App\Http\Controllers\Dashboard\ContactController;
+use App\Http\Controllers\Dashboard\ModyafServiceController;
+use App\Http\Controllers\Dashboard\ContactSettingsController;
+use App\Http\Controllers\Dashboard\BranchesController;
+use App\Http\Controllers\Dashboard\MessagesController;
+use App\Http\Controllers\Dashboard\TestimonialController;
+use App\Http\Controllers\PagContactController;
 use App\Models\Service;
 Route::get('/custom-login', function() {
     return view('auth.custom-login');
@@ -90,7 +97,9 @@ Route::get('/rooms', function () {
 
 // Auth::routes();
 Route::middleware(['auth', 'web'])->prefix('dashboard')->name('dashboard.')->group(function () {
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/index', [App\Http\Controllers\Dashboard\HomeController::class, 'index'])
+    ->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // settings
 Route::get('settings', [SettingController::class, 'edit'])->name('settings.edit');
     Route::put('settings', [SettingController::class, 'update'])->name('settings.update');
@@ -135,7 +144,54 @@ Route::resource('Pag_services', PagserviceController::class)
 
 // Route::get('/service/{slug}', [ServicePageController::class, 'show'])->name('service.show');
 
+// Dashboard
+
+
+    Route::resource('modyaf_services', ModyafServiceController::class);
+    Route::get('messages', [ContactController::class, 'inbox'])->name('messages.inbox');
+
+
+
 
 
 
 });
+// Frontend Contact Form
+// Route::post('contact/send', [ContactController::class, 'send'])->name('contact.send');
+
+// Frontend page
+// Route::get('/modyaf', [FrontendController::class, 'modyaf'])->name('modyaf');
+
+
+
+
+// frontend
+Route::get('/contact/pag',[PagContactController::class,'index'])->name('pag.contact');
+Route::post('/contact-send',[PagContactController::class,'send'])->name('contact.send');
+
+// dashboard
+Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(function () {
+
+    // Contact Settings
+    Route::get('contact/settings',[ContactSettingsController::class,'edit'])->name('contact.settings');
+    Route::put('contact/settings',[ContactSettingsController::class,'update']);
+
+    // Branches CRUD
+    Route::resource('branches',BranchesController::class);
+
+    // Inbox Messages
+    Route::get('messages',[MessagesController::class,'inbox'])->name('messages');
+    Route::get('messages/{message}',[MessagesController::class,'show'])->name('messages.show');
+    Route::delete('messages/{message}',[MessagesController::class,'destroy'])->name('messages.delete');
+
+    Route::resource('testimonials', TestimonialController::class);
+
+});
+
+Route::get('/testimonials', function () {
+    $items = App\Models\Testimonial::latest()->get();
+    return view('frontend.guests-reviews', compact('items'));
+})->name('testimonials');
+
+
+

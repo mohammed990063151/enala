@@ -213,18 +213,18 @@
                                                                                      data-text="%1$s">الرئيسية</span></a>
                                                                          </li>
                                                                          <li>
-                                                                             <a href="{{ route('guests.reviews') }}"
+                                                                             <a href="{{ route('testimonials') }}"
                                                                                  aria-current="page"><span
                                                                                      data-text="%1$s">اراء
                                                                                      النزلاء</span></a>
 
                                                                          </li>
-                                                                         <li>
+                                                                         {{-- <li>
                                                                              <a href="{{ route('frontend.rooms') }}"><span
                                                                                      data-text="%1$s">قسم
                                                                                      الغرف</span></a>
 
-                                                                         </li>
+                                                                         </li> --}}
                                                                          <li>
                                                                              <a
                                                                                  href="{{ route('frontend.about-us') }}"><span
@@ -267,7 +267,7 @@
 
                                                                              </ul>
                                                                          <li>
-                                                                             <a href="{{ route('contact') }}"><span
+                                                                             <a href="{{ route('pag.contact') }}"><span
                                                                                      data-text="%1$s">تواصل
                                                                                      معنا</span></a>
                                                                          </li>

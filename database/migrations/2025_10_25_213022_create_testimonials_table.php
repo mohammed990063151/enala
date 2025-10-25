@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('modyaf_services', function (Blueprint $table) {
+       Schema::create('testimonials', function (Blueprint $table) {
     $table->id();
-    $table->string('title');
-    $table->string('slug')->unique();
-    $table->string('phone')->nullable();
-    $table->string('email')->nullable();
-    $table->string('address')->nullable();
-    $table->string('image')->nullable();
-    $table->text('description')->nullable();
+    $table->string('name');
+    $table->string('avatar')->nullable();
+    $table->tinyInteger('stars')->default(5);
+    $table->text('review');
     $table->timestamps();
 });
 
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('modyaf_services');
+        Schema::dropIfExists('testimonials');
     }
 };

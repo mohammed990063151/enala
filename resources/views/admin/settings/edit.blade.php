@@ -31,7 +31,7 @@
                         <label>لوجو الشركة</label>
                         <input type="file" name="logo" class="form-control">
                         @if(isset($setting->logo))
-                            <img src="{{ asset('storage/'.$setting->logo) }}" alt="Logo" style="width: 120px; margin-top: 10px;">
+                            <img src="{{ asset($setting->logo) }}" alt="Logo" style="width: 120px; margin-top: 10px;">
                         @endif
                     </div>
 

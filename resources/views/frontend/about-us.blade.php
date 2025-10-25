@@ -169,9 +169,12 @@ $bg = $about->header_image ? asset($about->header_image) : asset('img/criticism-
 @endphp
 
 <section class="page-header" style="
-    text-align:center; padding:80px 20px;
-    background: linear-gradient(rgba(0,0,0,0.50), rgba(0,0,0,0.50)), url('{{ $bg }}') center/cover no-repeat;
-    color:#fff;">
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                url('{{ asset('img/who-2985525_1280.jpg') }}') center/cover no-repeat;
+    color: #fff;
+">
     <h1 style="font-size:3rem; color:#D9EF82; margin-bottom:10px;">
         {{ $about->title }}
     </h1>

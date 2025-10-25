@@ -375,7 +375,7 @@
                                                                                data-elementor-lightbox-slideshow="9ee7309"
                                                                                data-elementor-lightbox-title="footer-gallery-img-1"
                                                                                data-e-action-hash="#elementor-action%3Aaction%3Dlightbox%26settings%3DeyJpZCI6MTU4NTcsInVybCI6Imh0dHBzOlwvXC93ZHRncmFzc3Jvb3Qud3BlbmdpbmUuY29tXC9ydGwtZGVtb1wvd3AtY29udGVudFwvdXBsb2Fkc1wvc2l0ZXNcLzNcLzIwMjVcLzAxXC9mb290ZXItZ2FsbGVyeS1pbWctMS5qcGciLCJzbGlkZXNob3ciOiI5ZWU3MzA5In0%3D"
-                                                                               href="https://www.instagram.com/enala.sa/"><img
+                                                                               href="{{ $setting->instagram }}"><img
                                                                                    loading="lazy" width="800"
                                                                                    height="800"
                                                                                    src="{{ asset('assets/img/footer-gallery-img-1.jpg') }}"

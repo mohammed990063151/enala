@@ -43,7 +43,7 @@
                         <label>صورة القسم</label>
                         <input type="file" name="image" class="form-control">
                         @if(isset($section->image))
-                            <img src="{{ asset('storage/'.$section->image) }}" alt="Section Image" style="width: 120px; margin-top: 10px;">
+                            <img src="{{ asset($section->image) }}" alt="Section Image" style="width: 120px; margin-top: 10px;">
                         @endif
                     </div>
 

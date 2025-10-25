@@ -33,8 +33,18 @@ $this->call([
 $this->call([
     PagserviceSeeder::class,
 ]);
+$this->call([
+    ModyafServiceSeeder::class,
+]);
 
-
+ $this->call([
+        CompanyBranchSeeder::class,
+        ContactSettingSeeder::class,
+        ContactMessageSeeder::class,
+    ]);
+$this->call([
+        TestimonialSeeder::class,
+    ]);
     }//end of run
 
 }//end of seeder

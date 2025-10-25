@@ -9,7 +9,7 @@ class SettingSeeder extends Seeder
     public function run(): void
     {
         Setting::create([
-            'name'      => 'شركة  عتاب التجارية',
+            'name'      => 'شركة   المضياف المستقبلية المحدودة',
             'logo'      => 'dashboard_files/img/logos/logo.png', // صورة افتراضية لازم تضعها
             'email'     => 'info@future-tech.com',
             'phone'     => '+966500000000',
