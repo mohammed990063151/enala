@@ -378,7 +378,7 @@
                                                                                href="https://www.instagram.com/enala.sa/"><img
                                                                                    loading="lazy" width="800"
                                                                                    height="800"
-                                                                                   src="./RTL GrassRoot Site – Your SUPER-powered WP Engine Site_files/footer-gallery-img-1.jpg"
+                                                                                   src="{{ asset('assets/img/footer-gallery-img-1.jpg') }}"
                                                                                    class="attachment-full size-full"
                                                                                    alt="" decoding="async"
                                                                                    srcset="{{ asset('dashboard_files/img/services/1761304116_image1.jpg') }}"
@@ -458,7 +458,7 @@
                                                                                href="{{ $setting->instagram }}"><img
                                                                                    loading="lazy" width="800"
                                                                                    height="800"
-                                                                                   src="./RTL GrassRoot Site – Your SUPER-powered WP Engine Site_files/footer-gallery-img-6.jpg"
+                                                                                   src="{{ asset('assets/img/footer-gallery-img-6.jpg') }}"
                                                                                    class="attachment-full size-full"
                                                                                    alt="" decoding="async"
                                                                                    srcset="{{ asset('dashboard_files/img/services/1761304116_image1.jpg') }}"
@@ -697,7 +697,7 @@
                                                    </div>
                                                </div>
                                            </div>
-                                          
+
 <div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-7352c06"
      data-id="7352c06" data-element_type="column">
     <div class="elementor-widget-wrap elementor-element-populated">
@@ -765,7 +765,7 @@
                                                        data-widget_type="image.default">
                                                        <div class="elementor-widget-container">
                                                            <img loading="lazy" width="684" height="60"
-                                                               src="./RTL GrassRoot Site – Your SUPER-powered WP Engine Site_files/footer-payment.png"
+                                                               src="{{ asset('assets/img/footer-payment.png') }}"
                                                                class="attachment-full size-full wp-image-16391"
                                                                alt=""
                                                                srcset="https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/footer-payment.png 684w, https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/footer-payment-300x26.png 300w"

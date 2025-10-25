@@ -39,11 +39,13 @@ class PagserviceController extends Controller
 
         Pagservice::create($data);
 
-        return redirect()->route('pagservices.index')->with('success', '✅ تم إضافة الخدمة');
+        return redirect()->route('dashboard.Pag_services.index')->with('success', '✅ تم إضافة الخدمة');
     }
 
-  public function edit(Pagservice $Pag_service)
+  public function edit(Pagservice $Pag_service , Request $request ,$s)
 {
+    $Pag_service =   Pagservice::where('id',$s)->first();
+//   return  $Pag_service ;
     return view('admin.pagservices.edit', compact('Pag_service'));
 }
 

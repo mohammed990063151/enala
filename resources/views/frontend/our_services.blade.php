@@ -286,7 +286,7 @@
 @endsection --}}
 
 
-
+{{--
 @extends('frontend.layouts.master')
 
 @section('title', 'خدماتنا')
@@ -326,7 +326,7 @@
     }
 </style>
 
-{{-- <section class="py-5" style="direction: rtl;">
+<section class="py-5" style="direction: rtl;">
     <div class="container">
 
         <div class="text-center mb-5">
@@ -355,6 +355,193 @@
         </div>
 
     </div>
-</section> --}}
+</section>
+
+@endsection --}}
+
+@extends('frontend.layouts.master')
+
+@section('title', 'خدماتنا الزراعية - شركة مضياف')
+
+@section('content')
+<section class="page-header" style="
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                url('{{ asset('img/blog-09.jpg') }}') center/cover no-repeat;
+    color: #fff;
+">
+    <h2 style="font-size:2.8rem;color:#f6f5f5;margin-bottom:15px;">
+        خدماتنا
+    </h2>
+    <p style="max-width:800px;margin:auto;color:#f4f6f4;font-size:1.1rem;line-height:1.9;">
+        في <strong>شركة مُضياف</strong> نوفر مجموعة متكاملة من الخدمات الزراعية
+        والبيئية المصممة خصيصًا لدعم المزارعين وأصحاب المشاريع الخضراء،
+        مستندين إلى خبرات هندسية ومعايير جودة عالية. هدفنا مساعدتكم في تحقيق إنتاج
+        وفير وحلول عملية تجمع بين الكفاءة والاستدامة.
+    </p>
+</section>
+
+<style>
+
+body { font-family: 'Tajawal', sans-serif; }
+
+/* خلفية الورق */
+.services-section {
+    background: url('/img/leaf-bg.png') center/cover no-repeat fixed;
+    padding: 80px 20px;
+    direction: rtl;
+}
+
+/* عنوان */
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+.section-title h2 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #1b3b26;
+    position: relative;
+    display: inline-block;
+}
+.section-title h2::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    width: 70px;
+    height: 4px;
+    background: #D9EF82;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+.section-title p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-top: 10px;
+}
+
+/* بطاقة الخدمة */
+.service-box {
+    background: #fff;
+    padding: 30px 20px;
+    border-radius: 18px;
+    text-align: center;
+    transition: .35s;
+    box-shadow: 0 5px 15px rgba(0,0,0,.05);
+    position: relative;
+    overflow: hidden;
+}
+.service-box:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,.12);
+}
+.service-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(217,239,130,.4), rgba(255,255,255,0));
+    opacity: 0;
+    transition: .4s;
+}
+.service-box:hover::before { opacity: 1; }
+
+/* الأيقونة */
+.service-icon {
+    width: 75px;
+    height: 75px;
+    background: #D9EF82;
+    color: #1b3b26;
+    font-size: 35px;
+    border-radius: 50%;
+    line-height: 75px;
+    margin: auto;
+    margin-bottom: 18px;
+    transition: .3s;
+}
+.service-box:hover .service-icon {
+    background: #1b3b26;
+    color: #D9EF82;
+    transform: rotate(6deg) scale(1.1);
+}
+
+/* عنوان الخدمة */
+.service-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #1b3b26;
+}
+
+/* وصف */
+.service-desc {
+    font-size: 15px;
+    color: #555;
+    height: 70px;
+    overflow: hidden;
+}
+
+/* زر */
+.service-btn {
+    background: #1b3b26;
+    color: #fff;
+    padding: 9px 20px;
+    font-size: 14px;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: .3s;
+    margin-top: 15px;
+    display: inline-block;
+}
+.service-btn:hover {
+    background: #D9EF82;
+    color: #000;
+}
+
+/* Responsive */
+@media(max-width:768px) {
+    .service-title { font-size: 20px; }
+}
+
+</style>
+
+
+
+<section class="services-section">
+<div class="container">
+
+    <div class="section-title">
+        <h2>خدمات شركة مضياف</h2>
+        <p>نقدّم حلولًا زراعية وإبداعية متكاملة لبناء المساحات الخضراء الصحية</p>
+    </div>
+
+    <div class="row g-4">
+        @forelse($pag_service as $service)
+            <div class="col-md-4">
+                <div class="service-box">
+
+                    <div class="service-icon">
+                        <i class="{{ $service->icon }}"></i>
+                    </div>
+
+                    <h3 class="service-title">{{ $service->title }}</h3>
+
+                    <p class="service-desc">{{ Str::limit($service->description, 100) }}</p>
+
+                    {{-- <a href="{{ route('services.show', $service->slug) }}" class="service-btn">
+                        تفاصيل أكثر
+                    </a> --}}
+
+                </div>
+            </div>
+        @empty
+            <p class="text-center text-dark">لا توجد خدمات مسجلة حاليًا</p>
+        @endforelse
+    </div>
+
+</div>
+</section>
 
 @endsection
+
