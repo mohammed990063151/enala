@@ -233,7 +233,7 @@
                                                     <div class="elementor-widget-container">
                                                         <div class="wdt-button-holder wdt-template-filled wdt-button-link wdt-button-style-default wdt-button-size-nm wdt-animation- wdt-button-icon-after"
                                                             id="wdt-button-37f9989"><a class="wdt-button"
-                                                                href="{{ route('book.now') }}">
+                                                                href="{{ route('pag.contact') }}">
                                                                 <div class="wdt-button-text"><span>{{ $section->button_text }}</span></div>
                                                             </a></div>
                                                     </div>
@@ -384,7 +384,7 @@
                 @if($about->point4)<li>{{ $about->point4 }}</li>@endif
             </ul>
 
-            <a href="{{ route('contact') }}" class="btn">تواصل معنا</a>
+            <a href="{{ route('pag.contact') }}" class="btn">تواصل معنا</a>
         </div>
 
     </div>
@@ -469,7 +469,7 @@
                                                     <div class="elementor-widget-container">
                                                         <div class="wdt-button-holder wdt-template-filled wdt-button-link wdt-button-style-default wdt-button-size-nm wdt-animation- wdt-button-icon-after"
                                                             id="wdt-button-d698f72"><a class="wdt-button"
-                                                                href="{{ route('rooms.show') }}">
+                                                                href="{{ route('frontend.about-us') }}">
                                                                 <div class="wdt-button-text"><span>عرض المزيد</span>
                                                                 </div>
                                                             </a></div>
@@ -534,7 +534,7 @@
                                                                                         class="wdt-media-image-cover-container">
                                                                                         <div
                                                                                             class="wdt-content-button wdt-button-clone">
-                                                                                            <a href="{{ route('rooms.show') }}"
+                                                                                            <a href="{{ route('frontend.about-us') }}"
                                                                                                 >
                                                                                                 <div
                                                                                                     class="wdt-button-text">
@@ -545,7 +545,7 @@
                                                                             </div>
                                                                             <div class="wdt-content-detail-group">
                                                                                 <div class="wdt-content-title">
-                                                                                    <h5><a href="{{ route('rooms.show') }}"
+                                                                                    <h5><a href="{{ route('frontend.about-us') }}"
                                                                                             >
                                                                                             </a></h5>
                                                                                 </div>
@@ -564,7 +564,7 @@
                                                                                     <div
                                                                                         class="wdt-content-image-wrapper ">
                                                                                         <div class="wdt-content-image"><a
-                                                                                                href="{{ route('rooms.show') }}"
+                                                                                                href="{{ route('frontend.about-us') }}"
                                                                                                 target="_blank"
                                                                                                 rel="nofollow">
                                                                                                 {{-- <img
@@ -585,7 +585,7 @@
                                                                                         class="wdt-media-image-cover-container">
                                                                                         <div
                                                                                             class="wdt-content-button wdt-button-clone">
-                                                                                            <a href="{{ route('rooms.show') }}"
+                                                                                            <a href="{{ route('frontend.about-us') }}"
                                                                                                 target="_blank"
                                                                                                 rel="nofollow">
                                                                                                 <div
@@ -597,7 +597,7 @@
                                                                             </div>
                                                                             <div class="wdt-content-detail-group">
                                                                                 <div class="wdt-content-title">
-                                                                                    <h5><a href="{{ route('rooms.show') }}"
+                                                                                    <h5><a href="{{ route('frontend.about-us') }}"
                                                                                             target="_blank"
                                                                                             rel="nofollow">
                                                                                             </a></h5>
@@ -617,7 +617,7 @@
                                                                                     <div
                                                                                         class="wdt-content-image-wrapper ">
                                                                                         <div class="wdt-content-image"><a
-                                                                                                href="{{ route('rooms.show') }}"
+                                                                                                href="{{ route('frontend.about-us') }}"
                                                                                                 target="_blank"
                                                                                                 rel="nofollow">
                                                                                                 {{-- <img
@@ -638,7 +638,7 @@
                                                                                         class="wdt-media-image-cover-container">
                                                                                         <div
                                                                                             class="wdt-content-button wdt-button-clone">
-                                                                                            <a href="{{ route('rooms.show') }}"
+                                                                                            <a href="{{ route('frontend.about-us') }}"
                                                                                                 target="_blank"
                                                                                                 rel="nofollow">
                                                                                                 <div
@@ -650,7 +650,7 @@
                                                                             </div>
                                                                             <div class="wdt-content-detail-group">
                                                                                 <div class="wdt-content-title">
-                                                                                    <h5><a href="{{ route('rooms.show') }}"
+                                                                                    <h5><a href="{{ route('frontend.about-us') }}"
                                                                                             target="_blank"
                                                                                             rel="nofollow">
                                                                                             </a></h5>
@@ -669,7 +669,7 @@
                                                                                     <div
                                                                                         class="wdt-content-image-wrapper ">
                                                                                         <div class="wdt-content-image"><a
-                                                                                                href="{{ route('rooms.show') }}"
+                                                                                                href="{{ route('frontend.about-us') }}"
                                                                                                 target="_blank"
                                                                                                 rel="nofollow">
                                                                                                 {{-- <img
@@ -690,7 +690,7 @@
                                                                                         class="wdt-media-image-cover-container">
                                                                                         <div
                                                                                             class="wdt-content-button wdt-button-clone">
-                                                                                            <a href="{{ route('rooms.show') }}"
+                                                                                            <a href="{{ route('frontend.about-us') }}"
                                                                                                 target="_blank"
                                                                                                 rel="nofollow">
                                                                                                 <div
@@ -912,7 +912,7 @@
                                                     <div class="elementor-widget-container">
                                                         <div class="wdt-button-holder wdt-template-filled wdt-button-link wdt-button-style-default wdt-button-size-nm wdt-animation- wdt-button-icon-after"
                                                             id="wdt-button-31589d1"><a class="wdt-button"
-                                                                href="{{ route('rooms.show') }}">
+                                                                href="{{ route('frontend.about-us') }}">
                                                                 <div class="wdt-button-text"><span>عرض الكل</span></div>
                                                             </a></div>
                                                     </div>
@@ -969,7 +969,7 @@
                                                                                             width="1000" height="1000">
                                                                                     </div><a
                                                                                         class="custom-button-style wdt-listing-view-details"
-                                                                                        href="{{ route('rooms.show') }}">View
+                                                                                        href="{{ route('frontend.about-us') }}">View
                                                                                         Details<span
                                                                                             class="detail-icon"><svg
                                                                                                 xmlns="http://www.w3.org/2000/svg"
@@ -996,14 +996,14 @@
                                                                                             class="wdt-listings-taxonomy-list">
                                                                                             <li>
                                                                                                 <a
-                                                                                                    href="{{ route('rooms.show') }}">
+                                                                                                    href="{{ route('frontend.about-us') }}">
                                                                                                     <span> </span></a>
                                                                                             </li>
                                                                                         </ul>
                                                                                     </div>
                                                                                     <div class="wdt-listings-item-title">
                                                                                         <a
-                                                                                            href="{{ route('rooms.show') }}">{{ $services->caption1 }}</a>
+                                                                                            href="{{ route('frontend.about-us') }}">{{ $services->caption1 }}</a>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -1021,7 +1021,7 @@
                                                                                             width="1000" height="1000">
                                                                                     </div><a
                                                                                         class="custom-button-style wdt-listing-view-details"
-                                                                                        href="{{ route('rooms.show') }}">View
+                                                                                        href="{{ route('frontend.about-us') }}">View
                                                                                         Details<span class="detail-icon">
                                                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                                                 xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -1051,7 +1051,7 @@
                                                                                         </ul>
                                                                                     </div>
                                                                                     <div class="wdt-listings-item-title"><a
-                                                                                            href="{{ route('rooms.show') }}"> {{ $services->caption2 }} </a></div>
+                                                                                            href="{{ route('frontend.about-us') }}"> {{ $services->caption2 }} </a></div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -1068,7 +1068,7 @@
                                                                                             width="1000" height="1000">
                                                                                     </div><a
                                                                                         class="custom-button-style wdt-listing-view-details"
-                                                                                        href="{{ route('rooms.show') }}">View
+                                                                                        href="{{ route('frontend.about-us') }}">View
                                                                                         Details<span class="detail-icon">
                                                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                                                 xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -1093,12 +1093,12 @@
                                                                                         <ul
                                                                                             class="wdt-listings-taxonomy-list">
                                                                                             <li><a
-                                                                                                    href="{{ route('rooms.show') }}"><span> {{ $services->caption3 }}</span></a>
+                                                                                                    href="{{ route('frontend.about-us') }}"><span> {{ $services->caption3 }}</span></a>
                                                                                             </li>
                                                                                         </ul>
                                                                                     </div>
                                                                                     <div class="wdt-listings-item-title"><a
-                                                                                            href="{{ route('rooms.show') }}"></a></div>
+                                                                                            href="{{ route('frontend.about-us') }}"></a></div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -1115,7 +1115,7 @@
                                                                                             width="1000" height="1000">
                                                                                     </div><a
                                                                                         class="custom-button-style wdt-listing-view-details"
-                                                                                        href="{{ route('rooms.show') }}">View
+                                                                                        href="{{ route('frontend.about-us') }}">View
                                                                                         Details<span
                                                                                             class="detail-icon"><svg
                                                                                                 xmlns="http://www.w3.org/2000/svg"
@@ -1141,12 +1141,12 @@
                                                                                         <ul
                                                                                             class="wdt-listings-taxonomy-list">
                                                                                             <li><a
-                                                                                                    href="{{ route('rooms.show') }}"><span> {{ $services->caption4 }}</span></a>
+                                                                                                    href="{{ route('frontend.about-us') }}"><span> {{ $services->caption4 }}</span></a>
                                                                                             </li>
                                                                                         </ul>
                                                                                     </div>
                                                                                     <div class="wdt-listings-item-title"><a
-                                                                                            href="{{ route('rooms.show') }}"></a></div>
+                                                                                            href="{{ route('frontend.about-us') }}"></a></div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -1163,7 +1163,7 @@
                                                                                             width="1000" height="1000">
                                                                                     </div><a
                                                                                         class="custom-button-style wdt-listing-view-details"
-                                                                                        href="{{ route('rooms.show') }}">View
+                                                                                        href="{{ route('frontend.about-us') }}">View
                                                                                         Details<span
                                                                                             class="detail-icon"><svg
                                                                                                 xmlns="http://www.w3.org/2000/svg"
@@ -1189,12 +1189,12 @@
                                                                                         <ul
                                                                                             class="wdt-listings-taxonomy-list">
                                                                                             <li><a
-                                                                                                    href="{{ route('rooms.show') }}"><span> {{ $services->caption5 }} </span></a>
+                                                                                                    href="{{ route('frontend.about-us') }}"><span> {{ $services->caption5 }} </span></a>
                                                                                             </li>
                                                                                         </ul>
                                                                                     </div>
                                                                                     <div class="wdt-listings-item-title"><a
-                                                                                            href="{{ route('rooms.show') }}"></a>
+                                                                                            href="{{ route('frontend.about-us') }}"></a>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -1212,7 +1212,7 @@
                                                                                             width="1000" height="1000">
                                                                                     </div><a
                                                                                         class="custom-button-style wdt-listing-view-details"
-                                                                                        href="{{ route('rooms.show') }}">View
+                                                                                        href="{{ route('frontend.about-us') }}">View
                                                                                         Details<span
                                                                                             class="detail-icon"><svg
                                                                                                 xmlns="http://www.w3.org/2000/svg"
@@ -1238,12 +1238,12 @@
                                                                                         <ul
                                                                                             class="wdt-listings-taxonomy-list">
                                                                                             <li><a
-                                                                                                    href="{{ route('rooms.show') }}"><span>{{ $services->caption6 }}</span></a>
+                                                                                                    href="{{ route('frontend.about-us') }}"><span>{{ $services->caption6 }}</span></a>
                                                                                             </li>
                                                                                         </ul>
                                                                                     </div>
                                                                                     <div class="wdt-listings-item-title"><a
-                                                                                            href="{{ route('rooms.show') }}"></a></div>
+                                                                                            href="{{ route('frontend.about-us') }}"></a></div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -1549,7 +1549,7 @@
 }
 </style>
 
-
+<br /><br /><br />
 <section id="counters" class="py-5" style="direction:rtl; background:#fff;">
     <div class="container text-center">
 
@@ -1576,7 +1576,7 @@
     </div>
 </section>
 
-
+<br /><br /><br />
 
 
             </div>

@@ -637,13 +637,13 @@
                                                                                                        <li
                                                                                                            class="elementor-icon-list-item">
                                                                                                            <a
-                                                                                                               href="{{ route('guests.reviews') }}">
+                                                                                                               href="{{ route('testimonials') }}">
 
                                                                                                                <span
                                                                                                                    class="elementor-icon-list-text"> اراء النزلاء</span>
                                                                                                            </a>
                                                                                                        </li>
-                                                                                                       <li
+                                                                                                       {{-- <li
                                                                                                            class="elementor-icon-list-item">
                                                                                                            <a
                                                                                                                href="{{ route('frontend.rooms') }}">
@@ -651,7 +651,7 @@
                                                                                                                <span
                                                                                                                    class="elementor-icon-list-text"> قسم الغرف</span>
                                                                                                            </a>
-                                                                                                       </li>
+                                                                                                       </li> --}}
                                                                                                        <li
                                                                                                            class="elementor-icon-list-item">
                                                                                                            <a
@@ -666,7 +666,7 @@
                                                                                                        <li
                                                                                                            class="elementor-icon-list-item">
                                                                                                            <a
-                                                                                                               href="{{ route('contact') }}">
+                                                                                                               href="{{ route('pag.contact') }}">
 
                                                                                                                <span
                                                                                                                    class="elementor-icon-list-text"> تواصل معنا</span>
@@ -675,7 +675,7 @@
                                                                                                        <li
                                                                                                            class="elementor-icon-list-item">
                                                                                                            <a
-                                                                                                               href="{{ route('frontend.our-services') }}">
+                                                                                                               href="{{ route('pag.contact') }}">
 
                                                                                                                <span
                                                                                                                    class="elementor-icon-list-text">  خدماتنا</span>

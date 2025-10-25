@@ -58,7 +58,7 @@
                                                      </span>
                                                  </li>
                                                  <li class="elementor-icon-list-item elementor-inline-item">
-                                                     <a href="mailto:reservations@enala.sa">
+                                                     <a href="mailto:{{ $setting->email ?? '' }}">
 
                                                          <span class="elementor-icon-list-icon">
                                                              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -133,7 +133,7 @@
                                                  </li>
 
                                                  <!-- Snapchat -->
-                                                 <li class="elementor-icon-list-item elementor-inline-item">
+                                                 {{-- <li class="elementor-icon-list-item elementor-inline-item">
                                                      <a href="{{ $setting->snapchat ?? '' }}" target="_blank">
                                                          <i class="fab fa-snapchat-ghost"></i>
                                                      </a>
@@ -151,7 +151,7 @@
                                                      <a href="{{ $setting->tiktok ?? '' }}" target="_blank">
                                                          <i class="fab fa-tiktok"></i>
                                                      </a>
-                                                 </li>
+                                                 </li> --}}
 
                                              </ul>
                                          </div>
@@ -276,7 +276,7 @@
                                                                  </div>
                                                                  <div class="mobile-nav-container mobile-nav-offcanvas-right"
                                                                      data-menu="2"><a
-                                                                         href="https://wdtgrassroot.wpengine.com/rtl-demo/#"
+                                                                         href=""
                                                                          class="menu-trigger menu-trigger-icon"
                                                                          data-menu="2"><i></i><span>Menu</span></a>
                                                                      <div class="mobile-menu" data-menu="2"></div>
@@ -299,7 +299,7 @@
                                                          <div class="elementor-widget-container">
                                                              <div class="wdt-button-holder wdt-template-filled wdt-button-link wdt-button-style-default wdt-button-size-nm wdt-animation- wdt-button-icon-after"
                                                                  id="wdt-button-e395455"><a class="wdt-button"
-                                                                     href="{{ route('frontend.our-services') }}">
+                                                                     href="{{ route('servicepag.show', $service->slug) }}">
                                                                      <div class="wdt-button-text"><span>استكشف
                                                                              خدماتنا</span></div>
                                                                  </a></div>
@@ -326,11 +326,11 @@
                                                                                      اراء النزلاء</span></a>
 
                                                                          </li>
-                                                                         <li><a href="{{ route('frontend.rooms') }}"><span
+                                                                         {{-- <li><a href="{{ route('frontend.rooms') }}"><span
                                                                                      data-text="%1$s">قسم
                                                                                      الغرف</span></a>
 
-                                                                         </li>
+                                                                         </li> --}}
 
                                                                          <li> <a
                                                                                  href="{{ route('frontend.about-us') }}"><span
@@ -353,7 +353,7 @@
                                                                  </div>
                                                                  <div class="mobile-nav-container mobile-nav-offcanvas-right"
                                                                      data-menu="2"><a
-                                                                         href="https://wdtgrassroot.wpengine.com/rtl-demo/#"
+                                                                         href="#"
                                                                          class="menu-trigger menu-trigger-icon"
                                                                          data-menu="2"><i></i><span>Menu</span></a>
                                                                      <div class="mobile-menu" data-menu="2"></div>
