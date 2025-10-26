@@ -37,12 +37,12 @@ return [
             'throw' => false,
             'report' => false,
         ],
-'public_uploads' => [
-    'driver' => 'local',
-    'root' => '/home/digitalr/domains/enala.digitalroomtech.site/enala',
-    'url' => env('APP_URL') . '/uploads',
-    'visibility' => 'public',
-],
+  'public_uploads' => [
+        'driver' => 'local',
+        'root' => public_path(),
+        'url' => env('APP_URL'),
+        'visibility' => 'public',
+    ],
 
 
 
