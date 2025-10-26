@@ -6,6 +6,13 @@
     * {
         font-family: 'Cairo', sans-serif !important;
     }
+    .fa-brands, .fab {
+    font-family: "Font Awesome 6 Brands" !important;
+}
+.fa-classic, .fa-regular, .fa-solid, .far, .fas {
+    font-family: "Font Awesome 6 Free" !important;
+}
+
 </style>
 
 	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
