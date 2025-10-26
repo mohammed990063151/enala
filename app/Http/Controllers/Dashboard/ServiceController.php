@@ -40,9 +40,9 @@ class ServiceController extends Controller
 
             if ($request->hasFile($img)) {
 
-                if ($service->$img && Storage::disk('public_uploads')->exists($service->$img)) {
-                    Storage::disk('public_uploads')->delete($service->$img);
-                }
+                // if ($service->$img && Storage::disk('public_uploads')->exists($service->$img)) {
+                //     Storage::disk('public_uploads')->delete($service->$img);
+                // }
 
                 $file = $request->file($img);
                 $name = time().'_'.$img.'.'.$file->getClientOriginalExtension();
