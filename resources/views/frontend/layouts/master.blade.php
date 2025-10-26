@@ -8,7 +8,7 @@
     <link rel="profile" href="https://gmpg.org/xfn/11">
 
 
-    <title>مجموعة إناله للفنادق والمنتجعات</title>
+    <title>{{ $setting->name ?? '' }}  </title>
 
 
 @include('frontend.layouts.head')
