@@ -343,7 +343,7 @@
         }); //end of ready
 
     </script>
-     @livewireScripts
+     {{-- @livewireScripts --}}
     @stack('scripts')
 
 </body>

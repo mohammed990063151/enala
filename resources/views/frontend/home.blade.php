@@ -1,9 +1,9 @@
 @extends('frontend.layouts.master')
 <style>
-    .elementor-15720 .elementor-element.elementor-element-244fe39:not(.elementor-motion-effects-element-type-background),
+    /* .elementor-15720 .elementor-element.elementor-element-244fe39:not(.elementor-motion-effects-element-type-background),
 .elementor-15720 .elementor-element.elementor-element-244fe39>.elementor-motion-effects-container>.elementor-motion-effects-layer {
     background: url('{{ asset($section->image  ?? '') }}') 50% 50%;
-}
+} */
 
 
 .hotel-about {
@@ -158,15 +158,46 @@
         <!-- ** Container ** -->
         <div class="wdt-elementor-container-fluid">
             <div data-elementor-type="wp-page" data-elementor-id="15720" class="elementor elementor-15720">
-                <section
+                {{-- <section
+                    class="elementor-section elementor-top-section elementor-element elementor-element-244fe39 elementor-section-height-min-height elementor-section-items-stretch elementor-section-content-middle wdt-dark-bg wdt-header-with-section animated-fast elementor-section-boxed elementor-section-height-default animated fadeIn"
+                    data-id="244fe39" data-element_type="section"
+                    data-settings="{&quot;background_background&quot;:&quot;video&quot;,&quot;wdt_bg_image&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;,&quot;alt&quot;:&quot;&quot;,&quot;source&quot;:&quot;library&quot;},&quot;animation&quot;:&quot;fadeIn&quot;,&quot;animation_delay&quot;:&quot;100&quot;,&quot;background_video_link&quot;:&quot;https:\/\/wedesignthemes.s3.us-east-1.amazonaws.com\/grassroot\/grass+root+flip.mp4  &quot;,&quot;background_play_on_mobile&quot;:&quot;yes&quot;,&quot;background_privacy_mode&quot;:&quot;yes&quot;,&quot;wdt_bg_image_laptop&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;wdt_bg_image_tablet_extra&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;wdt_bg_image_tablet&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;wdt_bg_image_mobile_extra&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;wdt_bg_image_mobile&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;wdt_bg_position&quot;:&quot;center center&quot;,&quot;wdt_animation_effect&quot;:&quot;none&quot;}"> --}}
+
+@php
+    $file = $section->image ?? '';
+    $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+    $isVideo = in_array($ext, ['mp4', 'webm', 'ogg']);
+@endphp
+
+<section
                     class="elementor-section elementor-top-section elementor-element elementor-element-244fe39 elementor-section-height-min-height elementor-section-items-stretch elementor-section-content-middle wdt-dark-bg wdt-header-with-section animated-fast elementor-section-boxed elementor-section-height-default animated fadeIn"
                     data-id="244fe39" data-element_type="section"
                     data-settings="{&quot;background_background&quot;:&quot;video&quot;,&quot;wdt_bg_image&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;,&quot;alt&quot;:&quot;&quot;,&quot;source&quot;:&quot;library&quot;},&quot;animation&quot;:&quot;fadeIn&quot;,&quot;animation_delay&quot;:&quot;100&quot;,&quot;background_video_link&quot;:&quot;https:\/\/wedesignthemes.s3.us-east-1.amazonaws.com\/grassroot\/grass+root+flip.mp4  &quot;,&quot;background_play_on_mobile&quot;:&quot;yes&quot;,&quot;background_privacy_mode&quot;:&quot;yes&quot;,&quot;wdt_bg_image_laptop&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;wdt_bg_image_tablet_extra&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;wdt_bg_image_tablet&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;wdt_bg_image_mobile_extra&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;wdt_bg_image_mobile&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;wdt_bg_position&quot;:&quot;center center&quot;,&quot;wdt_animation_effect&quot;:&quot;none&quot;}">
+
+
+
+
+
                     <div class="elementor-background-video-container">
-                        <video class="elementor-background-video-hosted" autoplay="" muted="" playsinline=""
+                        {{-- <video class="elementor-background-video-hosted" autoplay="" muted="" playsinline=""
                             loop=""
                             src="https://wedesignthemes.s3.us-east-1.amazonaws.com/grassroot/grass+root+flip.mp4  "
-                            style="width: 1528.89px; height: 860px;"></video>
+                            style="width: 1528.89px; height: 860px;"></video> --}}
+                             @if($file)
+        @if($isVideo)
+            <video autoplay muted loop playsinline >
+                <source src="{{ asset($file) }}" type="video/{{ $ext }}">
+            </video>
+        @else
+            <div class="section-bg" style="
+                background: url('{{ asset($file) }}') center center / cover no-repeat;
+                position:absolute; inset:0; z-index:0;
+            "></div>
+        @endif
+
+        {{-- طبقة شفافة اختيارية --}}
+        <div style="position:absolute; inset:0; background:rgba(0,0,0,0.35); z-index:0;"></div>
+    @endif
                     </div>
                     <div class="elementor-background-overlay"></div>
                     <div class="elementor-container elementor-column-gap-no">
@@ -1288,7 +1319,7 @@
                     </div>
                 </section>
 
-{{-- 
+{{--
                 <section
                     class="elementor-section elementor-top-section elementor-element elementor-element-c017382 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
                     data-id="c017382" data-element_type="section"
@@ -1587,7 +1618,7 @@ document.querySelectorAll("[data-count]").forEach(el => {
     let target = +el.getAttribute("data-count");
     let count = 0;
     let speed = target / 50;
-    
+
     let update = setInterval(function(){
         count += speed;
         el.innerText = Math.floor(count);
