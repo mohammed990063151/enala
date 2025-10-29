@@ -22,7 +22,9 @@
 
                     <label>عنوان القسم</label>
                     <input type="text" name="title" class="form-control" value="{{ $service->title }}">
-
+                            <label> الوصف</label>
+                    {{-- <input type="text" name="description" class="form-control" value="{{ $service->description }}"> --}}
+ <textarea name="description" class="form-control" rows="4">{{ old('description', $service->description ?? '') }}</textarea>
                     <hr>
 
                     <div class="row">
