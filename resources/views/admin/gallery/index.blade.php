@@ -54,7 +54,33 @@
         <!-- عرض الصور -->
         <div class="row">
             @foreach($items as $img)
-                <div class="col-md-3 text-center mb-4">
+            <div class="col-md-3 text-center mb-4">
+    <img src="{{ asset($img->image) }}" width="100%" height="180"
+         style="object-fit:cover;" class="rounded shadow">
+
+    <!-- نموذج تعديل الصورة والعنوان -->
+    <form action="{{ route('dashboard.gallery.editItem', $img->id) }}"
+          method="POST" enctype="multipart/form-data" class="mt-2">
+        @csrf
+        @method('PUT')
+
+        <input type="text" name="caption" value="{{ $img->caption }}"
+               class="form-control form-control-sm text-center mb-2">
+
+        <input type="file" name="image" class="form-control form-control-sm mb-2">
+
+        <button class="btn btn-success btn-sm w-100">💾 حفظ التعديل</button>
+    </form>
+
+    <!-- نموذج الحذف -->
+    <form action="{{ route('dashboard.gallery.destroy', $img->id) }}" method="POST" class="mt-2">
+        @csrf
+        @method('DELETE')
+        <button class="btn btn-danger btn-sm w-100">🗑️ حذف</button>
+    </form>
+</div>
+
+             {{--    <div class="col-md-3 text-center mb-4">
                     <img src="{{ asset($img->image) }}" width="100%" height="180" style="object-fit:cover;" class="rounded shadow">
 
                     <p class="mt-2">{{ $img->caption }}</p>
@@ -63,9 +89,10 @@
                         @csrf @method('delete')
                         <button class="btn btn-danger btn-sm">حذف</button>
                     </form>
-                </div>
+                </div>--}}
             @endforeach
         </div>
+
 
     </section>
 

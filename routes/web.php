@@ -119,6 +119,9 @@ Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index
 Route::put('/gallery/update', [GalleryController::class, 'update'])->name('gallery.update');
 Route::post('/gallery/store', [GalleryController::class, 'store'])->name('gallery.store');
 Route::delete('/gallery/delete/{id}', [GalleryController::class, 'destroy'])->name('gallery.destroy');
+Route::put('gallery/{id}/edit', [GalleryController::class, 'editItem'])
+    ->name('gallery.editItem');
+
 // services
 Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
 Route::put('/services/update', [ServiceController::class, 'update'])->name('services.update');
@@ -155,6 +158,7 @@ Route::resource('Pag_services', PagserviceController::class)
 Route::delete('Pag_services/image/{id}', [App\Http\Controllers\Dashboard\PagserviceController::class, 'deleteImage'])
     ->name('Pag_services.deleteImage');
 
+// Route::put('/gallery/{id}', [GalleryController::class, 'update'])->name('gallery.update');
 
 
 

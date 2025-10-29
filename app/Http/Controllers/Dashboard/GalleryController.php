@@ -8,6 +8,7 @@ use App\Models\GalleryItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+
 class GalleryController extends Controller
 {
     public function index()
@@ -67,4 +68,46 @@ class GalleryController extends Controller
 
         return back()->with('success','❌ تم حذف الصورة');
     }
+
+
+
+public function editItem(Request $request, $id)
+{
+    $request->validate([
+        'caption' => 'nullable|string|max:255',
+        'image'   => 'nullable|image|mimes:jpeg,png,jpg,gif|max:4096',
+    ]);
+
+    $gallery = GalleryItem::findOrFail($id);
+    $data = [];
+
+    // ✅ تعديل العنوان
+    if ($request->filled('caption')) {
+        $data['caption'] = $request->caption;
+    }
+
+    // ✅ تعديل الصورة إذا تم رفع صورة جديدة
+    if ($request->hasFile('image')) {
+        // حذف القديمة
+        if ($gallery->image && Storage::disk('public_uploads')->exists($gallery->image)) {
+            Storage::disk('public_uploads')->delete($gallery->image);
+        }
+
+        $file = $request->file('image');
+        $name = time() . '.' . $file->getClientOriginalExtension();
+        $path = $file->storeAs('dashboard_files/img/gallery', $name, 'public_uploads');
+
+        $data['image'] = $path;
+    }
+
+    // تحديث البيانات
+    if (!empty($data)) {
+        $gallery->update($data);
+    }
+
+    return back()->with('success', 'تم تعديل الصورة أو العنوان بنجاح ✅');
+}
+
+
+
 }
