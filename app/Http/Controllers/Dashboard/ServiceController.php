@@ -22,6 +22,7 @@ class ServiceController extends Controller
 
         $data = $request->validate([
             'title' => 'required',
+            'description' => 'required',
             'caption1' => 'nullable',
             'caption2' => 'nullable',
             'caption3' => 'nullable',
