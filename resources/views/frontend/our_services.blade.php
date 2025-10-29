@@ -1,4 +1,4 @@
-{{-- @extends('frontend.layouts.master')
+{{-- {{-- @extends('frontend.layouts.master')
 <style>
     body {
         font-family: 'Cairo', sans-serif;
@@ -265,7 +265,7 @@
     <div class="container">
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px;">
 
-            @foreach($pagservices as $service)
+            @foreach ($pagservices as $service)
             <div style="background:#fff;border-radius:18px;padding:25px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.05);transition:.3s;">
                 <div style="font-size:40px;color:#27ae60;margin-bottom:10px;">
                     <i class="{{ $service->icon }}"></i>
@@ -273,7 +273,7 @@
                 <h3 style="font-size:1.3rem;color:#1b3b26;margin-bottom:8px;">{{ $service->title }}</h3>
                 <p style="font-size:.95rem;color:#555;">{{ $service->description }}</p>
 
-                @if($service->image)
+                @if ($service->image)
                     <img src="{{ asset($service->image) }}" style="width:80%;border-radius:12px;margin-top:10px;">
                 @endif
             </div>
@@ -357,7 +357,7 @@
     </div>
 </section>
 
-@endsection --}}
+@endsection --}
 
 @extends('frontend.layouts.master')
 
@@ -531,7 +531,7 @@ body { font-family: 'Tajawal', sans-serif; }
 
                     {{-- <a href="{{ route('services.show', $service->slug) }}" class="service-btn">
                         تفاصيل أكثر
-                    </a> --}}
+                    </a> --}
 
                 </div>
             </div>
@@ -544,4 +544,774 @@ body { font-family: 'Tajawal', sans-serif; }
 </section>
 
 @endsection
+ --}}
+{{-- @extends('frontend.layouts.master')
+@section('title', 'خدماتنا الزراعية - شركة مضياف')
 
+@section('content')
+
+<section class="services-hero" style="background: url('{{ asset('img/farm-cover.jpg') }}') center/cover no-repeat;">
+    <div class="overlay"></div>
+    <div class="container text-center text-white">
+        <h1>خدماتنا الزراعية</h1>
+        <p>نقدم حلولاً مبتكرة ومستدامة لتحقيق رؤيتكم الخضراء</p>
+    </div>
+</section>
+
+<section class="services-gallery py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold text-dark">معرض صور الخدمات</h2>
+            <p class="text-muted">استعرض بعضاً من مشاريعنا وخدماتنا الزراعية المميزة</p>
+        </div>
+
+        <div class="gallery-grid">
+            @foreach ($pag_service as $service)
+                @foreach ($service->images as $img)
+                <div class="gallery-item" data-aos="zoom-in">
+                    <img src="{{ asset( $img->image) }}" alt="{{ $service->title }}">
+                    <div class="overlay">
+                        <h5>{{ $service->title }}</h5>
+                    </div>
+                </div>
+                @endforeach
+            @endforeach
+        </div>
+    </div>
+</section>
+
+<section class="services-list py-5">
+    <div class="container">
+        <div class="row g-4">
+            @foreach ($pag_service as $service)
+            <div class="col-md-4" data-aos="fade-up">
+                <div class="service-card">
+                    <div class="icon">
+                        <i class="{{ $service->icon }}"></i>
+                    </div>
+                    <h4>{{ $service->title }}</h4>
+                    <p>{{ Str::limit($service->description, 120) }}</p>
+                    <a href="#" class="btn btn-outline-success btn-sm mt-3">تفاصيل أكثر</a>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init({duration:1000, once:true});</script>
+
+<style>
+body {font-family:'Tajawal',sans-serif;background:#f8f9f8;}
+.services-hero {
+    position: relative;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.services-hero .overlay {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.55);
+}
+.services-hero h1 {
+    font-size: 3rem;
+    z-index: 2;
+    color: #D9EF82;
+    font-weight: 800;
+}
+.services-hero p {
+    z-index: 2;
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+/* Gallery */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+}
+.gallery-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .3s;
+}
+.gallery-item img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform .4s;
+}
+.gallery-item:hover img {
+  transform: scale(1.08);
+}
+.gallery-item .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  opacity: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  color: #fff;
+  padding-bottom: 15px;
+  transition: .4s;
+}
+.gallery-item:hover .overlay {
+  opacity: 1;
+}
+.gallery-item h5 {
+  font-size: 1rem;
+}
+
+/* Services Cards */
+.service-card {
+  background:#fff;
+  padding:25px;
+  border-radius:18px;
+  text-align:center;
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+  transition:.3s;
+  height:100%;
+}
+.service-card:hover {
+  transform:translateY(-6px);
+  box-shadow:0 12px 30px rgba(0,0,0,0.12);
+}
+.service-card .icon {
+  width:70px;height:70px;
+  border-radius:50%;
+  background:#D9EF82;
+  display:flex;align-items:center;justify-content:center;
+  font-size:30px;
+  color:#1b3b26;
+  margin:auto;margin-bottom:15px;
+  transition:.3s;
+}
+.service-card:hover .icon {
+  background:#1b3b26;
+  color:#D9EF82;
+}
+.service-card h4 {font-weight:700;color:#1b3b26;margin-bottom:10px;}
+.service-card p {color:#555;font-size:15px;}
+</style>
+
+@endsection --}}
+
+{{-- @extends('frontend.layouts.master')
+@section('title', 'خدماتنا الزراعية | شركة مضياف')
+
+@section('content')
+
+<!-- 🏞️ قسم الغلاف الرئيسي -->
+<section class="hero-section position-relative text-center text-white">
+  <div class="overlay"></div>
+  <div class="container position-relative z-2">
+    <h1 class="display-5 fw-bold mb-3">خدماتنا الزراعية</h1>
+    <p class="lead mb-4">نزرع الجمال، ونبني بيئة خضراء مستدامة في كل زاوية</p>
+    <a href="#services" class="btn btn-light text-success fw-bold rounded-pill px-4 py-2">اكتشف المزيد</a>
+  </div>
+</section>
+
+<!-- 🌿 قسم التعريف -->
+<section class="about-service py-5">
+  <div class="container text-center">
+    <h2 class="fw-bold text-success mb-3">من نحن</h2>
+    <p class="lead text-muted">
+      شركة مضياف للزراعة هي شركة سعودية متخصصة في تصميم وتنفيذ وصيانة الحدائق، وتجميل المسطحات الخضراء
+      باستخدام أحدث التقنيات الزراعية المستدامة لضمان بيئة خضراء نابضة بالحياة.
+    </p>
+  </div>
+</section>
+
+<!-- 🖼️ قسم الصور -->
+<section class="gallery-section py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold text-dark">معرض أعمالنا</h2>
+      <p class="text-muted">استعرض مشاريعنا الزراعية التي أضفنا لها لمسة من الجمال والراحة</p>
+    </div>
+
+    <div class="gallery-grid">
+      @foreach ($pag_service as $service)
+        @foreach ($service->images as $img)
+          <div class="gallery-item" data-aos="zoom-in">
+            <img src="{{ asset($img->image) }}" alt="{{ $service->title }}">
+            <div class="overlay">
+              <h5>{{ $service->title }}</h5>
+            </div>
+          </div>
+        @endforeach
+      @endforeach
+    </div>
+  </div>
+</section>
+
+<!-- 🧩 قسم الخدمات -->
+<section id="services" class="services-list py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold text-dark">خدماتنا</h2>
+      <p class="text-muted">نقدم باقة متنوعة من الخدمات الزراعية المتميزة</p>
+    </div>
+
+    <div class="row g-4">
+      @foreach ($pag_service as $service)
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
+          <div class="service-card h-100">
+            <div class="icon"><i class="{{ $service->icon }}"></i></div>
+            <h4>{{ $service->title }}</h4>
+            <p>{{ Str::limit($service->description, 130) }}</p>
+            <a href="#" class="btn btn-success mt-3 rounded-pill px-4">تفاصيل أكثر</a>
+          </div>
+        </div>
+      @endforeach
+    </div>
+  </div>
+</section>
+
+<!-- 🎥 قسم الفيديو -->
+<section class="video-section py-5 position-relative text-center text-white">
+  <div class="overlay"></div>
+  <div class="container position-relative z-2">
+    <h2 class="fw-bold mb-3">فيديو تعريفي بخدماتنا</h2>
+    <p class="mb-4">شاهد لمحة سريعة عن مشاريعنا الزراعية وأساليبنا الحديثة في العمل</p>
+    <a href="https://www.youtube.com/watch?v=EXAMPLE" target="_blank" class="btn btn-light fw-bold px-5 py-2 rounded-pill">
+      <i class="fa fa-play-circle"></i> شاهد الفيديو
+    </a>
+  </div>
+</section>
+
+<!-- 🌟 قسم المميزات -->
+<section class="features-section py-5 bg-light">
+  <div class="container text-center">
+    <h2 class="fw-bold text-dark mb-4">ما يميزنا</h2>
+    <div class="row g-4">
+      <div class="col-md-3">
+        <div class="feature-box">
+          <i class="fa fa-seedling"></i>
+          <h5>تصاميم إبداعية</h5>
+          <p>نصمم المساحات الخضراء بروح فنية تجمع بين الجمال والطبيعة.</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="feature-box">
+          <i class="fa fa-water"></i>
+          <h5>أنظمة ري ذكية</h5>
+          <p>نستخدم أحدث تقنيات الري لترشيد استهلاك المياه وتحقيق الكفاءة.</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="feature-box">
+          <i class="fa fa-tree"></i>
+          <h5>نباتات محلية</h5>
+          <p>نوفر نباتات تناسب البيئة السعودية لضمان استدامة المشاريع.</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="feature-box">
+          <i class="fa fa-award"></i>
+          <h5>جودة معتمدة</h5>
+          <p>جميع خدماتنا تخضع لمعايير الجودة لضمان رضا العملاء.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 💬 قسم التقييمات -->
+<section class="reviews-section py-5">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-4">آراء عملائنا</h2>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-4">
+        <div class="review-card">
+          <p>"خدمة رائعة واحترافية عالية. سعدت بالتعامل مع فريق مضياف!"</p>
+          <h6>- أحمد الزهراني</h6>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="review-card">
+          <p>"تنسيق الحدائق لديهم كان مثاليًا! تجربة تستحق التكرار 👌"</p>
+          <h6>- نورة السبيعي</h6>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="review-card">
+          <p>"أفضل شركة تعاملت معها في الزراعة والتشجير. التزام وجودة 👍"</p>
+          <h6>- خالد العتيبي</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ☎️ قسم التواصل -->
+<section class="cta-section text-center text-white py-5">
+  <div class="container">
+    <h2 class="fw-bold mb-3">هل ترغب بخدمة زراعية احترافية؟</h2>
+    <p class="mb-4">نحن جاهزون لتحويل فكرتك إلى مشروع أخضر نابض بالحياة 🌿</p>
+    <a href="https://wa.me/966583116161" target="_blank" class="btn btn-light text-success fw-bold px-5 py-2 rounded-pill">
+      <i class="fa fa-whatsapp"></i> تواصل معنا الآن
+    </a>
+  </div>
+</section>
+
+<!-- 🌈 Animations -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init({ duration: 1000, once: true });</script>
+
+<style>
+body {font-family:'Tajawal',sans-serif; background:#f9f9f9;}
+
+/* Hero Section */
+.hero-section {
+  background: url('{{ asset('img/farm-cover.jpg') }}') center/cover no-repeat;
+  height: 80vh;
+  display:flex; align-items:center; justify-content:center;
+  position:relative;
+}
+.hero-section .overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.6),rgba(0,0,0,.4));
+}
+.hero-section h1 { color:#d9ef82; font-size:3rem; }
+.hero-section p { color:#fff; }
+
+/* Gallery */
+.gallery-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:20px;
+}
+.gallery-item {
+  position:relative; border-radius:12px; overflow:hidden;
+  box-shadow:0 6px 20px rgba(0,0,0,.08);
+  transition:.3s;
+}
+.gallery-item img {
+  width:100%; height:230px; object-fit:cover;
+  transition:.4s;
+}
+.gallery-item:hover img { transform:scale(1.1); }
+.gallery-item .overlay {
+  position:absolute; inset:0;
+  background:rgba(0,0,0,.45);
+  opacity:0; display:flex; align-items:end; justify-content:center;
+  padding-bottom:15px; color:#fff; transition:.4s;
+}
+.gallery-item:hover .overlay { opacity:1; }
+
+/* Services */
+.service-card {
+  background:#fff;
+  padding:30px;
+  border-radius:16px;
+  text-align:center;
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+  transition:.3s;
+}
+.service-card:hover {
+  transform:translateY(-6px);
+  box-shadow:0 12px 30px rgba(0,0,0,0.15);
+}
+.service-card .icon {
+  width:70px;height:70px;
+  background:#d9ef82;
+  color:#1b3b26;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:30px;
+  margin:auto;margin-bottom:15px;
+  transition:.3s;
+}
+.service-card:hover .icon {
+  background:#1b3b26; color:#d9ef82;
+}
+
+/* Features */
+.feature-box {
+  background:#fff;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 5px 15px rgba(0,0,0,.06);
+  transition:.3s;
+}
+.feature-box i {
+  font-size:30px;
+  color:#1b3b26;
+  margin-bottom:10px;
+}
+.feature-box:hover {
+  transform:translateY(-5px);
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+/* Reviews */
+.review-card {
+  background:#fff;
+  padding:25px;
+  border-radius:14px;
+  box-shadow:0 6px 15px rgba(0,0,0,.08);
+  font-style:italic;
+  transition:.3s;
+}
+.review-card:hover { transform:translateY(-5px); }
+
+/* Video Section */
+.video-section {
+  background:url('{{ asset('img/video-bg.jpg') }}') center/cover no-repeat;
+  position:relative;
+}
+.video-section .overlay { position:absolute; inset:0; background:rgba(0,0,0,.6); }
+
+/* CTA */
+.cta-section {
+  background:linear-gradient(135deg,#1b3b26,#3f704d);
+}
+.cta-section .btn:hover {
+  background:#d9ef82;
+  color:#1b3b26;
+}
+</style>
+
+@endsection --}}
+
+
+@extends('frontend.layouts.master')
+@section('title', $service->title . ' - شركة مضياف')
+<style>
+.btn-modern-light {
+    color: #1b3b26 !important;
+}
+    </style>
+@section('content')
+<section class="page-header" style="
+    text-align: center;
+    padding: 90px 20px;
+    background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+                url('{{ asset('img/1761304116_image5.jpg') }}') center/cover no-repeat;
+    color: #fff;
+    position: relative;
+">
+    <div style="position:relative; z-index:2; max-width: 900px; margin:auto;">
+        <h1 style="font-size: 3rem; color: #D9EF82; margin-bottom: 20px; font-weight:700;">
+            خدمات شركة <span style="color:#fff;">المضياف</span>
+        </h1>
+        <p style="font-size: 1.2rem; line-height: 1.9; color: #f3f3f3;">
+            في <strong>شركة المضياف</strong> نؤمن بأن الخدمة الراقية تبدأ من الاهتمام بالتفاصيل.
+            لذلك نعمل على تقديم باقة متكاملة من الحلول الزراعية والبيئية والخدمية
+            تشمل <strong>تنسيق الحدائق، إدارة المشاريع الزراعية، المشاتل، مكافحة الآفات،</strong>
+            بالإضافة إلى توفير <strong>المنتجات والمستلزمات الزراعية</strong> عالية الجودة.
+        </p>
+        <p style="margin-top:15px; color:#e0e0e0;">
+            نهدف إلى تحقيق التوازن بين <span style="color:#D9EF82;">الاستدامة البيئية</span>
+            و<span style="color:#D9EF82;">الجودة التشغيلية</span> من خلال فريق متخصص
+            يسعى لتقديم تجربة راقية تُعبّر عن معايير الضيافة السعودية الأصيلة.
+        </p>
+    </div>
+</section>
+
+    <!-- 🌿 الغلاف العصري -->
+    <section class="hero-modern">
+        <div class="hero-bg"></div>
+        <div class="container text-center text-white position-relative z-2">
+            <h1 class="fw-bold display-4 mb-3 animate__animated animate__fadeInDown">{{ $service->title }}</h1>
+            <p class="lead animate__animated animate__fadeInUp" style="max-width:700px;margin:auto;">
+                {{ Str::limit($service->description, 150) }}
+            </p>
+        </div>
+    </section>
+
+    <!-- 🖼️ معرض صور احترافي -->
+    <section class="image-slider py-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">صور من مشاريعنا</h2>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    @foreach ($service->images as $img)
+                        <div class="swiper-slide">
+                            <img src="{{ asset($img->image) }}" alt="{{ $service->title }}">
+                        </div>
+                    @endforeach
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 💡 تفاصيل الخدمة -->
+    <section class="service-info py-5" style="
+    text-align: center;
+">
+        <div class="container">
+            <div class="row align-items-center gy-5">
+                {{--
+      <div class="col-lg-6" data-aos="fade-right">
+        <div class="image-box">
+          <img src="{{ asset(optional($service->images->first())->image ?? 'img/default.jpg') }}" alt="{{ $service->title }}">
+        </div>
+      </div> --}}
+
+                <div class="col-lg-6" data-aos="fade-left">
+                    <h2 class="fw-bold mb-3 text-gradient">{{ $service->title }}</h2>
+                    <p class="fs-5 text-muted" style="line-height: 1.9;">
+                        {{ $service->description }}
+                    </p>
+                    <a href="{{ route('frontend.home') }}" class="btn-modern mt-3">العودة إلى الخدمات</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 🌟 قسم المميزات العصري -->
+    {{-- <section class="features-modern py-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-5" style="
+     text-align: center;">مميزات خدمتنا</h2>
+            <div class="row g-4">
+                <div class="col-md-3" data-aos="zoom-in">
+                    <div class="feature-card">
+                        <i class="fa-solid fa-seedling"></i>
+                        <h5>زراعة مستدامة</h5>
+                        <p>حلول بيئية متوازنة للحفاظ على الطبيعة وتحقيق إنتاجية عالية.</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="feature-card">
+                        <i class="fa-solid fa-droplet"></i>
+                        <h5>أنظمة ذكية</h5>
+                        <p>نستخدم أحدث التقنيات الذكية في الري والتشجير والتتبع البيئي.</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="feature-card">
+                        <i class="fa-solid fa-leaf"></i>
+                        <h5>نباتات محلية</h5>
+                        <p>نختار نباتات تتأقلم مع مناخ المملكة لضمان استدامة المشاريع.</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="feature-card">
+                        <i class="fa-solid fa-award"></i>
+                        <h5>جودة عالية</h5>
+                        <p>نلتزم بالتميز من التصميم إلى التنفيذ بخبرة هندسية موثوقة.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> --}}
+    <!-- 🌟 قسم المميزات العصري -->
+<section class="features-modern py-5">
+  <div class="container">
+    <h2 class="section-title text-center mb-5">مميزات خدمتنا</h2>
+
+    <div class="row g-4 justify-content-center">
+      @if($service->features && $service->features->count() > 0)
+        @foreach($service->features as $index => $feature)
+          <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="{{ $index * 100 }}">
+            <div class="feature-card">
+              <i class="{{ $feature->icon ?? 'fa-solid fa-circle-check' }}"></i>
+              <h5 class="mt-2">{{ $feature->title }}</h5>
+              @if($feature->description)
+                <p>{{ $feature->description }}</p>
+              @endif
+            </div>
+          </div>
+        @endforeach
+      @else
+        <p class="text-center text-muted">لا توجد مميزات مسجلة لهذه الخدمة حاليًا.</p>
+      @endif
+    </div>
+  </div>
+</section>
+
+
+    <!-- 📞 CTA عصري -->
+    <section class="cta-modern text-center py-5 text-white">
+        <div class="container">
+            <h2 class="fw-bold mb-3">ابدأ رحلتك الخضراء معنا 🌿</h2>
+            <p class="fs-5 mb-4">تواصل الآن مع فريقنا واحصل على استشارة مجانية لمشروعك الزراعي</p>
+            <a href="https://wa.me/{{ $setting->phone ?? '' }}" target="_blank" class="btn-modern-light">
+                <i class="fa-brands fa-whatsapp"></i> تواصل عبر واتساب
+            </a>
+        </div>
+    </section><br /><br />
+
+    <!-- مكتبات -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 3,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1
+                },
+                768: {
+                    slidesPerView: 2
+                },
+                1200: {
+                    slidesPerView: 3
+                }
+            }
+        });
+    </script>
+
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: #f9faf9;
+            direction: rtl;
+        }
+
+        /* 💚 الغلاف */
+        .hero-modern {
+            position: relative;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #1b3b26, #4CAF50);
+            position: absolute;
+            inset: 0;
+            animation: gradientMove 6s infinite alternate ease-in-out;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background: linear-gradient(135deg, #1b3b26, #4CAF50);
+            }
+
+            100% {
+                background: linear-gradient(135deg, #2e8641, #1b3b26);
+            }
+        }
+
+        .hero-modern h1 {
+            color: #D9EF82;
+            font-weight: 800;
+        }
+
+        .hero-modern p {
+            color: #fff;
+            font-size: 1.2rem;
+        }
+
+        /* 🖼️ سلايدر الصور */
+        .swiper {
+            width: 100%;
+            height: 300px;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform .5s;
+        }
+
+        .swiper-slide:hover img {
+            transform: scale(1.05);
+        }
+
+        /* 🧾 تفاصيل الخدمة */
+        .image-box img {
+            width: 100%;
+            border-radius: 18px;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .text-gradient {
+            background: linear-gradient(90deg, #1b3b26, #4CAF50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-modern {
+            background: linear-gradient(135deg, #1b3b26, #4CAF50);
+            color: #fff;
+            border-radius: 30px;
+            padding: 10px 25px;
+            transition: .3s;
+            text-decoration: none;
+        }
+
+        .btn-modern:hover {
+            background: #D9EF82;
+            color: #1b3b26;
+        }
+
+        /* 🌟 المميزات */
+        .feature-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            transition: .3s;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-card i {
+            font-size: 35px;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        /* CTA */
+        .cta-modern {
+            background: linear-gradient(135deg, #1b3b26, #4CAF50);
+        }
+
+        .btn-modern-light {
+            background: #fff;
+            color: #1b3b26;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: .3s;
+            text-decoration: none;
+        }
+
+        .btn-modern-light:hover {
+            background: #D9EF82;
+        }
+    </style>
+
+@endsection

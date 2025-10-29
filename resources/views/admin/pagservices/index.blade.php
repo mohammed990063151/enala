@@ -1,5 +1,6 @@
 {{-- resources/views/dashboard/services/index.blade.php --}}
 @extends('admin.layouts.dashboard.app')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 @section('content')
 <style>
@@ -81,6 +82,27 @@
         font-weight: bold;
         font-size: 13px;
     }
+
+
+.service-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.icon-preview {
+    font-size: 28px;
+    color: #4CAF50;
+}
+.badge-sort {
+    background: #2e7d32;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+
+
 </style>
 
 <div class="content-wrapper">
@@ -116,16 +138,21 @@
                         <td><span class="badge-sort">{{ $s->sort_order }}</span></td>
 
                         <td>
-                            @if($s->image)
-                                <img src="{{ asset($s->image) }}" class="service-img">
-                            @else
+                          @if($s->images && $s->images->first())
+    <img src="{{ asset($s->images->first()->image) }}" class="service-img" alt="{{ $s->title }}">
+@else
+
                                 <span class="text-muted">لا يوجد</span>
                             @endif
                         </td>
 
                         <td>{{ $s->title }}</td>
 
-                        <td><i class="{{ $s->icon }} icon-preview"></i></td>
+                        {{-- <td><i class="{{ $s->icon }} icon-preview"></i></td> --}}
+                      <td>
+        <i class="{{ str_starts_with($s->icon, 'fa') ? $s->icon : 'fa-solid '.$s->icon }} icon-preview"></i>
+    </td>
+
 
                         <td>
                             <a href="{{ route('dashboard.Pag_services.edit',$s) }}"

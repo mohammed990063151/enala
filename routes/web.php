@@ -48,7 +48,8 @@ Route::get('/our-services', function () {
 
 // Frontend display:
 Route::get('/pag_services', function () {
-    $pagservices = \App\Models\Pagservice::orderBy('sort_order')->get();
+    $pagservices = \App\Models\Pagservice::orderBy('sort_order')->with('images')->get();
+
     return view('frontend.our_services', compact('pagservices'));
 })->name('frontend.services');
 
@@ -151,6 +152,8 @@ Route::resource('Pag_services', PagserviceController::class)
     Route::get('messages', [ContactController::class, 'inbox'])->name('messages.inbox');
 
 
+Route::delete('Pag_services/image/{id}', [App\Http\Controllers\Dashboard\PagserviceController::class, 'deleteImage'])
+    ->name('Pag_services.deleteImage');
 
 
 
@@ -185,6 +188,16 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
     Route::delete('messages/{message}',[MessagesController::class,'destroy'])->name('messages.delete');
 
     Route::resource('testimonials', TestimonialController::class);
+
+    Route::post('Pag_services/{id}/features', [PagserviceController::class, 'storeFeature'])->name('Pag_services.features.store');
+
+    // حذف ميزة (Ajax)
+    Route::delete('Pag_services/features/{id}', [PagserviceController::class, 'deleteFeature'])->name('Pag_services.features.delete');
+
+
+    Route::put('Pag_services/features/{id}', [PagServiceController::class, 'updateFeature'])
+        ->name('Pag_services.features.update');
+
 
 });
 

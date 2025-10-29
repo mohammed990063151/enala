@@ -59,7 +59,7 @@ class SectionController extends Controller
         'description' => 'nullable|string',
         'button_text' => 'nullable|string|max:100',
         'clients_count' => 'nullable|integer',
-        'media' => 'nullable|file|max:10240', // لقبول صورة أو فيديو حتى 10MB
+        'media' => 'nullable|file', // لقبول صورة أو فيديو حتى 10MB
     ]);
 
     if ($request->hasFile('media')) {

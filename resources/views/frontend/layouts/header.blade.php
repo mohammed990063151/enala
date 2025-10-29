@@ -312,43 +312,97 @@
                                                          <div class="elementor-widget-container">
                                                              <div class="wdt-header-menu" data-menu="2">
                                                                  <div class="menu-container">
-                                                                     <ul id="menu-main-menu-2"
+                                                                        <ul id="menu-main-menu-1"
                                                                          class="wdt-primary-nav " data-menu="2">
                                                                          <li class="close-nav"><a
                                                                                  href="javascript:void(0);"></a></li>
-                                                                         <li><a href="{{ route('frontend.home') }}"
+                                                                         <li>
+                                                                             <a href="{{ route('frontend.home') }}"
                                                                                  aria-current="page"><span
-                                                                                     data-text="%1$s">الرئسية</span></a>
+                                                                                     data-text="%1$s">الرئيسية</span></a>
+                                                                         </li>
+                                                                         <li>
+                                                                             <a href="{{ route('testimonials') }}"
+                                                                                 aria-current="page"><span
+                                                                                     data-text="%1$s">اراء
+                                                                                     النزلاء</span></a>
 
                                                                          </li>
-                                                                         <li><a href="{{ route('guests.reviews') }}"><span
-                                                                                     data-text="%1$s">
-                                                                                     اراء النزلاء</span></a>
-
-                                                                         </li>
-                                                                         {{-- <li><a href="{{ route('frontend.rooms') }}"><span
+                                                                         {{-- <li>
+                                                                             <a href="{{ route('frontend.rooms') }}"><span
                                                                                      data-text="%1$s">قسم
                                                                                      الغرف</span></a>
 
                                                                          </li> --}}
-
-                                                                         <li> <a
+                                                                         <li>
+                                                                             <a
                                                                                  href="{{ route('frontend.about-us') }}"><span
                                                                                      data-text="%1$s">من نحن</span></a>
 
                                                                          </li>
-                                                                         <li> <a
-                                                                                 href="{{ route('frontend.our-services') }}"><span
-                                                                                     data-text="%1$s">خدماتنا</span></a>
+                                                                         {{-- <li>
+                                                                             <span
+                                                                                     data-text="%1$s">خدماتنا</span>
+                                                                             <ul class="sub-menu is-hidden">
+                                                                                 <li class="close-nav"><a
+                                                                                         href="javascript:void(0);"></a>
+                                                                                 </li>
+                                                                                 <li class="go-back"><a
+                                                                                         href="javascript:void(0);"></a>
+                                                                                 </li>
+                                                                                 <li class="see-all"></li>
 
-                                                                         </li>
-                                                                         <li
-                                                                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7567 menu-item-depth-0">
-                                                                             <a href="{{ route('contact') }}"><span
+                                                                                 @php
+                                                                                     $pagservices = \App\Models\Pagservice::orderBy(
+                                                                                         'sort_order',
+                                                                                     )->get();
+                                                                                 @endphp
+
+
+                                                                                     @foreach ($pagservices as $service)
+                                                                                         {{-- <li><a
+                                                                                                 href="{{ route('service.show', $service->slug) }}">{{ $service->title }}</a>
+                                                                                         </li> --}
+                                                                                         <li
+                                                                                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16216 menu-item-depth-1">
+                                                                                             <a
+                                                                                                 href="{{ route('servicepag.show', $service->slug) }}"><span
+                                                                                                     data-text="%1$s">{{ $service->title }}</span></a>
+                                                                                         </li>
+                                                                                     @endforeach
+
+
+
+
+                                                                             </ul>
+                                                                         <li> --}}
+<li class="menu-item menu-item-has-children has-submenu">
+
+  <a href="javascript:void(0);">
+    <span data-text="%1$s">خدماتنا</span>
+  </a>
+
+  <ul class="sub-menu is-hidden">
+    @php
+        $pagservices = \App\Models\Pagservice::orderBy('sort_order')->get();
+    @endphp
+
+    @foreach ($pagservices as $service)
+      <li class="menu-item">
+        <a href="{{ route('servicepag.show', $service->slug) }}">
+          <span data-text="%1$s">{{ $service->title }}</span>
+        </a>
+      </li>
+    @endforeach
+  </ul>
+</li>
+<li>
+
+                                                                             <a href="{{ route('pag.contact') }}"><span
                                                                                      data-text="%1$s">تواصل
                                                                                      معنا</span></a>
                                                                          </li>
-                                                                     </ul>
+
                                                                      <div class="sub-menu-overlay"></div>
                                                                  </div>
                                                                  <div class="mobile-nav-container mobile-nav-offcanvas-right"

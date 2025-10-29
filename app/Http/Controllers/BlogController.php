@@ -108,8 +108,18 @@ class BlogController  extends Controller
     }
       public function Pagservice($slug)
     {
-        $pag_service = Pagservice::where('slug', $slug)->get();
-// return  $pag_service;
-        return view('frontend.our_services', compact('pag_service'));
+//         $pag_service = Pagservice::where('slug', $slug)->get();
+// // return  $pag_service;
+//         return view('frontend.our_services', compact('pag_service'));
+
+
+
+    $service = Pagservice::where('slug', $slug)
+        ->with('images')
+        ->firstOrFail();
+
+    return view('frontend.our_services', compact('service'));
+
+
     }
 }
