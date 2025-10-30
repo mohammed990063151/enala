@@ -215,8 +215,8 @@
                                                                          <li>
                                                                              <a href="{{ route('testimonials') }}"
                                                                                  aria-current="page"><span
-                                                                                     data-text="%1$s">اراء
-                                                                                     النزلاء</span></a>
+                                                                                     data-text="%1$s">مشاريعنا
+                                                                                     </span></a>
 
                                                                          </li>
                                                                          {{-- <li>
@@ -232,9 +232,10 @@
 
                                                                          </li>
                                                                          <li>
-                                                                             <span
-                                                                                     data-text="%1$s">خدماتنا</span>
-                                                                             <ul class="sub-menu is-hidden">
+                                                                            <a
+                                                                                 href="{{ route('servicepag.show') }}"> <span
+                                                                                     data-text="%1$s">خدماتنا</span></a>
+                                                                             {{-- <ul class="sub-menu is-hidden">
                                                                                  <li class="close-nav"><a
                                                                                          href="javascript:void(0);"></a>
                                                                                  </li>
@@ -253,7 +254,7 @@
                                                                                      @foreach ($pagservices as $service)
                                                                                          {{-- <li><a
                                                                                                  href="{{ route('service.show', $service->slug) }}">{{ $service->title }}</a>
-                                                                                         </li> --}}
+                                                                                         </li> --}
                                                                                          <li
                                                                                              class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16216 menu-item-depth-1">
                                                                                              <a
@@ -265,7 +266,7 @@
 
 
 
-                                                                             </ul>
+                                                                             </ul> --}}
                                                                          <li>
                                                                              <a href="{{ route('pag.contact') }}"><span
                                                                                      data-text="%1$s">تواصل
@@ -299,7 +300,7 @@
                                                          <div class="elementor-widget-container">
                                                              <div class="wdt-button-holder wdt-template-filled wdt-button-link wdt-button-style-default wdt-button-size-nm wdt-animation- wdt-button-icon-after"
                                                                  id="wdt-button-e395455"><a class="wdt-button"
-                                                                     href="{{ route('servicepag.show', $service->slug) }}">
+                                                                     href="{{ route('servicepag.show') }}">
                                                                      <div class="wdt-button-text"><span>استكشف
                                                                              خدماتنا</span></div>
                                                                  </a></div>
@@ -324,8 +325,8 @@
                                                                          <li>
                                                                              <a href="{{ route('testimonials') }}"
                                                                                  aria-current="page"><span
-                                                                                     data-text="%1$s">اراء
-                                                                                     النزلاء</span></a>
+                                                                                     data-text="%1$s">مشاريعنا
+                                                                                     </span></a>
 
                                                                          </li>
                                                                          {{-- <li>
@@ -378,11 +379,11 @@
                                                                          <li> --}}
 <li class="menu-item menu-item-has-children has-submenu">
 
-  <a href="javascript:void(0);">
+  <a href="{{ route('servicepag.show') }}">
     <span data-text="%1$s">خدماتنا</span>
   </a>
 
-  <ul class="sub-menu is-hidden">
+  {{-- <ul class="sub-menu is-hidden">
     @php
         $pagservices = \App\Models\Pagservice::orderBy('sort_order')->get();
     @endphp
@@ -394,7 +395,7 @@
         </a>
       </li>
     @endforeach
-  </ul>
+  </ul> --}}
 </li>
 <li>
 

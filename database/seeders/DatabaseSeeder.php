@@ -43,7 +43,7 @@ $this->call([
         ContactMessageSeeder::class,
     ]);
 $this->call([
-        TestimonialSeeder::class,
+        ProjectSeeder::class,
     ]);
     }//end of run
 

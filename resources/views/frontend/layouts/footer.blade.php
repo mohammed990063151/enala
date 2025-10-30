@@ -381,7 +381,7 @@
                                                                                    src="{{ asset('assets/img/footer-gallery-img-1.jpg') }}"
                                                                                    class="attachment-full size-full"
                                                                                    alt="" decoding="async"
-                                                                                   srcset="{{ asset('dashboard_files/img/services/1761304116_image1.jpg') }}"
+                                                                                   srcset="{{ asset('dashboard_files/img/services/1761304116_image2.jpg') }}"
                                                                                    sizes="(max-width: 800px) 100vw, 800px"></a>
                                                                        </div>
                                                                    </figure>
@@ -413,7 +413,7 @@
                                                                                    src="{{ asset('dashboard_files/img/services/1761304116_image1.jpg') }}"
                                                                                    class="attachment-full size-full"
                                                                                    alt="" decoding="async"
-                                                                                   srcset="{{ asset('dashboard_files/img/services/1761304116_image1.jpg') }}"
+                                                                                   srcset="{{ asset('dashboard_files/img/services/1761304116_image3.jpg') }}"
                                                                                    sizes="(max-width: 800px) 100vw, 800px"></a>
                                                                        </div>
                                                                    </figure>
@@ -429,7 +429,7 @@
                                                                                    src="{{ asset('dashboard_files/img/services/1761304116_image1.jpg') }}"
                                                                                    class="attachment-full size-full"
                                                                                    alt="" decoding="async"
-                                                                                   srcset="{{ asset('dashboard_files/img/services/1761304116_image1.jpg') }}"
+                                                                                   srcset="{{ asset('dashboard_files/img/services/1761304116_image5.jpg') }}"
                                                                                    sizes="(max-width: 800px) 100vw, 800px"></a>
                                                                        </div>
                                                                    </figure>
@@ -445,7 +445,7 @@
                                                                                    src="{{ asset('dashboard_files/img/services/1761304116_image1.jpg') }}"
                                                                                    class="attachment-full size-full"
                                                                                    alt="" decoding="async"
-                                                                                   srcset="{{ asset('dashboard_files/img/services/1761304116_image1.jpg') }}"
+                                                                                   srcset="{{ asset('dashboard_files/img/services/1761304116_image4.jpg') }}"
                                                                                    sizes="(max-width: 800px) 100vw, 800px"></a>
                                                                        </div>
                                                                    </figure>
@@ -471,12 +471,12 @@
                                                    </div>
                                                </div>
                                            </div>
-                                           <div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-992gxy3"
+                                           {{-- <div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-992gxy3"
      data-id="992gxy3" data-element_type="column">
-    <div class="elementor-widget-wrap elementor-element-populated">
+    <div class="elementor-widget-wrap elementor-element-populated"> --}}
 
         {{-- ✅ القسم: أخطاء زراعية شائعة --}}
-        <div class="elementor-element elementor-element-4786dd5 elementor-widget elementor-widget-wdt-accordion-and-toggle"
+        {{-- <div class="elementor-element elementor-element-4786dd5 elementor-widget elementor-widget-wdt-accordion-and-toggle"
             data-id="4786dd6" data-element_type="widget">
             <div class="elementor-widget-container">
                 <div class="wdt-accordion-toggle-holder wdt-module-toggle accordion ui-accordion">
@@ -504,7 +504,7 @@
         </div>
 
     </div>
-</div>
+</div> --}}
 
                                            <div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-609698a"
                                                data-id="609698a" data-element_type="column">

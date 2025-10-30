@@ -77,54 +77,56 @@
                 @csrf @method('PUT')
 
                 <div class="row">
+{{-- <pre>{{ print_r($setting, true) }}</pre> --}}
 
                     {{-- عنوان الصفحة --}}
                     <div class="col-md-6 mb-3 position-relative">
                         <label class="form-label">عنوان الصفحة</label>
-                        <i class="fa fa-heading input-icon"></i>
-                        <input class="form-control" name="title" value="{{ $setting->title }}" placeholder="مثال: تواصل معنا">
+                        {{-- <i class="fa fa-heading input-icon"></i> --}}
+
+                        <input class="form-control" name="title" value="{{ $settinges->title}}" placeholder="مثال: تواصل معنا">
                     </div>
 
                     {{-- الوصف --}}
                     <div class="col-md-6 mb-3 position-relative">
                         <label class="form-label">وصف قصير</label>
-                        <i class="fa fa-align-left input-icon"></i>
-                        <input class="form-control" name="subtitle" value="{{ $setting->subtitle }}" placeholder="كتابة تعريف مختصر">
+                        {{-- <i class="fa fa-align-left input-icon"></i> --}}
+                        <input class="form-control" name="subtitle" value="{{ $settinges->subtitle }}" placeholder="كتابة تعريف مختصر">
                     </div>
 
                     {{-- الهاتف --}}
                     <div class="col-md-4 mb-3 position-relative">
                         <label class="form-label">رقم الهاتف</label>
                         <i class="fa fa-phone input-icon"></i>
-                        <input class="form-control" name="phone" value="{{ $setting->phone }}">
+                        <input class="form-control" name="phone" value="{{ $settinges->phone }}">
                     </div>
 
                     {{-- البريد --}}
                     <div class="col-md-4 mb-3 position-relative">
                         <label class="form-label">البريد الإلكتروني</label>
                         <i class="fa fa-envelope input-icon"></i>
-                        <input class="form-control" name="email" value="{{ $setting->email }}">
+                        <input class="form-control" name="email" value="{{ $settinges->email }}">
                     </div>
 
                     {{-- واتساب --}}
                     <div class="col-md-4 mb-3 position-relative">
                         <label class="form-label">واتساب</label>
                         <i class="fa fa-whatsapp input-icon"></i>
-                        <input class="form-control" name="whatsapp" value="{{ $setting->whatsapp }}">
+                        <input class="form-control" name="whatsapp" value="{{ $settinges->whatsapp }}">
                     </div>
 
                     {{-- العنوان --}}
                     <div class="col-md-12 mb-3 position-relative">
                         <label class="form-label">العنوان</label>
                         <i class="fa fa-map-marker input-icon"></i>
-                        <input class="form-control" name="address" value="{{ $setting->address }}">
+                        <input class="form-control" name="address" value="{{ $settinges->address }}">
                     </div>
 
                     {{-- MAP EMBED --}}
                     <div class="col-md-12 mb-3 position-relative">
                         <label class="form-label">كود خريطة Google</label>
                         <i class="fa fa-map input-icon"></i>
-                        <textarea class="form-control" name="map_embed" rows="3">{{ $setting->map_embed }}</textarea>
+                        <textarea class="form-control" name="map_embed" rows="3">{{ $settinges->map_embed }}</textarea>
                     </div>
 
                 </div>
@@ -143,7 +145,7 @@
         </div>
 
         <div class="map-preview">
-            {!! $setting->map_embed !!}
+            {!! $settinges->map_embed !!}
         </div>
 
     </section>

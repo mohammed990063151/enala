@@ -23,8 +23,8 @@ public function update(Request $request)
     $data = $request->validate([
         'title'       => 'required',
         'description' => 'required',
-        'image1'      => 'image|mimes:jpg,png,jpeg|max:2048',
-        'image2'      => 'image|mimes:jpg,png,jpeg|max:2048',
+        'image1'      => 'image|mimes:jpg,png,jpeg',
+        'image2'      => 'image|mimes:jpg,png,jpeg',
         'point1'      => 'nullable',
         'point2'      => 'nullable',
         'point3'      => 'nullable',

@@ -106,7 +106,7 @@ class BlogController  extends Controller
 
         return view('frontend.blog.show', compact('post'));
     }
-      public function Pagservice($slug)
+      public function Pagservice()
     {
 //         $pag_service = Pagservice::where('slug', $slug)->get();
 // // return  $pag_service;
@@ -114,11 +114,12 @@ class BlogController  extends Controller
 
 
 
-    $service = Pagservice::where('slug', $slug)
-        ->with('images')
-        ->firstOrFail();
+    // $service = Pagservice::where('slug', $slug)
+    //     ->with('images')
+    //     ->firstOrFail();
+        $services = Pagservice::with('images', 'features')->latest()->get();
 
-    return view('frontend.our_services', compact('service'));
+    return view('frontend.our_services', compact('services'));
 
 
     }

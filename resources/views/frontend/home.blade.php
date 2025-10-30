@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 <style>
-    /* .elementor-15720 .elementor-element.elementor-element-244fe39:not(.elementor-motion-effects-element-type-background),
+    /* .element-15720 .elementor-element.elementor-element-244fe39:not(.elementor-motion-effects-element-type-background),
 .elementor-15720 .elementor-element.elementor-element-244fe39>.elementor-motion-effects-container>.elementor-motion-effects-layer {
     background: url('{{ asset($section->image  ?? '') }}') 50% 50%;
 } */
@@ -598,7 +598,7 @@
                                                                                                 href="{{ route('frontend.about-us') }}"
                                                                                                 target="_blank"
                                                                                                 rel="nofollow">
-                                                                                                {{-- <img
+                                                                                                <img
                                                                                                     loading="lazy"
                                                                                                     decoding="async"
                                                                                                     width="766"
@@ -607,8 +607,8 @@
                                                                                                     class="attachment-full size-full wp-image-15749"
                                                                                                     alt=""
                                                                                                     srcset="{{ asset($whyus->image2) }}"
-                                                                                                    sizes="(max-width: 766px) 100vw, 766px"> --}}
-                                                                                                     <img src="{{ asset($whyus->image2) }}" class="whyus-img" alt="">
+                                                                                                    sizes="(max-width: 766px) 100vw, 766px">
+                                                                                                     {{-- <img src="{{ asset($whyus->image2) }}" class="whyus-img" alt=""> --}}
                                                                                                 </a>
                                                                                         </div>
                                                                                     </div>

@@ -10,8 +10,9 @@ class ContactSettingsController extends Controller
 {
     public function edit()
     {
-        $setting = ContactSetting::first();
-        return view('admin.contact.settings', compact('setting'));
+        $settinges = ContactSetting::first();
+        // return $setting;
+        return view('admin.contact.settings', compact('settinges'));
     }
 
     public function update(Request $request)

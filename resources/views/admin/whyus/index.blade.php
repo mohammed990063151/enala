@@ -16,34 +16,66 @@
                     <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
 
+                @if(session('error'))
+                    <div class="alert alert-danger">{{ session('error') }}</div>
+                @endif
+
                 <form action="{{ route('dashboard.whyus.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
-                    <div class="form-group">
+                    <!-- العنوان -->
+                    <div class="form-group mb-3">
                         <label>عنوان القسم</label>
-                        <input type="text" name="title" class="form-control" value="{{ $whyus->title }}">
+                        <input type="text" name="title" class="form-control"
+                               value="{{ old('title', $whyus->title) }}">
                     </div>
 
-                    <div class="form-group">
-                        <label>وصف</label>
-                        <textarea name="description" class="form-control" rows="3">{{ $whyus->description }}</textarea>
+                    <!-- الوصف -->
+                    <div class="form-group mb-3">
+                        <label>الوصف</label>
+                        <textarea name="description" class="form-control" rows="3">{{ old('description', $whyus->description) }}</textarea>
                     </div>
 
-                    <div class="row">
-                        @foreach(['image1','image2','image3','image4'] as $img)
-                        <div class="col-md-3">
-                            <label>{{ $img }}</label>
-                            <input type="file" name="{{ $img }}" class="form-control">
+                    <hr>
 
-                            @if($whyus->$img)
-                                <img src="{{ asset($whyus->$img) }}" width="120" class="mt-2">
-                            @endif
-                        </div>
-                        @endforeach
+                    <!-- الصورة 1 -->
+                    <div class="form-group mb-3">
+                        <label>الصورة 1</label>
+                        <input type="file" name="image1" class="form-control">
+                        @if($whyus->image1)
+                            <img src="{{ asset($whyus->image1) }}" width="150" class="mt-2 img-thumbnail">
+                        @endif
                     </div>
 
-                    <button class="btn btn-primary mt-3">حفظ</button>
+                    <!-- الصورة 2 -->
+                    <div class="form-group mb-3">
+                        <label>الصورة 2</label>
+                        <input type="file" name="image2" class="form-control">
+                        @if($whyus->image2)
+                            <img src="{{ asset($whyus->image2) }}" width="150" class="mt-2 img-thumbnail">
+                        @endif
+                    </div>
+
+                    <!-- الصورة 3 -->
+                    <div class="form-group mb-3">
+                        <label>الصورة 3</label>
+                        <input type="file" name="image3" class="form-control">
+                        @if($whyus->image3)
+                            <img src="{{ asset($whyus->image3) }}" width="150" class="mt-2 img-thumbnail">
+                        @endif
+                    </div>
+
+                    <!-- الصورة 4 -->
+                    <div class="form-group mb-3">
+                        <label>الصورة 4</label>
+                        <input type="file" name="image4" class="form-control">
+                        @if($whyus->image4)
+                            <img src="{{ asset($whyus->image4) }}" width="150" class="mt-2 img-thumbnail">
+                        @endif
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">💾 حفظ التحديثات</button>
 
                 </form>
             </div>

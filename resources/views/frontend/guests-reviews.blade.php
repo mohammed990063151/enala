@@ -114,7 +114,7 @@
 }
 </style>
 @endsection --}}
-@extends('frontend.layouts.master')
+{{-- @extends('frontend.layouts.master')
 
 <style>
 .reviews-page {
@@ -227,4 +227,97 @@
 </div>
 </section>
 
+@endsection --}}
+@extends('frontend.layouts.master')
+
+@section('title', 'مشاريعنا - شركة مضياف')
+
+@section('content')
+{{-- <section class="page-header" style="
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                url('{{ asset('dashboard_files/img/gallery/1761301329.jpg') }}') center/cover no-repeat;
+    color: #fff;
+">
+    <h1 style="font-size: 3rem; color: #D9EF82; margin-bottom: 15px;">
+        آراء النزلاء
+    </h1>
+    <p style="max-width: 800px; margin: auto; font-size: 1.1rem; line-height: 1.8; color: #eee;">
+        اكتشف آراء وتجارب زوارنا السابقين مع <strong>فنادق إنالة</strong> واستمتع بخدماتنا المميزة.
+    </p>
+</section> --}}
+
+<section class="page-header" style="
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                url('{{ asset('dashboard_files/img/gallery/1761301329.jpg') }}') center/cover no-repeat;
+    color: #fff;
+">
+    <h1 style="font-size:3rem; color:#D9EF82; margin-bottom:10px;">مشاريعنا</h1>
+    <p style="max-width:700px; margin:auto; color:#eee; font-size:1.2rem;">
+        استعرض بعض المشاريع التي نفذتها شركة مضياف باحترافية عالية في مجالات الزراعة والتنسيق الخارجي.
+    </p>
+</section>
+<br /><br />
+<section class="projects py-5" style="background:#f9f9f9;">
+    <div class="container">
+        <div class="row g-4">
+            @foreach($projects as $project)
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="project-card bg-white border-0 rounded-4 shadow-sm overflow-hidden h-100"
+                     style="transition: all 0.3s ease; cursor:pointer;"
+                     onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.08)'"
+                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.05)'">
+
+                    <div class="project-image" style="height:180px; overflow:hidden;">
+                        <img src="{{ asset($project->image) }}" alt="{{ $project->title }}"
+                             style="width:100%; height:100%; object-fit:cover; transition: transform .4s;">
+                    </div>
+
+                    <div class="p-3">
+                        <h5 class="fw-bold text-success mb-2" style="font-size:1.1rem;">{{ $project->title }}</h5>
+                        <p class="text-muted small mb-3" style="line-height:1.6;">
+                            {{ Str::limit(strip_tags($project->description), 80) }}
+                        </p>
+
+                        {{-- <div class="d-flex justify-content-between align-items-center">
+                            @if($project->location)
+                                <span class="text-secondary small">
+                                    <i class="fa-solid fa-location-dot text-success me-1"></i>
+                                    {{ $project->location }}
+                                </span>
+                            @endif
+                            <a href=""
+                               class="btn btn-outline-success btn-sm rounded-pill px-3">
+                                عرض التفاصيل <i class="fa-solid fa-arrow-left-long ms-1"></i>
+                            </a>
+                        </div> --}}
+                        <div class="d-flex justify-content-between align-items-center">
+    @if($project->location)
+        <span class="text-secondary small">
+            <i class="fa-solid fa-location-dot text-success me-1"></i>
+            {{ $project->location }}
+        </span>
+    @endif
+
+    @if($project->completion_date)
+        <span class="text-muted small">
+            <i class="fa-regular fa-calendar-days text-success me-1"></i>
+            {{ \Carbon\Carbon::parse($project->completion_date)->format('d M Y') }}
+        </span>
+    @endif
+</div>
+
+                    </div>
+
+                </div>
+            </div>
+            <br /><br />
+            @endforeach
+        </div>
+    </div>
+</section>
+<br /><br />
 @endsection

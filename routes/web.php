@@ -27,7 +27,7 @@ Route::get('/custom-login', function() {
 
 // 🔹 الصفحة الرئيسية للموقع (الفرونت إند)
 Route::get('/', [HomeController::class, 'index'])->name('frontend.home');
-Route::get('/pag_service/{slug}', [BlogController::class, 'Pagservice'])->name('servicepag.show');
+Route::get('/pag_service', [BlogController::class, 'Pagservice'])->name('servicepag.show');
 // Route::middleware(['auth', 'web'])->name('dashboard.')->group(function () {
 // // 🔹 مثال لمسار لوحة التحكم (backend)
 // Route::get('/dashboard', function () {
@@ -202,13 +202,15 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
     Route::put('Pag_services/features/{id}', [PagServiceController::class, 'updateFeature'])
         ->name('Pag_services.features.update');
 
-
+Route::resource('projects', App\Http\Controllers\Dashboard\ProjectController::class);
 });
 
-Route::get('/testimonials', function () {
-    $items = App\Models\Testimonial::latest()->get();
-    return view('frontend.guests-reviews', compact('items'));
+Route::get('/projects_items', function () {
+    // $items = App\Models\Testimonial::latest()->get();
+    $projects = App\Models\Project::latest()->get();
+    return view('frontend.guests-reviews', compact('projects'));
 })->name('testimonials');
+// Route::get('/projects', [App\Http\Controllers\Dashboard\ProjectController::class, 'index'])->name('projects.index');
 
 
 

@@ -984,7 +984,7 @@ body {font-family:'Tajawal',sans-serif; background:#f9f9f9;}
 @endsection --}}
 
 
-@extends('frontend.layouts.master')
+{{-- @extends('frontend.layouts.master')
 @section('title', $service->title . ' - شركة مضياف')
 <style>
 .btn-modern-light {
@@ -1057,7 +1057,7 @@ body {font-family:'Tajawal',sans-serif; background:#f9f9f9;}
         <div class="image-box">
           <img src="{{ asset(optional($service->images->first())->image ?? 'img/default.jpg') }}" alt="{{ $service->title }}">
         </div>
-      </div> --}}
+      </div> --}
 
                 <div class="col-lg-6" data-aos="fade-left">
                     <h2 class="fw-bold mb-3 text-gradient">{{ $service->title }}</h2>
@@ -1107,7 +1107,7 @@ body {font-family:'Tajawal',sans-serif; background:#f9f9f9;}
                 </div>
             </div>
         </div>
-    </section> --}}
+    </section> --}
     <!-- 🌟 قسم المميزات العصري -->
 <section class="features-modern py-5">
   <div class="container">
@@ -1314,4 +1314,488 @@ body {font-family:'Tajawal',sans-serif; background:#f9f9f9;}
         }
     </style>
 
+@endsection --}}
+{{-- @extends('frontend.layouts.master')
+
+@section('title', 'خدماتنا - شركة مضياف')
+
+@section('content')
+<section class="page-header" style="
+    text-align: center;
+    padding: 90px 20px;
+    background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+                url('{{ asset('img/1761304116_image5.jpg') }}') center/cover no-repeat;
+    color: #fff;
+    position: relative;
+">
+    <div style="position:relative; z-index:2; max-width: 900px; margin:auto;">
+        <h1 style="font-size: 3rem; color: #D9EF82; margin-bottom: 20px; font-weight:700;">
+            خدمات <span style="color:#fff;">شركة المضياف</span>
+        </h1>
+        <p style="font-size: 1.2rem; line-height: 1.9; color: #f3f3f3;">
+            نقدم مجموعة متكاملة من الحلول الزراعية والبيئية باحترافية وجودة عالية.
+        </p>
+    </div>
+</section>
+
+<section class="services-section py-5" style="background:#f9faf9;">
+  <div class="container">
+    <div class="row g-4">
+      @foreach($services as $service)
+      <div class="col-lg-4 col-md-6">
+        <div class="service-card shadow-sm border-0 rounded-4 overflow-hidden bg-white h-100"
+             style="transition: all 0.3s ease; cursor:pointer;"
+             onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)'"
+             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.05)'">
+
+          <div class="service-image" style="height:230px; overflow:hidden;">
+            <img src="{{ asset($service->image ?? 'img/default.jpg') }}" alt="{{ $service->title }}"
+                 style="width:100%; height:100%; object-fit:cover; transition: transform .4s;">
+          </div>
+
+          <div class="p-4 text-center">
+            <i class="{{ $service->icon ?? 'fa-solid fa-leaf' }}"
+               style="font-size:35px; color:#4CAF50; margin-bottom:10px;"></i>
+            <h4 class="fw-bold text-success mb-2">{{ $service->title }}</h4>
+            <p class="text-muted small mb-3" style="line-height:1.7;">
+              {{ Str::limit($service->description, 120) }}
+            </p>
+            <a href=""
+            {{-- {{ route('frontend.services.show', $service->slug) }} --}
+               class="btn-modern mt-2">عرض التفاصيل</a>
+          </div>
+        </div>
+      </div>
+      @endforeach
+    </div>
+  </div>
+</section>
+
+<section class="cta-modern text-center py-5 text-white">
+    <div class="container">
+        <h2 class="fw-bold mb-3">ابدأ رحلتك الخضراء معنا 🌿</h2>
+        <p class="fs-5 mb-4">تواصل الآن مع فريقنا للحصول على استشارة مجانية لمشروعك الزراعي</p>
+        <a href="https://wa.me/{{ $setting->phone ?? '' }}" target="_blank" class="btn-modern-light">
+            <i class="fa-brands fa-whatsapp"></i> تواصل عبر واتساب
+        </a>
+    </div>
+</section>
+
+<style>
+body {
+  font-family: 'Tajawal', sans-serif;
+  background: #f9faf9;
+  direction: rtl;
+}
+
+.btn-modern {
+  background: linear-gradient(135deg, #1b3b26, #4CAF50);
+  color: #fff;
+  border-radius: 30px;
+  padding: 10px 25px;
+  transition: .3s;
+  text-decoration: none;
+}
+.btn-modern:hover {
+  background: #D9EF82;
+  color: #1b3b26;
+}
+
+.cta-modern {
+  background: linear-gradient(135deg, #1b3b26, #4CAF50);
+}
+
+.btn-modern-light {
+  background: #fff;
+  color: #1b3b26;
+  padding: 10px 25px;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: .3s;
+  text-decoration: none;
+}
+.btn-modern-light:hover {
+  background: #D9EF82;
+}
+</style>
+@endsection --}}
+@extends('frontend.layouts.master')
+
+@section('title', 'خدماتنا - شركة مضياف')
+
+<style>
+body {
+  font-family: 'Tajawal', sans-serif;
+  direction: rtl;
+  background: #f9faf9;
+  margin: 0;
+  padding: 0;
+}
+
+/* 🌿 Flexbox Wrapper */
+.services-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+/* 🌱 Card Style */
+.service-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  overflow: hidden;
+  flex: 1 1 calc(33.333% - 25px); /* 3 per row */
+  max-width: calc(33.333% - 25px);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.image-box {
+  height: 230px;
+  overflow: hidden;
+}
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .4s ease;
+}
+.service-card:hover img {
+  transform: scale(1.05);
+}
+
+.content-box {
+  text-align: center;
+  padding: 25px;
+}
+.content-box i {
+  font-size: 35px;
+  color: #4CAF50;
+  margin-bottom: 10px;
+}
+.content-box h4 {
+  color: #1b3b26;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.content-box p {
+  color: #777;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+/* 🟢 زر التفاصيل */
+.btn-modern {
+  background: linear-gradient(135deg, #1b3b26, #4CAF50);
+  color: #fff;
+  border-radius: 30px;
+  padding: 8px 22px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.btn-modern:hover {
+  background: #D9EF82;
+  color: #1b3b26;
+}
+
+/* 💬 CTA */
+.cta-modern {
+  background: linear-gradient(135deg, #1b3b26, #4CAF50);
+}
+.btn-modern-light {
+  background: #fff;
+  color: #1b3b26;
+  padding: 10px 25px;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: .3s;
+}
+.btn-modern-light:hover {
+  background: #D9EF82;
+}
+
+/* 📱 Responsive Breakpoints */
+@media (max-width: 992px) {
+  .service-card {
+    flex: 1 1 calc(45% - 25px);
+    max-width: calc(45% - 25px);
+  }
+}
+@media (max-width: 576px) {
+  .service-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
+ </style>
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<style>
+.image-slider {
+  background: #f9faf9;
+}
+.swiper {
+  width: 100%;
+  height: 300px;
+}
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  transition: transform .5s ease;
+}
+.swiper-slide:hover img {
+  transform: scale(1.05);
+}
+</style>
+@section('content')
+
+<section class="page-header" style="
+    text-align: center;
+    padding: 90px 20px;
+    background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+                url('{{ asset("dashboard_files/img/services/1761304116_image4.jpg") }}') center/cover no-repeat;
+    color: #fff;
+    position: relative;
+">
+    <div style="position:relative; z-index:2; max-width: 900px; margin:auto;">
+        <h1 style="font-size: 3rem; color: #D9EF82; margin-bottom: 20px; font-weight:700;">
+            خدمات شركة <span style="color:#fff;">المضياف</span>
+        </h1>
+        <p style="font-size: 1.2rem; line-height: 1.9; color: #f3f3f3;">
+            في <strong>شركة المضياف</strong> نؤمن بأن الخدمة الراقية تبدأ من الاهتمام بالتفاصيل.
+            لذلك نعمل على تقديم باقة متكاملة من الحلول الزراعية والبيئية والخدمية
+            تشمل <strong>تنسيق الحدائق، إدارة المشاريع الزراعية، المشاتل، مكافحة الآفات،</strong>
+            بالإضافة إلى توفير <strong>المنتجات والمستلزمات الزراعية</strong> عالية الجودة.
+        </p>
+        <p style="margin-top:15px; color:#e0e0e0;">
+            نهدف إلى تحقيق التوازن بين <span style="color:#D9EF82;">الاستدامة البيئية</span>
+            و<span style="color:#D9EF82;">الجودة التشغيلية</span> من خلال فريق متخصص
+            يسعى لتقديم تجربة راقية تُعبّر عن معايير الضيافة السعودية الأصيلة.
+        </p>
+    </div>
+</section>
+
+
+
+    <!-- 🖼️ معرض صور احترافي -->
+    {{-- @foreach ($services as $service)
+    <section class="image-slider py-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">{{ $service->title }}</h2>
+
+            @if($service->images && $service->images->count())
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        @foreach ($service->images as $img)
+                            <div class="swiper-slide">
+                                <img src="{{ asset($img->image) }}" alt="{{ $service->title }}">
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            @else
+                <p class="text-center text-muted">لا توجد صور متاحة لهذه الخدمة.</p>
+            @endif
+        </div>
+    </section>
+@endforeach --}}
+<section class="image-slider py-5">
+  <div class="container">
+    <h2 class="section-title text-center mb-5">معرض أعمالنا</h2>
+
+    <div class="swiper mySwiperGlobal">
+      <div class="swiper-wrapper">
+        @foreach ($services as $service)
+            @if($service->images && $service->images->count())
+                @foreach($service->images as $img)
+                    <div class="swiper-slide">
+                        <img src="{{ asset($img->image) }}" alt="{{ $service->title }}">
+                    </div>
+                @endforeach
+            @else
+                <div class="swiper-slide">
+                    <img src="{{ asset('dashboard_files/img/gallery/sample1.jpg') }}" alt="no image">
+                </div>
+            @endif
+        @endforeach
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+  <div style="max-width: 900px; margin:auto;">
+    <h1 style="font-size: 3rem; color: #D9EF82; margin-bottom: 20px; font-weight:700;">
+      خدمات <span style="color:#fff;">شركة المضياف</span>
+    </h1>
+    <p style="font-size: 1.2rem; line-height: 1.9; color: #f3f3f3;">
+      نقدم مجموعة متكاملة من الحلول الزراعية والبيئية باحترافية وجودة عالية.
+    </p>
+  </div>
+</section>
+<br /><br />
+<section class="services-flex py-5" style="background:#f9faf9;">
+  <div class="container">
+    <div class="services-wrapper">
+      @foreach($services as $index => $service)
+      <div class="service-card" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
+        <div class="image-box">
+          <img src="{{ asset($service->images->first()->image) }}" alt="{{ $service->title }}">
+                    {{-- @if($service->images && $service->images->count())
+              <img src="{{ asset($service->images->first()->image) }}" alt="{{ $service->title }}">
+          @else
+              <img src="{{ asset('img/default.jpg') }}" alt="no image">
+          @endif --}}
+
+        </div>
+        <div class="content-box">
+          <i class="{{ $service->icon ?? 'fa-solid fa-leaf' }}"></i>
+          <h4>{{ $service->title }}</h4>
+          <p>{{ Str::limit($service->description, 100) }}</p>
+          {{-- <a href="" class="btn-modern">عرض التفاصيل</a> --}}
+          {{-- {{ route('frontend.services.show', $service->slug) }} --}}
+        </div>
+      </div>
+      @endforeach
+    </div>
+  </div>
+</section>
+
+<section class="cta-modern text-center py-5 text-white" data-aos="zoom-in">
+  <div class="container">
+    <h2 class="fw-bold mb-3">ابدأ رحلتك الخضراء معنا 🌿</h2>
+    <p class="fs-5 mb-4">تواصل الآن مع فريقنا للحصول على استشارة مجانية لمشروعك الزراعي</p>
+    <a href="https://wa.me/{{ $setting->phone ?? '' }}" target="_blank" class="btn-modern-light" style="
+    color: black;
+">
+      <i class="fa-brands fa-whatsapp"></i> تواصل عبر واتساب
+    </a>
+  </div>
+</section>
+<br /><br />
+<!-- ✅ مكتبة AOS -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init({
+  duration: 1000,
+  once: true,
+  offset: 100
+});
+</script>
+ <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    {{-- <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script> --}}
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 3,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1
+                },
+                768: {
+                    slidesPerView: 2
+                },
+                1200: {
+                    slidesPerView: 3
+                }
+            }
+        });
+    </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    @foreach($services as $index => $service)
+      new Swiper(".mySwiper-{{ $index }}", {
+        slidesPerView: 3,
+        spaceBetween: 20,
+        loop: true,
+        centeredSlides: true,
+        speed: 1000,
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".mySwiper-{{ $index }} .swiper-pagination",
+          clickable: true,
+        },
+        breakpoints: {
+          0: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1200: { slidesPerView: 3 }
+        }
+      });
+    @endforeach
+  });
+</script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    new Swiper(".mySwiperGlobal", {
+      slidesPerView: 3,
+      spaceBetween: 25,
+      loop: true,
+      speed: 3000,
+      autoplay: {
+        delay: 0,
+        disableOnInteraction: false,
+      },
+      allowTouchMove: false,
+      freeMode: true,
+      grabCursor: true,
+      breakpoints: {
+        0: { slidesPerView: 1.3 },
+        768: { slidesPerView: 2 },
+        1200: { slidesPerView: 3 }
+      }
+    });
+  });
+</script>
+{{-- @endpush --}}
+
+{{-- @push('scripts') --}}
+
+
+
 @endsection
+

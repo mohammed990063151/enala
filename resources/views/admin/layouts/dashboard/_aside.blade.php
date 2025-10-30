@@ -244,8 +244,8 @@
     </li>
 
     <li>
-        <a href="{{ route('dashboard.testimonials.index') }}">
-            <i class="fa fa-star"></i> <span>آراء عملائنا</span>
+        <a href="{{ route('dashboard.projects.index') }}">
+            <i class="fa fa-star"></i> <span>مشارعينا </span>
         </a>
     </li>
 
