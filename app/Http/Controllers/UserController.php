@@ -22,19 +22,19 @@ class UserController extends Controller
     //     $this->middleware(['permission:delete_users'])->only('destroy');
     // } //end of constructor
 
-    //   public function index(Request $request)
-    // {
-    //     $users = User::whereHas('roles', function ($q) {
-    //         $q->where('name', 'admin');
-    //     })->where(function ($q) use ($request) {
-    //         $q->when($request->search, function ($query) use ($request) {
-    //             $query->where('first_name', 'like', '%' . $request->search . '%')
-    //                 ->orWhere('last_name', 'like', '%' . $request->search . '%');
-    //         });
-    //     })->latest()->paginate(5);
+      public function show(Request $request)
+    {
+        $users = User::whereHas('roles', function ($q) {
+            $q->where('name', 'admin');
+        })->where(function ($q) use ($request) {
+            $q->when($request->search, function ($query) use ($request) {
+                $query->where('first_name', 'like', '%' . $request->search . '%')
+                    ->orWhere('last_name', 'like', '%' . $request->search . '%');
+            });
+        })->latest()->paginate(5);
 
-    //     return view('dashboard.users.index', compact('users'));
-    // }
+        return view('dashboard.users.index', compact('users'));
+    }
 
     public function index(Request $request)
     {

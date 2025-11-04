@@ -99,7 +99,7 @@ Route::get('/rooms', function () {
 
 // Auth::routes();
 Route::middleware(['auth', 'web'])->prefix('dashboard')->name('dashboard.')->group(function () {
-        Route::resource('users', UserController::class)->except(['show']);
+        Route::resource('users', UserController::class);
     Route::get('/index', [App\Http\Controllers\Dashboard\HomeController::class, 'index'])
     ->name('home');
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
