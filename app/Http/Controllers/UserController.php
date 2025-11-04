@@ -13,14 +13,14 @@ use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
-    public function __construct()
-    {
-        //create read update delete
-        $this->middleware(['permission:read_users'])->only('index');
-        $this->middleware(['permission:create_users'])->only('create');
-        $this->middleware(['permission:update_users'])->only('edit');
-        $this->middleware(['permission:delete_users'])->only('destroy');
-    } //end of constructor
+    // public function __construct()
+    // {
+    //     //create read update delete
+    //     $this->middleware(['permission:read_users'])->only('index');
+    //     $this->middleware(['permission:create_users'])->only('create');
+    //     $this->middleware(['permission:update_users'])->only('edit');
+    //     $this->middleware(['permission:delete_users'])->only('destroy');
+    // } //end of constructor
 
     //   public function index(Request $request)
     // {
