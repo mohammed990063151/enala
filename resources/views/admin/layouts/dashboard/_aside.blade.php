@@ -236,21 +236,21 @@
         </a>
     </li>
   @endif
- @if (auth()->user()->hasPermission('read_contacts'))
+ @if (auth()->user()->hasPermission('read_pages'))
     <li>
         <a href="{{ route('dashboard.contact.settings') }}">
             <i class="fa fa-phone"></i> <span>إعدادات الصفحة</span>
         </a>
     </li>
   @endif
- @if (auth()->user()->hasPermission('read_contacts'))
+ @if (auth()->user()->hasPermission('read_pages'))
     <li>
         <a href="{{ route('dashboard.branches.index') }}">
             <i class="fa fa-map-marker"></i> <span>فروع الشركة</span>
         </a>
     </li>
 @endif
-       @if (auth()->user()->hasPermission('read_contacts'))
+       @if (auth()->user()->hasPermission('read_pages'))
     <li>
         <a href="{{ route('dashboard.messages') }}">
             <i class="fa fa-envelope"></i> <span>الرسائل الواردة</span>
