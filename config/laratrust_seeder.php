@@ -18,14 +18,14 @@ return [
     'role_structure' => [
 
         // 🔸 المدير العام (تحكم كامل)
-        'general_manager' => [ 
-            'users'      => 'r',
-            'services'   => 'r',
-            'projects'   => 'r',
-            'banners'    => 'r',
-            'pages'      => 'r',
-            'whyus'      => 'r',
-            'settings'   => 'r',
+        'general_manager' => [
+            'users'      => 'c,r,u,d',
+            'services'   => 'c,r,u,d',
+            'projects'   => 'c,r,u,d',
+            'banners'    => 'c,r,u,d',
+            'pages'      => 'c,r,u,d',
+            'whyus'      => 'c,r,u,d',
+            'settings'   => 'c,r,u,d',
         ],
 
         // 🔸 مدير المشاريع (يشرف على المشاريع والخدمات)
