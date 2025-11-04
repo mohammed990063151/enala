@@ -140,41 +140,93 @@ class UserController extends Controller
         return view('admin.users.edit', compact('user'));
     } //end of user
 
-    public
-    function update(Request $request, User $user)
-    {
-        $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => ['required', Rule::unique('users')->ignore($user->id),],
-            'image' => 'image',
-            'permissions' => 'required|min:1'
+    // public
+    // function update(Request $request, User $user)
+    // {
+    //     $request->validate([
+    //         'first_name' => 'required',
+    //         'last_name' => 'required',
+    //         'email' => ['required', Rule::unique('users')->ignore($user->id),],
+    //         'image' => 'image',
+    //         'permissions' => 'required|min:1'
+    //     ]);
+
+    //     $request_data = $request->except(['permissions', 'image']);
+
+    //     if ($request->image) {
+
+    //         if ($user->image != 'default.png') {
+
+    //             Storage::disk('public_uploads')->delete('/user_images/' . $user->image);
+    //         } //end of inner if
+
+    //         Image::make($request->image)
+    //             ->resize(300, null, function ($constraint) {
+    //                 $constraint->aspectRatio();
+    //             })
+    //             ->save(public_path('uploads/user_images/' . $request->image->hashName()));
+
+    //         $request_data['image'] = $request->image->hashName();
+    //     } //end of external if
+
+    //     $user->update($request_data);
+
+    //     $user->syncPermissions($request->permissions);
+    //     session()->flash('success', __('تم التعديل بنجاح'));
+    //     return redirect()->route('dashboard.users.index');
+    // } //end of update
+
+    public function update(Request $request, User $user)
+{
+    $request->validate([
+        'first_name'  => 'required',
+        'last_name'   => 'required',
+        'email'       => ['required', Rule::unique('users')->ignore($user->id)],
+        'image'       => 'image',
+        'permissions' => 'required|min:1',
+    ]);
+
+    $data = $request->except(['permissions', 'image']);
+
+    // 🖼️ تحديث الصورة
+    if ($request->image) {
+        // حذف القديمة إن وجدت
+        if ($user->image && $user->image != 'default.png') {
+            Storage::disk('public_uploads')->delete('/user_images/' . $user->image);
+        }
+
+        Image::make($request->image)
+            ->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })
+            ->save(public_path('uploads/user_images/' . $request->image->hashName()));
+
+        $data['image'] = $request->image->hashName();
+    }
+
+    // 🔹 تحديث بيانات المستخدم
+    $user->update($data);
+
+    // 🔸 إعادة ربط الدور (site_admin)
+    $role = Role::where('name', 'site_admin')->first();
+    if ($role) {
+        $user->roles()->sync([
+            $role->id => ['user_type' => \App\Models\User::class],
         ]);
+    }
 
-        $request_data = $request->except(['permissions', 'image']);
+    // 🔒 تحديث الصلاحيات
+    if ($request->has('permissions') && is_array($request->permissions)) {
+        $permissionIds = Permission::whereIn('name', $request->permissions)->pluck('id')->toArray();
+        $user->permissions()->syncWithPivotValues($permissionIds, ['user_type' => \App\Models\User::class]);
+    } else {
+        // في حال لم تُرسل صلاحيات، نحذف القديمة
+        $user->permissions()->detach();
+    }
 
-        if ($request->image) {
-
-            if ($user->image != 'default.png') {
-
-                Storage::disk('public_uploads')->delete('/user_images/' . $user->image);
-            } //end of inner if
-
-            Image::make($request->image)
-                ->resize(300, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })
-                ->save(public_path('uploads/user_images/' . $request->image->hashName()));
-
-            $request_data['image'] = $request->image->hashName();
-        } //end of external if
-
-        $user->update($request_data);
-
-        $user->syncPermissions($request->permissions);
-        session()->flash('success', __('تم التعديل بنجاح'));
-        return redirect()->route('dashboard.users.index');
-    } //end of update
+    session()->flash('success', '✅ تم تحديث بيانات المستخدم وجميع الصلاحيات بنجاح.');
+    return redirect()->route('dashboard.users.index');
+}
 
     public
     function destroy(User $user)

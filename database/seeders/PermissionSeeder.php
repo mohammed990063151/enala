@@ -58,10 +58,11 @@ class PermissionSeeder extends Seeder
             'read_projects', 'update_projects',
             'read_banners', 'update_banners',
             'read_whyus', 'update_whyus',
+            'read_contacts', 'update_contacts',
         ]);
 
         $viewerRole->syncPermissions([
-            'read_home', 'read_services', 'read_projects', 'read_whyus'
+            'read_home', 'read_services', 'read_projects', 'read_whyus', 'read_contacts',
         ]);
     }
 }
