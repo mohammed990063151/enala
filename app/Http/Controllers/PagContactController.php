@@ -13,7 +13,7 @@ public function index()
     $settings = ContactSetting::first();
     $branches = CompanyBranch::all();
 
-    return view('frontend.contact', compact('settings','branches'));
+    return view('frontend.Contact', compact('settings','branches'));
 }
 
 public function send(Request $request)
