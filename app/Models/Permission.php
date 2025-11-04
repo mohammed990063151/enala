@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Laratrust\Models\Permission as PermissionModel;
+use Laratrust\Models\Permission as LaratrustPermission;
 
-class Permission extends PermissionModel
+class Permission extends LaratrustPermission
 {
-    public $guarded = [];
+    protected $guarded = [];
 }

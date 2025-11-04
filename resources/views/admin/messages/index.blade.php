@@ -4,7 +4,7 @@
 
 <style>
     .msg-wrapper {
-        background:#f7f9fa;
+        /* background:#f7f9fa; */
         padding:25px;
         border-radius:12px;
         box-shadow:0 4px 20px rgba(0,0,0,0.08);
@@ -15,7 +15,7 @@
     .msg-wrapper:hover {
         box-shadow:0 6px 25px rgba(0,0,0,0.12);
     }
-    
+
     .table th {
         background:#eef3ea;
         color:#294330;
@@ -56,7 +56,7 @@
         <h1><i class="fa fa-envelope"></i> الرسائل الواردة من نموذج التواصل</h1>
     </section>
 
-    <section class="content">
+    <section class="box.box-primary content">
 
         {{-- SUCCESS --}}
         @if(session('success'))
@@ -69,7 +69,7 @@
         <div class="msg-wrapper">
 
             {{-- TABLE --}}
-            <table class="table table-hover table-bordered text-center">
+            <table class="table table-bordered table-hover text-center branch-table">
                 <thead>
                     <tr>
                         <th><i class="fa fa-user"></i> الاسم</th>
@@ -91,7 +91,7 @@
 
                         {{-- VIEW --}}
                         <td>
-                            <a href="{{ route('dashboard.messages.show',$msg) }}" 
+                            <a href="{{ route('dashboard.messages.show',$msg) }}"
                                class="btn btn-info btn-sm">
                                <i class="fa fa-eye"></i>
                             </a>

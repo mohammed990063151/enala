@@ -1,212 +1,11 @@
-{{--
+
 @extends('admin.layouts.dashboard.app')
 
 @section('content')
 
 <style>
     .box-wrapper {
-        background: #f3f6f8;
-        border-radius: 12px;
-        padding: 25px;
-        border: 1px solid #e7ecef;
-        transition: .3s;
-    }
-    .box-wrapper:hover { box-shadow: 0 0 25px rgba(0,0,0,.08); }
-
-    .page-title {
-        font-size: 26px;
-        font-weight: bold;
-        color: #1c5530;
-        margin-bottom: 20px;
-    }
-
-    .form-label { font-weight: bold; color: #34495E; }
-
-    .form-control { border-radius: 8px !important; }
-
-    .input-icon {
-        position: absolute; right: 10px; top: 38px; color: #aaa;
-    }
-
-    /* Drag & Drop zone */
-    .upload-zone {
-        border: 2px dashed #27ae60;
-        border-radius: 12px;
-        padding: 30px;
-        text-align: center;
-        background: #f8fff9;
-        cursor: pointer;
-        transition: .3s;
-    }
-    .upload-zone.dragover {
-        background: #eaffea;
-        border-color: #1c8b4f;
-    }
-    .upload-zone i {
-        font-size: 48px;
-        color: #27ae60;
-        margin-bottom: 10px;
-    }
-    .upload-zone p {
-        color: #666;
-        margin: 0;
-    }
-
-    #multiPreview img {
-        width: 120px;
-        height: 120px;
-        border-radius: 10px;
-        object-fit: cover;
-        border: 2px solid #fff;
-        box-shadow: 0 0 10px rgba(0,0,0,.08);
-        margin: 5px;
-        transition: .3s;
-    }
-    #multiPreview img:hover {
-        transform: scale(1.08);
-    }
-
-    .btn-save {
-        font-size: 16px;
-        padding: 10px 30px;
-        border-radius: 30px;
-        background: #27ae60;
-        color:#fff;
-        transition:.3s;
-    }
-    .btn-save:hover { background:#1c8b4f; }
-</style>
-
-
-<div class="content-wrapper">
-
-<section class="content-header">
-    <h2 class="page-title">
-        <i class="fa fa-plus-circle"></i> إضافة خدمة جديدة
-    </h2>
-</section>
-
-<section class="content">
-    <div class="box-wrapper">
-
-        @include('partials._errors')
-
-        <form method="POST" action="{{ route('dashboard.Pag_services.store') }}" enctype="multipart/form-data">
-            @csrf
-
-            <div class="row">
-
-                <!-- الاسم -->
-                <div class="col-md-6 mb-3 position-relative">
-                    <label class="form-label">اسم الخدمة</label>
-                    <i class="fa fa-leaf input-icon"></i>
-                    <input class="form-control" name="title" placeholder="مثال: تنسيق حدائق">
-                </div>
-
-                <!-- أيقونة -->
-                <div class="col-md-6 mb-3 position-relative">
-                    <label class="form-label">أيقونة FontAwesome</label>
-                    <i class="fa fa-icons input-icon"></i>
-                    <input class="form-control" name="icon" placeholder="fa fa-tree">
-                </div>
-
-                <!-- ترتيب -->
-                <div class="col-md-4 mb-3 position-relative">
-                    <label class="form-label">ترتيب الظهور</label>
-                    <i class="fa fa-sort-amount-down input-icon"></i>
-                    <input name="sort_order" class="form-control" placeholder="مثال: 1">
-                </div>
-
-                <!-- رفع صور بطريقة السحب والإفلات -->
-                <div class="col-md-12 mb-3">
-                    <label class="form-label"><i class="fa fa-images"></i> صور إضافية للخدمة</label>
-
-                    <div id="uploadZone" class="upload-zone" onclick="document.getElementById('imageInput').click()">
-                        <i class="fa fa-cloud-upload-alt"></i>
-                        <p>اسحب الصور هنا أو انقر للاختيار</p>
-                        <input type="file" name="images[]" id="imageInput" class="form-control d-none" multiple accept="image/*">
-                    </div>
-
-                    <div id="multiPreview" class="d-flex flex-wrap gap-2 mt-3"></div>
-                </div>
-
-                <!-- الوصف -->
-                <div class="col-md-12 mb-3 position-relative">
-                    <label class="form-label">الوصف</label>
-                    <i class="fa fa-align-right input-icon"></i>
-                    <textarea name="description" class="form-control" rows="4" placeholder="شرح للخدمة"></textarea>
-                </div>
-
-            </div>
-
-            <button class="btn-save"><i class="fa fa-save"></i> حفظ الخدمة</button>
-
-        </form>
-
-    </div>
-</section>
-
-</div>
-
-
-<script>
-/* 🔥 خاصية سحب وإفلات الصور */
-const uploadZone = document.getElementById('uploadZone');
-const imageInput = document.getElementById('imageInput');
-const preview = document.getElementById('multiPreview');
-
-// عند سحب الملفات فوق المنطقة
-uploadZone.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    uploadZone.classList.add('dragover');
-});
-
-// عند ترك الملفات خارج المنطقة
-uploadZone.addEventListener('dragleave', () => {
-    uploadZone.classList.remove('dragover');
-});
-
-// عند إفلات الملفات داخل المنطقة
-uploadZone.addEventListener('drop', (e) => {
-    e.preventDefault();
-    uploadZone.classList.remove('dragover');
-
-    const files = e.dataTransfer.files;
-    imageInput.files = files; // إرسالها للفورم
-    previewImages(files);
-});
-
-// عند اختيار الملفات بالطريقة العادية
-imageInput.addEventListener('change', (e) => {
-    previewImages(e.target.files);
-});
-
-// عرض الصور المختارة
-function previewImages(files) {
-    preview.innerHTML = '';
-    Array.from(files).forEach(file => {
-        if (!file.type.startsWith('image/')) return;
-
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const img = document.createElement('img');
-            img.src = e.target.result;
-            preview.appendChild(img);
-        }
-        reader.readAsDataURL(file);
-    });
-}
-</script>
-
-@endsection
- --}}
-@extends('admin.layouts.dashboard.app')
-
-@section('content')
-
-<style>
-    .box-wrapper {
-        background: #f3f6f8;
+        /* background: #f3f6f8; */
         border-radius: 12px;
         padding: 25px;
         border: 1px solid #e7ecef;
@@ -283,7 +82,7 @@ function previewImages(files) {
     </h2>
 </section>
 
-<section class="content">
+<section class="box box-primary content">
     <div class="box-wrapper">
 
         @include('partials._errors')
@@ -329,7 +128,7 @@ function previewImages(files) {
                 <div class="col-md-12 mb-4 position-relative">
                     <label class="form-label">الوصف</label>
                     <i class="fa fa-align-right input-icon"></i>
-                    <textarea name="description" class="form-control" rows="4" placeholder="شرح للخدمة"></textarea>
+                    <textarea name="description" class="form-control ckeditor" rows="4" placeholder="شرح للخدمة"></textarea>
                 </div>
 
             </div>
@@ -417,6 +216,20 @@ function addFeature() {
     `;
     container.appendChild(div);
 }
+</script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof CKEDITOR !== 'undefined') {
+        CKEDITOR.replace('description', {
+            contentsLangDirection: 'rtl',
+            contentsLanguage: 'ar',
+            language: 'ar',
+            height: 250,
+            removeButtons: 'Subscript,Superscript,Anchor,Image', // اختياري
+            toolbarCanCollapse: true
+        });
+    }
+});
 </script>
 
 @endsection

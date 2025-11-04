@@ -30,7 +30,7 @@
         </div>
     </div>
 </div>
-    <a class="skip-link screen-reader-text" href="https://wdtgrassroot.wpengine.com/rtl-demo/#main">Skip to content</a>
+    <a class="skip-link screen-reader-text" href="">Skip to content</a>
 
     <!-- **Wrapper** -->
     <div class="wrapper">

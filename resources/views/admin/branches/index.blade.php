@@ -8,7 +8,7 @@
     }
 
     .branch-wrapper {
-        background: #fff;
+        /* background: #fff; */
         padding: 30px;
         border-radius: 15px;
         box-shadow: 0 6px 25px rgba(0,0,0,0.08);
@@ -112,7 +112,7 @@
     @endif
 
     {{-- MAIN CONTENT --}}
-    <section class="content">
+    <section class="box box-primary content">
         <div class="branch-wrapper">
 
             {{-- HEADER + ADD BUTTON --}}

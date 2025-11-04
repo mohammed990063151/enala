@@ -59,7 +59,7 @@
         <h1><i class="fa fa-envelope-open"></i> عرض الرسالة</h1>
     </section>
 
-    <section class="content">
+    <section class="box box-primary content">
 
         <div class="msg-view-wrapper">
 

@@ -185,7 +185,7 @@
                             style="width: 1528.89px; height: 860px;"></video> --}}
                              @if($file)
         @if($isVideo)
-            <video autoplay muted loop playsinline >
+            <video autoplay muted loop playsinline  >
                 <source src="{{ asset($file) }}" type="video/{{ $ext }}">
             </video>
         @else
@@ -990,8 +990,7 @@
                                                                         <div
                                                                             class="wdt-listings-item-wrapper  type3 post-8613 type-wdt_listings status-publish has-post-thumbnail hentry wdt_listings_category-garden-design wdt_listings_amenity-plant-care format-standard wdt-column wdt-one-third first">
                                                                             <div class="wdt-listings-item-top-section">
-                                                                                <div class="wdt-listings-item-image-gallery"
-                                                                                    data-media-gallery="[&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-01.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-02.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-03.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-04.jpg&quot;]">
+                                                                                <div class="wdt-listings-item-image-gallery">
                                                                                     <div
                                                                                         class="wdt-listings-feature-image-holder ">
                                                                                         <img src="{{ asset($services->image1) }}"
@@ -1042,8 +1041,7 @@
                                                                         <div
                                                                             class="wdt-listings-item-wrapper  type3 post-8614 type-wdt_listings status-publish has-post-thumbnail hentry wdt_listings_category-outdoor-landscaping wdt_listings_amenity-nature-inspired format-standard wdt-column wdt-one-third">
                                                                             <div class="wdt-listings-item-top-section">
-                                                                                <div class="wdt-listings-item-image-gallery"
-                                                                                    data-media-gallery="[&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-02.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-03.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-05.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-11.jpg&quot;]">
+                                                                                <div class="wdt-listings-item-image-gallery">
                                                                                     <div
                                                                                         class="wdt-listings-feature-image-holder ">
                                                                                         <img src="{{ asset($services->image2) }}"
@@ -1076,8 +1074,7 @@
                                                                                         class="wdt-listings-taxonomy-container type1 ">
                                                                                         <ul
                                                                                             class="wdt-listings-taxonomy-list">
-                                                                                            <li><a
-                                                                                                    href="https://wdtgrassroot.wpengine.com/rtl-demo/listing-category/outdoor-landscaping/"><span></span></a>
+                                                                                            <li><a><span></span></a>
                                                                                             </li>
                                                                                         </ul>
                                                                                     </div>
@@ -1089,8 +1086,7 @@
                                                                         <div
                                                                             class="wdt-listings-item-wrapper  type3 post-6506 type-wdt_listings status-publish has-post-thumbnail hentry wdt_listings_category-botanical-wonders wdt_listings_amenity-plant-care format-standard wdt-column wdt-one-third">
                                                                             <div class="wdt-listings-item-top-section">
-                                                                                <div class="wdt-listings-item-image-gallery"
-                                                                                    data-media-gallery="[&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-03.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-04.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-05.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-06.jpg&quot;]">
+                                                                                <div class="wdt-listings-item-image-gallery">
                                                                                     <div
                                                                                         class="wdt-listings-feature-image-holder ">
                                                                                         <img src="{{ asset($services->image3) }}"
@@ -1136,8 +1132,7 @@
                                                                         <div
                                                                             class="wdt-listings-item-wrapper  type3 post-6504 type-wdt_listings status-publish has-post-thumbnail hentry wdt_listings_category-garden-design wdt_listings_amenity-nature-inspired format-standard wdt-column wdt-one-third first">
                                                                             <div class="wdt-listings-item-top-section">
-                                                                                <div class="wdt-listings-item-image-gallery"
-                                                                                    data-media-gallery="[&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-10.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-05.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-06.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-07.jpg&quot;]">
+                                                                                <div class="wdt-listings-item-image-gallery">
                                                                                     <div
                                                                                         class="wdt-listings-feature-image-holder ">
                                                                                         <img src="{{ asset($services->image4) }}"
@@ -1184,8 +1179,7 @@
                                                                         <div
                                                                             class="wdt-listings-item-wrapper  type3 post-6502 type-wdt_listings status-publish has-post-thumbnail hentry wdt_listings_category-outdoor-landscaping wdt_listings_amenity-plant-care format-standard wdt-column wdt-one-third">
                                                                             <div class="wdt-listings-item-top-section">
-                                                                                <div class="wdt-listings-item-image-gallery"
-                                                                                    data-media-gallery="[&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-05.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-06.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-07.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-08.jpg&quot;]">
+                                                                                <div class="wdt-listings-item-image-gallery">
                                                                                     <div
                                                                                         class="wdt-listings-feature-image-holder ">
                                                                                         <img src="{{ asset($services->image5) }}"
@@ -1233,8 +1227,7 @@
                                                                         <div
                                                                             class="wdt-listings-item-wrapper  type3 post-1205 type-wdt_listings status-publish has-post-thumbnail hentry wdt_listings_category-botanical-wonders wdt_listings_amenity-nature-inspired format-standard wdt-column wdt-one-third">
                                                                             <div class="wdt-listings-item-top-section">
-                                                                                <div class="wdt-listings-item-image-gallery"
-                                                                                    data-media-gallery="[&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-06.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-07.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-09.jpg&quot;,&quot;https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/portfolio-1-12.jpg&quot;]">
+                                                                                <div class="wdt-listings-item-image-gallery">
                                                                                     <div
                                                                                         class="wdt-listings-feature-image-holder ">
                                                                                         <img src="{{ asset($services->image6) }}"

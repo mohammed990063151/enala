@@ -1674,8 +1674,8 @@ body {
           <i class="{{ $service->icon ?? 'fa-solid fa-leaf' }}"></i>
           <h4>{{ $service->title }}</h4>
           <p>{{ Str::limit($service->description, 100) }}</p>
-          {{-- <a href="" class="btn-modern">عرض التفاصيل</a> --}}
-          {{-- {{ route('frontend.services.show', $service->slug) }} --}}
+          <a href="{{ route('services.show', $service->slug) }}" class="btn-modern">عرض التفاصيل</a>
+
         </div>
       </div>
       @endforeach

@@ -4,7 +4,7 @@
 
 <style>
     .contact-settings-box {
-        background:#f7f9fa;
+        /* background:#f7f9fa; */
         padding:25px;
         border-radius:12px;
         box-shadow:0 4px 20px rgba(0,0,0,0.08);
@@ -61,7 +61,7 @@
     </section>
 
     {{-- ====== FORM BOX ====== --}}
-    <section class="content">
+    <section class="box box-primary content">
 
         @if(session('success'))
             <div class="alert alert-success"><i class="fa fa-check-circle"></i> {{ session('success') }}</div>
@@ -97,35 +97,35 @@
                     {{-- الهاتف --}}
                     <div class="col-md-4 mb-3 position-relative">
                         <label class="form-label">رقم الهاتف</label>
-                        <i class="fa fa-phone input-icon"></i>
+                        {{-- <i class="fa fa-phone input-icon"></i> --}}
                         <input class="form-control" name="phone" value="{{ $settinges->phone }}">
                     </div>
 
                     {{-- البريد --}}
                     <div class="col-md-4 mb-3 position-relative">
                         <label class="form-label">البريد الإلكتروني</label>
-                        <i class="fa fa-envelope input-icon"></i>
+                        {{-- <i class="fa fa-envelope input-icon"></i> --}}
                         <input class="form-control" name="email" value="{{ $settinges->email }}">
                     </div>
 
                     {{-- واتساب --}}
                     <div class="col-md-4 mb-3 position-relative">
                         <label class="form-label">واتساب</label>
-                        <i class="fa fa-whatsapp input-icon"></i>
+                        {{-- <i class="fa fa-whatsapp input-icon"></i> --}}
                         <input class="form-control" name="whatsapp" value="{{ $settinges->whatsapp }}">
                     </div>
 
                     {{-- العنوان --}}
                     <div class="col-md-12 mb-3 position-relative">
                         <label class="form-label">العنوان</label>
-                        <i class="fa fa-map-marker input-icon"></i>
+                        {{-- <i class="fa fa-map-marker input-icon"></i> --}}
                         <input class="form-control" name="address" value="{{ $settinges->address }}">
                     </div>
 
                     {{-- MAP EMBED --}}
                     <div class="col-md-12 mb-3 position-relative">
                         <label class="form-label">كود خريطة Google</label>
-                        <i class="fa fa-map input-icon"></i>
+                        {{-- <i class="fa fa-map input-icon"></i> --}}
                         <textarea class="form-control" name="map_embed" rows="3">{{ $settinges->map_embed }}</textarea>
                     </div>
 

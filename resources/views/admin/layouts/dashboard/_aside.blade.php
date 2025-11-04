@@ -160,95 +160,113 @@
         <ul class="sidebar-menu" data-widget="tree">
 
     {{-- ======================= لوحة التحكم (Admin) ======================= --}}
+
+       @if (auth()->user()->hasPermission('read_home'))
     <li>
         <a href="{{ route('dashboard.home') }}">
             <i class="fa fa-tachometer"></i> <span> الرئيسية </span>
         </a>
     </li>
-
+@endif
+       @if (auth()->user()->hasPermission('read_settings'))
     <li>
         <a href="{{ route('dashboard.settings.edit') }}">
             <i class="fa fa-cogs"></i> <span>اعدادات</span>
         </a>
     </li>
-
+@endif
+       @if (auth()->user()->hasPermission('read_banners'))
     <li>
         <a href="{{ route('dashboard.sections.edit') }}">
-            <i class="fa fa-th-large"></i> <span>أقسام الحدائق والخدمات</span>
+            <i class="fa fa-th-large"></i> <span> بانر الصفحة الرئيسية  </span>
         </a>
     </li>
-
+@endif
+       @if (auth()->user()->hasPermission('read_whyus'))
     <li>
         <a href="{{ route('dashboard.about.index') }}">
             <i class="fa fa-info-circle"></i> <span>نبذه عنا</span>
         </a>
     </li>
-
+@endif
+       @if (auth()->user()->hasPermission('read_whyus'))
     <li>
         <a href="{{ route('dashboard.whyus.index') }}">
             <i class="fa fa-check-circle"></i> <span>لماذا نحنا</span>
         </a>
     </li>
-
+@endif
+       @if (auth()->user()->hasPermission('read_banners'))
     <li>
         <a href="{{ route('dashboard.gallery.index') }}">
             <i class="fa fa-image"></i> <span>معرض الصور</span>
         </a>
     </li>
-
+@endif
+       @if (auth()->user()->hasPermission('read_services'))
     <li>
         <a href="{{ route('dashboard.services.index') }}">
             <i class="fa fa-briefcase"></i> <span>خدماتنا</span>
         </a>
     </li>
-
+@endif
+       @if (auth()->user()->hasPermission('read_settings'))
     <li>
         <a href="{{ route('dashboard.counters.index') }}">
-            <i class="fa fa-chart-bar"></i> <span>إعدادات الإحصائيات</span>
+             <i class="fa fa-cogs"></i> <span>إعدادات الإحصائيات</span>
         </a>
     </li>
-
+  @endif
     {{-- ======================= صفحات موقع مُضياف (Frontend Content) ======================= --}}
     <li class="header" style="font-size:14px;color:#888;margin-top:15px;">
         🟢 صفحات الموقع (Frontend)
     </li>
 
+ @if (auth()->user()->hasPermission('read_pages'))
     <li>
         <a href="{{ route('dashboard.company_about.index') }}">
             <i class="fa fa-building"></i> <span>من نحنا</span>
         </a>
     </li>
-
+  @endif
+ @if (auth()->user()->hasPermission('read_pages'))
     <li>
         <a href="{{ route('dashboard.Pag_services.index') }}">
             <i class="fa fa-tree"></i> <span>خدمتنا</span>
         </a>
     </li>
-
+  @endif
+ @if (auth()->user()->hasPermission('read_contacts'))
     <li>
         <a href="{{ route('dashboard.contact.settings') }}">
             <i class="fa fa-phone"></i> <span>إعدادات الصفحة</span>
         </a>
     </li>
-
+  @endif
+ @if (auth()->user()->hasPermission('read_contacts'))
     <li>
         <a href="{{ route('dashboard.branches.index') }}">
             <i class="fa fa-map-marker"></i> <span>فروع الشركة</span>
         </a>
     </li>
-
+@endif
+       @if (auth()->user()->hasPermission('read_contacts'))
     <li>
         <a href="{{ route('dashboard.messages') }}">
             <i class="fa fa-envelope"></i> <span>الرسائل الواردة</span>
         </a>
     </li>
-
+    @endif
+ @if (auth()->user()->hasPermission('read_projects'))
     <li>
         <a href="{{ route('dashboard.projects.index') }}">
             <i class="fa fa-star"></i> <span>مشارعينا </span>
         </a>
     </li>
-
+@endif
+       @if (auth()->user()->hasPermission('read_pages'))
+            <li><a href="{{ route('dashboard.users.index') }}"><i class="fa fa-th"></i><span>المستخدم</span></a></li>
+            @endif
 </ul>
 
 

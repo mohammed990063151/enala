@@ -34,11 +34,11 @@
                     <!-- الوصف -->
                     <div class="form-group mb-3">
                         <label>الوصف</label>
-                        <textarea name="description" class="form-control" rows="3">{{ old('description', $whyus->description) }}</textarea>
+                        <textarea name="description" class="form-control ckeditor" rows="3">{{ old('description', $whyus->description) }}</textarea>
                     </div>
 
                     <hr>
-
+<div class="images-section"  style="display: flex;">
                     <!-- الصورة 1 -->
                     <div class="form-group mb-3">
                         <label>الصورة 1</label>
@@ -74,7 +74,7 @@
                             <img src="{{ asset($whyus->image4) }}" width="150" class="mt-2 img-thumbnail">
                         @endif
                     </div>
-
+</div>
                     <button type="submit" class="btn btn-primary">💾 حفظ التحديثات</button>
 
                 </form>
@@ -82,4 +82,19 @@
         </div>
     </section>
 </div>
+
+   <script>
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof CKEDITOR !== 'undefined') {
+        CKEDITOR.replace('description', {
+            contentsLangDirection: 'rtl',
+            contentsLanguage: 'ar',
+            language: 'ar',
+            height: 250,
+            removeButtons: 'Subscript,Superscript,Anchor,Image', // اختياري
+            toolbarCanCollapse: true
+        });
+    }
+});
+</script>
 @endsection

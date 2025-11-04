@@ -3,7 +3,7 @@
 @section('content')
 <style>
     .about-wrapper {
-        background: #f5f7fa;
+        /* background: #f5f7fa; */
         border-radius: 12px;
         padding: 20px;
         transition: .3s;
@@ -52,10 +52,10 @@
 <div class="content-wrapper">
 
     <section class="content-header">
-        <h1><i class="fa fa-info-circle"></i> إعدادات صفحة من نحن</h1>
+        <h1><i class="fa fa-info-circle"></i> إعدادات نبذه عنا  </h1>
     </section>
 
-    <section class="content">
+    <section class="box box-primary content">
         <div class="about-wrapper">
 
             @include('partials._errors')
@@ -79,8 +79,8 @@
                     <!-- الوصف -->
                     <div class="col-md-12 mb-3 position-relative">
                         <label class="form-label">الوصف</label>
-                        <i class="fa fa-align-left input-icon"></i>
-                        <textarea name="description" class="form-control" rows="4">{{ $about->description }}</textarea>
+                        {{-- <i class="fa fa-align-left input-icon"></i> --}}
+                        <textarea name="description" class="form-control ckeditor" rows="4">{{ $about->description }}</textarea>
                     </div>
 
                     <!-- النقاط -->
@@ -109,7 +109,7 @@
                     <div class="col-md-6 mb-4">
                         <label class="form-label"><i class="fa fa-image"></i> الصورة الرئيسية</label>
                         <input type="file" name="image1" class="form-control">
-                        
+
                         @if($about->image1)
                             <div class="preview-box mt-2">
                                 <img src="{{ asset($about->image1) }}">
@@ -121,7 +121,7 @@
                     <div class="col-md-6 mb-4">
                         <label class="form-label"><i class="fa fa-image"></i> الصورة الفرعية</label>
                         <input type="file" name="image2" class="form-control">
-                        
+
                         @if($about->image2)
                             <div class="preview-box mt-2">
                                 <img src="{{ asset($about->image2) }}">
@@ -153,4 +153,19 @@
         </div>
     </section>
 </div>
+
+   <script>
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof CKEDITOR !== 'undefined') {
+        CKEDITOR.replace('description', {
+            contentsLangDirection: 'rtl',
+            contentsLanguage: 'ar',
+            language: 'ar',
+            height: 250,
+            removeButtons: 'Subscript,Superscript,Anchor,Image', // اختياري
+            toolbarCanCollapse: true
+        });
+    }
+});
+</script>
 @endsection

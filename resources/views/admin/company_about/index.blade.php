@@ -5,7 +5,7 @@
 
 <style>
     .about-wrapper {
-        background:#f7f9fa;
+        /* background:#f7f9fa; */
         padding:25px;
         border-radius:12px;
         box-shadow:0 4px 20px rgba(0,0,0,0.08);
@@ -71,7 +71,7 @@
 
 </style>
 
-<div class="content-wrapper">
+<div class="content-wrapper" style="min-height: 154px;">
 
     {{-- ====== HEADER ====== --}}
     <section class="content-header">
@@ -79,7 +79,7 @@
     </section>
 
     {{-- ====== FORM ====== --}}
-    <section class="content">
+    <section class="box box-primary content">
 
         @if(session('success'))
             <div class="alert alert-success">
@@ -92,7 +92,7 @@
         <div class="about-wrapper">
 
             <div class="section-title">
-                <i class="fa fa-edit"></i> تعديل محتوى الصفحة
+                <i class="fa fa-edit"></i> تعديل محتوى الصفحة من نحن
             </div>
 
             <form action="{{ route('dashboard.company_about.update') }}" method="POST" enctype="multipart/form-data">
@@ -103,29 +103,29 @@
                     {{-- العنوان --}}
                     <div class="col-md-6 mb-3 position-relative">
                         <label class="form-label">عنوان رئيسي</label>
-                        <i class="fa fa-heading input-icon"></i>
+                        {{-- <i class="fa fa-heading input-icon"></i> --}}
                         <input type="text" name="title" class="form-control" value="{{ $about->title }}">
                     </div>
 
                     {{-- سطر مختصر --}}
                     <div class="col-md-6 mb-3 position-relative">
                         <label class="form-label">سطر مختصر</label>
-                        <i class="fa fa-pen input-icon"></i>
+                        {{-- <i class="fa fa-pen input-icon"></i> --}}
                         <input type="text" name="subtitle" class="form-control" value="{{ $about->subtitle }}">
                     </div>
 
                     {{-- نبذة --}}
                     <div class="col-md-12 mb-3 position-relative">
                         <label class="form-label">نبذة تعريفية</label>
-                        <i class="fa fa-align-left input-icon"></i>
-                        <textarea name="intro" rows="4" class="form-control">{{ $about->intro }}</textarea>
+                        {{-- <i class="fa fa-align-left input-icon"></i> --}}
+                        <textarea name="intro" rows="4" class="form-control ckeditor">{{ $about->intro }}</textarea>
                     </div>
 
                     {{-- النقاط --}}
                     @foreach([1,2,3,4] as $i)
                     <div class="col-md-3 mb-3 position-relative">
                         <label class="form-label">نقطة {{ $i }}</label>
-                        <i class="fa fa-check input-icon"></i>
+                        {{-- <i class="fa fa-check input-icon"></i> --}}
                         <input type="text" name="point{{ $i }}" class="form-control" value="{{ $about->{'point'.$i} }}">
                     </div>
                     @endforeach
@@ -143,7 +143,7 @@
                     </div>
 
                 </div>
-
+<br />
                 <button class="btn btn-success btn-lg mt-2">
                     <i class="fa fa-save"></i> حفظ التغييرات
                 </button>
@@ -174,4 +174,20 @@
     </section>
 
 </div>
+
+     <script>
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof CKEDITOR !== 'undefined') {
+        CKEDITOR.replace('intro', {
+            contentsLangDirection: 'rtl',
+            contentsLanguage: 'ar',
+            language: 'ar',
+            height: 250,
+            removeButtons: 'Subscript,Superscript,Anchor,Image', // اختياري
+            toolbarCanCollapse: true
+        });
+    }
+});
+</script>
+
 @endsection

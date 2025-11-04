@@ -577,7 +577,7 @@ style(14).css') }}
     };
     /* ]]> */
 </script>
-<script type="text/javascript" src="{{ asset('assets/index(1).js') }}
+<script type="text/javascript" src="{{ asset('assets/js/index_INFO.js') }}
 " id="contact-form-7-js"></script>
 <script type="text/javascript" id="wdt-elementor-addon-core-js-extra">
     /* <![CDATA[ */
@@ -624,8 +624,8 @@ style(14).css') }}
     };
     /* ]]> */
 </script>
-<script type="text/javascript" src="{{ asset('assets/js/public.min.js') }}
-" id="tinvwl-js"></script>
+{{-- <script type="text/javascript" src="{{ asset('assets/js/public.min.js') }}
+" id="tinvwl-js"></script> --}}
 <script type="text/javascript" id="grassroot-jqcustom-js-extra">
     /* <![CDATA[ */
     var ajax_object = {
@@ -1137,7 +1137,7 @@ jquery.nicescroll.js') }}
 <script type="text/javascript" src="{{ asset('assets/js/parallax-scroll.min.js') }}" id="wdt-parallax-scroll-js"></script>
 <script type="text/javascript" src="{{ asset('assets/js/parallax.min.js') }}" id="wdt-parallax-js"></script>
 <script type="text/javascript" src="{{ asset('assets/js/script(8).js') }}" id="wdt-elementor-widgets-js"></script>
-<a id="back-to-top" href="https://wdtgrassroot.wpengine.com/rtl-demo/#" style="display: none;">
+<a id="back-to-top" href="" style="display: none;">
     <span id="back-to-top-hover"></span>
     <span class="back-to-top-icon"><i>
             <svg xmlns:xodm="http://www.corel.com/coreldraw/odm/2003" xmlns="http://www.w3.org/2000/svg" x="0px"
@@ -1168,12 +1168,10 @@ dialog.min.js') }}
 <script src="{{ asset('assets/js/
 share-link.min.js') }}
 "></script>
-<link rel="stylesheet" href="{{ asset('assets/js/
-custom-lightbox.min.css') }}
-">
+<link rel="stylesheet" href="{{ asset('assets/css/custom-lightbox.min.css') }}">
 <div class="widget_shopping_cart_live_region screen-reader-text" role="status"></div>
 <div class="wdt-search-form-container">
-    <form method="get" id="searchform" action="https://wdtgrassroot.wpengine.com/rtl-demo/">
+    <form method="get" id="searchform" action="">
         <input id="s" name="s" type="text" value="" placeholder="Enter Keyword"
             class="text_input">
         <ul class="quick_search_results"></ul>

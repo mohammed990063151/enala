@@ -5,7 +5,7 @@
 @section('content')
 <style>
     .box-wrapper {
-        background: #f8fafb;
+        /* background: #f8fafb; */
         border-radius: 12px;
         padding: 25px;
         transition: .3s;
@@ -111,7 +111,7 @@
         <h2 class="page-title"><i class="fa fa-leaf"></i> إدارة خدمات الصفحة</h2>
     </section>
 
-    <section class="content">
+    <section class="box box-primary content">
         <div class="box-wrapper">
 
             @if(session('success'))

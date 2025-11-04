@@ -3,13 +3,13 @@
 @section('content')
     <div class="content-wrapper">
         <section class="content-header">
-            <h1>إعدادات القسم</h1>
+            <h1> إعدادات بانر الصفحة الرئيسية</h1>
         </section>
 
         <section class="content">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">تحديث بيانات القسم</h3>
+                    <h3 class="box-title">تحديث بيانات بانر</h3>
                 </div>
                 <div class="box-body">
                     @include('partials._errors')
@@ -23,14 +23,19 @@
 
                         <div class="form-group">
                             <label>عنوان القسم</label>
-                            <input type="text" name="title" class="form-control"
+                            <input type="text" name="title" class="form-control ckeditor"
                                 value="{{ old('title', $section->title ?? '') }}" required>
                         </div>
-
                         <div class="form-group">
-                            <label>وصف القسم</label>
-                            <textarea name="description" class="form-control" rows="4">{{ old('description', $section->description ?? '') }}</textarea>
-                        </div>
+    <label>وصف القسم</label>
+    <textarea
+        name="description"
+        class="form-control ckeditor"
+        rows="4"
+        style="direction: rtl; text-align: right;"
+    >{{ old('description', $section->description ?? '') }}</textarea>
+</div>
+
 
                         <div class="form-group">
                             <label>نص الزر</label>
@@ -104,4 +109,19 @@
             </div>
         </section>
     </div>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof CKEDITOR !== 'undefined') {
+        CKEDITOR.replace('description', {
+            contentsLangDirection: 'rtl',
+            contentsLanguage: 'ar',
+            language: 'ar',
+            height: 250,
+            removeButtons: 'Subscript,Superscript,Anchor,Image', // اختياري
+            toolbarCanCollapse: true
+        });
+    }
+});
+</script>
+
 @endsection

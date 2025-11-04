@@ -22,55 +22,43 @@ class UserController extends Controller
         $this->middleware(['permission:delete_users'])->only('destroy');
     } //end of constructor
 
-    //   public function index(Request $request)
-    // {
-    //     $users = User::whereHas('roles', function ($q) {
-    //         $q->where('name', 'admin');
-    //     })->where(function ($q) use ($request) {
-    //         $q->when($request->search, function ($query) use ($request) {
-    //             $query->where('first_name', 'like', '%' . $request->search . '%')
-    //                 ->orWhere('last_name', 'like', '%' . $request->search . '%');
-    //         });
-    //     })->latest()->paginate(5);
-
-    //     return view('dashboard.users.index', compact('users'));
-    // }
-
     public function index(Request $request)
     {
-        $users = User::whereRoleIs('admin')->where(function ($q) use ($request) {
-
-            return $q->when($request->search, function ($query) use ($request) {
-
-                return $query->where('first_name', 'like', '%' . $request->search . '%')
+        $users = User::whereHas('roles', function ($q) {
+            $q->where('name', 'site_admin');
+        })->where(function ($q) use ($request) {
+            $q->when($request->search, function ($query) use ($request) {
+                $query->where('first_name', 'like', '%' . $request->search . '%')
                     ->orWhere('last_name', 'like', '%' . $request->search . '%');
             });
         })->latest()->paginate(5);
 
-        return view('dashboard.users.index', compact('users'));
+
+        return view('admin.users.index', compact('users'));
     }
 
 
-    public
-    function create()
+    public function create()
     {
-        return view('dashboard.users.create');
+        return view('admin.users.create');
     } //end of create
 
     // public function store(Request $request)
     // {
+    //     //  return $request;
     //     $request->validate([
-    //         'first_name' => 'required',
-    //         'last_name' => 'required',
-    //         'email' => 'required|unique:users',
-    //         'image' => 'image',
-    //         'password' => 'required|confirmed',
+    //         'first_name'  => 'required',
+    //         'last_name'   => 'required',
+    //         'email'       => 'required|unique:users',
+    //         'image'       => 'image',
+    //         'password'    => 'required|confirmed',
     //         'permissions' => 'required|min:1'
     //     ]);
 
-    //     $request_data = $request->except(['password', 'password_confirmation', 'permissions', 'image']);
-    //     $request_data['password'] = bcrypt($request->password);
+    //     $data = $request->except(['password', 'password_confirmation', 'permissions', 'image']);
+    //     $data['password'] = bcrypt($request->password);
 
+    //     // 🖼️ رفع الصورة
     //     if ($request->image) {
     //         Image::make($request->image)
     //             ->resize(300, null, function ($constraint) {
@@ -78,23 +66,30 @@ class UserController extends Controller
     //             })
     //             ->save(public_path('uploads/user_images/' . $request->image->hashName()));
 
-    //         $request_data['image'] = $request->image->hashName();
+    //         $data['image'] = $request->image->hashName();
     //     }
 
-    //     $user = User::create($request_data);
-    //     // ربط الدور
-    //     $user->roles()->attach(Role::where('name', 'admin')->first()->id, ['user_type' => User::class]);
-    //     $permissionIds = Permission::whereIn('name', $request->permissions)->pluck('id')->toArray();
-    //     $user->permissions()->syncWithPivotValues($permissionIds, ['user_type' => User::class]);
+    //     // 👤 إنشاء المستخدم
+    //     $user = User::create($data);
+    //     $user->roles()->attach(
+    //         \App\Models\Role::where('name', 'admin')->first()->id,
+    //         ['user_type' => \App\Models\User::class]
+    //     );
+    //     // 🧩 ربط الدور (Laratrust v7+)
+    //     // $user->addRole('admin'); // ✅ هذا هو الصحيح الآن
 
-    //     // ربط الصلاحيات
-    //     // $user->permissions()->sync($request->permissions);
-
-
-    //     session()->flash('success', 'تم الإضافة بنجاح');
+    //     // // 🔒 ربط الصلاحيات
+    //     // if ($request->has('permissions') && is_array($request->permissions)) {
+    //     //     foreach ($request->permissions as $permission) {
+    //     //         $user->givePermission($permission); // ✅ Laratrust الحديثة
+    //     //     }
+    //     // }
+    //     return $user;
+    //     session()->flash('success', 'تمت الإضافة بنجاح');
     //     return redirect()->route('dashboard.users.index');
     // }
-    public function store(Request $request)
+
+     public function store(Request $request)
 {
     $request->validate([
         'first_name'  => 'required',
@@ -108,6 +103,7 @@ class UserController extends Controller
     $data = $request->except(['password', 'password_confirmation', 'permissions', 'image']);
     $data['password'] = bcrypt($request->password);
 
+    // 🖼️ رفع الصورة
     if ($request->image) {
         Image::make($request->image)
             ->resize(300, null, function ($constraint) {
@@ -121,24 +117,27 @@ class UserController extends Controller
     // 👤 إنشاء المستخدم
     $user = User::create($data);
 
-    // 🧩 ربط الدور (Laratrust)
-    $user->roles()->attach(
-        \App\Models\Role::where('name', 'admin')->first()->id,
-        ['user_type' => \App\Models\User::class]
-    );
+    // 🧩 ربط المستخدم بدور "admin"
+    $adminRole = \App\Models\Role::where('name', 'site_admin')->first();
+    $user->roles()->attach($adminRole->id, ['user_type' => \App\Models\User::class]);
 
-    // ✅ لا داعي لربط الصلاحيات هنا، لأن الدور admin يملكها كلها عبر الـ Seeder
+    // 🔒 ربط المستخدم بنفس صلاحيات الدور admin مثل Seeder
+    $permissions = \App\Models\Permission::pluck('id')->toArray(); // جميع الصلاحيات
+    $user->permissions()->syncWithPivotValues($permissions, ['user_type' => \App\Models\User::class]);
 
-    session()->flash('success', 'تمت الإضافة بنجاح');
+    session()->flash('success', 'تمت الإضافة بنجاح ✅ وتم منح المستخدم جميع الصلاحيات.');
     return redirect()->route('dashboard.users.index');
 }
+
+
+
 
 
 
     public
     function edit(User $user)
     {
-        return view('dashboard.users.edit', compact('user'));
+        return view('admin.users.edit', compact('user'));
     } //end of user
 
     public

@@ -19,6 +19,7 @@ use App\Http\Controllers\Dashboard\ContactSettingsController;
 use App\Http\Controllers\Dashboard\BranchesController;
 use App\Http\Controllers\Dashboard\MessagesController;
 use App\Http\Controllers\Dashboard\TestimonialController;
+use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\PagContactController;
 use App\Models\Service;
 Route::get('/custom-login', function() {
@@ -45,7 +46,7 @@ Route::get('/contact', function () {
 Route::get('/our-services', function () {
     return view('frontend.our_services');
 })->name('frontend.our-services');
-
+Route::get('/services/{slug}', [App\Http\Controllers\Frontend\ServiceController::class, 'show'])->name('services.show');
 // Frontend display:
 Route::get('/pag_services', function () {
     $pagservices = \App\Models\Pagservice::orderBy('sort_order')->with('images')->get();
@@ -98,6 +99,7 @@ Route::get('/rooms', function () {
 
 // Auth::routes();
 Route::middleware(['auth', 'web'])->prefix('dashboard')->name('dashboard.')->group(function () {
+        Route::resource('users', UserController::class)->except(['show']);
     Route::get('/index', [App\Http\Controllers\Dashboard\HomeController::class, 'index'])
     ->name('home');
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

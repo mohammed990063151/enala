@@ -77,7 +77,7 @@
                                                                                    <div
                                                                                        class="wdt-content-icon-wrapper ">
                                                                                        <div class="wdt-content-icon"><a
-                                                                                               href="https://wdtgrassroot.wpengine.com/rtl-demo/"
+                                                                                               href=""
                                                                                                class="silde_pop_vid"><span><i><svg
                                                                                                            xmlns="http://www.w3.org/2000/svg"
                                                                                                            x="0px"
@@ -108,7 +108,7 @@
                                                                                    <div
                                                                                        class="wdt-content-icon-wrapper ">
                                                                                        <div class="wdt-content-icon"><a
-                                                                                               href="https://wdtgrassroot.wpengine.com/rtl-demo/"
+                                                                                               href=""
                                                                                                class="silde_pop_vid"><span><i><svg
                                                                                                            xmlns="http://www.w3.org/2000/svg"
                                                                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -166,7 +166,7 @@
                                                                                    <div
                                                                                        class="wdt-content-icon-wrapper ">
                                                                                        <div class="wdt-content-icon"><a
-                                                                                               href="https://wdtgrassroot.wpengine.com/rtl-demo/"
+                                                                                               href=""
                                                                                                class="silde_pop_vid"><span><i><svg
                                                                                                            xmlns="http://www.w3.org/2000/svg"
                                                                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -675,7 +675,7 @@
                                                                                                        <li
                                                                                                            class="elementor-icon-list-item">
                                                                                                            <a
-                                                                                                               href="{{ route('pag.contact') }}">
+                                                                                                               href="{{ route('servicepag.show') }}">
 
                                                                                                                <span
                                                                                                                    class="elementor-icon-list-text">  خدماتنا</span>
@@ -768,8 +768,7 @@
                                                                src="{{ asset('assets/img/footer-payment.png') }}"
                                                                class="attachment-full size-full wp-image-16391"
                                                                alt=""
-                                                               srcset="https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/footer-payment.png 684w, https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/footer-payment-300x26.png 300w"
-                                                               sizes="(max-width: 684px) 100vw, 684px">
+                                                               srcset="">
                                                        </div>
                                                    </div>
                                                </div>

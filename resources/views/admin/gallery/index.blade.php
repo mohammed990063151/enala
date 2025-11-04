@@ -26,7 +26,7 @@
                     <input type="text" name="title" class="form-control" value="{{ $settingGallery->title ?? '' }}">
 
                     <label class="mt-3">الوصف</label>
-                    <textarea name="description" rows="3" class="form-control">{{ $settingGallery->description ?? '' }}</textarea>
+                    <textarea name="description" rows="3" class="form-control ckeditor">{{ $settingGallery->description ?? '' }}</textarea>
 
                     <button class="btn btn-success mt-3">حفظ</button>
                 </form>
@@ -97,4 +97,18 @@
     </section>
 
 </div>
+   <script>
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof CKEDITOR !== 'undefined') {
+        CKEDITOR.replace('description', {
+            contentsLangDirection: 'rtl',
+            contentsLanguage: 'ar',
+            language: 'ar',
+            height: 250,
+            removeButtons: 'Subscript,Superscript,Anchor,Image', // اختياري
+            toolbarCanCollapse: true
+        });
+    }
+});
+</script>
 @endsection

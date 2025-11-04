@@ -18,8 +18,8 @@
 	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 	<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
-<link rel="alternate" type="application/rss+xml" title="RTL GrassRoot Site « الخلاصة" href="https://wdtgrassroot.wpengine.com/rtl-demo/feed/">
-<link rel="alternate" type="application/rss+xml" title="RTL GrassRoot Site « خلاصة التعليقات" href="https://wdtgrassroot.wpengine.com/rtl-demo/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="RTL GrassRoot Site « الخلاصة" href="">
+<link rel="alternate" type="application/rss+xml" title="RTL GrassRoot Site « خلاصة التعليقات" href="">
 <script type="text/javascript">
 /* <![CDATA[ */
 window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16.0.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16.0.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/wdtgrassroot.wpengine.com\/rtl-demo\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.2"}};
@@ -111,7 +111,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
 .woocommerce form .form-row .required { visibility: visible; }
 </style>
 <link rel="stylesheet" id="brands-styles-css" href="{{ asset('assets/css/brands.css') }}" type="text/css" media="all">
-<link rel="preload" as="font" type="font/woff2" crossorigin="anonymous" id="tinvwl-webfont-font-css" href="https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/plugins/ti-woocommerce-wishlist/assets/fonts/tinvwl-webfont.woff2?ver=xu2uyi" media="all">
+{{-- <link rel="preload" as="font" type="font/woff2" crossorigin="anonymous" id="tinvwl-webfont-font-css" href="" media="all"> --}}
 <link rel="stylesheet" id="tinvwl-webfont-rtl-css" href="{{ asset('assets/css/webfont-rtl.min.css') }}" type="text/css" media="all">
 <link rel="stylesheet" id="tinvwl-rtl-css" href="{{ asset('assets/css/public-rtl.min.css') }}" type="text/css" media="all">
 <link rel="stylesheet" id="swiper-css" href="{{ asset('assets/css/swiper.min.css') }}" type="text/css" media="all">
@@ -480,11 +480,11 @@ var woocommerce_params = {"ajax_url":"\/rtl-demo\/wp-admin\/admin-ajax.php","wc_
 </script>
 <script type="text/javascript" src="{{ asset('assets/JS/woocommerce.min.js') }}" id="woocommerce-js" defer="defer" data-wp-strategy="defer"></script>
 <script type="text/javascript" src="{{ asset('assets/JS/v4-shims.min.js') }}" id="font-awesome-4-shim-js"></script>
-<link rel="https://api.w.org/" href="https://wdtgrassroot.wpengine.com/rtl-demo/wp-json/"><link rel="alternate" title="JSON" type="application/json" href="https://wdtgrassroot.wpengine.com/rtl-demo/wp-json/wp/v2/pages/15720"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://wdtgrassroot.wpengine.com/rtl-demo/xmlrpc.php?rsd">
-<link rel="canonical" href="https://wdtgrassroot.wpengine.com/rtl-demo/">
-<link rel="shortlink" href="https://wdtgrassroot.wpengine.com/rtl-demo/">
-<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://wdtgrassroot.wpengine.com/rtl-demo/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwdtgrassroot.wpengine.com%2Frtl-demo%2F">
-<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://wdtgrassroot.wpengine.com/rtl-demo/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwdtgrassroot.wpengine.com%2Frtl-demo%2F&amp;format=xml">
+<link rel="https://api.w.org/" href=""><link rel="alternate" title="JSON" type="application/json" href=""><link rel="EditURI" type="application/rsd+xml" title="RSD" href="">
+<link rel="canonical" href="">
+<link rel="shortlink" href="">
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="">
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="">
 	<noscript><style>.woocommerce-product-gallery{ opacity: 1 !important; }</style></noscript>
 	<meta name="generator" content="Elementor 3.30.0; features: e_font_icon_svg, additional_custom_breakpoints, e_element_cache; settings: css_print_method-external, google_font-enabled, font_display-swap">
 <style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>			<style>
@@ -506,7 +506,7 @@ var woocommerce_params = {"ajax_url":"\/rtl-demo\/wp-admin\/admin-ajax.php","wc_
 				}
 			</style>
 			<style type="text/css" id="custom-background-css">
-body.custom-background { background-image: url("https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/02/body-bg-1.png"); background-position: left center; background-size: cover; background-repeat: no-repeat; background-attachment: fixed; }
+ background-position: left center; background-size: cover; background-repeat: no-repeat; background-attachment: fixed; }
 
 
 
@@ -594,8 +594,8 @@ body.custom-background { background-image: url("https://wdtgrassroot.wpengine.co
 </style>
 
 
-	<link rel="icon" href="https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/Favicon.svg" sizes="32x32">
-<link rel="icon" href="https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/Favicon.svg" sizes="192x192">
-<link rel="apple-touch-icon" href="https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/Favicon.svg">
-<meta name="msapplication-TileImage" content="https://wdtgrassroot.wpengine.com/rtl-demo/wp-content/uploads/sites/3/2025/01/Favicon.svg">
+	<link rel="icon" href="" sizes="32x32">
+<link rel="icon" href="" sizes="192x192">
+<link rel="apple-touch-icon" href="">
+<meta name="msapplication-TileImage" content="">
 <script src="{{ asset('assets/JS/wp-emoji-release.min.js') }}" defer=""></script></head>

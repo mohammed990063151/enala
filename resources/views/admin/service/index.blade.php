@@ -24,7 +24,7 @@
                     <input type="text" name="title" class="form-control" value="{{ $service->title }}">
                             <label> الوصف</label>
                     {{-- <input type="text" name="description" class="form-control" value="{{ $service->description }}"> --}}
- <textarea name="description" class="form-control" rows="4">{{ old('description', $service->description ?? '') }}</textarea>
+ <textarea name="description" class="form-control ckeditor" rows="4">{{ old('description', $service->description ?? '') }}</textarea>
                     <hr>
 
                     <div class="row">
@@ -53,4 +53,18 @@
         </div>
     </section>
 </div>
+   <script>
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof CKEDITOR !== 'undefined') {
+        CKEDITOR.replace('description', {
+            contentsLangDirection: 'rtl',
+            contentsLanguage: 'ar',
+            language: 'ar',
+            height: 250,
+            removeButtons: 'Subscript,Superscript,Anchor,Image', // اختياري
+            toolbarCanCollapse: true
+        });
+    }
+});
+</script>
 @endsection

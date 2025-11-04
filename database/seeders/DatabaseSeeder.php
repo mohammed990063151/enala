@@ -45,6 +45,10 @@ $this->call([
 $this->call([
         ProjectSeeder::class,
     ]);
+    $this->call([
+        PermissionSeeder::class,
+        RolePermissionSeeder::class,
+    ]);
     }//end of run
 
 }//end of seeder

@@ -4,8 +4,8 @@
 
 <style>
     .stats-wrapper {
-        background:#f7f9fa;
-        padding:25px;
+        /* background:#f7f9fa; */
+        /* padding:25px; */
         border-radius:12px;
         box-shadow:0 4px 20px rgba(0,0,0,0.08);
         transition:.3s;
@@ -77,11 +77,11 @@
 
     {{-- ====== HEADER ====== --}}
     <section class="content-header">
-        <h1><i class="fa fa-chart-line"></i> إعدادات الإحصائيات</h1>
+       </i> <h1> إعدادات الإحصائيات</h1>
     </section>
 
     {{-- ====== FORM ====== --}}
-    <section class="content">
+    <section class="box box-primary content" >
 
         @if(session('success'))
             <div class="alert alert-success"><i class="fa fa-check-circle"></i> {{ session('success') }}</div>
@@ -105,7 +105,7 @@
                         {{-- العنوان --}}
                         <label class="form-label">اسم العداد {{ $i }}</label>
                         <div class="position-relative">
-                            <i class="fa fa-tag input-icon"></i>
+                            {{-- <i class="fa fa-tag input-icon"></i> --}}
                             <input type="text" name="title{{ $i }}" class="form-control"
                                 value="{{ $counter->{'title'.$i} }}">
                         </div>
@@ -113,7 +113,7 @@
                         {{-- الرقم --}}
                         <label class="form-label mt-2">العدد {{ $i }}</label>
                         <div class="position-relative">
-                            <i class="fa fa-hashtag input-icon"></i>
+                            {{-- <i class="fa fa-hashtag input-icon"></i> --}}
                             <input type="number" name="count{{ $i }}" class="form-control"
                                 value="{{ $counter->{'count'.$i} }}">
                         </div>
@@ -122,7 +122,7 @@
                     @endforeach
 
                 </div>
-
+<br />
                 <button class="btn btn-success btn-lg mt-2">
                     <i class="fa fa-save"></i> حفظ التغييرات
                 </button>

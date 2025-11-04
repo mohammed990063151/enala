@@ -45,35 +45,35 @@
                     <!-- الاسم -->
                     <div class="col-md-6 mb-3 pos-relative">
                         <label class="form-label">اسم الفرع</label>
-                        <i class="fa fa-leaf input-icon"></i>
+                        {{-- <i class="fa fa-leaf input-icon"></i> --}}
                         <input class="form-control" name="name" value="{{ old('name', $branch->name) }}">
                     </div>
 
                     <!-- الهاتف -->
                     <div class="col-md-6 mb-3 pos-relative">
                         <label class="form-label">الهاتف</label>
-                        <i class="fa fa-phone input-icon"></i>
+                        {{-- <i class="fa fa-phone input-icon"></i> --}}
                         <input class="form-control" name="phone" value="{{ old('phone', $branch->phone) }}">
                     </div>
 
                     <!-- الإيميل -->
                     <div class="col-md-6 mb-3 pos-relative">
                         <label class="form-label">البريد الإلكتروني</label>
-                        <i class="fa fa-envelope input-icon"></i>
+                        {{-- <i class="fa fa-envelope input-icon"></i> --}}
                         <input class="form-control" name="email" value="{{ old('email', $branch->email) }}">
                     </div>
 
                     <!-- العنوان -->
                     <div class="col-md-6 mb-3 pos-relative">
                         <label class="form-label">العنوان</label>
-                        <i class="fa fa-map-marker input-icon"></i>
+                        {{-- <i class="fa fa-map-marker input-icon"></i> --}}
                         <input class="form-control" name="address" value="{{ old('address', $branch->address) }}">
                     </div>
 
                     <!-- رابط الخريطة -->
                     <div class="col-md-12 mb-3 pos-relative">
                         <label class="form-label">رابط خريطة Google Maps</label>
-                        <i class="fa fa-map input-icon"></i>
+                        {{-- <i class="fa fa-map input-icon"></i> --}}
                         <input class="form-control" name="map_link" value="{{ old('map_link', $branch->map_link) }}">
                     </div>
 
