@@ -47,14 +47,13 @@ class UserController extends Controller
             });
         })->latest()->paginate(5);
 
-        return view('dashboard.users.index', compact('users'));
+        return view('admin.users.index', compact('users'));
     }
 
 
-    public
-    function create()
+    public  function create()
     {
-        return view('dashboard.users.create');
+        return view('admin.users.create');
     } //end of create
 
     // public function store(Request $request)
@@ -138,7 +137,7 @@ class UserController extends Controller
     public
     function edit(User $user)
     {
-        return view('dashboard.users.edit', compact('user'));
+        return view('admin.users.edit', compact('user'));
     } //end of user
 
     public
