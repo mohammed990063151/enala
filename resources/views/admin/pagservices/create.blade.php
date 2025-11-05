@@ -131,7 +131,7 @@
                     <textarea name="description" class="form-control ckeditor" rows="4" placeholder="شرح للخدمة"></textarea>
                 </div>
                   <div class="col-md-12 mb-4 position-relative">
-                    <label class="form-label">الوصف</label>
+                    <label class="form-label">الوصف المختصر</label>
                     <i class="fa fa-align-right input-icon"></i>
                     <textarea name="short_description" class="form-control ckeditor" rows="4" placeholder="شرح للخدمة"></textarea>
                 </div>
