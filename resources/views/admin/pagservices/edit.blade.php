@@ -126,6 +126,12 @@
                     <i class="fa fa-align-right input-icon"></i>
                     <textarea name="description" class="form-control ckeditor" rows="4">{{ old('description', $Pag_service->description) }}</textarea>
                 </div>
+
+                <div class="col-md-12 mb-4 position-relative">
+                    <label class="form-label">الوصف</label>
+                    <i class="fa fa-align-right input-icon"></i>
+                    <textarea name="short_description" class="form-control ckeditor" rows="4">{{ old('description', $Pag_service->short_description) }}</textarea>
+                </div>
             </div>
 
             <button class="btn btn-success"><i class="fa fa-save"></i> تحديث الخدمة</button>
@@ -287,6 +293,21 @@ document.getElementById('saveAllFeatures').addEventListener('click', () => {
 document.addEventListener('DOMContentLoaded', function() {
     if (typeof CKEDITOR !== 'undefined') {
         CKEDITOR.replace('description', {
+            contentsLangDirection: 'rtl',
+            contentsLanguage: 'ar',
+            language: 'ar',
+            height: 250,
+            removeButtons: 'Subscript,Superscript,Anchor,Image', // اختياري
+            toolbarCanCollapse: true
+        });
+    }
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof CKEDITOR !== 'undefined') {
+        CKEDITOR.replace('short_description', {
             contentsLangDirection: 'rtl',
             contentsLanguage: 'ar',
             language: 'ar',

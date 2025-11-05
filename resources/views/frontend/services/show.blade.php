@@ -234,7 +234,47 @@ body {
   .icon-circle i { font-size: 22px; }
   .service-card { flex: 1 1 100%; max-width: 100%; }
 }
+
+/* 🌌 Lightbox Overlay */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  padding-top: 70px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9);
+  text-align: center;
+}
+
+.lightbox-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 85vh;
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(255,255,255,0.2);
+}
+
+.lightbox .close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.lightbox .close:hover {
+  color: #D9EF82;
+}
+
 </style>
+
 
 @section('content')
 
@@ -267,7 +307,7 @@ body {
 ">
   <div class="container" style="max-width:900px;">
     <h2>{{ $service->title }}</h2>
-    <p>{!! nl2br(e($service->description)) !!}</p>
+    <p>{!! $service->description !!}</p>
   </div>
 </section>
 {{-- 🌿 مميزات خدمتنا --}}
@@ -380,7 +420,7 @@ body {
         <div class="content-box">
           <i class="{{ $item->icon ?? 'fa-solid fa-leaf' }}"></i>
           <h4>{{ $item->title }}</h4>
-          <p>{{ Str::limit($item->description, 100) }}</p>
+          {!! $item->short_description !!}
           <a href="{{ route('services.show', $item->slug) }}" class="btn-modern">عرض التفاصيل</a>
         </div>
       </div>
@@ -403,6 +443,12 @@ body {
     <a href="https://wa.me/{{ $setting->phone ?? '' }}" target="_blank"><i class="fa-brands fa-whatsapp"></i> تواصل عبر واتساب</a>
   </div>
 </section>
+
+<!-- ✅ نافذة عرض الصور (Lightbox) -->
+<div id="imageLightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-content" id="lightboxImg">
+</div>
 
 <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
@@ -427,4 +473,24 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
+
+<script>
+document.querySelectorAll('.swiper-slide img').forEach(img => {
+  img.addEventListener('click', function() {
+    const lightbox = document.getElementById('imageLightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    lightbox.style.display = 'block';
+    lightboxImg.src = this.src;
+  });
+});
+
+document.querySelector('.lightbox .close').addEventListener('click', function() {
+  document.getElementById('imageLightbox').style.display = 'none';
+});
+
+document.getElementById('imageLightbox').addEventListener('click', function(e) {
+  if (e.target === this) this.style.display = 'none';
+});
+</script>
+
 @endsection

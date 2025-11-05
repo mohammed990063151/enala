@@ -31,7 +31,8 @@ class PagserviceController extends Controller
             'title' => 'required|string|max:255',
             'icon' => 'nullable|string|max:255',
             'description' => 'nullable|string',
-            'sort_order' => 'nullable|integer',
+            'short_description' => 'nullable|string',
+            'sort_order' => 'integer',
             'images.*' => 'nullable|image|mimes:jpg,jpeg,png,webp',
         ]);
 
@@ -110,6 +111,7 @@ class PagserviceController extends Controller
         'title'       => 'required|string|max:255',
         'icon'        => 'nullable|string|max:255',
         'description' => 'nullable|string',
+        'short_description' => 'nullable|string',
         'sort_order'  => 'nullable|integer',
         'images.*'    => 'nullable|image|mimes:jpg,jpeg,png,webp',
     ]);
@@ -186,6 +188,7 @@ public function storeFeature(Request $request, $id)
         'title' => 'required|string|max:255',
         'icon' => 'nullable|string|max:255',
         'description' => 'nullable|string',
+
     ]);
 
     $data['pagservice_id'] = $service->id;

@@ -1565,6 +1565,44 @@ body {
 .swiper-slide:hover img {
   transform: scale(1.05);
 }
+
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  padding-top: 70px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9);
+  text-align: center;
+}
+
+.lightbox-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 85vh;
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(255,255,255,0.2);
+}
+
+.lightbox .close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.lightbox .close:hover {
+  color: #D9EF82;
+}
+
 </style>
 @section('content')
 
@@ -1623,12 +1661,15 @@ body {
   <div class="container">
     <h2 class="section-title text-center mb-5">معرض أعمالنا</h2>
 
-    <div class="swiper mySwiperGlobal">
+    <div class="swiper mySwiperGlobal" style="
+    width: 170%;
+    height: 500px;
+">
       <div class="swiper-wrapper">
         @foreach ($services as $service)
             @if($service->images && $service->images->count())
                 @foreach($service->images as $img)
-                    <div class="swiper-slide">
+                    <div class="swiper-slide" style="width: 600px; !important;">
                         <img src="{{ asset($img->image) }}" alt="{{ $service->title }}">
                     </div>
                 @endforeach
@@ -1673,7 +1714,7 @@ body {
         <div class="content-box">
           <i class="{{ $service->icon ?? 'fa-solid fa-leaf' }}"></i>
           <h4>{{ $service->title }}</h4>
-          <p>{{ Str::limit($service->description, 100) }}</p>
+          <p>{!! $service->short_description !!}</p>
           <a href="{{ route('services.show', $service->slug) }}" class="btn-modern">عرض التفاصيل</a>
 
         </div>
@@ -1694,6 +1735,10 @@ body {
     </a>
   </div>
 </section>
+<div id="imageLightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-content" id="lightboxImg">
+</div>
 <br /><br />
 <!-- ✅ مكتبة AOS -->
 <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
@@ -1795,7 +1840,24 @@ AOS.init({
 
 {{-- @push('scripts') --}}
 
+<script>
+document.querySelectorAll('.swiper-slide img').forEach(img => {
+  img.addEventListener('click', function() {
+    const lightbox = document.getElementById('imageLightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    lightbox.style.display = 'block';
+    lightboxImg.src = this.src;
+  });
+});
 
+document.querySelector('.lightbox .close').addEventListener('click', function() {
+  document.getElementById('imageLightbox').style.display = 'none';
+});
+
+document.getElementById('imageLightbox').addEventListener('click', function(e) {
+  if (e.target === this) this.style.display = 'none';
+});
+</script>
 
 @endsection
 
