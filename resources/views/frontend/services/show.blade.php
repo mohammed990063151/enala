@@ -329,7 +329,7 @@ body {
               </div>
               <h5 class="fw-bold mb-2">{{ $feature->title }}</h5>
               @if($feature->description)
-                <p class="text-muted small mb-0">{{ $feature->description }}</p>
+                <p class="text-muted small mb-0">{!! $feature->description !!}</p>
               @endif
             </div>
           </div>

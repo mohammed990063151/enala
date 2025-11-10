@@ -279,7 +279,7 @@
                     <div class="p-3">
                         <h5 class="fw-bold text-success mb-2" style="font-size:1.1rem;">{{ $project->title }}</h5>
                         <p class="text-muted small mb-3" style="line-height:1.6;">
-                            {{ Str::limit(strip_tags($project->description), 80) }}
+                            {!! $project->description !!}
                         </p>
 
                         {{-- <div class="d-flex justify-content-between align-items-center">

@@ -21,7 +21,7 @@ $bg = $about->header_image ? asset($about->header_image) : asset('img/criticism-
     </h1>
     @if($about->subtitle)
     <p style="max-width:800px;margin:auto;font-size:1.1rem;line-height:1.8;color:#eee;">
-        {{ $about->subtitle }}
+        {!! $about->subtitle !!}
     </p>
     @endif
 </section>

@@ -242,7 +242,7 @@
                                                                         class="wdt-heading-deco-inner wdt-right-part"></span></span>
                                                             </div>
                                                             <h2 class="wdt-heading-title-wrapper wdt-heading-align- "><span
-                                                                    class="wdt-heading-title">{{ $section->description }}</span></h2>
+                                                                    class="wdt-headingtitle">{!! $section->description !!}</span></h2>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -405,7 +405,7 @@
             <h2>{{ $about->title }}</h2>
 
             <p>
-                {{ $about->description }}
+                {!! $about->description !!}
             </p>
 
             <ul>
@@ -483,7 +483,7 @@
                                                             </div>
                                                             <h2 class="wdt-heading-title-wrapper wdt-heading-align- "><span
                                                                     class="wdt-heading-title">{{ $whyus->title }}</span></h2>
-                                                                    <p>{{ $whyus->description }}</p>
+                                                                    <p>{!! $whyus->description !!}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -776,7 +776,7 @@
     text-align: center;
 ">
                     <h1>{{ $settinggallery->title }} </h1>
-                    <p> {{ $settinggallery->description }}  </p>
+                    <p> {!! $settinggallery->description !!}  </p>
                 </div>
                 <!-- معرض الصور -->
                 {{-- <div class="owl-carousel owl-theme" id="hotel-gallery">
@@ -926,7 +926,7 @@
                                                                         class="wdt-heading-deco-inner wdt-right-part"></span></span>
                                                             </div>
                                                             <h2 class="wdt-heading-title-wrapper wdt-heading-align-1 ">
-                                                                <span class="wdt-heading-title"> {{ $services->description }}  </span></h2>
+                                                                <span class="wdt-heading-title"> {!! $services->description !!}  </span></h2>
                                                         </div>
                                                     </div>
                                                 </div>
