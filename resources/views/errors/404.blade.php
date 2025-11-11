@@ -4,7 +4,7 @@
 @section('content')
 <div style="text-align:center;">
 
-    <div style="max-width:500px;padding:40px;background:#fff;border-radius:15px;box-shadow:0 6px 20px rgba(0,0,0,0.08);">
+    <div style="padding:40px;background:#fff;border-radius:15px;box-shadow:0 6px 20px rgba(0,0,0,0.08);">
         <h1 style="font-size:4rem;color:#1b3b26;margin-bottom:15px;">404</h1>
         <h2 style="color:#4CAF50;font-weight:700;margin-bottom:15px;">الصفحة غير موجودة</h2>
         <p style="font-size:1.1rem;color:#666;line-height:1.8;">

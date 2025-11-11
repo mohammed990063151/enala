@@ -301,25 +301,22 @@
                                                                        <span class="elementor-icon-list-text"></span>
                                                                    </a>
                                                                </li>
+                                                               <li class="elementor-icon-list-item elementor-inline-item">
+    <a href="{{ $setting->linkedin }}" target="_blank" title="TikTok">
+        <span class="elementor-icon-list-icon">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512" width="20" height="20" fill="currentColor">
+                <path
+                    d="M448,209.6a210,210,0,0,1-122.1-39.1V353.6A158.4,158.4,0,1,1,185.6,198.7v81.3a77.4,77.4,0,1,0,54.3,73.6V0h86a121.8,121.8,0,0,0,2.1,23.4A122.1,122.1,0,0,0,448,144.4Z" />
+            </svg>
+        </span>
+        {{-- <span class="elementor-icon-list-text">TikTok</span> --}}
+    </a>
+</li>
+
                                                                <li
                                                                    class="elementor-icon-list-item elementor-inline-item">
-                                                                   <a href="{{ $setting->linkedin }}">
-
-                                                                       <span class="elementor-icon-list-icon">
-                                                                           <svg aria-hidden="true"
-                                                                               class="e-font-icon-svg e-fab-youtube"
-                                                                               viewBox="0 0 576 512"
-                                                                               xmlns="http://www.w3.org/2000/svg">
-                                                                               <path
-                                                                                   d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
-                                                                               </path>
-                                                                           </svg> </span>
-                                                                       <span class="elementor-icon-list-text"></span>
-                                                                   </a>
-                                                               </li>
-                                                               {{-- <li
-                                                                   class="elementor-icon-list-item elementor-inline-item">
-                                                                   <a href="https://www.google.com/">
+                                                                   <a href="{{ $setting->instagram }}">
 
                                                                        <span class="elementor-icon-list-icon">
                                                                            <svg xmlns="http://www.w3.org/2000/svg"
@@ -339,7 +336,7 @@
                                                                            </svg> </span>
                                                                        <span class="elementor-icon-list-text"></span>
                                                                    </a>
-                                                               </li> --}}
+                                                               </li>
                                                            </ul>
                                                        </div>
                                                    </div>

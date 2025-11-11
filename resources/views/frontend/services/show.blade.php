@@ -301,7 +301,114 @@ body {
     @endif
   </div>
 </section>
+{{-- معرض الصور --}}
+<div id="imageLightbox" class="lightbox">
+  <span class="close">&times;</span>
+  <img id="lightboxImg" src="" alt="عرض الصورة">
+  <button class="prev">&#10094;</button>
+  <button class="next">&#10095;</button>
+</div>
 
+<style>
+/* 💡 تصميم الـ Lightbox */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.9);
+  justify-content: center;
+  align-items: center;
+}
+.lightbox img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+  transition: transform .3s ease;
+}
+.lightbox .close {
+  position: absolute;
+  top: 20px; right: 30px;
+  color: #fff;
+  font-size: 40px;
+  cursor: pointer;
+}
+.lightbox .prev, .lightbox .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 50px;
+  font-weight: bold;
+  background: rgba(0,0,0,0.4);
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+.lightbox .prev:hover, .lightbox .next:hover {
+  background: rgba(255,255,255,0.2);
+}
+.lightbox .prev { left: 40px; }
+.lightbox .next { right: 40px; }
+</style>
+
+<script>
+const images = Array.from(document.querySelectorAll('.swiper-slide img'));
+const lightbox = document.getElementById('imageLightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const closeBtn = document.querySelector('.lightbox .close');
+const prevBtn = document.querySelector('.lightbox .prev');
+const nextBtn = document.querySelector('.lightbox .next');
+
+let currentIndex = 0;
+
+// ✅ فتح الصورة عند النقر
+images.forEach((img, index) => {
+  img.addEventListener('click', () => {
+    currentIndex = index;
+    showImage();
+    lightbox.style.display = 'flex';
+  });
+});
+
+// ✅ إغلاق عند النقر على × أو الخلفية
+closeBtn.addEventListener('click', () => lightbox.style.display = 'none');
+lightbox.addEventListener('click', e => {
+  if (e.target === lightbox) lightbox.style.display = 'none';
+});
+
+// ✅ أزرار التنقل
+prevBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  showImage();
+});
+nextBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  currentIndex = (currentIndex + 1) % images.length;
+  showImage();
+});
+
+// ✅ عرض الصورة الحالية
+function showImage() {
+  lightboxImg.src = images[currentIndex].src;
+}
+document.addEventListener('keydown', e => {
+  if (lightbox.style.display === 'flex') {
+    if (e.key === 'ArrowRight') nextBtn.click();
+    if (e.key === 'ArrowLeft') prevBtn.click();
+    if (e.key === 'Escape') lightbox.style.display = 'none';
+  }
+});
+
+</script>
+
+
+{{-- نهاية المعرض --}}
 <section class="service-details" style="
     text-align: center;
 ">

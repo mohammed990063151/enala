@@ -1781,6 +1781,14 @@ nextBtn.addEventListener('click', e => {
 function showImage() {
   lightboxImg.src = images[currentIndex].src;
 }
+document.addEventListener('keydown', e => {
+  if (lightbox.style.display === 'flex') {
+    if (e.key === 'ArrowRight') nextBtn.click();
+    if (e.key === 'ArrowLeft') prevBtn.click();
+    if (e.key === 'Escape') lightbox.style.display = 'none';
+  }
+});
+
 </script>
 
 {{-- نهاية معرض الصور --}}
