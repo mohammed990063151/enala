@@ -115,12 +115,22 @@
                     <input name="sort_order" class="form-control" value="{{ old('sort_order', $Pag_service->sort_order) }}">
                 </div>
 
-                <div class="col-md-8 mb-3">
-                    <label class="form-label"><i class="fa fa-images"></i> صور جديدة للخدمة</label>
-                    <input type="file" name="images[]" class="form-control" multiple accept="image/*" onchange="previewMultiple(event)">
-                    <div id="multiPreview" class="d-flex flex-wrap mt-3"></div>
+                 <div class="col-md-8 mb-3">
+                    <label class="form-label"><i class="fa fa-images"></i> صور الاساسية للخدمة</label>
+                    <input type="file" name="image" class="form-control" multiple accept="image/*">
+                    <div  class="d-flex flex-wrap mt-3"></div>
                 </div>
 
+
+ <h4 class="fw-bold text-primary mb-3"><i class="fa fa-image"></i> الصور الحالية:</h4>
+        <div class="image-grid" id="oldImages">
+
+                <div class="position-relative">
+                    <img src="{{ asset($Pag_service->image) }}" class="old-img">
+                    <button type="button" class="delete-btn" data-id="{{ $Pag_service->id }}"><i class="fa fa-times"></i></button>
+                </div>
+
+        </div>
                 <div class="col-md-12 mb-4 position-relative">
                     <label class="form-label">الوصف</label>
                     <i class="fa fa-align-right input-icon"></i>
@@ -131,6 +141,14 @@
                     <label class="form-label">الوصف المختصر</label>
                     <i class="fa fa-align-right input-icon"></i>
                     <textarea name="short_description" class="form-control ckeditor" rows="4">{{ old('description', $Pag_service->short_description) }}</textarea>
+                </div>
+
+
+
+                <div class="col-md-8 mb-3">
+                    <label class="form-label"><i class="fa fa-images"></i> صور جديدة للخدمة</label>
+                    <input type="file" name="images[]" class="form-control" multiple accept="image/*" onchange="previewMultiple(event)">
+                    <div id="multiPreview" class="d-flex flex-wrap mt-3"></div>
                 </div>
             </div>
 

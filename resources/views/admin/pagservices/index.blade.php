@@ -139,7 +139,7 @@
 
                         <td>
                           @if($s->images && $s->images->first())
-    <img src="{{ asset($s->images->first()->image) }}" class="service-img" alt="{{ $s->title }}">
+    <img src="{{ asset($s->image) }}" class="service-img" alt="{{ $s->title }}">
 @else
 
                                 <span class="text-muted">لا يوجد</span>

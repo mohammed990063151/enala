@@ -25,48 +25,110 @@ class PagserviceController extends Controller
         return view('admin.pagservices.create');
     }
 
-    public function store(Request $request)
-    {
-        $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'icon' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
-            'short_description' => 'nullable|string',
-            'sort_order' => 'integer',
-            'images.*' => 'nullable|image|mimes:jpg,jpeg,png,webp',
-        ]);
+    // public function store(Request $request)
+    // {
+    //     $data = $request->validate([
+    //         'title' => 'required|string|max:255',
+    //         'icon' => 'nullable|string|max:255',
+    //         'description' => 'nullable|string',
+    //         'short_description' => 'nullable|string',
+    //         'sort_order' => 'integer',
+    //         'images.*' => 'nullable|image|mimes:jpg,jpeg,png,webp',
+    //         'image' => 'nullable|image|mimes:jpg,jpeg,png,webp',
 
-        // ✅ إنشاء slug تلقائي من العنوان
-        $data['slug'] = Str::slug($request->title);
+    //     ]);
 
-        // ✅ إنشاء السجل في الجدول
-        $service = \App\Models\Pagservice::create($data);
+    //     // ✅ إنشاء slug تلقائي من العنوان
+    //     $data['slug'] = Str::slug($request->title);
 
-        // ✅ حفظ الصور المتعددة
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $file) {
-                $path = $file->store('dashboard_files/img/pagservices', 'public_uploads');
-                $service->images()->create(['image' => $path]);
-            }
-        }
+    //     // ✅ إنشاء السجل في الجدول
+    //     $service = \App\Models\Pagservice::create($data);
 
-        // ✅ حفظ المميزات (features)
-        if ($request->has('features')) {
-            foreach ($request->features as $feature) {
-                if (!empty($feature['title'])) {
-                    $service->features()->create([
-                        'title'       => $feature['title'],
-                        'icon'        => $feature['icon'] ?? null,
-                        'description' => $feature['description'] ?? null,
-                    ]);
-                }
-            }
-        }
+    //     // ✅ حفظ الصور المتعددة
+    //     if ($request->hasFile('images')) {
+    //         foreach ($request->file('images') as $file) {
+    //             $path = $file->store('dashboard_files/img/pagservices', 'public_uploads');
+    //             $service->images()->create(['image' => $path]);
+    //         }
+    //     }
+
+    //      if ($request->hasFile('image')) {
+    //         foreach ($request->file('image') as $file) {
+    //             $path = $file->store('dashboard_files/img/pagservices', 'public_uploads');
+    //             $service->images()->create(['image' => $path]);
+    //         }
+    //     }
+
+    //     // ✅ حفظ المميزات (features)
+    //     if ($request->has('features')) {
+    //         foreach ($request->features as $feature) {
+    //             if (!empty($feature['title'])) {
+    //                 $service->features()->create([
+    //                     'title'       => $feature['title'],
+    //                     'icon'        => $feature['icon'] ?? null,
+    //                     'description' => $feature['description'] ?? null,
+    //                 ]);
+    //             }
+    //         }
+    //     }
 
 
-        return redirect()->route('dashboard.Pag_services.index')
-            ->with('success', '✅ تم إضافة الخدمة والصور بنجاح');
+    //     return redirect()->route('dashboard.Pag_services.index')
+    //         ->with('success', '✅ تم إضافة الخدمة والصور بنجاح');
+    // }
+
+
+public function store(Request $request)
+{
+    $data = $request->validate([
+        'title'             => 'required|string|max:255',
+        'icon'              => 'nullable|string|max:255',
+        'description'       => 'nullable|string',
+        'short_description' => 'nullable|string',
+        'sort_order'        => 'nullable|integer',
+        'images.*'          => 'nullable|image|mimes:jpg,jpeg,png,webp',
+        'image'             => 'nullable|image|mimes:jpg,jpeg,png,webp',
+    ]);
+
+    // ✅ إنشاء slug تلقائي من العنوان
+    $data['slug'] = Str::slug($request->title);
+
+    // ✅ رفع الصورة الأساسية وتخزينها في نفس الجدول
+    if ($request->hasFile('image')) {
+        $file = $request->file('image');
+        $path = $file->store('dashboard_files/img/pagservices', 'public_uploads');
+        $data['image'] = $path; // حفظ المسار داخل الجدول الرئيسي
     }
+
+    // ✅ إنشاء السجل في جدول pagservices
+    $service = Pagservice::create($data);
+
+    // ✅ حفظ الصور الإضافية (تعدد الصور)
+    if ($request->hasFile('images')) {
+        foreach ($request->file('images') as $file) {
+            $path = $file->store('dashboard_files/img/pagservices', 'public_uploads');
+            $service->images()->create(['image' => $path]);
+        }
+    }
+
+    // ✅ حفظ المميزات (features)
+    if ($request->has('features')) {
+        foreach ($request->features as $feature) {
+            if (!empty($feature['title'])) {
+                $service->features()->create([
+                    'title'       => $feature['title'],
+                    'icon'        => $feature['icon'] ?? null,
+                    'description' => $feature['description'] ?? null,
+                ]);
+            }
+        }
+    }
+
+    return redirect()
+        ->route('dashboard.Pag_services.index')
+        ->with('success', '✅ تم إضافة الخدمة مع الصورة الأساسية والمميزات بنجاح');
+}
+
 
 
 
@@ -105,21 +167,78 @@ class PagserviceController extends Controller
 
     //     return back()->with('success', '✅ تم تحديث الخدمة وإضافة الصور بنجاح');
     // }
-    public function update(Request $request, Pagservice $pagservice)
+//     public function update(Request $request, Pagservice $pagservice)
+// {
+//     $data = $request->validate([
+//         'title'       => 'required|string|max:255',
+//         'icon'        => 'nullable|string|max:255',
+//         'description' => 'nullable|string',
+//         'short_description' => 'nullable|string',
+//         'sort_order'  => 'nullable|integer',
+//         'images.*'    => 'nullable|image|mimes:jpg,jpeg,png,webp',
+//         'image'    => 'nullable|image|mimes:jpg,jpeg,png,webp',
+//     ]);
+
+//     // ✅ إنشاء slug جديد من العنوان
+//     $data['slug'] = Str::slug($request->title);
+
+//     // ✅ تحديث بيانات الخدمة الأساسية
+//     $pagservice->update($data);
+
+//     // ✅ حفظ الصور الجديدة (تعدد الصور)
+//     if ($request->hasFile('images')) {
+//         foreach ($request->file('images') as $file) {
+//             $path = $file->store('dashboard_files/img/pagservices', 'public_uploads');
+//             $pagservice->images()->create(['image' => $path]);
+//         }
+//     }
+//      if ($request->hasFile('image')) {
+//              $file =$request->file('image');
+//             $path = $file->store('dashboard_files/img/pagservices', 'public_uploads');
+//             $pagservice->image->create(['image' => $path]);
+
+//     }
+
+//     // ✅ حفظ المميزات الجديدة (features)
+//     if ($request->has('features')) {
+//         foreach ($request->features as $feature) {
+//             if (!empty($feature['title'])) {
+//                 $pagservice->features()->create([
+//                     'title'       => $feature['title'],
+//                     'icon'        => $feature['icon'] ?? null,
+//                     'description' => $feature['description'] ?? null,
+//                 ]);
+//             }
+//         }
+//     }
+
+//     return back()->with('success', '✅ تم تحديث الخدمة وإضافة الصور والمميزات بنجاح');
+// }
+
+
+public function update(Request $request, Pagservice $pagservice)
 {
     $data = $request->validate([
-        'title'       => 'required|string|max:255',
-        'icon'        => 'nullable|string|max:255',
-        'description' => 'nullable|string',
+        'title'             => 'required|string|max:255',
+        'icon'              => 'nullable|string|max:255',
+        'description'       => 'nullable|string',
         'short_description' => 'nullable|string',
-        'sort_order'  => 'nullable|integer',
-        'images.*'    => 'nullable|image|mimes:jpg,jpeg,png,webp',
+        'sort_order'        => 'nullable|integer',
+        'images.*'          => 'nullable|image|mimes:jpg,jpeg,png,webp',
+        'image'             => 'nullable|image|mimes:jpg,jpeg,png,webp',
     ]);
 
     // ✅ إنشاء slug جديد من العنوان
     $data['slug'] = Str::slug($request->title);
 
-    // ✅ تحديث بيانات الخدمة الأساسية
+    // ✅ رفع الصورة الأساسية وتحديثها في الجدول الرئيسي
+    if ($request->hasFile('image')) {
+        $file = $request->file('image');
+        $path = $file->store('dashboard_files/img/pagservices', 'public_uploads');
+        $data['image'] = $path; // نحفظ المسار في عمود image في نفس الجدول
+    }
+
+    // ✅ تحديث بيانات الخدمة في جدول pagservices
     $pagservice->update($data);
 
     // ✅ حفظ الصور الجديدة (تعدد الصور)
@@ -143,8 +262,9 @@ class PagserviceController extends Controller
         }
     }
 
-    return back()->with('success', '✅ تم تحديث الخدمة وإضافة الصور والمميزات بنجاح');
+    return back()->with('success', '✅ تم تحديث الخدمة بنجاح وتحديث الصورة الأساسية والمميزات');
 }
+
 
 
 

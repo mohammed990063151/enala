@@ -112,7 +112,11 @@
                     <i class="fa fa-sort-amount-down input-icon"></i>
                     <input name="sort_order" class="form-control" placeholder="مثال: 1">
                 </div>
-
+  <div class="col-md-8 mb-3">
+                    <label class="form-label"><i class="fa fa-images"></i> صور الاساسية للخدمة</label>
+                    <input type="file" name="image" class="form-control" accept="image/*">
+                    <div id="multiPreview" class="d-flex flex-wrap mt-3"></div>
+                </div>
                 <!-- رفع صور -->
                 <div class="col-md-12 mb-3">
                     <label class="form-label"><i class="fa fa-images"></i> صور إضافية للخدمة</label>
