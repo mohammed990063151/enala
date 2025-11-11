@@ -1002,10 +1002,10 @@ body {font-family:'Tajawal',sans-serif; background:#f9f9f9;}
 ">
     <div style="position:relative; z-index:2; max-width: 900px; margin:auto;">
         <h1 style="font-size: 3rem; color: #D9EF82; margin-bottom: 20px; font-weight:700;">
-            خدمات شركة <span style="color:#fff;">المضياف</span>
+            خدمات شركة <span style="color:#fff;">مضياف</span>
         </h1>
         <p style="font-size: 1.2rem; line-height: 1.9; color: #f3f3f3;">
-            في <strong>شركة المضياف</strong> نؤمن بأن الخدمة الراقية تبدأ من الاهتمام بالتفاصيل.
+            في <strong>شركة مضياف</strong> نؤمن بأن الخدمة الراقية تبدأ من الاهتمام بالتفاصيل.
             لذلك نعمل على تقديم باقة متكاملة من الحلول الزراعية والبيئية والخدمية
             تشمل <strong>تنسيق الحدائق، إدارة المشاريع الزراعية، المشاتل، مكافحة الآفات،</strong>
             بالإضافة إلى توفير <strong>المنتجات والمستلزمات الزراعية</strong> عالية الجودة.
@@ -1330,7 +1330,7 @@ body {font-family:'Tajawal',sans-serif; background:#f9f9f9;}
 ">
     <div style="position:relative; z-index:2; max-width: 900px; margin:auto;">
         <h1 style="font-size: 3rem; color: #D9EF82; margin-bottom: 20px; font-weight:700;">
-            خدمات <span style="color:#fff;">شركة المضياف</span>
+            خدمات <span style="color:#fff;">شركة مضياف</span>
         </h1>
         <p style="font-size: 1.2rem; line-height: 1.9; color: #f3f3f3;">
             نقدم مجموعة متكاملة من الحلول الزراعية والبيئية باحترافية وجودة عالية.
@@ -1616,10 +1616,10 @@ body {
 ">
     <div style="position:relative; z-index:2; max-width: 900px; margin:auto;">
         <h1 style="font-size: 3rem; color: #D9EF82; margin-bottom: 20px; font-weight:700;">
-            خدمات شركة <span style="color:#fff;">المضياف</span>
+            خدمات شركة <span style="color:#fff;">مضياف</span>
         </h1>
         <p style="font-size: 1.2rem; line-height: 1.9; color: #f3f3f3;">
-            في <strong>شركة المضياف</strong> نؤمن بأن الخدمة الراقية تبدأ من الاهتمام بالتفاصيل.
+            في <strong>شركة مضياف</strong> نؤمن بأن الخدمة الراقية تبدأ من الاهتمام بالتفاصيل.
             لذلك نعمل على تقديم باقة متكاملة من الحلول الزراعية والبيئية والخدمية
             تشمل <strong>تنسيق الحدائق، إدارة المشاريع الزراعية، المشاتل، مكافحة الآفات،</strong>
             بالإضافة إلى توفير <strong>المنتجات والمستلزمات الزراعية</strong> عالية الجودة.
@@ -1683,15 +1683,112 @@ body {
     </div>
   </div>
 </section>
+{{-- معرض الصور --}}
 
+<!-- ✅ Lightbox -->
+<div id="imageLightbox" class="lightbox">
+  <span class="close">&times;</span>
+  <img id="lightboxImg" src="" alt="عرض الصورة">
+  <button class="prev">&#10094;</button>
+  <button class="next">&#10095;</button>
+</div>
 
+<style>
+/* 💡 تصميم الـ Lightbox */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.9);
+  justify-content: center;
+  align-items: center;
+}
+.lightbox img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+  transition: transform .3s ease;
+}
+.lightbox .close {
+  position: absolute;
+  top: 20px; right: 30px;
+  color: #fff;
+  font-size: 40px;
+  cursor: pointer;
+}
+.lightbox .prev, .lightbox .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 50px;
+  font-weight: bold;
+  background: rgba(0,0,0,0.4);
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+.lightbox .prev:hover, .lightbox .next:hover {
+  background: rgba(255,255,255,0.2);
+}
+.lightbox .prev { left: 40px; }
+.lightbox .next { right: 40px; }
+</style>
 
+<script>
+const images = Array.from(document.querySelectorAll('.swiper-slide img'));
+const lightbox = document.getElementById('imageLightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const closeBtn = document.querySelector('.lightbox .close');
+const prevBtn = document.querySelector('.lightbox .prev');
+const nextBtn = document.querySelector('.lightbox .next');
 
+let currentIndex = 0;
+
+// ✅ فتح الصورة عند النقر
+images.forEach((img, index) => {
+  img.addEventListener('click', () => {
+    currentIndex = index;
+    showImage();
+    lightbox.style.display = 'flex';
+  });
+});
+
+// ✅ إغلاق عند النقر على × أو الخلفية
+closeBtn.addEventListener('click', () => lightbox.style.display = 'none');
+lightbox.addEventListener('click', e => {
+  if (e.target === lightbox) lightbox.style.display = 'none';
+});
+
+// ✅ أزرار التنقل
+prevBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  showImage();
+});
+nextBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  currentIndex = (currentIndex + 1) % images.length;
+  showImage();
+});
+
+// ✅ عرض الصورة الحالية
+function showImage() {
+  lightboxImg.src = images[currentIndex].src;
+}
+</script>
+
+{{-- نهاية معرض الصور --}}
   <div style="max-width: 900px; margin:auto;">
     <h1 style="font-size: 3rem; color: #D9EF82; margin-bottom: 20px; font-weight:700;">
-      خدمات <span style="color:#fff;">شركة المضياف</span>
+      خدمات <span >شركة مضياف</span>
     </h1>
-    <p style="font-size: 1.2rem; line-height: 1.9; color: #f3f3f3;">
+    <p style="font-size: 1.2rem; line-height: 1.9;">
       نقدم مجموعة متكاملة من الحلول الزراعية والبيئية باحترافية وجودة عالية.
     </p>
   </div>
@@ -1703,7 +1800,7 @@ body {
       @foreach($services as $index => $service)
       <div class="service-card" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
         <div class="image-box">
-          <img src="{{ asset($service->images->first()->image) }}" alt="{{ $service->title }}">
+          <img src="{{ asset($service->image) }}" alt="{{ $service->title }}">
                     {{-- @if($service->images && $service->images->count())
               <img src="{{ asset($service->images->first()->image) }}" alt="{{ $service->title }}">
           @else
