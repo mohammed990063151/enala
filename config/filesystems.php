@@ -39,11 +39,10 @@ return [
         ],
         'public_uploads' => [
             'driver' => 'local',
-            'root' => public_path(), // تخزين مباشرة داخل public_html
+            'root' => base_path('../public_html'), // مسار السيرفر اللي طلبته
             'url' => env('APP_URL'),
             'visibility' => 'public',
         ],
-
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
