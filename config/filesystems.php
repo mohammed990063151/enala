@@ -37,23 +37,17 @@ return [
             'throw' => false,
             'report' => false,
         ],
-'public_uploads' => [
-    'driver' => 'local',
-    'root' => base_path('../public_html'), // مسار السيرفر اللي طلبته
-    'url' => env('APP_URL'),
-    'visibility' => 'public',
-],
-
-
-
-
-
-
+        'public_uploads' => [
+            'driver' => 'local',
+            'root' => public_path(), // تخزين مباشرة داخل public_html
+            'url' => env('APP_URL'),
+            'visibility' => 'public',
+        ],
 
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
             'throw' => false,
             'report' => false,

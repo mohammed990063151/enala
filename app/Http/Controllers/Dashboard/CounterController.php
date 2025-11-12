@@ -14,7 +14,6 @@ class CounterController extends Controller
         $counter = Counter::first();
         return view('admin.counters.index', compact('counter'));
     }
-
     public function update(Request $request)
     {
         $data = $request->validate([

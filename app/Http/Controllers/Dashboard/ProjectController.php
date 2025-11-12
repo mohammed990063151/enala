@@ -22,123 +22,58 @@ class ProjectController extends Controller
         return view('admin.projects.create');
     }
 
-
-
-
-    // public function store(Request $request)
-    // {
-    //     $data = $request->validate([
-    //         'title'              => 'required|string|max:255',
-    //         'short_description'  => 'nullable|string',
-    //         'description'        => 'nullable|string',
-    //         'location'           => 'nullable|string|max:255',
-    //         'completion_date'    => 'nullable|date',
-    //         'image'              => 'nullable|image|max:4096',
-    //     ]);
-
-    //     // slug فريد
-    //     $data['slug'] = Str::slug($data['title'].'-'.uniqid());
-
-    //     // ✅ حفظ الصورة داخل public/dashboard_files/img/projects
-    //     if ($request->hasFile('image')) {
-    //         $file = $request->file('image');
-    //         $name = time() . '.' . $file->getClientOriginalExtension();
-
-    //         $destination = public_path('dashboard_files/img/projects');
-
-    //         // إنشاء المجلد إذا لم يكن موجود
-    //         if (!File::exists($destination)) {
-    //             File::makeDirectory($destination, 0775, true);
-    //         }
-
-    //         // نقل الملف إلى public
-    //         $file->move($destination, $name);
-
-    //         // حفظ المسار النسبي في قاعدة البيانات
-    //         $data['image'] = 'dashboard_files/img/projects/' . $name;
-    //     }
-
-    //     // إنشاء المشروع
-    //     $project = Project::create($data);
-
-    //     // ✅ صور متعددة اختيارية (معرض الصور)
-    //     if ($request->hasFile('gallery')) {
-    //         $galleryPath = public_path('dashboard_files/img/projects/gallery');
-
-    //         if (!File::exists($galleryPath)) {
-    //             File::makeDirectory($galleryPath, 0775, true);
-    //         }
-
-    //         foreach ($request->file('gallery') as $i => $file) {
-    //             $gName = time() . '_' . $i . '.' . $file->getClientOriginalExtension();
-    //             $file->move($galleryPath, $gName);
-
-    //             ProjectImage::create([
-    //                 'project_id' => $project->id,
-    //                 'image'      => 'dashboard_files/img/projects/gallery/' . $gName,
-    //                 'sort_order' => $i,
-    //             ]);
-    //         }
-    //     }
-
-    //     // ✅ ميزات المشروع (اختيارية)
-    //     if ($request->filled('features')) {
-    //         foreach ($request->features as $i => $feature) {
-    //             if (blank($feature['title'] ?? null)) continue;
-    //             ProjectFeature::create([
-    //                 'project_id'  => $project->id,
-    //                 'icon'        => $feature['icon'] ?? null,
-    //                 'title'       => $feature['title'],
-    //                 'description' => $feature['description'] ?? null,
-    //                 'sort_order'  => $i,
-    //             ]);
-    //         }
-    //     }
-
-    //     return redirect()
-    //         ->route('dashboard.projects.index')
-    //         ->with('success', '✅ تم إنشاء المشروع وحفظ الصور في public بنجاح');
-    // }
-
-
-
-    public function store(Request $request)
+     public function store(Request $request)
     {
         $data = $request->validate([
-            'title'              => 'required|string|max:255',
-            'short_description'  => 'nullable|string',
-            'description'        => 'nullable|string',
-            'location'           => 'nullable|string|max:255',
-            'completion_date'    => 'nullable|date',
-            'image'              => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+            'title'             => 'required|string|max:255',
+            'short_description' => 'nullable|string',
+            'description'       => 'nullable|string',
+            'location'          => 'nullable|string|max:255',
+            'completion_date'   => 'nullable|date',
+            'image'             => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
         ]);
 
-        // ✅ slug فريد
+        // Slug فريد
         $data['slug'] = Str::slug($data['title'] . '-' . uniqid());
 
-        // ✅ رفع الصورة الأساسية داخل public_html/dashboard_files/img/projects
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $path = $file->store('dashboard_files/img/projects', 'public_uploads');
-            $data['image'] = $path; // نحفظ المسار النسبي
+        // مجلد الحفظ داخل public_html
+        $uploadPath = public_path('dashboard_files/img/projects');
+
+        if (!File::exists($uploadPath)) {
+            File::makeDirectory($uploadPath, 0775, true);
         }
 
-        // ✅ إنشاء المشروع
+        // حفظ الصورة الرئيسية
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move($uploadPath, $filename);
+            $data['image'] = 'dashboard_files/img/projects/' . $filename;
+        }
+
+        // إنشاء المشروع
         $project = Project::create($data);
 
-        // ✅ رفع صور المعرض (تعدد الصور)
+        // حفظ صور المعرض
         if ($request->hasFile('gallery')) {
+            $galleryPath = public_path('dashboard_files/img/projects/gallery');
+            if (!File::exists($galleryPath)) {
+                File::makeDirectory($galleryPath, 0775, true);
+            }
+
             foreach ($request->file('gallery') as $i => $file) {
-                $path = $file->store('dashboard_files/img/projects/gallery', 'public_uploads');
+                $gName = time() . '_' . $i . '.' . $file->getClientOriginalExtension();
+                $file->move($galleryPath, $gName);
+
                 $project->images()->create([
-                    'image'      => $path,
+                    'image'      => 'dashboard_files/img/projects/gallery/' . $gName,
                     'sort_order' => $i,
                 ]);
             }
         }
 
-        // ✅ ميزات المشروع (features)
-        if ($request->has('features')) {
+        // حفظ الميزات
+        if ($request->filled('features')) {
             foreach ($request->features as $i => $feature) {
                 if (!empty($feature['title'])) {
                     $project->features()->create([
@@ -151,9 +86,8 @@ class ProjectController extends Controller
             }
         }
 
-        return redirect()
-            ->route('dashboard.projects.index')
-            ->with('success', '✅ تم إضافة المشروع والصور بنجاح داخل public_html');
+        return redirect()->route('dashboard.projects.index')
+            ->with('success', '✅ تم حفظ المشروع والصور داخل public_html بنجاح');
     }
 
 
@@ -168,133 +102,6 @@ class ProjectController extends Controller
         return view('admin.projects.edit', compact('project'));
     }
 
-    // public function update(Request $request, Project $project)
-    // {
-    //     $data = $request->validate([
-    //         'title'           => 'required|string|max:255',
-    //         'description'     => 'nullable|string',
-    //         'location'        => 'nullable|string|max:255',
-    //         'completion_date' => 'nullable|date',
-    //         'image'           => 'nullable|image|max:4096',
-    //     ]);
-
-    //     if ($request->hasFile('image')) {
-    //         if($project->image) Storage::disk('public')->delete($project->image);
-    //         $data['image'] = $request->file('image')->store('projects/main','public');
-    //     }
-
-    //     // slug لا نغيره إلا إذا طلبت
-    //     $project->update($data);
-
-    //     // تحديث/إضافة ميزات
-    //     if ($request->filled('features')) {
-    //         // strategy: احذف وأعد الإدخال (أبسط)
-    //         $project->features()->delete();
-    //         foreach ($request->features as $i => $feature) {
-    //             if (blank($feature['title'] ?? null)) continue;
-    //             $project->features()->create([
-    //                 'icon'        => $feature['icon'] ?? null,
-    //                 'title'       => $feature['title'],
-    //                 'description' => $feature['description'] ?? null,
-    //                 'sort_order'  => $i,
-    //             ]);
-    //         }
-    //     }
-
-    //     // إضافة صور جديدة للمعرض (إن وُجدت)
-    //     if ($request->hasFile('gallery')) {
-    //         foreach ($request->file('gallery') as $i => $file) {
-    //             $path = $file->store('projects/gallery','public');
-    //             $project->images()->create([
-    //                 'image' => $path,
-    //                 'sort_order' => $project->images()->count() + $i,
-    //             ]);
-    //         }
-    //     }
-
-    //     return back()->with('success','تم تحديث المشروع بنجاح');
-    // }
-
-
-    // public function update(Request $request, Project $project)
-    // {
-    //     $data = $request->validate([
-    //         'title'              => 'required|string|max:255',
-    //         'short_description'  => 'nullable|string',
-    //         'description'        => 'nullable|string',
-    //         'location'           => 'nullable|string|max:255',
-    //         'completion_date'    => 'nullable|date',
-    //         'image'              => 'nullable|image|max:4096',
-    //     ]);
-
-    //     // ✅ تحديث الصورة داخل public/dashboard_files/img/projects
-    //     if ($request->hasFile('image')) {
-
-    //         // حذف الصورة القديمة إن وُجدت
-    //         if ($project->image && file_exists(public_path($project->image))) {
-    //             unlink(public_path($project->image));
-    //         }
-
-    //         // مسار الحفظ
-    //         $file = $request->file('image');
-    //         $filename = time() . '.' . $file->getClientOriginalExtension();
-
-    //         $destination = public_path('dashboard_files/img/projects');
-
-    //         // إنشاء المجلد إذا لم يكن موجود
-    //         if (!File::exists($destination)) {
-    //             File::makeDirectory($destination, 0775, true);
-    //         }
-
-    //         // نقل الصورة الجديدة
-    //         $file->move($destination, $filename);
-
-    //         // حفظ المسار الجديد في قاعدة البيانات
-    //         $data['image'] = 'dashboard_files/img/projects/' . $filename;
-    //     }
-
-    //     // ✅ تحديث بيانات المشروع
-    //     $project->update($data);
-
-    //     // ✅ تحديث الميزات (اختياري)
-    //     if ($request->filled('features')) {
-    //         // نحذف القديمة لإعادة إنشائها
-    //         $project->features()->delete();
-
-    //         foreach ($request->features as $i => $feature) {
-    //             if (blank($feature['title'] ?? null)) continue;
-
-    //             $project->features()->create([
-    //                 'icon'        => $feature['icon'] ?? null,
-    //                 'title'       => $feature['title'],
-    //                 'description' => $feature['description'] ?? null,
-    //                 'sort_order'  => $i,
-    //             ]);
-    //         }
-    //     }
-
-    //     // ✅ تحديث معرض الصور (اختياري)
-    //     if ($request->hasFile('gallery')) {
-    //         $galleryPath = public_path('dashboard_files/img/projects/gallery');
-
-    //         if (!File::exists($galleryPath)) {
-    //             File::makeDirectory($galleryPath, 0775, true);
-    //         }
-
-    //         foreach ($request->file('gallery') as $i => $file) {
-    //             $gName = time() . '_' . $i . '.' . $file->getClientOriginalExtension();
-    //             $file->move($galleryPath, $gName);
-
-    //             $project->images()->create([
-    //                 'image'       => 'dashboard_files/img/projects/gallery/' . $gName,
-    //                 'sort_order'  => $project->images()->count() + $i,
-    //             ]);
-    //         }
-    //     }
-
-    //     return back()->with('success', '✅ تم تحديث المشروع والصورة بنجاح');
-    // }
-
 
     public function update(Request $request, Project $project)
     {
@@ -307,87 +114,65 @@ class ProjectController extends Controller
             'image'             => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
         ]);
 
-        // ✅ تحديث slug إذا تغيّر العنوان
+        // تحديث الـ slug إذا تغير العنوان
         if ($project->title !== $request->title) {
             $data['slug'] = Str::slug($request->title . '-' . uniqid());
         }
 
-        // 🟢 تحديد مسار الحفظ داخل public_html
-        $uploadRoot = base_path('public_html/dashboard_files/img/projects');
+        $uploadPath = public_path('dashboard_files/img/projects');
 
-        // إنشاء المجلد إذا لم يكن موجود
-        if (!File::exists($uploadRoot)) {
-            File::makeDirectory($uploadRoot, 0775, true);
+        if (!File::exists($uploadPath)) {
+            File::makeDirectory($uploadPath, 0775, true);
         }
 
-        // ✅ تحديث الصورة الرئيسية
+        // تحديث الصورة الرئيسية
         if ($request->hasFile('image')) {
-
-            // حذف الصورة القديمة إن وُجدت
             if ($project->image && file_exists(public_path($project->image))) {
-                unlink(public_path($project->image));
+                @unlink(public_path($project->image));
             }
 
-            // مسار الحفظ
             $file = $request->file('image');
             $filename = time() . '.' . $file->getClientOriginalExtension();
-
-            $destination = public_path('dashboard_files/img/projects');
-
-            // إنشاء المجلد إذا لم يكن موجود
-            if (!File::exists($destination)) {
-                File::makeDirectory($destination, 0775, true);
-            }
-
-            // نقل الصورة الجديدة
-            $file->move($destination, $filename);
-
-            // حفظ المسار الجديد في قاعدة البيانات
+            $file->move($uploadPath, $filename);
             $data['image'] = 'dashboard_files/img/projects/' . $filename;
         }
-        // ✅ تحديث بيانات المشروع
+
         $project->update($data);
 
-        // ✅ تحديث المميزات (features)
+        // تحديث الميزات
         if ($request->filled('features')) {
             $project->features()->delete();
-
             foreach ($request->features as $i => $feature) {
-                if (blank($feature['title'] ?? null)) continue;
-
-                $project->features()->create([
-                    'icon'        => $feature['icon'] ?? null,
-                    'title'       => $feature['title'],
-                    'description' => $feature['description'] ?? null,
-                    'sort_order'  => $i,
-                ]);
+                if (!empty($feature['title'])) {
+                    $project->features()->create([
+                        'title'       => $feature['title'],
+                        'icon'        => $feature['icon'] ?? null,
+                        'description' => $feature['description'] ?? null,
+                        'sort_order'  => $i,
+                    ]);
+                }
             }
         }
 
-        // ✅ رفع صور جديدة للمعرض (gallery)
+        // إضافة صور جديدة للمعرض
         if ($request->hasFile('gallery')) {
-            $galleryPath = $uploadRoot . '/gallery';
-
+            $galleryPath = public_path('dashboard_files/img/projects/gallery');
             if (!File::exists($galleryPath)) {
                 File::makeDirectory($galleryPath, 0775, true);
             }
 
             foreach ($request->file('gallery') as $i => $file) {
                 $gName = time() . '_' . $i . '.' . $file->getClientOriginalExtension();
+                $file->move($galleryPath, $gName);
 
-                try {
-                    $file->move($galleryPath, $gName);
-                    $project->images()->create([
-                        'image'      => 'dashboard_files/img/projects/gallery/' . $gName,
-                        'sort_order' => $project->images()->count() + $i,
-                    ]);
-                } catch (\Exception $e) {
-                    continue;
-                }
+                $project->images()->create([
+                    'image'      => 'dashboard_files/img/projects/gallery/' . $gName,
+                    'sort_order' => $project->images()->count() + $i,
+                ]);
             }
         }
 
-        return back()->with('success', '✅ تم تحديث المشروع والصور بنجاح داخل public_html');
+        return back()->with('success', '✅ تم تحديث المشروع والصور داخل public_html بنجاح');
     }
 
 
@@ -494,94 +279,3 @@ class ProjectController extends Controller
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-// use App\Http\Controllers\Controller;
-// use Illuminate\Http\Request;
-// use App\Models\Project;
-// use Illuminate\Support\Str;
-// use Illuminate\Support\Facades\Storage;
-
-// class ProjectController extends Controller
-// {
-//     public function index()
-//     {
-//         $projects = Project::latest()->paginate(10);
-//         return view('admin.projects.index', compact('projects'));
-//     }
-
-//     public function create()
-//     {
-//         return view('admin.projects.create');
-//     }
-
-//     public function store(Request $request)
-//     {
-//         $data = $request->validate([
-//             'title' => 'required|string|max:255',
-//             'description' => 'nullable|string',
-//             'location' => 'nullable|string|max:255',
-//             'completion_date' => 'nullable|date',
-//             'image' => 'nullable|image|max:2048',
-//         ]);
-
-//         if ($request->hasFile('image')) {
-//             $file = $request->file('image');
-//             $name = time() . '.' . $file->getClientOriginalExtension();
-//             $data['image'] = $file->storeAs('dashboard_files/img/projects', $name, 'public_uploads');
-//         }
-
-//         $data['slug'] = Str::slug($data['title'], '-');
-
-//         Project::create($data);
-//         return redirect()->route('dashboard.projects.index')->with('success', 'تم إضافة المشروع بنجاح ✅');
-//     }
-
-//     public function edit(Project $project)
-//     {
-//         return view('admin.projects.edit', compact('project'));
-//     }
-
-//     public function update(Request $request, Project $project)
-//     {
-//         $data = $request->validate([
-//             'title' => 'required|string|max:255',
-//             'description' => 'nullable|string',
-//             'location' => 'nullable|string|max:255',
-//             'completion_date' => 'nullable|date',
-//             'image' => 'nullable|image|max:2048',
-//         ]);
-
-//         if ($request->hasFile('image')) {
-//             if ($project->image && Storage::disk('public_uploads')->exists($project->image)) {
-//                 Storage::disk('public_uploads')->delete($project->image);
-//             }
-//             $file = $request->file('image');
-//             $name = time() . '.' . $file->getClientOriginalExtension();
-//             $data['image'] = $file->storeAs('dashboard_files/img/projects', $name, 'public_uploads');
-//         }
-
-//         $data['slug'] = Str::slug($data['title'], '-');
-//         $project->update($data);
-
-//         return redirect()->route('dashboard.projects.index')->with('success', 'تم تحديث المشروع ✅');
-//     }
-
-//     public function destroy(Project $project)
-//     {
-//         if ($project->image && Storage::disk('public_uploads')->exists($project->image)) {
-//             Storage::disk('public_uploads')->delete($project->image);
-//         }
-
-//         $project->delete();
-//         return back()->with('success', 'تم حذف المشروع 🗑️');
-//     }
-// } -->
