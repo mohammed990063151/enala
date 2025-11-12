@@ -44,33 +44,44 @@ class ProjectController extends Controller
         }
 
         // حفظ الصورة الرئيسية
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move($uploadPath, $filename);
-            $data['image'] = 'dashboard_files/img/projects/' . $filename;
-        }
+        // if ($request->hasFile('image')) {
+        //     $file = $request->file('image');
+        //     $filename = time() . '.' . $file->getClientOriginalExtension();
+        //     $file->move($uploadPath, $filename);
+        //     $data['image'] = 'dashboard_files/img/projects/' . $filename;
+        // }
+           if ($request->hasFile('image')) {
+        $file = $request->file('image');
+        $path = $file->store('dashboard_files/img/projects', 'public_uploads');
+        $data['image'] = $path; // حفظ المسار داخل الجدول الرئيسي
+    }
 
         // إنشاء المشروع
         $project = Project::create($data);
 
         // حفظ صور المعرض
-        if ($request->hasFile('gallery')) {
-            $galleryPath = public_path('dashboard_files/img/projects/gallery');
-            if (!File::exists($galleryPath)) {
-                File::makeDirectory($galleryPath, 0775, true);
-            }
+        // if ($request->hasFile('gallery')) {
+        //     $galleryPath = public_path('dashboard_files/img/projects/gallery');
+        //     if (!File::exists($galleryPath)) {
+        //         File::makeDirectory($galleryPath, 0775, true);
+        //     }
 
-            foreach ($request->file('gallery') as $i => $file) {
-                $gName = time() . '_' . $i . '.' . $file->getClientOriginalExtension();
-                $file->move($galleryPath, $gName);
+        //     foreach ($request->file('gallery') as $i => $file) {
+        //         $gName = time() . '_' . $i . '.' . $file->getClientOriginalExtension();
+        //         $file->move($galleryPath, $gName);
 
-                $project->images()->create([
-                    'image'      => 'dashboard_files/img/projects/gallery/' . $gName,
-                    'sort_order' => $i,
-                ]);
-            }
+        //         $project->images()->create([
+        //             'image'      => 'dashboard_files/img/projects/gallery/' . $gName,
+        //             'sort_order' => $i,
+        //         ]);
+        //     }
+        // }
+         if ($request->hasFile('gallery')) {
+        foreach ($request->file('gallery') as $file) {
+            $path = $file->store('dashboard_files/img/projects/gallery', 'public_uploads');
+            $project->images()->create(['image' => $path]);
         }
+    }
 
         // حفظ الميزات
         if ($request->filled('features')) {
@@ -122,7 +133,7 @@ class ProjectController extends Controller
         }
  if ($request->hasFile('image')) {
         $file = $request->file('image');
-        $path = $file->store('dashboard_files/img/pagservices', 'public_uploads');
+        $path = $file->store('dashboard_files/img/project', 'public_uploads');
         $data['image'] = $path; // نحفظ المسار في عمود image في نفس الجدول
     }
         $uploadPath = public_path('dashboard_files/img/projects');
@@ -131,18 +142,6 @@ class ProjectController extends Controller
             File::makeDirectory($uploadPath, 0775, true);
         }
 
-        // تحديث الصورة الرئيسية
-        // if ($request->hasFile('image')) {
-        //     if ($project->image && file_exists(public_path($project->image))) {
-        //         @unlink(public_path($project->image));
-        //     }
-
-
-        //     $file = $request->file('image');
-        //     $filename = time() . '.' . $file->getClientOriginalExtension();
-        //     $file->move($uploadPath, $filename);
-        //     $data['image'] = 'dashboard_files/img/projects/' . $filename;
-        // }
 
         $project->update($data);
 
@@ -160,27 +159,9 @@ class ProjectController extends Controller
                 }
             }
         }
-
-        // إضافة صور جديدة للمعرض
-        // if ($request->hasFile('gallery')) {
-        //     $galleryPath = public_path('dashboard_files/img/projects/gallery');
-        //     if (!File::exists($galleryPath)) {
-        //         File::makeDirectory($galleryPath, 0775, true);
-        //     }
-
-        //     foreach ($request->file('gallery') as $i => $file) {
-        //         $gName = time() . '_' . $i . '.' . $file->getClientOriginalExtension();
-        //         $file->move($galleryPath, $gName);
-
-        //         $project->images()->create([
-        //             'image'      => 'dashboard_files/img/projects/gallery/' . $gName,
-        //             'sort_order' => $project->images()->count() + $i,
-        //         ]);
-        //     }
-        // }
          if ($request->hasFile('gallery')) {
         foreach ($request->file('gallery') as $file) {
-            $path = $file->store('dashboard_files/img/pagservices', 'public_uploads');
+            $path = $file->store('dashboard_files/img/project', 'public_uploads');
             $project->images()->create(['image' => $path]);
         }
     }
