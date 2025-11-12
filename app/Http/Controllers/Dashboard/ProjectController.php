@@ -105,6 +105,7 @@ class ProjectController extends Controller
 
     public function update(Request $request, Project $project)
     {
+        // return $request->all();
         $data = $request->validate([
             'title'             => 'required|string|max:255',
             'short_description' => 'nullable|string',
@@ -112,6 +113,7 @@ class ProjectController extends Controller
             'location'          => 'nullable|string|max:255',
             'completion_date'   => 'nullable|date',
             'image'             => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+            'gallery.*'          => 'nullable|image|mimes:jpg,jpeg,png,webp',
         ]);
 
         // تحديث الـ slug إذا تغير العنوان
@@ -160,22 +162,29 @@ class ProjectController extends Controller
         }
 
         // إضافة صور جديدة للمعرض
-        if ($request->hasFile('gallery')) {
-            $galleryPath = public_path('dashboard_files/img/projects/gallery');
-            if (!File::exists($galleryPath)) {
-                File::makeDirectory($galleryPath, 0775, true);
-            }
+        // if ($request->hasFile('gallery')) {
+        //     $galleryPath = public_path('dashboard_files/img/projects/gallery');
+        //     if (!File::exists($galleryPath)) {
+        //         File::makeDirectory($galleryPath, 0775, true);
+        //     }
 
-            foreach ($request->file('gallery') as $i => $file) {
-                $gName = time() . '_' . $i . '.' . $file->getClientOriginalExtension();
-                $file->move($galleryPath, $gName);
+        //     foreach ($request->file('gallery') as $i => $file) {
+        //         $gName = time() . '_' . $i . '.' . $file->getClientOriginalExtension();
+        //         $file->move($galleryPath, $gName);
 
-                $project->images()->create([
-                    'image'      => 'dashboard_files/img/projects/gallery/' . $gName,
-                    'sort_order' => $project->images()->count() + $i,
-                ]);
-            }
+        //         $project->images()->create([
+        //             'image'      => 'dashboard_files/img/projects/gallery/' . $gName,
+        //             'sort_order' => $project->images()->count() + $i,
+        //         ]);
+        //     }
+        // }
+         if ($request->hasFile('gallery')) {
+        foreach ($request->file('gallery') as $file) {
+            $path = $file->store('dashboard_files/img/pagservices', 'public_uploads');
+            $project->images()->create(['image' => $path]);
         }
+    }
+
 
         return back()->with('success', '✅ تم تحديث المشروع والصور داخل public_html بنجاح');
     }
