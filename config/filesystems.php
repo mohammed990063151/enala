@@ -43,6 +43,17 @@ return [
 //     'url' => env('APP_URL'),
 //     'visibility' => 'public',
 // ],
+'disks' => [
+
+    'public_uploads' => [
+        'driver' => 'local',
+        'root' => base_path('public_html'), // ✅ هذا يوجّه التخزين مباشرة إلى public_html
+        'url' => env('APP_URL'),
+        'visibility' => 'public',
+    ],
+
+],
+
 
 'public_uploads' => [
     'driver' => 'local',
