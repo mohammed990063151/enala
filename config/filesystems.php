@@ -9,7 +9,8 @@ return [
         // 🗂️ التخزين المحلي (للاستخدام الافتراضي)
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app/private'),
+            // 'root' => storage_path('app/private'),
+            'root' => base_path('public_html'),
             'serve' => true,
             'throw' => false,
             'report' => false,
