@@ -118,7 +118,11 @@ class ProjectController extends Controller
         if ($project->title !== $request->title) {
             $data['slug'] = Str::slug($request->title . '-' . uniqid());
         }
-
+ if ($request->hasFile('image')) {
+        $file = $request->file('image');
+        $path = $file->store('dashboard_files/img/pagservices', 'public_uploads');
+        $data['image'] = $path; // نحفظ المسار في عمود image في نفس الجدول
+    }
         $uploadPath = public_path('dashboard_files/img/projects');
 
         if (!File::exists($uploadPath)) {
@@ -126,16 +130,17 @@ class ProjectController extends Controller
         }
 
         // تحديث الصورة الرئيسية
-        if ($request->hasFile('image')) {
-            if ($project->image && file_exists(public_path($project->image))) {
-                @unlink(public_path($project->image));
-            }
+        // if ($request->hasFile('image')) {
+        //     if ($project->image && file_exists(public_path($project->image))) {
+        //         @unlink(public_path($project->image));
+        //     }
 
-            $file = $request->file('image');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move($uploadPath, $filename);
-            $data['image'] = 'dashboard_files/img/projects/' . $filename;
-        }
+
+        //     $file = $request->file('image');
+        //     $filename = time() . '.' . $file->getClientOriginalExtension();
+        //     $file->move($uploadPath, $filename);
+        //     $data['image'] = 'dashboard_files/img/projects/' . $filename;
+        // }
 
         $project->update($data);
 
