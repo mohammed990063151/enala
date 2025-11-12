@@ -634,7 +634,7 @@
                                                                                                        <li
                                                                                                            class="elementor-icon-list-item">
                                                                                                            <a
-                                                                                                               href="{{ route('testimonials') }}">
+                                                                                                               href="{{ route('projects.items') }}">
 
                                                                                                                <span
                                                                                                                    class="elementor-icon-list-text"> اراء النزلاء</span>

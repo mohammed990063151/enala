@@ -117,3 +117,48 @@
 </section>
 </div>
 @endsection
+{{-- @extends('admin.layouts.dashboard.app')
+@section('title','المشاريع')
+@section('content')
+<div class="content-wrapper">
+  <section class="content-header d-flex justify-content-between align-items-center">
+    <h2 class="page-title"><i class="fa fa-folder-open"></i> المشاريع</h2>
+    <a href="{{ route('dashboard.projects.create') }}" class="btn btn-success">
+      <i class="fa fa-plus"></i> مشروع جديد
+    </a>
+  </section>
+
+  <section class="content">
+    <div class="container">
+      <div class="card p-3">
+        <table class="table table-striped text-center align-middle">
+          <thead>
+            <tr>
+              <th>#</th><th>العنوان</th><th>الموقع</th><th>تاريخ الإنجاز</th><th>عرض</th><th>تحكم</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach($projects as $p)
+              <tr>
+                <td>{{ $p->id }}</td>
+                <td>{{ $p->title }}</td>
+                <td>{{ $p->location ?? '-' }}</td>
+                <td>{{ $p->completion_date ?? '-' }}</td>
+                <td><a class="btn btn-sm btn-primary" target="_blank" href="{{ route('testimonials',$p->slug) }}">فتح</a></td>
+                <td>
+                  <a href="{{ route('dashboard.projects.edit',$p->id) }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+                  <form action="{{ route('dashboard.projects.destroy',$p->id) }}" method="POST" class="d-inline" onsubmit="return confirm('حذف؟')">
+                    @csrf @method('DELETE')
+                    <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                  </form>
+                </td>
+              </tr>
+            @endforeach
+          </tbody>
+        </table>
+        {{ $projects->links() }}
+      </div>
+    </div>
+  </section>
+</div>
+@endsection --}}

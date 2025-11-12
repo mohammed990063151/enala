@@ -213,7 +213,7 @@
                                                                                      data-text="%1$s">الرئيسية</span></a>
                                                                          </li>
                                                                          <li>
-                                                                             <a href="{{ route('testimonials') }}"
+                                                                             <a href="{{ route('projects.items') }}"
                                                                                  aria-current="page"><span
                                                                                      data-text="%1$s">مشاريعنا
                                                                                      </span></a>
@@ -323,7 +323,7 @@
                                                                                      data-text="%1$s">الرئيسية</span></a>
                                                                          </li>
                                                                          <li>
-                                                                             <a href="{{ route('testimonials') }}"
+                                                                             <a href="{{ route('projects.items') }}"
                                                                                  aria-current="page"><span
                                                                                      data-text="%1$s">مشاريعنا
                                                                                      </span></a>

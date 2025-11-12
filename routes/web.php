@@ -22,6 +22,8 @@ use App\Http\Controllers\Dashboard\TestimonialController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\PagContactController;
 use App\Models\Service;
+use App\Http\Controllers\Dashboard\ProjectController as AdminProjectController;
+use App\Http\Controllers\Frontend\ProjectController as FrontProjectController;
 Route::get('/custom-login', function() {
     return view('auth.custom-login');
 })->name('custom-login');
@@ -212,15 +214,43 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
     Route::put('Pag_services/features/{id}', [PagServiceController::class, 'updateFeature'])
         ->name('Pag_services.features.update');
 
-Route::resource('projects', App\Http\Controllers\Dashboard\ProjectController::class);
+// Route::resource('projects', App\Http\Controllers\Dashboard\ProjectController::class);
 });
 
 Route::get('/projects_items', function () {
     // $items = App\Models\Testimonial::latest()->get();
-    $projects = App\Models\Project::latest()->get();
-    return view('frontend.guests-reviews', compact('projects'));
-})->name('testimonials');
+    $projects = App\Models\Project::with('images')->latest()->get();
+return view('frontend.guests-reviews', compact('projects'));
+
+    // return view('frontend.guests-reviews', compact('projects'));
+})->name('projects.items');
 // Route::get('/projects', [App\Http\Controllers\Dashboard\ProjectController::class, 'index'])->name('projects.index');
 
+// routes/web.php
+
+// ===== Dashboard (Admin) =====
+
+
+Route::prefix('dashboard')->name('dashboard.')->middleware(['auth'])->group(function(){
+    Route::resource('projects', AdminProjectController::class);
+    // رفع صور إضافية وحذفها
+    Route::post('projects/{project}/images', [AdminProjectController::class,'storeImages'])->name('projects.images.store');
+    Route::delete('projects/{project}/images/{image}', [AdminProjectController::class,'destroyImage'])->name('projects.images.destroy');
+
+    // مميّزات
+    Route::post('projects/{project}/features', [AdminProjectController::class,'storeFeature'])->name('projects.features.store');
+    Route::delete('projects/{project}/features/{feature}', [AdminProjectController::class,'destroyFeature'])->name('projects.features.destroy');
+    // حذف صورة من مشروع عبر AJAX
+Route::delete('projects/{project}/images/{image}', [\App\Http\Controllers\Dashboard\ProjectController::class, 'ajaxDestroyImage'])
+    ->name('projects.images.destroy');
+Route::put('projects/features/{feature}', [\App\Http\Controllers\Dashboard\ProjectController::class, 'updateFeature'])
+    ->name('projects.features.update');
+
+});
+
+// ===== Frontend =====
+
+
+Route::get('/projects/{slug}', [FrontProjectController::class,'show'])->name('testimonials');
 
 
