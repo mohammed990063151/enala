@@ -102,9 +102,6 @@ class ProjectController extends Controller
 //         ->with('success', '✅ تم إنشاء المشروع وحفظ الصور في public بنجاح');
 // }
 
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 
 public function store(Request $request)
 {
