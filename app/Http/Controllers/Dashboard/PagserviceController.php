@@ -78,8 +78,61 @@ class PagserviceController extends Controller
     // }
 
 
+
 public function store(Request $request)
 {
+    $data = $request->validate([
+        'title'              => 'required|string|max:255',
+        'short_description'  => 'nullable|string',
+        'description'        => 'nullable|string',
+        'location'           => 'nullable|string|max:255',
+        'completion_date'    => 'nullable|date',
+        'image'              => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+        'gallery.*'          => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+    ]);
+
+    // 🟢 slug فريد
+    $data['slug'] = Str::slug($data['title'] . '-' . uniqid());
+
+    // ✅ رفع الصورة الأساسية بنفس أسلوب Pagservice
+    if ($request->hasFile('image')) {
+        $file = $request->file('image');
+        $path = $file->store('dashboard_files/img/projects', 'public_uploads');
+        $data['image'] = $path;
+    }
+
+    // 🏗️ إنشاء المشروع
+    $project = Project::create($data);
+
+    // ✅ رفع صور المعرض بنفس المنهج (Gallery)
+    if ($request->hasFile('gallery')) {
+        foreach ($request->file('gallery') as $i => $file) {
+            $path = $file->store('dashboard_files/img/projects/gallery', 'public_uploads');
+            $project->images()->create([
+                'image'      => $path,
+                'sort_order' => $i,
+            ]);
+        }
+    }
+
+    // ✅ المميزات (features)
+    if ($request->filled('features')) {
+        foreach ($request->features as $i => $feature) {
+            if (blank($feature['title'] ?? null)) continue;
+            $project->features()->create([
+                'icon'        => $feature['icon'] ?? null,
+                'title'       => $feature['title'],
+                'description' => $feature['description'] ?? null,
+                'sort_order'  => $i,
+            ]);
+        }
+    }
+
+    return redirect()
+        ->route('dashboard.projects.index')
+        ->with('success', '✅ تم إنشاء المشروع ورفع الصور بنجاح باستخدام نفس نظام التخزين.');
+}
+
     $data = $request->validate([
         'title'             => 'required|string|max:255',
         'icon'              => 'nullable|string|max:255',

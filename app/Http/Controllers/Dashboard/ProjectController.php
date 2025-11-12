@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
+
 class ProjectController extends Controller
 {
     public function index()
@@ -103,6 +104,7 @@ class ProjectController extends Controller
 // }
 
 
+
 public function store(Request $request)
 {
     $data = $request->validate([
@@ -114,60 +116,59 @@ public function store(Request $request)
         'image'              => 'nullable|image|max:4096',
     ]);
 
-    $data['slug'] = Str::slug($data['title'].'-'.uniqid());
+    // ✅ توليد slug فريد
+    $data['slug'] = Str::slug($data['title'] . '-' . uniqid());
 
-    // 📁 المسار الآمن في السيرفر
-    $relativePath = 'dashboard_files/img/projects';
-    $destination = public_path($relativePath);
+    // 🟢 تحديد المسار داخل public_html (جذر السيرفر)
+    $basePath = base_path('public_html/dashboard_files/img/projects');
 
-    // ✅ تأكد من وجود المجلد وإنشائه
-    if (!File::exists($destination)) {
-        File::makeDirectory($destination, 0775, true, true);
+    // إنشاء المجلد إذا لم يكن موجود
+    if (!File::exists($basePath)) {
+        File::makeDirectory($basePath, 0775, true);
     }
 
-    // ✅ معالجة الصورة الرئيسية
+    // ✅ رفع الصورة الرئيسية
     if ($request->hasFile('image')) {
         $file = $request->file('image');
         $fileName = time() . '.' . $file->getClientOriginalExtension();
 
         try {
-            $file->move($destination, $fileName);
-            $data['image'] = "$relativePath/$fileName";
+            $file->move($basePath, $fileName);
+            // نحفظ المسار بالنسبة للرابط (وليس لمسار السيرفر)
+            $data['image'] = 'dashboard_files/img/projects/' . $fileName;
         } catch (\Exception $e) {
-            return back()->withErrors(['image' => '❌ فشل رفع الصورة: '.$e->getMessage()]);
+            return back()->withErrors(['image' => '❌ فشل رفع الصورة: ' . $e->getMessage()]);
         }
     }
 
-    // 🏗️ إنشاء المشروع
+    // إنشاء المشروع
     $project = Project::create($data);
 
-    // ✅ رفع صور المعرض
+    // ✅ رفع صور المعرض (gallery)
     if ($request->hasFile('gallery')) {
-        $galleryRelativePath = 'dashboard_files/img/projects/gallery';
-        $galleryDestination = public_path($galleryRelativePath);
+        $galleryPath = base_path('public_html/dashboard_files/img/projects/gallery');
 
-        if (!File::exists($galleryDestination)) {
-            File::makeDirectory($galleryDestination, 0775, true, true);
+        if (!File::exists($galleryPath)) {
+            File::makeDirectory($galleryPath, 0775, true);
         }
 
         foreach ($request->file('gallery') as $i => $file) {
             $gName = time() . '_' . $i . '.' . $file->getClientOriginalExtension();
-
             try {
-                $file->move($galleryDestination, $gName);
+                $file->move($galleryPath, $gName);
             } catch (\Exception $e) {
-                continue; // تجاهل الصورة التالفة ولا توقف العملية
+                continue;
             }
 
             ProjectImage::create([
                 'project_id' => $project->id,
-                'image'      => "$galleryRelativePath/$gName",
+                'image'      => 'dashboard_files/img/projects/gallery/' . $gName,
                 'sort_order' => $i,
             ]);
         }
     }
 
-    // ✅ المميزات
+    // ✅ ميزات المشروع
     if ($request->filled('features')) {
         foreach ($request->features as $i => $feature) {
             if (blank($feature['title'] ?? null)) continue;
@@ -184,7 +185,7 @@ public function store(Request $request)
 
     return redirect()
         ->route('dashboard.projects.index')
-        ->with('success', '✅ تم إنشاء المشروع ورفع الصور بنجاح.');
+        ->with('success', '✅ تم إنشاء المشروع ورفع الصور إلى public_html بنجاح');
 }
 
 
