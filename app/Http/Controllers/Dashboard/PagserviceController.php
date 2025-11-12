@@ -1,13 +1,17 @@
 <?php
+
 namespace App\Http\Controllers\Dashboard;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
+// namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\Pagservice;
 use Illuminate\Support\Facades\Storage;
 use App\Models\ServiceImage;
 use App\Models\ServiceFeature;
-use App\Models\Project;
+
 class PagserviceController extends Controller
 {
     public function index()
@@ -77,56 +81,53 @@ class PagserviceController extends Controller
 public function store(Request $request)
 {
     $data = $request->validate([
-        'title'              => 'required|string|max:255',
-        'short_description'  => 'nullable|string',
-        'description'        => 'nullable|string',
-        'location'           => 'nullable|string|max:255',
-        'completion_date'    => 'nullable|date',
-        'image'              => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
-        'gallery.*'          => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+        'title'             => 'required|string|max:255',
+        'icon'              => 'nullable|string|max:255',
+        'description'       => 'nullable|string',
+        'short_description' => 'nullable|string',
+        'sort_order'        => 'nullable|integer',
+        'images.*'          => 'nullable|image|mimes:jpg,jpeg,png,webp',
+        'image'             => 'nullable|image|mimes:jpg,jpeg,png,webp',
     ]);
 
-    $data['slug'] = Str::slug($data['title'] . '-' . uniqid());
+    // ✅ إنشاء slug تلقائي من العنوان
+    $data['slug'] = Str::slug($request->title);
 
-    // ✅ الصورة الرئيسية
+    // ✅ رفع الصورة الأساسية وتخزينها في نفس الجدول
     if ($request->hasFile('image')) {
-        $path = $request->file('image')->store('dashboard_files/img/projects', 'public_uploads');
-        $data['image'] = $path;
+        $file = $request->file('image');
+        $path = $file->store('dashboard_files/img/pagservices', 'public_uploads');
+        $data['image'] = $path; // حفظ المسار داخل الجدول الرئيسي
     }
 
-    // 🏗️ إنشاء المشروع
-    $project = Project::create($data);
+    // ✅ إنشاء السجل في جدول pagservices
+    $service = Pagservice::create($data);
 
-    // ✅ صور المعرض (Gallery)
-    if ($request->hasFile('gallery')) {
-        foreach ($request->file('gallery') as $i => $file) {
-            $path = $file->store('dashboard_files/img/projects/gallery', 'public_uploads');
-            $project->images()->create([
-                'image'      => $path,
-                'sort_order' => $i,
-            ]);
+    // ✅ حفظ الصور الإضافية (تعدد الصور)
+    if ($request->hasFile('images')) {
+        foreach ($request->file('images') as $file) {
+            $path = $file->store('dashboard_files/img/pagservices', 'public_uploads');
+            $service->images()->create(['image' => $path]);
         }
     }
 
-    // ✅ المميزات
-    if ($request->filled('features')) {
-        foreach ($request->features as $i => $feature) {
-            if (blank($feature['title'] ?? null)) continue;
-
-            $project->features()->create([
-                'icon'        => $feature['icon'] ?? null,
-                'title'       => $feature['title'],
-                'description' => $feature['description'] ?? null,
-                'sort_order'  => $i,
-            ]);
+    // ✅ حفظ المميزات (features)
+    if ($request->has('features')) {
+        foreach ($request->features as $feature) {
+            if (!empty($feature['title'])) {
+                $service->features()->create([
+                    'title'       => $feature['title'],
+                    'icon'        => $feature['icon'] ?? null,
+                    'description' => $feature['description'] ?? null,
+                ]);
+            }
         }
     }
 
     return redirect()
-        ->route('dashboard.projects.index')
-        ->with('success', '✅ تم إنشاء المشروع ورفع الصور بنجاح في public_html');
+        ->route('dashboard.Pag_services.index')
+        ->with('success', '✅ تم إضافة الخدمة مع الصورة الأساسية والمميزات بنجاح');
 }
-
 
 
 
