@@ -2,34 +2,11 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Default Filesystem Disk
-    |--------------------------------------------------------------------------
-    |
-    | Here you may specify the default filesystem disk that should be used
-    | by the framework. The "local" disk, as well as a variety of cloud
-    | based disks are available to your application for file storage.
-    |
-    */
-
     'default' => env('FILESYSTEM_DISK', 'local'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Filesystem Disks
-    |--------------------------------------------------------------------------
-    |
-    | Below you may configure as many filesystem disks as necessary, and you
-    | may even configure multiple disks for the same driver. Examples for
-    | most supported storage drivers are configured here for reference.
-    |
-    | Supported drivers: "local", "ftp", "sftp", "s3"
-    |
-    */
 
     'disks' => [
 
+        // 🗂️ التخزين المحلي (للاستخدام الافتراضي)
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app/private'),
@@ -37,50 +14,29 @@ return [
             'throw' => false,
             'report' => false,
         ],
-// 'public_uploads' => [
-//     'driver' => 'local',
-//     'root' => base_path('../public_html'), // مسار السيرفر اللي طلبته
-//     'url' => env('APP_URL'),
-//     'visibility' => 'public',
-// ],
-'disks' => [
 
-    'public_uploads' => [
-        'driver' => 'local',
-        'root' => base_path('public_html'), // ✅ هذا يوجّه التخزين مباشرة إلى public_html
-        'url' => env('APP_URL'),
-        'visibility' => 'public',
-    ],
-
-],
-
-
-'public_uploads' => [
-    'driver' => 'local',
-
-    // استخدم env() فقط هنا — بدون app()->environment() لأن config:cache لا يسمح بمناداة التطبيق
-    'root' => env('APP_ENV') === 'local'
-        ? public_path()
-        : base_path('../public_html'),
-
-    'url' => env('APP_URL'),
-    'visibility' => 'public',
-],
-
-
-
-
-
-
-        'public' => [
+        // 🖼️ التخزين العام داخل public_html (يُستخدم لرفع الصور للموقع)
+        'public_uploads' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            // إذا تعمل على Hostinger أو سيرفر cPanel داخل public_html
+            'root' => base_path('public_html'),
+            'url' => env('APP_URL'),
             'visibility' => 'public',
             'throw' => false,
             'report' => false,
         ],
 
+        // 📦 تخزين Laravel الافتراضي
+        'public' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public'),
+            'url' => env('APP_URL') . '/storage',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
+
+        // ☁️ تخزين S3 (في حال استخدمته مستقبلاً)
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -95,17 +51,6 @@ return [
         ],
 
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Symbolic Links
-    |--------------------------------------------------------------------------
-    |
-    | Here you may configure the symbolic links that will be created when the
-    | `storage:link` Artisan command is executed. The array keys should be
-    | the locations of the links and the values should be their targets.
-    |
-    */
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
