@@ -93,13 +93,13 @@
     {{-- الوصف المختصر --}}
     <div class="mb-3">
         <label class="form-label">الوصف المختصر</label>
-        <textarea name="short_description" class="form-control" rows="3">{!! $project->short_description !!}</textarea>
+        <textarea name="short_description"  id="short_description" class="form-control" rows="3">{!! $project->short_description !!}</textarea>
     </div>
 
     {{-- الوصف الكامل --}}
     <div class="mb-3">
         <label class="form-label">الوصف الكامل</label>
-        <textarea name="description" id="description" class="form-control ckeditor" rows="5">{{ $project->description }}</textarea>
+        <textarea name="description" id="description" class="form-control ckeditor" rows="5">{!! $project->description !!}</textarea>
     </div>
 
     {{-- تاريخ الإنجاز --}}
@@ -418,6 +418,19 @@ function deleteImage(projectId, imageId, btn) {
 document.addEventListener('DOMContentLoaded', function() {
     if (typeof CKEDITOR !== 'undefined') {
         CKEDITOR.replace('description', {
+            contentsLangDirection: 'rtl',
+            contentsLanguage: 'ar',
+            language: 'ar',
+            height: 300,
+            removeButtons: 'Subscript,Superscript,Anchor,Image',
+            toolbarCanCollapse: true
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof CKEDITOR !== 'undefined') {
+        CKEDITOR.replace('short_description', {
             contentsLangDirection: 'rtl',
             contentsLanguage: 'ar',
             language: 'ar',
