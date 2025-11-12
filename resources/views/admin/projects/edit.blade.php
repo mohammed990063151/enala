@@ -93,7 +93,7 @@
     {{-- الوصف المختصر --}}
     <div class="mb-3">
         <label class="form-label">الوصف المختصر</label>
-        <textarea name="short_description" class="form-control" rows="3">{{ $project->short_description }}</textarea>
+        <textarea name="short_description" class="form-control" rows="3">{!! $project->short_description !!}</textarea>
     </div>
 
     {{-- الوصف الكامل --}}
@@ -107,7 +107,7 @@
         <label class="form-label">تاريخ الإنجاز</label>
         <input type="date" name="completion_date" class="form-control" value="{{ $project->completion_date }}">
     </div>
-
+</br /></br /></br />
     {{-- الصورة الرئيسية --}}
     <div class="mb-4">
         <label class="form-label">الصورة الرئيسية</label>
