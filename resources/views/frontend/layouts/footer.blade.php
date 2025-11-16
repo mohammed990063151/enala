@@ -720,7 +720,7 @@
                                            </div>
 
 
-                                           <div class="mudyaf-footer-section">
+                                           {{-- <div class="mudyaf-footer-section">
     <h3 class="footer-title">{{ __('messages.quick_links') }}</h3>
 
     <ul class="footer-links">
@@ -753,7 +753,7 @@
         <a href="#"><i class="fab fa-instagram"></i></a>
         <a href="#"><i class="fab fa-tiktok"></i></a>
     </div>
-</div>
+</div> --}}
 
 
                                        </div>

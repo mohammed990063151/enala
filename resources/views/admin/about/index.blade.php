@@ -173,7 +173,7 @@
             <h4>معاينة مباشرة</h4>
             <div class="bg-white p-3 rounded shadow-sm">
                 <h5>{{ $about->title }}</h5>
-                <p>{{ $about->description }}</p>
+                <p>{!! $about->description !!}</p>
 
                 @if($about->point1)<span class="pill">{{ $about->point1 }}</span>@endif
                 @if($about->point2)<span class="pill">{{ $about->point2 }}</span>@endif
@@ -184,7 +184,7 @@
              <h4>معاينة مباشرة (English)</h4>
             <div class="bg-white p-3 rounded shadow-sm">
                 <h5>{{ $about->title_en }}</h5>
-                <p>{{ $about->description_en }}</p>
+                <p>{!! $about->description_en !!}</p>
 
                 @if($about->point1_en)<span class="pill">{{ $about->point1_en }}</span>@endif
                 @if($about->point2_en)<span class="pill">{{ $about->point2_en }}</span>@endif
