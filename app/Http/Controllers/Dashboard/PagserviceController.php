@@ -82,9 +82,12 @@ public function store(Request $request)
 {
     $data = $request->validate([
         'title'             => 'required|string|max:255',
+        'title_en'             => 'required|string|max:255',
         'icon'              => 'nullable|string|max:255',
         'description'       => 'nullable|string',
+        'description_en'       => 'nullable|string',
         'short_description' => 'nullable|string',
+        'short_description_en' => 'nullable|string',
         'sort_order'        => 'nullable|integer',
         'images.*'          => 'nullable|image|mimes:jpg,jpeg,png,webp',
         'image'             => 'nullable|image|mimes:jpg,jpeg,png,webp',
@@ -117,8 +120,10 @@ public function store(Request $request)
             if (!empty($feature['title'])) {
                 $service->features()->create([
                     'title'       => $feature['title'],
+                    'title_en'       => $feature['title_en'],
                     'icon'        => $feature['icon'] ?? null,
                     'description' => $feature['description'] ?? null,
+                     'description_en' => $feature['description_en'] ?? null,
                 ]);
             }
         }
@@ -140,89 +145,16 @@ public function store(Request $request)
     }
 
 
-
-    // public function update(Request $request, Pagservice $pagservice)
-    // {
-    //     $data = $request->validate([
-    //         'title'       => 'required|string|max:255',
-    //         'icon'        => 'nullable|string|max:255',
-    //         'description' => 'nullable|string',
-    //         'sort_order'  => 'nullable|integer',
-    //         'images.*'    => 'nullable|image|mimes:jpg,jpeg,png,webp',
-    //     ]);
-
-    //     // إنشاء slug جديد من العنوان
-    //     $data['slug'] = Str::slug($request->title);
-
-    //     // تحديث بيانات الخدمة الأساسية
-    //     $pagservice->update($data);
-
-    //     // 🔹 حفظ صور جديدة (تعدد الصور)
-    //     if ($request->hasFile('images')) {
-    //         foreach ($request->file('images') as $file) {
-    //             $path = $file->store('dashboard_files/img/pagservices', 'public_uploads');
-    //             $pagservice->images()->create(['image' => $path]);
-    //         }
-    //     }
-
-    //     return back()->with('success', '✅ تم تحديث الخدمة وإضافة الصور بنجاح');
-    // }
-//     public function update(Request $request, Pagservice $pagservice)
-// {
-//     $data = $request->validate([
-//         'title'       => 'required|string|max:255',
-//         'icon'        => 'nullable|string|max:255',
-//         'description' => 'nullable|string',
-//         'short_description' => 'nullable|string',
-//         'sort_order'  => 'nullable|integer',
-//         'images.*'    => 'nullable|image|mimes:jpg,jpeg,png,webp',
-//         'image'    => 'nullable|image|mimes:jpg,jpeg,png,webp',
-//     ]);
-
-//     // ✅ إنشاء slug جديد من العنوان
-//     $data['slug'] = Str::slug($request->title);
-
-//     // ✅ تحديث بيانات الخدمة الأساسية
-//     $pagservice->update($data);
-
-//     // ✅ حفظ الصور الجديدة (تعدد الصور)
-//     if ($request->hasFile('images')) {
-//         foreach ($request->file('images') as $file) {
-//             $path = $file->store('dashboard_files/img/pagservices', 'public_uploads');
-//             $pagservice->images()->create(['image' => $path]);
-//         }
-//     }
-//      if ($request->hasFile('image')) {
-//              $file =$request->file('image');
-//             $path = $file->store('dashboard_files/img/pagservices', 'public_uploads');
-//             $pagservice->image->create(['image' => $path]);
-
-//     }
-
-//     // ✅ حفظ المميزات الجديدة (features)
-//     if ($request->has('features')) {
-//         foreach ($request->features as $feature) {
-//             if (!empty($feature['title'])) {
-//                 $pagservice->features()->create([
-//                     'title'       => $feature['title'],
-//                     'icon'        => $feature['icon'] ?? null,
-//                     'description' => $feature['description'] ?? null,
-//                 ]);
-//             }
-//         }
-//     }
-
-//     return back()->with('success', '✅ تم تحديث الخدمة وإضافة الصور والمميزات بنجاح');
-// }
-
-
 public function update(Request $request, Pagservice $pagservice)
 {
     $data = $request->validate([
         'title'             => 'required|string|max:255',
+        'title_en'             => 'required|string|max:255',
         'icon'              => 'nullable|string|max:255',
         'description'       => 'nullable|string',
+        'description_en'       => 'nullable|string',
         'short_description' => 'nullable|string',
+        'short_description_en' => 'nullable|string',
         'sort_order'        => 'nullable|integer',
         'images.*'          => 'nullable|image|mimes:jpg,jpeg,png,webp',
         'image'             => 'nullable|image|mimes:jpg,jpeg,png,webp',
@@ -255,8 +187,10 @@ public function update(Request $request, Pagservice $pagservice)
             if (!empty($feature['title'])) {
                 $pagservice->features()->create([
                     'title'       => $feature['title'],
+                    'title_en'       => $feature['title_en'],
                     'icon'        => $feature['icon'] ?? null,
                     'description' => $feature['description'] ?? null,
+                    'description_en' => $feature['description_en'] ?? null,
                 ]);
             }
         }
@@ -306,8 +240,10 @@ public function storeFeature(Request $request, $id)
 
     $data = $request->validate([
         'title' => 'required|string|max:255',
+        'title_en' => 'required|string|max:255',
         'icon' => 'nullable|string|max:255',
         'description' => 'nullable|string',
+        'description_en' => 'nullable|string',
 
     ]);
 
@@ -343,8 +279,10 @@ public function updateFeature(Request $request, $id)
 
     $feature->update([
         'title'       => $request->title,
+        'title_en'       => $request->title_en,
         'icon'        => $request->icon,
         'description' => $request->description,
+        'description_en' => $request->description_en,
     ]);
 
     return response()->json(['success' => true, 'message' => 'تم التعديل بنجاح']);

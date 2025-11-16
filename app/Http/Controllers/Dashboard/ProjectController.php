@@ -29,6 +29,10 @@ class ProjectController extends Controller
             'short_description' => 'nullable|string',
             'description'       => 'nullable|string',
             'location'          => 'nullable|string|max:255',
+            'title_en'             => 'required|string|max:255',
+            'short_description_en' => 'nullable|string',
+            'description_en'       => 'nullable|string',
+            'location_en'          => 'nullable|string|max:255',
             'completion_date'   => 'nullable|date',
             'image'             => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
         ]);
@@ -42,14 +46,6 @@ class ProjectController extends Controller
         if (!File::exists($uploadPath)) {
             File::makeDirectory($uploadPath, 0775, true);
         }
-
-        // حفظ الصورة الرئيسية
-        // if ($request->hasFile('image')) {
-        //     $file = $request->file('image');
-        //     $filename = time() . '.' . $file->getClientOriginalExtension();
-        //     $file->move($uploadPath, $filename);
-        //     $data['image'] = 'dashboard_files/img/projects/' . $filename;
-        // }
            if ($request->hasFile('image')) {
         $file = $request->file('image');
         $path = $file->store('dashboard_files/img/projects', 'public_uploads');
@@ -58,24 +54,6 @@ class ProjectController extends Controller
 
         // إنشاء المشروع
         $project = Project::create($data);
-
-        // حفظ صور المعرض
-        // if ($request->hasFile('gallery')) {
-        //     $galleryPath = public_path('dashboard_files/img/projects/gallery');
-        //     if (!File::exists($galleryPath)) {
-        //         File::makeDirectory($galleryPath, 0775, true);
-        //     }
-
-        //     foreach ($request->file('gallery') as $i => $file) {
-        //         $gName = time() . '_' . $i . '.' . $file->getClientOriginalExtension();
-        //         $file->move($galleryPath, $gName);
-
-        //         $project->images()->create([
-        //             'image'      => 'dashboard_files/img/projects/gallery/' . $gName,
-        //             'sort_order' => $i,
-        //         ]);
-        //     }
-        // }
          if ($request->hasFile('gallery')) {
         foreach ($request->file('gallery') as $file) {
             $path = $file->store('dashboard_files/img/projects/gallery', 'public_uploads');
@@ -89,8 +67,10 @@ class ProjectController extends Controller
                 if (!empty($feature['title'])) {
                     $project->features()->create([
                         'title'       => $feature['title'],
+                        'title_en'       => $feature['title_en'],
                         'icon'        => $feature['icon'] ?? null,
                         'description' => $feature['description'] ?? null,
+                        'description_en' => $feature['description_en'] ?? null,
                         'sort_order'  => $i,
                     ]);
                 }
@@ -122,6 +102,10 @@ class ProjectController extends Controller
             'short_description' => 'nullable|string',
             'description'       => 'nullable|string',
             'location'          => 'nullable|string|max:255',
+            'title_en'             => 'required|string|max:255',
+            'short_description_en' => 'nullable|string',
+            'description_en'       => 'nullable|string',
+            'location_en'          => 'nullable|string|max:255',
             'completion_date'   => 'nullable|date',
             'image'             => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
             'gallery.*'          => 'nullable|image|mimes:jpg,jpeg,png,webp',
@@ -152,8 +136,10 @@ class ProjectController extends Controller
                 if (!empty($feature['title'])) {
                     $project->features()->create([
                         'title'       => $feature['title'],
+                        'title_en'       => $feature['title_en'],
                         'icon'        => $feature['icon'] ?? null,
                         'description' => $feature['description'] ?? null,
+                        'description_en' => $feature['description_en'] ?? null,
                         'sort_order'  => $i,
                     ]);
                 }
@@ -214,6 +200,8 @@ class ProjectController extends Controller
             'icon' => 'nullable|string|max:255',
             'title' => 'required|string|max:255',
             'description' => 'nullable|string|max:500',
+            'title_en' => 'required|string|max:255',
+            'description_en' => 'nullable|string|max:500',
         ]);
 
         $data['sort_order'] = $project->features()->count();
@@ -266,6 +254,8 @@ class ProjectController extends Controller
             'title' => 'required|string|max:255',
             'icon' => 'nullable|string|max:255',
             'description' => 'nullable|string|max:500',
+             'title_en' => 'required|string|max:255',
+            'description_en' => 'nullable|string|max:500',
         ]);
 
         $feature->update($data);

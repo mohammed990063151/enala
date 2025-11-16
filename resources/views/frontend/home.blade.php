@@ -1,10 +1,10 @@
 @extends('frontend.layouts.master')
-<style>
-    /* .element-15720 .elementor-element.elementor-element-244fe39:not(.elementor-motion-effects-element-type-background),
-.elementor-15720 .elementor-element.elementor-element-244fe39>.elementor-motion-effects-container>.elementor-motion-effects-layer {
-    background: url('{{ asset($section->image  ?? '') }}') 50% 50%;
-} */
 
+@section('title', __('messages.about') . ' - ' . (app()->getLocale() == 'en'
+    ? ($setting->name_en ?? $setting->name)
+    : $setting->name
+))
+<style  type="text/css">
 
 .hotel-about {
     padding: 80px 20px;
@@ -238,11 +238,11 @@
                                                                                                         </path>
                                                                                                     </g>
                                                                                                 </g>
-                                                                                            </svg></i></span></span></span></span></span>{{ $section->title }}<span
-                                                                        class="wdt-heading-deco-inner wdt-right-part"></span></span>
+                                                                                            </svg></i></span></span></span></span></span>{{ app()->getLocale() == 'en' ? $section->title_en : $section->title }}<span class="wdt-heading-deco-inner wdt-right-part"></span></span>
                                                             </div>
                                                             <h2 class="wdt-heading-title-wrapper wdt-heading-align- "><span
-                                                                    class="wdt-headingtitle">{!! $section->description !!}</span></h2>
+                                                                    class="wdt-headingtitle"> {!! app()->getLocale() == 'en' ? $section->description_en : $section->description !!}</span>
+                                                                </h2>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -265,7 +265,14 @@
                                                         <div class="wdt-button-holder wdt-template-filled wdt-button-link wdt-button-style-default wdt-button-size-nm wdt-animation- wdt-button-icon-after"
                                                             id="wdt-button-37f9989"><a class="wdt-button"
                                                                 href="{{ route('pag.contact') }}">
-                                                                <div class="wdt-button-text"><span>{{ $section->button_text }}</span></div>
+                                                                <div class="wdt-button-text"><span>
+                                                                    {{-- {{ $section->button_text }} --}}
+                                                                    @if(app()->getLocale() == 'en')
+                                                                        {{ $section->button_text_en }}
+                                                                    @else
+                                                                        {{ $section->button_text }}
+                                                                    @endif
+                                                                </span></div>
                                                             </a></div>
                                                     </div>
                                                 </div>
@@ -299,7 +306,7 @@
                                                                         </ul>
                                                                     </div>
                                                                     <div class="wdt-content-title">
-                                                                        <h5>{{ $section->clients_count }}+ عميل سعيد بخدماتنا</h5>
+                                                                        <h5>{{ $section->clients_count }}+ {{ __('messages.A_customer_happy_with_our_services') }}</h5>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -353,73 +360,42 @@
                     </div>
                 </section>
 
-{{--
-<section class="hotel-about">
-    <div class="hotel-container">
+                                <section class="hotel-about">
+                                    <div class="hotel-container">
 
-        <div class="hotel-images">
-            <img src="../img/farm3.jpg" alt="مشتل نباتات وأشجار" class="hotel-img main">
-            <img src="../img/farm2.jpg" alt="مضخات وزراعة حديثة" class="hotel-img overlay">
-        </div>
+                                        <div class="hotel-images">
+                                            @if($about->image1)
+                                                <img src="{{ asset($about->image1) }}" alt="image1" class="hotel-img main">
+                                            @else
+                                                <img src="../img/farm3.jpg" class="hotel-img main">
+                                            @endif
 
-        <div class="hotel-text">
-            <h2>من نحن في شركة مضياف؟</h2>
-            <p>
-                شركة مضياف للزراعة والخدمات البيئية مقرها حريملاء، نعمل على دعم المزارع
-                وتوفير جميع المستلزمات الزراعية بجودة عالية وبإشراف مهندسين مختصين.
-                نقدم حلولًا متكاملة لتحسين الإنتاج الزراعي، مكافحة الآفات، وتنسيق الحدائق
-                بأسلوب احترافي يواكب احتياجات العملاء.
-            </p>
+                                            @if($about->image2)
+                                                <img src="{{ asset($about->image2) }}" alt="image2" class="hotel-img overlay">
+                                            @else
+                                                <img src="../img/farm2.jpg" class="hotel-img overlay">
+                                            @endif
+                                        </div>
 
-            <ul>
-                <li>🌱 مشاتل متنوعة للأشجار والزهور</li>
-                <li>🪴 بذور زهور وخضار ونباتات برية</li>
-                <li>🚿 مضخات وغطاسات للآبار الزراعية والمنزلية</li>
-                <li>🐞 مكافحة آفات الصحة العامة والآفات الزراعية</li>
-            </ul>
+                                        <div class="hotel-text">
+                                            <h2>{{ app()->getLocale() == 'en' ? $about->title_en : $about->title }}</h2>
 
-            <a href="{{ route('contact') }}" class="btn">تواصل معنا</a>
-        </div>
+                                            <p>
+                                                {!! app()->getLocale() == 'en' ? $about->description_en : $about->description !!}
+                                            </p>
 
-    </div>
-</section> --}}
+                                            <ul>
+                                                <li>{{ app()->getLocale() == 'en' ? $about->point1_en : $about->point1 }}</li>
+                                                <li>{{ app()->getLocale() == 'en' ? $about->point2_en : $about->point2 }}</li>
+                                                <li>{{ app()->getLocale() == 'en' ? $about->point3_en : $about->point3 }}</li>
+                                                <li>{{ app()->getLocale() == 'en' ? $about->point4_en : $about->point4 }}</li>
+                                            </ul>
 
-<section class="hotel-about">
-    <div class="hotel-container">
+                                            <a href="{{ route('pag.contact') }}" class="btn">{{ __('messages.contact') }}</a>
+                                        </div>
 
-        <div class="hotel-images">
-            @if($about->image1)
-                <img src="{{ asset($about->image1) }}" alt="image1" class="hotel-img main">
-            @else
-                <img src="../img/farm3.jpg" class="hotel-img main">
-            @endif
-
-            @if($about->image2)
-                <img src="{{ asset($about->image2) }}" alt="image2" class="hotel-img overlay">
-            @else
-                <img src="../img/farm2.jpg" class="hotel-img overlay">
-            @endif
-        </div>
-
-        <div class="hotel-text">
-            <h2>{{ $about->title }}</h2>
-
-            <p>
-                {!! $about->description !!}
-            </p>
-
-            <ul>
-                @if($about->point1)<li>{{ $about->point1 }}</li>@endif
-                @if($about->point2)<li>{{ $about->point2 }}</li>@endif
-                @if($about->point3)<li>{{ $about->point3 }}</li>@endif
-                @if($about->point4)<li>{{ $about->point4 }}</li>@endif
-            </ul>
-
-            <a href="{{ route('pag.contact') }}" class="btn">تواصل معنا</a>
-        </div>
-
-    </div>
-</section>
+                                    </div>
+                                </section>
 
 <!-- ===== CSS ===== -->
 
@@ -482,8 +458,8 @@
                                                                         class="wdt-heading-deco-inner wdt-right-part"></span></span>
                                                             </div>
                                                             <h2 class="wdt-heading-title-wrapper wdt-heading-align- "><span
-                                                                    class="wdt-heading-title">{{ $whyus->title }}</span></h2>
-                                                                    <p>{!! $whyus->description !!}</p>
+                                                                    class="wdt-heading-title">{!! app()->getLocale() == 'en' ? $whyus->title_en : $whyus->title !!}</span></h2>
+                                                                    <p>{!! app()->getLocale() == 'en' ? $whyus->description_en : $whyus->description !!}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -501,7 +477,7 @@
                                                         <div class="wdt-button-holder wdt-template-filled wdt-button-link wdt-button-style-default wdt-button-size-nm wdt-animation- wdt-button-icon-after"
                                                             id="wdt-button-d698f72"><a class="wdt-button"
                                                                 href="{{ route('frontend.about-us') }}">
-                                                                <div class="wdt-button-text"><span>عرض المزيد</span>
+                                                                <div class="wdt-button-text"><span>{{ __('messages.Show_more') }}</span>
                                                                 </div>
                                                             </a></div>
                                                     </div>
@@ -775,37 +751,15 @@
                 <div class="container" style="
     text-align: center;
 ">
-                    <h1>{{ $settinggallery->title }} </h1>
-                    <p> {!! $settinggallery->description !!}  </p>
+                    <h1>{!! app()->getLocale() == 'en' ? $settinggallery->title_en : $settinggallery->title !!}</h1>
+                    <p>{!! app()->getLocale() == 'en' ? $settinggallery->description_en : $settinggallery->description !!}</p>
                 </div>
-                <!-- معرض الصور -->
-                {{-- <div class="owl-carousel owl-theme" id="hotel-gallery">
-                    <div class="item">
-                        <img src="../img/break-649351_1280.jpg" alt="فندق اناله تبوك" style="
-                             height: 186px;
-                            ">
-                        <p class="caption">فندق اناله تبوك</p>
-                    </div>
-                    <div class="item">
-                        <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=800&q=80" alt="منتجع كيو ريزورت">
-                        <p class="caption">منتجع كيو ريزورت</p>
-                    </div>
-                    <div class="item">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="فندق اناله تبوك">
-                        <p class="caption">فندق اناله تبوك</p>
-                    </div>
-                    <div class="item">
-                        <img src="../img/657dc1172faec_azy-34961jpg.jpg" alt="منتجع كيو ريزورت">
-                        <p class="caption">منتجع كيو ريزورت</p>
-                    </div>
-                </div> --}}
-
                 <div class="owl-carousel owl-theme" id="hotel-gallery">
 
     @foreach($gallery as $item)
         <div class="item">
-            <img src="{{ asset($item->image) }}" alt="{{ $item->caption }}" style="height: 186px; object-fit: cover;">
-            <p class="caption">{{ $item->caption }}</p>
+            <img src="{{ asset($item->image) }}" alt="{!! app()->getLocale() == 'en' ? $item->caption_en : $item->caption !!}" style="height: 186px; object-fit: cover;">
+            <p class="caption">{!! app()->getLocale() == 'en' ? $item->caption_en : $item->caption !!}</p>
         </div>
     @endforeach
 
@@ -922,11 +876,11 @@
                                                                                                         </path>
                                                                                                     </g>
                                                                                                 </g>
-                                                                                            </svg></i></span></span></span></span></span> {{ $services->title }}<span
+                                                                                            </svg></i></span></span></span></span></span>{{ app()->getLocale() == 'en' ? $services->title_en : $services->title }}<span
                                                                         class="wdt-heading-deco-inner wdt-right-part"></span></span>
                                                             </div>
                                                             <h2 class="wdt-heading-title-wrapper wdt-heading-align-1 ">
-                                                                <span class="wdt-heading-title"> {!! $services->description !!}  </span></h2>
+                                                                <span class="wdt-heading-title">{!! app()->getLocale() == 'en' ? $services->description_en : $services->description !!} </span></h2>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -944,7 +898,7 @@
                                                         <div class="wdt-button-holder wdt-template-filled wdt-button-link wdt-button-style-default wdt-button-size-nm wdt-animation- wdt-button-icon-after"
                                                             id="wdt-button-31589d1"><a class="wdt-button"
                                                                 href="{{ route('frontend.about-us') }}">
-                                                                <div class="wdt-button-text"><span>عرض الكل</span></div>
+                                                                <div class="wdt-button-text"><span>{{ __('messages.View_all') }}</span></div>
                                                             </a></div>
                                                     </div>
                                                 </div>
@@ -1033,7 +987,7 @@
                                                                                     </div>
                                                                                     <div class="wdt-listings-item-title">
                                                                                         <a
-                                                                                            href="{{ route('frontend.about-us') }}">{{ $services->caption1 }}</a>
+                                                                                            href="{{ route('frontend.about-us') }}">{{ app()->getLocale() == 'en' ? $services->caption1_en : $services->caption1 }}</a>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -1079,7 +1033,7 @@
                                                                                         </ul>
                                                                                     </div>
                                                                                     <div class="wdt-listings-item-title"><a
-                                                                                            href="{{ route('frontend.about-us') }}"> {{ $services->caption2 }} </a></div>
+                                                                                            href="{{ route('frontend.about-us') }}">{{ app()->getLocale() == 'en' ? $services->caption2_en : $services->caption2 }} </a></div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -1120,7 +1074,7 @@
                                                                                         <ul
                                                                                             class="wdt-listings-taxonomy-list">
                                                                                             <li><a
-                                                                                                    href="{{ route('frontend.about-us') }}"><span> {{ $services->caption3 }}</span></a>
+                                                                                                    href="{{ route('frontend.about-us') }}"><span>{{ app()->getLocale() == 'en' ? $services->caption3_en : $services->caption3 }}</span></a>
                                                                                             </li>
                                                                                         </ul>
                                                                                     </div>
@@ -1167,7 +1121,7 @@
                                                                                         <ul
                                                                                             class="wdt-listings-taxonomy-list">
                                                                                             <li><a
-                                                                                                    href="{{ route('frontend.about-us') }}"><span> {{ $services->caption4 }}</span></a>
+                                                                                                    href="{{ route('frontend.about-us') }}"><span>{{ app()->getLocale() == 'en' ? $services->caption4_en : $services->caption4 }}</span></a>
                                                                                             </li>
                                                                                         </ul>
                                                                                     </div>
@@ -1311,211 +1265,6 @@
                         </div>
                     </div>
                 </section>
-
-{{--
-                <section
-                    class="elementor-section elementor-top-section elementor-element elementor-element-c017382 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
-                    data-id="c017382" data-element_type="section"
-                    data-settings="{&quot;wdt_bg_image&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;wdt_bg_image_laptop&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;wdt_bg_image_tablet_extra&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;wdt_bg_image_tablet&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;wdt_bg_image_mobile_extra&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;wdt_bg_image_mobile&quot;:{&quot;url&quot;:&quot;&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;wdt_bg_position&quot;:&quot;center center&quot;,&quot;wdt_animation_effect&quot;:&quot;none&quot;}">
-                    <div class="elementor-container elementor-column-gap-no">
-                        <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-6015b57 animated-fast elementor-invisible"
-                            data-id="6015b57" data-element_type="column"
-                            data-settings="{&quot;animation&quot;:&quot;fadeInUp&quot;,&quot;animation_delay&quot;:100}">
-                            <div class="elementor-widget-wrap elementor-element-populated">
-                                <div class="elementor-element elementor-element-daf6ba9 elementor-widget__width-inherit before-title elementor-widget elementor-widget-wdt-heading"
-                                    data-id="daf6ba9" data-element_type="widget"
-                                    data-settings="{&quot;wdt_animation_effect&quot;:&quot;none&quot;}"
-                                    data-widget_type="wdt-heading.default">
-                                    <div class="elementor-widget-container">
-                                        <div class="wdt-heading-holder " id="wdt-heading-daf6ba9">
-                                            <div
-                                                class="wdt-heading-subtitle-wrapper wdt-heading-align- wdt-heading-deco-wrapper">
-                                                <span class="wdt-heading-subtitle"><span
-                                                        class="wdt-heading-deco-inner wdt-left-part"><span
-                                                            class="wdt-heading-deco-icon"><span
-                                                                class="wdt-content-icon-wrapper"><span
-                                                                    class="wdt-content-icon"><span><i><svg
-                                                                                xmlns="http://www.w3.org/2000/svg" x="0px"
-                                                                                y="0px" viewBox="0 0 100 100"
-                                                                                style="enable-background:new 0 0 100 100;"
-                                                                                xml:space="preserve">
-                                                                                <g>
-                                                                                    <g>
-                                                                                        <path
-                                                                                            d="M37.8,65.1c2.1,4.3,3.7,8.9,4.8,13.5c-0.4,2.1-0.8,4.2-1.1,6.3c-0.2,1.5-0.4,3-0.6,4.5c-0.3,2.4,1.5,4.5,4,4.7l2.5,0.2   c0-1.5,0-2.9,0-4.3c1.4-2.8,3.2-5.5,5.2-8c1.1-1.3,2.3-2.6,3.6-3.8c2.2-1.9,4.6-3.5,7.1-4.9c3.3-1.7,6.8-3.1,10.4-3.7   c-3.5,1-6.7,2.8-9.7,4.8c-2.9,2.1-5.5,4.6-7.7,7.3c-0.2,0.3-0.4,0.6-0.6,0.9c8.5,2.8,21.8-3.1,22.3-15.3   c-11.8-5.9-24.3,0.2-25.8,11.4c-0.5,0.4-1,0.9-1.5,1.3c-1,0.9-1.9,1.9-2.8,2.9c0.7-7.9,2.3-15.8,4.7-23.5   c2.4-7.4,5.7-14.6,9.8-21.3c1-1.4,2-2.9,3-4.2c2.8-3.6,5.8-7.1,9-10.3c3.3-3.2,6.7-6.1,10.5-8.6c-3.5,2.6-20,18.9-27.4,44.7   c22.1,0.3,48.3-26.4,37.5-55C62.5,2.9,40.5,29.6,49.4,56.6c-0.2,0.5-0.5,1-0.7,1.6c-1.7,4.1-3.1,8.3-4.3,12.6   c-1.2-2.6-2.5-5.1-3.9-7.5c-1-1.7-2.1-3.4-3.3-5c-1.9-2.9-4-5.6-6.3-8.2c-2-2.2-4.2-4.3-6.6-6.2c-2.4-1.9-4.8-3.7-7.6-5.1   c2.5,1,15.1,6.7,23.7,18.7c-0.3-17.1-17-30.1-37.3-25.9C-1.8,53.8,22.4,70.5,37.8,65.1L37.8,65.1z">
-                                                                                        </path>
-                                                                                    </g>
-                                                                                </g>
-                                                                            </svg></i></span></span></span></span></span><span
-                                                        class="wdt-heading-deco-inner wdt-right-part"></span></span></div>
-                                            <h2 class="wdt-heading-title-wrapper wdt-heading-align- "><span
-                                                    class="wdt-heading-title">مدونة المواضيع</span></h2>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="elementor-element elementor-element-6d13f2e elementor-widget elementor-widget-wdt-blog-posts"
-                                    data-id="6d13f2e" data-element_type="widget"
-                                    data-settings="{&quot;wdt_animation_effect&quot;:&quot;none&quot;}"
-                                    data-widget_type="wdt-blog-posts.default">
-                                    <div class="elementor-widget-container">
-                                        <div class="wdt-posts-list-wrapper  wdt-post-list-carousel-6d13f2e">
-                                            <div class="tpl-blog-holder  apply-isotope "
-                                                style="position: relative; height: 485.763px;">
-                                                <div class="grid-sizer  entry-grid-layout wdt-minimal-style wdt-fadeinleft-hover wdt-default-overlay alignnone column wdt-one-third wdt-post-entry "
-                                                    style="position: absolute; left: 0px; top: 0px;"></div>
-                                                <div class=" entry-grid-layout wdt-minimal-style wdt-fadeinleft-hover wdt-default-overlay alignnone column wdt-one-third wdt-post-entry  "
-                                                    style="position: absolute; left: 0px; top: 0px;">
-                                                    <article id="post-16411"
-                                                        class="post-16411 post type-post status-publish format-standard has-post-thumbnail hentry category-medicinal-plants tag-organic-plants blog-entry">
-
-
-                                                        <!-- Featured Image -->
-                                                        <div class="entry-thumb">
-
-                                                            <a href="{{  route('blog.index') }}"
-                                                                title="Permalink to Low-Maintenance Garden Tips"><img
-                                                                    loading="lazy" decoding="async" width="1920"
-                                                                    height="912"
-                                                                    src="../img/6522c6d2b2c19_8ffa17d576b2d03e1ff2e9ea86dd6b2cjpg.jpg"
-                                                                    class="attachment-wdt-blog-iii-column size-wdt-blog-iii-column wp-post-image"
-                                                                    alt=""
-                                                                    srcset="../img/downloadwebp.webp"
-                                                                    sizes="(max-width: 1920px) 100vw, 1920px" style="height: 260px;"></a>
-                                                        </div><!-- Featured Image -->
-                                                        <!-- Entry Date -->
-                                                        <div class="entry-date">
-                                                            مارس 12, 2025</div><!-- Entry Date -->
-                                                        <!-- Entry Title -->
-                                                        <div class="entry-title">
-                                                            <h4> <a href="{{  route('blog.index') }}"
-                                                                    title="Permalink to Low-Maintenance Garden Tips">أ. فالح الفالح رئيس لجنة السياحة والترفيه والفعاليات بـ #غرفة_الرياض متحدثاً عن تطلعات اللجنة نحو خدمة القطاع.</a>
-                                                            </h4>
-                                                        </div><!-- Entry Title -->
-                                                        <div class="entry-body">
-                                                            <p>أ. فالح الفالح رئيس لجنة السياحة والترفيه والفعاليات بـ #غرفة_الرياض متحدثاً عن تطلعات اللجنة نحو خدمة القطاع....</p>
-                                                       </div>
-
-                                                        <!-- Entry Button -->
-                                                        <div class="entry-button wdt-core-button"><a
-                                                                href=" {{ route('blog.index') }} "
-                                                                title="Low-Maintenance Garden Tips"
-                                                                class="wdt-button">اقرأ المزيد<span> <svg
-                                                                        xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                                                                        viewBox="0 0 100 100"
-                                                                        style="enable-background:new 0 0 100 100;"
-                                                                        xml:space="preserve">
-                                                                        <path
-                                                                            d="M2.5,55.7c0,0.3,0.2,0.5,0.5,0.5c0.1,0,0.1,0,0.2,0c5.4-2.1,10.9-2.5,15.8-2.6C36.4,90,72.7,69.3,97.5,50 C74.4,32,41.1,12.8,22.7,39.9C45.4,39,70,48.1,70,48.1S17.2,43,2.8,48.8c-0.2,0.1-0.3,0.3-0.3,0.5L2.5,55.7z">
-                                                                        </path>
-                                                                    </svg>
-                                                                </span></a></div><!-- Entry Button -->
-                                                    </article>
-                                                </div>
-                                                <div class=" entry-grid-layout wdt-minimal-style wdt-fadeinleft-hover wdt-default-overlay alignnone column wdt-one-third wdt-post-entry  "
-                                                    style="position: absolute; left: 476.612px; top: 0px;">
-                                                    <article id="post-16412"
-                                                        class="post-16412 post type-post status-publish format-standard has-post-thumbnail hentry category-medicinal-plants tag-green-living blog-entry">
-
-
-                                                        <!-- Featured Image -->
-                                                        <div class="entry-thumb">
-
-                                                            <a href="{{  route('blog.index') }}"
-                                                                title="Permalink to Why Crop Rotation Is Important?"><img
-                                                                    loading="lazy" decoding="async" width="1920"
-                                                                    height="912"
-                                                                    src="../img/673c451c83232_yom-alrgl-lynkd-an-otoytrjpg.jpg"
-                                                                    class="attachment-wdt-blog-iii-column size-wdt-blog-iii-column wp-post-image"
-                                                                    alt=""
-                                                                    srcset="../img/673c451c83232_yom-alrgl-lynkd-an-otoytrjpg.jpg"
-                                                                    sizes="(max-width: 1920px) 100vw, 1920px" style="height: 260px;
-"></a>
-                                                        </div><!-- Featured Image -->
-                                                        <!-- Entry Date -->
-                                                        <div class="entry-date">
-                                                            مارس 9, 2025</div><!-- Entry Date -->
-                                                        <!-- Entry Title -->
-                                                        <div class="entry-title">
-                                                            <h4> <a href="{{  route('blog.index') }}"
-                                                                    title="Permalink to Why Crop Rotation Is Important?">اليوم العالمي للرجل ومنتجعات إناله السياحية في الرياض</a>
-                                                            </h4>
-                                                        </div><!-- Entry Title -->
-                                                        <div class="entry-body">
-                                                            <p>يجسد اليوم العالمي للرجل فرصة لتقدير دور الرجال في المجتمع، بينما يمثل منتجع أناله الترفيهي مكانًا ملائمًا للاحتفاء بهذه المناسبة من خلال الأنشطة الترفيهية التي ت�...</p>
-                                                        </div>
-
-                                                        <!-- Entry Button -->
-                                                        <div class="entry-button wdt-core-button"><a
-                                                                href=" {{ route('blog.index') }} "
-                                                                title="Why Crop Rotation Is Important?"
-                                                                class="wdt-button">اقرأ المزيد<span> <svg
-                                                                        xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                                                                        viewBox="0 0 100 100"
-                                                                        style="enable-background:new 0 0 100 100;"
-                                                                        xml:space="preserve">
-                                                                        <path
-                                                                            d="M2.5,55.7c0,0.3,0.2,0.5,0.5,0.5c0.1,0,0.1,0,0.2,0c5.4-2.1,10.9-2.5,15.8-2.6C36.4,90,72.7,69.3,97.5,50 C74.4,32,41.1,12.8,22.7,39.9C45.4,39,70,48.1,70,48.1S17.2,43,2.8,48.8c-0.2,0.1-0.3,0.3-0.3,0.5L2.5,55.7z">
-                                                                        </path>
-                                                                    </svg>
-                                                                </span></a></div><!-- Entry Button -->
-                                                    </article>
-                                                </div>
-                                                <div class=" entry-grid-layout wdt-minimal-style wdt-fadeinleft-hover wdt-default-overlay alignnone column wdt-one-third wdt-post-entry  "
-                                                    style="position: absolute; left: 953.224px; top: 0px;">
-                                                    <article id="post-16413"
-                                                        class="post-16413 post type-post status-publish format-standard has-post-thumbnail hentry category-natural-grass tag-garden-aesthetics blog-entry">
-
-
-                                                        <!-- Featured Image -->
-                                                        <div class="entry-thumb">
-
-                                                            <a href="{{  route('blog.index') }}"
-                                                                title="Permalink to The Future Of Soil-Free Gardening"><img
-                                                                    loading="lazy" decoding="async" width="1920"
-                                                                    height="912"
-                                                                    src="./RTL GrassRoot Site – Your SUPER-powered WP Engine Site_files/blog-07.jpg"
-                                                                    class="attachment-wdt-blog-iii-column size-wdt-blog-iii-column wp-post-image"
-                                                                    alt=""
-                                                                    srcset="../img/6522c6d2b2c19_8ffa17d576b2d03e1ff2e9ea86dd6b2cjpg.jpg"
-                                                                    sizes="(max-width: 1920px) 100vw, 1920px" style="height: 260px;"></a>
-                                                        </div><!-- Featured Image -->
-                                                        <!-- Entry Date -->
-                                                        <div class="entry-date">
-                                                            مارس 7, 2025</div><!-- Entry Date -->
-                                                        <!-- Entry Title -->
-                                                        <div class="entry-title">
-                                                            <h4> <a href="{{  route('blog.index') }}"
-                                                                    title="Permalink to The Future Of Soil-Free Gardening">أملج: بوابة الجمال والتاريخ على ساحل البحر الأحمر</a>
-                                                            </h4>
-                                                        </div><!-- Entry Title -->
-                                                        <div class="entry-body">
-                                                            <p>أملج: بوابة الجمال والتاريخ على ساحل البحر الأحمر...</p>
-                                                        </div>
-
-                                                        <!-- Entry Button -->
-                                                        <div class="entry-button wdt-core-button"><a
-                                                                href=" {{ route('blog.index') }} "
-                                                                title="The Future Of Soil-Free Gardening"
-                                                                class="wdt-button">اقرأ المزيد<span> <svg
-                                                                        xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                                                                        viewBox="0 0 100 100"
-                                                                        style="enable-background:new 0 0 100 100;"
-                                                                        xml:space="preserve">
-                                                                        <path
-                                                                            d="M2.5,55.7c0,0.3,0.2,0.5,0.5,0.5c0.1,0,0.1,0,0.2,0c5.4-2.1,10.9-2.5,15.8-2.6C36.4,90,72.7,69.3,97.5,50 C74.4,32,41.1,12.8,22.7,39.9C45.4,39,70,48.1,70,48.1S17.2,43,2.8,48.8c-0.2,0.1-0.3,0.3-0.3,0.5L2.5,55.7z">
-                                                                        </path>
-                                                                    </svg>
-                                                                </span></a></div><!-- Entry Button -->
-                                                    </article>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section> --}}
         <style>
 #counters {
     background: #fff;
@@ -1590,7 +1339,7 @@
                 </div>
 
                 <h2 data-count="{{ $counter->{'count'.$i} }}">0</h2>
-                <p>{{ $counter->{'title'.$i} }}</p>
+                <p>{{ app()->getLocale() == 'en' ? $counter->{'title'.$i.'_en'} : $counter->{'title'.$i} }}</p>
 
             </div>
             @endforeach

@@ -141,19 +141,33 @@ document.addEventListener('DOMContentLoaded', function() {
   <div class="mb-3">
     <label class="form-label fw-bold">عنوان المشروع</label>
     <input type="text" name="title" class="form-control" required>
+      
   </div>
+    <div class="mb-3">
+        <label class="form-label fw-bold">عنوان المشروع (English)</label>
+        <input type="text" name="title_en" class="form-control" required>
+    </div>
  <div class="mb-3">
     <label class="form-label fw-bold">الوصف (المختصر)</label>
     <textarea name="short_description" id="short_description" class="form-control ckeditor" rows="6"></textarea>
+  
   </div>
+  <div class="mb-3">
+    <label class="form-label fw-bold">الوصف (المختصر English)</label>
+    <textarea name="short_description_en" id="short_description_en" class="form-control ckeditor" rows="6"></textarea>
+    </div>
   <div class="mb-3">
     <label class="form-label fw-bold">الوصف (العامة)</label>
     <textarea name="description" id="description" class="form-control ckeditor" rows="6"></textarea>
+    <label class="form-label fw-bold">الوصف (العامة English)</label>
+    <textarea name="description_en" id="description" class="form-control ckeditor" rows="6"></textarea>
   </div>
 
   <div class="mb-3">
     <label class="form-label fw-bold">الموقع</label>
     <input type="text" name="location" class="form-control">
+    <label class="form-label fw-bold">الموقع (English)</label>
+    <input type="text" name="location_en" class="form-control">
   </div>
 
   <div class="mb-3">
@@ -191,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </section>
 </div>
 
-<script>
+{{-- <script>
 function previewImage(event) {
   const img = document.getElementById('preview');
   img.src = URL.createObjectURL(event.target.files[0]);
@@ -218,12 +232,109 @@ function addFeature(icon = '', title = '', desc = '') {
   wrap.insertAdjacentHTML('beforeend', html);
 }
 document.addEventListener('DOMContentLoaded', ()=> addFeature());
+</script> --}}
+<script>
+function previewImage(event) {
+  const img = document.getElementById('preview');
+  img.src = URL.createObjectURL(event.target.files[0]);
+  img.classList.remove('d-none');
+}
+
+function addFeature(icon = '', title = '', desc = '', title_en = '', desc_en = '') {
+  const wrap = document.getElementById('features-wrap');
+  const idx = document.querySelectorAll('#features-wrap .feature-item').length;
+
+  const html = `
+    <div class="feature-item border rounded p-3 mb-3">
+
+      <div class="row g-2 mb-2">
+        <div class="col-md-3">
+          <input type="text" class="form-control" 
+                 name="features[${idx}][icon]" 
+                 placeholder="fa fa-leaf" value="${icon}">
+        </div>
+
+        <div class="col-md-4">
+          <input type="text" class="form-control" 
+                 name="features[${idx}][title]" 
+                 placeholder="عنوان الميزة (عربي)" value="${title}">
+        </div>
+
+        <div class="col-md-5">
+          <input type="text" class="form-control" 
+                 name="features[${idx}][description]" 
+                 placeholder="وصف مختصر (عربي)" value="${desc}">
+        </div>
+      </div>
+
+      <div class="row g-2">
+        <div class="col-md-4 offset-md-3">
+          <input type="text" class="form-control" 
+                 name="features[${idx}][title_en]" 
+                 placeholder="Feature Title (English)" value="${title_en}">
+        </div>
+
+        <div class="col-md-5">
+          <input type="text" class="form-control" 
+                 name="features[${idx}][description_en]" 
+                 placeholder="Feature Description (English)" value="${desc_en}">
+        </div>
+      </div>
+
+    </div>
+  `;
+
+  wrap.insertAdjacentHTML('beforeend', html);
+}
+
+document.addEventListener('DOMContentLoaded', ()=> addFeature());
 </script>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   if (typeof CKEDITOR !== 'undefined') {
     CKEDITOR.replace('description', {
+      contentsLangDirection: 'rtl',
+      contentsLanguage: 'ar',
+      language: 'ar',
+      height: 300,
+      toolbarCanCollapse: true
+    });
+  }
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof CKEDITOR !== 'undefined') {
+    CKEDITOR.replace('short_description', {
+      contentsLangDirection: 'rtl',
+      contentsLanguage: 'ar',
+      language: 'ar',
+      height: 300,
+      toolbarCanCollapse: true
+    });
+  }
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof CKEDITOR !== 'undefined') {
+    CKEDITOR.replace('description_en', {
+      contentsLangDirection: 'rtl',
+      contentsLanguage: 'ar',
+      language: 'ar',
+      height: 300,
+      toolbarCanCollapse: true
+    });
+  }
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof CKEDITOR !== 'undefined') {
+    CKEDITOR.replace('short_description_en', {
       contentsLangDirection: 'rtl',
       contentsLanguage: 'ar',
       language: 'ar',

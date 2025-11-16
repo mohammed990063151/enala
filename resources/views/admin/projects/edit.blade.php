@@ -85,8 +85,16 @@
             <input type="text" name="title" class="form-control" value="{{ $project->title }}" required>
         </div>
         <div class="col-md-6 mb-3">
+            <label class="form-label">عنوان المشروع ('English')</label>
+            <input type="text" name="title_en" class="form-control" value="{{ $project->title_en }}" required>
+        </div>
+        <div class="col-md-6 mb-3">
             <label class="form-label">الموقع</label>
             <input type="text" name="location" class="form-control" value="{{ $project->location }}">
+        </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">الموقع (English)</label>
+            <input type="text" name="location_en" class="form-control" value="{{ $project->location_en }}">
         </div>
     </div>
 
@@ -95,12 +103,21 @@
         <label class="form-label">الوصف المختصر</label>
         <textarea name="short_description"  id="short_description" class="form-control" rows="3">{!! $project->short_description !!}</textarea>
     </div>
+       <div class="mb-3">
+        <label class="form-label">الوصف المختصر (English)</label>
+        <textarea name="short_description_en"  id="short_description_en" class="form-control" rows="3">{!! $project->short_description_en !!}</textarea>
+    </div>
 
     {{-- الوصف الكامل --}}
     <div class="mb-3">
         <label class="form-label">الوصف الكامل</label>
         <textarea name="description" id="description" class="form-control ckeditor" rows="5">{!! $project->description !!}</textarea>
     </div>
+      <div class="mb-3">
+        <label class="form-label">الوصف الكامل (English)</label>
+        <textarea name="description_en" id="description_en" class="form-control ckeditor" rows="5">{!! $project->description_en !!}</textarea>
+    </div>
+
 
     {{-- تاريخ الإنجاز --}}
     <div class="mb-3 col-md-6">
@@ -165,6 +182,10 @@
                     <label class="small fw-bold">عنوان الميزة</label>
                     <input type="text" class="form-control form-control-sm f-title" value="{{ $feature->title }}">
                 </div>
+                <div class="mb-2">
+                    <label class="small fw-bold">عنوان الميزة (English)</label>
+                    <input type="text" class="form-control form-control-sm  f-title-en" value="{{ $feature->title_en }}">
+                </div>
 
                 <div class="mb-2">
                     <label class="small fw-bold">أيقونة (FontAwesome)</label>
@@ -174,6 +195,10 @@
                 <div class="mb-3">
                     <label class="small fw-bold">الوصف</label>
                     <textarea class="form-control form-control-sm f-desc" rows="2">{{ $feature->description }}</textarea>
+                </div>
+                  <div class="mb-3">
+                    <label class="small fw-bold">الوصف (English)</label>
+                    <textarea class="form-control form-control-sm f-desc-en" rows="2">{{ $feature->description_en }}</textarea>
                 </div>
 
                 <button type="button"
@@ -220,16 +245,65 @@
 
 <script>
 /* 📝 حفظ تعديل ميزة */
+// document.addEventListener('click', e => {
+//     if (e.target.closest('.save-feature')) {
+//         const btn = e.target.closest('.save-feature');
+//         const id = btn.dataset.id;
+//         const card = btn.closest('.feature-card');
+//         const title = card.querySelector('.f-title').value.trim();
+//         const icon = card.querySelector('.f-icon').value.trim();
+//         const description = card.querySelector('.f-desc').value.trim();
+
+//         if (!title) return alert('⚠️ أدخل عنوان الميزة');
+
+//         btn.disabled = true;
+//         btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> جاري الحفظ...';
+//         card.classList.add('saving');
+
+//         fetch(`{{ url('dashboard/projects/features') }}/${id}`, {
+//             method: 'PUT',
+//             headers: {
+//                 'X-CSRF-TOKEN': '{{ csrf_token() }}',
+//                 'Accept': 'application/json',
+//                 'Content-Type': 'application/json'
+//             },
+//             body: JSON.stringify({ title, icon, description })
+//         })
+//         .then(r => r.json())
+//         .then(d => {
+//             btn.disabled = false;
+//             btn.innerHTML = '<i class="fa fa-save"></i> حفظ التعديلات';
+//             card.classList.remove('saving');
+//             if (d.success) {
+//                 card.classList.add('saved');
+//                 setTimeout(() => card.classList.remove('saved'), 1200);
+//             } else {
+//                 alert('❌ فشل الحفظ: ' + (d.message || 'حدث خطأ'));
+//             }
+//         })
+//         .catch(() => {
+//             btn.disabled = false;
+//             card.classList.remove('saving');
+//             btn.innerHTML = '<i class="fa fa-save"></i> حفظ التعديلات';
+//             alert('⚠️ فشل الاتصال بالسيرفر');
+//         });
+//     }
+// });
 document.addEventListener('click', e => {
     if (e.target.closest('.save-feature')) {
+
         const btn = e.target.closest('.save-feature');
         const id = btn.dataset.id;
         const card = btn.closest('.feature-card');
+
         const title = card.querySelector('.f-title').value.trim();
+        const title_en = card.querySelector('.f-title-en').value.trim();
         const icon = card.querySelector('.f-icon').value.trim();
         const description = card.querySelector('.f-desc').value.trim();
+        const description_en = card.querySelector('.f-desc-en').value.trim();
 
-        if (!title) return alert('⚠️ أدخل عنوان الميزة');
+        if (!title) return alert('⚠️ أدخل عنوان الميزة (عربي)');
+        if (!title_en) return alert('⚠️ أدخل عنوان الميزة (English)');
 
         btn.disabled = true;
         btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> جاري الحفظ...';
@@ -242,13 +316,20 @@ document.addEventListener('click', e => {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ title, icon, description })
+            body: JSON.stringify({
+                title,
+                title_en,
+                icon,
+                description,
+                description_en
+            })
         })
         .then(r => r.json())
         .then(d => {
             btn.disabled = false;
             btn.innerHTML = '<i class="fa fa-save"></i> حفظ التعديلات';
             card.classList.remove('saving');
+
             if (d.success) {
                 card.classList.add('saved');
                 setTimeout(() => card.classList.remove('saved'), 1200);
@@ -265,6 +346,7 @@ document.addEventListener('click', e => {
     }
 });
 
+
 </script>
 
 <script>
@@ -276,24 +358,115 @@ function previewImage(event) {
 }
 
 /* إضافة ميزة جديدة */
+// document.getElementById('addNewFeature').addEventListener('click', () => {
+//     const container = document.getElementById('newFeatures');
+//     const i = Date.now();
+//     const row = `
+//         <div class="feature-box border rounded p-3 mb-2 shadow-sm">
+//             <label class="small fw-bold">عنوان الميزة</label>
+//             <input type="text" class="form-control form-control-sm n-title" placeholder="عنوان الميزة">
+
+//             <label class="small fw-bold mt-2">أيقونة (FontAwesome)</label>
+//             <input type="text" class="form-control form-control-sm n-icon" placeholder="fa-solid fa-leaf">
+
+//             <label class="small fw-bold mt-2">الوصف</label>
+//             <input type="text" class="form-control form-control-sm n-desc" placeholder="وصف مختصر">
+//         </div>`;
+//     container.insertAdjacentHTML('beforeend', row);
+// });
 document.getElementById('addNewFeature').addEventListener('click', () => {
     const container = document.getElementById('newFeatures');
     const i = Date.now();
+
     const row = `
-        <div class="feature-box border rounded p-3 mb-2 shadow-sm">
-            <label class="small fw-bold">عنوان الميزة</label>
-            <input type="text" class="form-control form-control-sm n-title" placeholder="عنوان الميزة">
+        <div class="feature-box border rounded p-3 mb-3 shadow-sm">
+
+            <label class="small fw-bold">عنوان الميزة (عربي)</label>
+            <input type="text" 
+                   name="features[${i}][title]" 
+                   class="form-control form-control-sm n-title"
+                   placeholder="عنوان الميزة">
+
+            <label class="small fw-bold mt-2">عنوان الميزة (English)</label>
+            <input type="text" 
+                   name="features[${i}][title_en]" 
+                   class="form-control form-control-sm n-title-en"
+                   placeholder="Feature Title">
 
             <label class="small fw-bold mt-2">أيقونة (FontAwesome)</label>
-            <input type="text" class="form-control form-control-sm n-icon" placeholder="fa-solid fa-leaf">
+            <input type="text" 
+                   name="features[${i}][icon]" 
+                   class="form-control form-control-sm n-icon"
+                   placeholder="fa-solid fa-leaf">
 
-            <label class="small fw-bold mt-2">الوصف</label>
-            <input type="text" class="form-control form-control-sm n-desc" placeholder="وصف مختصر">
-        </div>`;
+            <label class="small fw-bold mt-2">الوصف (عربي)</label>
+            <input type="text" 
+                   name="features[${i}][description]" 
+                   class="form-control form-control-sm n-desc"
+                   placeholder="وصف مختصر">
+
+            <label class="small fw-bold mt-2">الوصف (English)</label>
+            <input type="text" 
+                   name="features[${i}][description_en]" 
+                   class="form-control form-control-sm n-desc-en"
+                   placeholder="Short Description">
+
+        </div>
+    `;
+
     container.insertAdjacentHTML('beforeend', row);
 });
 
+
+
+
+
 /* حفظ المميزات الجديدة */
+// document.getElementById('saveAllFeatures').addEventListener('click', () => {
+//     const newBoxes = document.querySelectorAll('#newFeatures .feature-box');
+//     const projectId = {{ $project->id }};
+
+//     if (newBoxes.length === 0) {
+//         alert('⚠️ لا توجد مميزات جديدة لإضافتها.');
+//         return;
+//     }
+
+//     newBoxes.forEach(box => {
+//         const title = box.querySelector('.n-title').value.trim();
+//         const icon = box.querySelector('.n-icon').value.trim();
+//         const description = box.querySelector('.n-desc').value.trim();
+
+//         if (!title) {
+//             alert('❌ يرجى إدخال عنوان الميزة');
+//             return;
+//         }
+
+//         box.style.opacity = "0.6";
+
+//         fetch(`{{ url('dashboard/projects') }}/${projectId}/features`, {
+//             method: 'POST',
+//             headers: {
+//                 'X-CSRF-TOKEN': '{{ csrf_token() }}',
+//                 'Accept': 'application/json',
+//                 'Content-Type': 'application/json'
+//             },
+//             body: JSON.stringify({ title, icon, description })
+//         })
+//         .then(r => r.json())
+//         .then(d => {
+//             if (d.success) {
+//                 box.style.opacity = "1";
+//                 box.style.backgroundColor = "#eafaf1";
+//                 setTimeout(() => box.remove(), 800);
+//             } else {
+//                 alert('❌ فشل الحفظ: ' + (d.message || 'حدث خطأ'));
+//             }
+//         })
+//         .catch(() => alert('⚠️ فشل الاتصال بالسيرفر'));
+//     });
+
+//     alert('✅ تم إرسال جميع المميزات الجديدة للحفظ.');
+// });
 document.getElementById('saveAllFeatures').addEventListener('click', () => {
     const newBoxes = document.querySelectorAll('#newFeatures .feature-box');
     const projectId = {{ $project->id }};
@@ -304,16 +477,21 @@ document.getElementById('saveAllFeatures').addEventListener('click', () => {
     }
 
     newBoxes.forEach(box => {
-        const title = box.querySelector('.n-title').value.trim();
-        const icon = box.querySelector('.n-icon').value.trim();
-        const description = box.querySelector('.n-desc').value.trim();
 
+        const title       = box.querySelector('.n-title').value.trim();
+        const title_en    = box.querySelector('.n-title-en').value.trim();
+        const icon        = box.querySelector('.n-icon').value.trim();
+        const description = box.querySelector('.n-desc').value.trim();
+        const description_en = box.querySelector('.n-desc-en').value.trim();
+
+        // تحقق من العربية فقط لو أردت
         if (!title) {
-            alert('❌ يرجى إدخال عنوان الميزة');
+            alert('❌ يرجى إدخال عنوان الميزة (عربي)');
             return;
         }
 
-        box.style.opacity = "0.6";
+        // شكل حلو يوضح أنه يتم الحفظ
+        box.style.opacity = "0.4";
 
         fetch(`{{ url('dashboard/projects') }}/${projectId}/features`, {
             method: 'POST',
@@ -322,14 +500,22 @@ document.getElementById('saveAllFeatures').addEventListener('click', () => {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ title, icon, description })
+            body: JSON.stringify({ 
+                title,
+                title_en,
+                icon,
+                description,
+                description_en
+            })
         })
         .then(r => r.json())
         .then(d => {
             if (d.success) {
+                // نجاح
                 box.style.opacity = "1";
-                box.style.backgroundColor = "#eafaf1";
-                setTimeout(() => box.remove(), 800);
+                box.style.backgroundColor = "#d1f5d3";
+
+                setTimeout(() => box.remove(), 600);
             } else {
                 alert('❌ فشل الحفظ: ' + (d.message || 'حدث خطأ'));
             }
@@ -337,8 +523,9 @@ document.getElementById('saveAllFeatures').addEventListener('click', () => {
         .catch(() => alert('⚠️ فشل الاتصال بالسيرفر'));
     });
 
-    alert('✅ تم إرسال جميع المميزات الجديدة للحفظ.');
+    alert('✅ تم إرسال كل المميزات الجديدة بنجاح.');
 });
+
 
 document.addEventListener('click', e => {
     if (e.target.closest('.feature-delete')) {
@@ -431,6 +618,33 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     if (typeof CKEDITOR !== 'undefined') {
         CKEDITOR.replace('short_description', {
+            contentsLangDirection: 'rtl',
+            contentsLanguage: 'ar',
+            language: 'ar',
+            height: 300,
+            removeButtons: 'Subscript,Superscript,Anchor,Image',
+            toolbarCanCollapse: true
+        });
+    }
+});
+
+/* CKEditor للوصف */
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof CKEDITOR !== 'undefined') {
+        CKEDITOR.replace('description_en', {
+            contentsLangDirection: 'rtl',
+            contentsLanguage: 'ar',
+            language: 'ar',
+            height: 300,
+            removeButtons: 'Subscript,Superscript,Anchor,Image',
+            toolbarCanCollapse: true
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof CKEDITOR !== 'undefined') {
+        CKEDITOR.replace('short_description_en', {
             contentsLangDirection: 'rtl',
             contentsLanguage: 'ar',
             language: 'ar',

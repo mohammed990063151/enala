@@ -4,6 +4,23 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    // تشغيل روابط اللغة بالقوة — حتى لو القالب يمنعها
+    document.querySelectorAll(".lang-sub a").forEach(function(link) {
+        link.addEventListener("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const url = this.getAttribute("href");
+            window.location.href = url; // تنفيذ الرابط مباشرة
+        });
+    });
+
+});
+</script>
+
+<script>
     $(document).ready(function() {
         const owl = $('#features-slider');
 

@@ -1,15 +1,19 @@
 @extends('frontend.layouts.master')
 
-@section('title', 'مشاريعنا - شركة مضياف')
+
+@section('title', __('messages.about') . ' - ' . (app()->getLocale() == 'en'
+    ? ($setting->name_en ?? $setting->name)
+    : $setting->name
+))
 
 <style>
-body {
+/* body {
   font-family: 'Tajawal', sans-serif;
   direction: rtl;
   background: #f9faf9;
   margin: 0;
   padding: 0;
-}
+} */
 
 /* 🌿 Flexbox Wrapper */
 .projects-wrapper {
@@ -132,26 +136,25 @@ body {
 ">
   <div style="position:relative; z-index:2; max-width:900px; margin:auto;">
     <h1 style="font-size:3rem; color:#D9EF82; margin-bottom:20px; font-weight:700;">
-      مشاريع <span style="color:#fff;">شركة مضياف</span>
+      {{ __('messages.projects_completed') }} <span style="color:#fff;">{{ app()->getLocale() == 'en' ? $setting->name_en : $setting->name }}</span>
     </h1>
-    <p style="font-size:1.2rem; line-height:1.9; color:#f3f3f3;">
-      نعرض لكم مجموعة من أبرز مشاريعنا التي تجمع بين الابتكار، الجمال، والاستدامة البيئية.
-      أعمالنا تمتد عبر مجالات متعددة تشمل تنسيق الحدائق، تصميم المسطحات الخضراء، والمشاريع الزراعية.
-    </p>
+    <p style="font-size:1.2rem; line-height:1.9; color:#f3f3f3;">{{ __('messages.des_project') }}</p>
   </div>
 </section>
 
 {{-- 🎞️ معرض المشاريع --}}
 <section class="image-slider py-5">
   <div class="container">
-    <h2 class="section-title text-center mb-5">معرض مشاريعنا</h2>
+    <h2 class="section-title text-center mb-5">
+        {{ __('messages.Our_Projects_Showcase') }}
+    </h2>
     <div class="swiper mySwiperGlobal" style="width:170%; height:500px;">
       <div class="swiper-wrapper">
         @foreach ($projects as $project)
           @if($project->images && $project->images->count())
             @foreach($project->images as $img)
               <div class="swiper-slide" style="width:600px;">
-                <img src="{{ asset($img->image) }}" alt="{{ $project->title }}">
+                <img src="{{ asset($img->image) }}" alt="{{ app()->getLocale() == 'en' ? $project->title_en : $project->title }}">
               </div>
             @endforeach
           @else
@@ -165,10 +168,10 @@ body {
   </div>
    <div style="max-width: 900px; margin:auto;">
     <h1 style="font-size: 3rem; color: #D9EF82; margin-bottom: 20px; font-weight:700;">
-      مشاريعنا <span >شركة مضياف</span>
+      {{ __('messages.projects_completed') }} <span >{{ app()->getLocale() == 'en' ? $setting->name_en : $setting->name }}</span>
     </h1>
     <p style="font-size: 1.2rem; line-height: 1.9;">
-            نعرض لكم مجموعة من أبرز مشاريعنا التي تجمع بين الابتكار، الجمال، والاستدامة البيئية.
+           {{ __('messages.projects_text') }}
     </p>
   </div>
 </section>
@@ -233,13 +236,14 @@ body {
       @foreach($projects as $index => $project)
       <div class="project-card" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
         <div class="image-box">
-          <img src="{{ asset($project->image) }}" alt="{{ $project->title }}">
+          <img src="{{ asset($project->image) }}" alt="{{ app()->getLocale() == 'en' ? $project->title_en : $project->title }}">
         </div>
         <div class="content-box">
           <i class="fa-solid fa-seedling"></i>
-          <h4>{{ $project->title }}</h4>
-          <p>{{ Str::limit(strip_tags($project->short_description), 150) }}</p>
-          <a href="{{ route('testimonials', $project->slug) }}" class="btn-modern">عرض التفاصيل</a>
+          <h4>{{ app()->getLocale() == 'en' ? $project->title_en : $project->title }}</h4>
+          <p>{!! app()->getLocale() == 'en' ? $project->short_description_en : $project->short_description !!}</p>
+          <br /><br />
+          <a href="{{ route('testimonials', $project->slug) }}" class="btn-modern">{{ __('messages.View_details') }} </a>
         </div>
       </div>
       @endforeach
@@ -252,10 +256,10 @@ body {
 {{-- CTA --}}
 <section class="cta-modern text-center py-5 text-white" data-aos="zoom-in">
   <div class="container">
-    <h2 class="fw-bold mb-3">ابدأ مشروعك معنا اليوم 🌿</h2>
-    <p class="fs-5 mb-4">تواصل مع فريقنا لتصميم وتنفيذ مشروعك بأعلى معايير الجودة</p>
+    <h2 class="fw-bold mb-3">{{ __('messages.Start_your_project_with_us_today') }}🌿</h2>
+    <p class="fs-5 mb-4">{{ __('messages.Contact_our_team_to_design_and_implement_your_project_to_the_highest_quality_standards') }}</p>
     <a href="https://wa.me/{{ $setting->phone ?? '' }}" target="_blank" class="btn-modern-light">
-      <i class="fa-brands fa-whatsapp"></i> تواصل عبر واتساب
+      <i class="fa-brands fa-whatsapp"></i> {{ __('messages.Contact_via_WhatsApp') }}
     </a>
   </div>
 </section>

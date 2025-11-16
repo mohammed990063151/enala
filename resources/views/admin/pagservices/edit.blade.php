@@ -102,6 +102,11 @@
                     <i class="fa fa-leaf input-icon"></i>
                     <input class="form-control" name="title" value="{{ old('title', $Pag_service->title) }}">
                 </div>
+                 <div class="col-md-6 mb-3 position-relative">
+                    <label class="form-label">اسم الخدمة (English)</label>
+                    <i class="fa fa-leaf input-icon"></i>
+                    <input class="form-control" name="title_en" value="{{ old('title', $Pag_service->title_en) }}">
+                </div>
 
                 <div class="col-md-6 mb-3 position-relative">
                     <label class="form-label">أيقونة FontAwesome</label>
@@ -114,7 +119,7 @@
                     <i class="fa fa-sort input-icon"></i>
                     <input name="sort_order" class="form-control" value="{{ old('sort_order', $Pag_service->sort_order) }}">
                 </div>
-
+<br /><br /><br /><br /><br /><br />
                  <div class="col-md-8 mb-3">
                     <label class="form-label"><i class="fa fa-images"></i> صور الاساسية للخدمة</label>
                     <input type="file" name="image" class="form-control" multiple accept="image/*">
@@ -136,11 +141,21 @@
                     <i class="fa fa-align-right input-icon"></i>
                     <textarea name="description" class="form-control ckeditor" rows="4">{{ old('description', $Pag_service->description) }}</textarea>
                 </div>
+                 <div class="col-md-12 mb-4 position-relative">
+                    <label class="form-label">الوصف (English)</label>
+                    <i class="fa fa-align-right input-icon"></i>
+                    <textarea name="description_en" class="form-control ckeditor" rows="4">{{ old('description', $Pag_service->description_en) }}</textarea>
+                </div>
 
                 <div class="col-md-12 mb-4 position-relative">
                     <label class="form-label">الوصف المختصر</label>
                     <i class="fa fa-align-right input-icon"></i>
                     <textarea name="short_description" class="form-control ckeditor" rows="4">{{ old('description', $Pag_service->short_description) }}</textarea>
+                </div>
+                <div class="col-md-12 mb-4 position-relative">
+                    <label class="form-label">الوصف المختصر (English)</label>
+                    <i class="fa fa-align-right input-icon"></i>
+                    <textarea name="short_description_en" class="form-control ckeditor" rows="4">{{ old('description', $Pag_service->short_description_en) }}</textarea>
                 </div>
 
 
@@ -179,8 +194,10 @@
                 <div class="col-md-4 feature-box" id="feature-{{ $feature->id }}">
                     <button class="feature-delete" data-id="{{ $feature->id }}"><i class="fa fa-trash"></i></button>
                     <input type="text" class="form-control feature-input f-title" value="{{ $feature->title }}">
+                     <input type="text" class="form-control feature-input f-title_en" value="{{ $feature->title_en }}">
                     <input type="text" class="form-control feature-input f-icon" value="{{ $feature->icon }}">
                     <input type="text" class="form-control feature-input f-desc" value="{{ $feature->description }}">
+                    <input type="text" class="form-control feature-input f-desc_en" value="{{ $feature->description_en }}">
                     <button class="btn btn-success btn-outline-primary w-100 save-feature" data-id="{{ $feature->id }}">
                         <i class="fa fa-save" class="btn btn-success"></i> حفظ التعديل
                     </button>
@@ -239,22 +256,37 @@ document.addEventListener('click', e => {
 
 /* ✏️ تعديل الميزة */
 document.addEventListener('click', e => {
-    if(e.target.closest('.save-feature')){
+    if (e.target.closest('.save-feature')) {
+
         const box = e.target.closest('.feature-box');
         const id = box.querySelector('.save-feature').dataset.id;
-        const title = box.querySelector('.f-title').value;
-        const icon = box.querySelector('.f-icon').value;
-        const description = box.querySelector('.f-desc').value;
+
+        const title = box.querySelector('.f-title').value.trim();
+        const title_en = box.querySelector('.f-title_en').value.trim();
+        const icon = box.querySelector('.f-icon').value.trim();
+        const description = box.querySelector('.f-desc').value.trim();
+        const description_en = box.querySelector('.f-desc_en').value.trim();
 
         fetch(`{{ url('dashboard/Pag_services/features') }}/${id}`, {
             method: 'PUT',
-            headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}','Accept': 'application/json','Content-Type': 'application/json'},
-            body: JSON.stringify({title, icon, description})
-        }).then(r=>r.json()).then(d=>{
-            if(d.success) alert('✅ تم حفظ التعديل بنجاح');
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ title, title_en, icon, description, description_en })
+        })
+        .then(r => r.json())
+        .then(d => {
+            if (d.success) {
+                alert('✅ تم حفظ التعديلات');
+            } else {
+                alert('❌ حدث خطأ');
+            }
         });
     }
 });
+
 
 /* 🗑️ حذف ميزة */
 document.addEventListener('click', e => {
@@ -279,32 +311,58 @@ document.getElementById('addNewFeature').addEventListener('click', () => {
     const row = `
         <div class="feature-box" id="temp-${i}">
             <input type="text" class="form-control feature-input n-title" placeholder="عنوان الميزة">
+             <input type="text" class="form-control feature-input n-title_en" placeholder="Feature Title">
             <input type="text" class="form-control feature-input n-icon" placeholder="fa-solid fa-leaf">
             <input type="text" class="form-control feature-input n-desc" placeholder="وصف الميزة">
+            <input type="text" class="form-control feature-input n-desc_en" placeholder="Feature Description">
         </div>`;
     container.insertAdjacentHTML('beforeend', row);
 });
-
-/* 💾 حفظ المميزات الجديدة */
 document.getElementById('saveAllFeatures').addEventListener('click', () => {
+
     const newBoxes = document.querySelectorAll('#newFeatures .feature-box');
-    const id = {{ $Pag_service->id }};
+    const serviceId = {{ $Pag_service->id }};
+
     newBoxes.forEach(box => {
-        const title = box.querySelector('.n-title').value;
-        const icon = box.querySelector('.n-icon').value;
-        const description = box.querySelector('.n-desc').value;
-        fetch(`{{ url('dashboard/Pag_services') }}/${id}/features`, {
+
+        const title = box.querySelector('.n-title').value.trim();
+        const title_en = box.querySelector('.n-title_en').value.trim();
+        const icon = box.querySelector('.n-icon').value.trim();
+        const description = box.querySelector('.n-desc').value.trim();
+        const description_en = box.querySelector('.n-desc_en').value.trim();
+
+        if (!title || !title_en) {
+            alert('⚠️ يجب إدخال العنوان باللغة العربية والإنجليزية');
+            return;
+        }
+
+        fetch(`{{ url('dashboard/Pag_services') }}/${serviceId}/features`, {
             method: 'POST',
-            headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}','Accept': 'application/json','Content-Type': 'application/json'},
-            body: JSON.stringify({title, icon, description})
-        }).then(r=>r.json()).then(d=>{
-            if(d.success){
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title,
+                title_en,
+                icon,
+                description,
+                description_en
+            })
+        })
+        .then(r => r.json())
+        .then(d => {
+            if (d.success) {
                 box.remove();
-                alert('✅ تم حفظ الميزة بنجاح');
+                alert('✅ تم إضافة الميزة بنجاح');
+            } else {
+                alert('❌ فشل الحفظ');
             }
         });
     });
 });
+
 </script>
 
     <script>
@@ -326,6 +384,37 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     if (typeof CKEDITOR !== 'undefined') {
         CKEDITOR.replace('short_description', {
+            contentsLangDirection: 'rtl',
+            contentsLanguage: 'ar',
+            language: 'ar',
+            height: 250,
+            removeButtons: 'Subscript,Superscript,Anchor,Image', // اختياري
+            toolbarCanCollapse: true
+        });
+    }
+});
+</script>
+
+
+ <script>
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof CKEDITOR !== 'undefined') {
+        CKEDITOR.replace('description_en', {
+            contentsLangDirection: 'rtl',
+            contentsLanguage: 'ar',
+            language: 'ar',
+            height: 250,
+            removeButtons: 'Subscript,Superscript,Anchor,Image', // اختياري
+            toolbarCanCollapse: true
+        });
+    }
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof CKEDITOR !== 'undefined') {
+        CKEDITOR.replace('short_description_en', {
             contentsLangDirection: 'rtl',
             contentsLanguage: 'ar',
             language: 'ar',

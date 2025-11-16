@@ -108,6 +108,8 @@
                             {{-- <i class="fa fa-tag input-icon"></i> --}}
                             <input type="text" name="title{{ $i }}" class="form-control"
                                 value="{{ $counter->{'title'.$i} }}">
+                                <input type="text" name="title{{ $i }}_en" class="form-control"
+                                value="{{ $counter->{'title'.$i.'_en'} }}">
                         </div>
 
                         {{-- الرقم --}}
@@ -142,7 +144,7 @@
             <div class="col-md-3">
                 <div class="stats-card">
                     <h3>{{ $counter->{'count'.$i} }}</h3>
-                    <span>{{ $counter->{'title'.$i} }}</span>
+                    <span> {{ app()->getLocale() == 'en' ? $counter->{'title'.$i.'_en'} : $counter->{'title'.$i} }}</span>
                 </div>
             </div>
             @endforeach

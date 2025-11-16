@@ -27,6 +27,13 @@ class CompanyAboutController extends Controller
             'point2'      => 'nullable|max:255',
             'point3'      => 'nullable|max:255',
             'point4'      => 'nullable|max:255',
+             'title_en'       => 'required|max:255',
+            'subtitle_en'    => 'nullable|max:255',
+            'intro_en'       => 'nullable',
+            'point1_en'      => 'nullable|max:255',
+            'point2_en'      => 'nullable|max:255',
+            'point3_en'      => 'nullable|max:255',
+            'point4_en'      => 'nullable|max:255',
             'header_image'=> 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
         ]);
 

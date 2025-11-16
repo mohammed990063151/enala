@@ -48,6 +48,11 @@
                         {{-- <i class="fa fa-leaf input-icon"></i> --}}
                         <input class="form-control" name="name" value="{{ old('name', $branch->name) }}">
                     </div>
+                     <div class="col-md-6 mb-3 pos-relative">
+                        <label class="form-label">اسم الفرع (English)</label>
+                        {{-- <i class="fa fa-leaf input-icon"></i> --}}
+                        <input class="form-control" name="name_en" value="{{ old('name', $branch->name_en) }}">
+                    </div>
 
                     <!-- الهاتف -->
                     <div class="col-md-6 mb-3 pos-relative">
@@ -68,6 +73,11 @@
                         <label class="form-label">العنوان</label>
                         {{-- <i class="fa fa-map-marker input-icon"></i> --}}
                         <input class="form-control" name="address" value="{{ old('address', $branch->address) }}">
+                    </div>
+                    <div class="col-md-6 mb-3 pos-relative">
+                        <label class="form-label">العنوان (English)</label>
+                        {{-- <i class="fa fa-map-marker input-icon"></i> --}}
+                        <input class="form-control" name="address_en" value="{{ old('address', $branch->address_en) }}">
                     </div>
 
                     <!-- رابط الخريطة -->

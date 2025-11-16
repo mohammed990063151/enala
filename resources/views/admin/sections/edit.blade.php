@@ -27,20 +27,29 @@
                                 value="{{ old('title', $section->title ?? '') }}" required>
                         </div>
                         <div class="form-group">
-    <label>وصف القسم</label>
-    <textarea
-        name="description"
-        class="form-control ckeditor"
-        rows="4"
-        style="direction: rtl; text-align: right;"
-    >{{ old('description', $section->description ?? '') }}</textarea>
-</div>
+                            <label>عنوان  القسم EN</label>
+                            <input type="text" name="title_en" class="form-control ckeditor"
+                                value="{{ old('title_en', $section->title_en ?? '') }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>وصف القسم</label>
+                            <textarea name="description" class="form-control ckeditor" rows="4" style="direction: rtl; text-align: right;">{{ old('description', $section->description ?? '') }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>وصف القسم EN</label>
+                            <textarea name="description_en" class="form-control ckeditor" rows="4" style="direction: rtl; text-align: right;">{{ old('description_en', $section->description_en ?? '') }}</textarea>
+                        </div>
 
 
                         <div class="form-group">
                             <label>نص الزر</label>
                             <input type="text" name="button_text" class="form-control"
                                 value="{{ old('button_text', $section->button_text ?? '') }}">
+                        </div>
+                         <div class="form-group">
+                            <label>نص الزر EN</label>
+                            <input type="text" name="button_text_en" class="form-control"
+                                value="{{ old('button_text_en', $section->button_text_en ?? '') }}">
                         </div>
 
                         <div class="form-group">
@@ -110,18 +119,35 @@
         </section>
     </div>
     <script>
-document.addEventListener('DOMContentLoaded', function() {
-    if (typeof CKEDITOR !== 'undefined') {
-        CKEDITOR.replace('description', {
-            contentsLangDirection: 'rtl',
-            contentsLanguage: 'ar',
-            language: 'ar',
-            height: 250,
-            removeButtons: 'Subscript,Superscript,Anchor,Image', // اختياري
-            toolbarCanCollapse: true
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof CKEDITOR !== 'undefined') {
+                CKEDITOR.replace('description', {
+                    contentsLangDirection: 'rtl',
+                    contentsLanguage: 'ar',
+                    language: 'ar',
+                    height: 250,
+                    removeButtons: 'Subscript,Superscript,Anchor,Image', // اختياري
+                    toolbarCanCollapse: true
+                });
+            }
         });
-    }
-});
-</script>
+    </script>
+
+
+ <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof CKEDITOR !== 'undefined') {
+                CKEDITOR.replace('description_en', {
+                    contentsLangDirection: 'rtl',
+                    contentsLanguage: 'ar',
+                    language: 'ar',
+                    height: 250,
+                    removeButtons: 'Subscript,Superscript,Anchor,Image', // اختياري
+                    toolbarCanCollapse: true
+                });
+            }
+        });
+    </script>
+
 
 @endsection

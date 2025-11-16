@@ -1,15 +1,15 @@
 @extends('frontend.layouts.master')
 
-@section('title', $service->title . ' - شركة مضياف')
+@section('title',  app()->getLocale() == 'en' ? $service->title_en : $service->title. ' - شركة مضياف')
 
 <style>
-body {
+/* body {
   font-family: 'Tajawal', sans-serif;
   direction: rtl;
   background: #f9faf9;
   margin: 0;
   padding: 0;
-}
+} */
 
 /* 🔹 Header Section */
 .page-header {
@@ -275,40 +275,6 @@ body {
 
 </style>
 
-
-@section('content')
-
-<section class="page-header">
-  <h1>{{ $service->title }}</h1>
-  <p>تعرف على تفاصيل الخدمة التي تقدمها شركة <strong>المضياف</strong> باحترافية وجودة عالية.</p>
-</section>
-
-<section class="image-slider">
-  <div class="container">
-    <h2>صور الخدمة</h2>
-    @if($service->images && $service->images->count())
-      <div class="swiper mySwiperGlobal">
-        <div class="swiper-wrapper">
-          @foreach($service->images as $img)
-          <div class="swiper-slide">
-            <img src="{{ asset($img->image) }}" alt="{{ $service->title }}">
-          </div>
-          @endforeach
-        </div>
-      </div>
-    @else
-      <p class="text-center text-muted">لا توجد صور متاحة لهذه الخدمة حالياً.</p>
-    @endif
-  </div>
-</section>
-{{-- معرض الصور --}}
-<div id="imageLightbox" class="lightbox">
-  <span class="close">&times;</span>
-  <img id="lightboxImg" src="" alt="عرض الصورة">
-  <button class="prev">&#10094;</button>
-  <button class="next">&#10095;</button>
-</div>
-
 <style>
 /* 💡 تصميم الـ Lightbox */
 .lightbox {
@@ -355,98 +321,6 @@ body {
 .lightbox .prev { left: 40px; }
 .lightbox .next { right: 40px; }
 </style>
-
-<script>
-const images = Array.from(document.querySelectorAll('.swiper-slide img'));
-const lightbox = document.getElementById('imageLightbox');
-const lightboxImg = document.getElementById('lightboxImg');
-const closeBtn = document.querySelector('.lightbox .close');
-const prevBtn = document.querySelector('.lightbox .prev');
-const nextBtn = document.querySelector('.lightbox .next');
-
-let currentIndex = 0;
-
-// ✅ فتح الصورة عند النقر
-images.forEach((img, index) => {
-  img.addEventListener('click', () => {
-    currentIndex = index;
-    showImage();
-    lightbox.style.display = 'flex';
-  });
-});
-
-// ✅ إغلاق عند النقر على × أو الخلفية
-closeBtn.addEventListener('click', () => lightbox.style.display = 'none');
-lightbox.addEventListener('click', e => {
-  if (e.target === lightbox) lightbox.style.display = 'none';
-});
-
-// ✅ أزرار التنقل
-prevBtn.addEventListener('click', e => {
-  e.stopPropagation();
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  showImage();
-});
-nextBtn.addEventListener('click', e => {
-  e.stopPropagation();
-  currentIndex = (currentIndex + 1) % images.length;
-  showImage();
-});
-
-// ✅ عرض الصورة الحالية
-function showImage() {
-  lightboxImg.src = images[currentIndex].src;
-}
-document.addEventListener('keydown', e => {
-  if (lightbox.style.display === 'flex') {
-    if (e.key === 'ArrowRight') nextBtn.click();
-    if (e.key === 'ArrowLeft') prevBtn.click();
-    if (e.key === 'Escape') lightbox.style.display = 'none';
-  }
-});
-
-</script>
-
-
-{{-- نهاية المعرض --}}
-<section class="service-details" style="
-    text-align: center;
-">
-  <div class="container" style="max-width:900px;">
-    <h2>{{ $service->title }}</h2>
-    <p>{!! $service->description !!}</p>
-  </div>
-</section>
-{{-- 🌿 مميزات خدمتنا --}}
-<section class="features-modern py-5" style="background:#f9faf9;">
-  <div class="container">
-    <h2 class="section-title text-center mb-5" style="font-weight:700; color:#1b3b26;">
-      مميزات خدمتنا 🌿
-    </h2>
-
-    @if($service->features && $service->features->count() > 0)
-      <div class="row g-4 justify-content-center">
-        @foreach($service->features as $index => $feature)
-          <div class="col-lg-3 col-md-4 col-sm-6 col-10" data-aos="zoom-in" data-aos-delay="{{ $index * 100 }}">
-            <div class="feature-card text-center h-100 p-4" style="
-    text-align: center;
-">
-              <div class="icon-circle mb-3 mx-auto">
-                <i class="{{ $feature->icon ?? 'fa-solid fa-circle-check' }}"></i>
-              </div>
-              <h5 class="fw-bold mb-2">{{ $feature->title }}</h5>
-              @if($feature->description)
-                <p class="text-muted small mb-0">{!! $feature->description !!}</p>
-              @endif
-            </div>
-          </div>
-        @endforeach
-      </div>
-    @else
-      <p class="text-center text-muted">لا توجد مميزات مسجلة لهذه الخدمة حالياً.</p>
-    @endif
-  </div>
-</section>
 
 <style>
 .features-modern {
@@ -513,22 +387,97 @@ document.addEventListener('keydown', e => {
 }
 </style>
 
+@section('content')
+
+<section class="page-header">
+  <h1> {!! app()->getLocale() == 'en' ? $service->title_en : $service->title !!}</h1>
+  <p>{{ __('messages.service_offered') }}<strong>{!! app()->getLocale() == 'en' ? $setting->name_en : $setting->name !!}</strong>{{ __('messages.service_professionalism') }} </p>
+</section>
+
+<section class="image-slider">
+  <div class="container">
+    <h2>{{ __('messages.Service_images') }}</h2>
+    @if($service->images && $service->images->count())
+      <div class="swiper mySwiperGlobal">
+        <div class="swiper-wrapper">
+          @foreach($service->images as $img)
+          <div class="swiper-slide">
+            <img src="{{ asset($img->image) }}" alt="{!! app()->getLocale() == 'en' ? $service->title_en : $service->title !!}">
+          </div>
+          @endforeach
+        </div>
+      </div>
+    @else
+      <p class="text-center text-muted">{{ __('messages.No_images') }}</p>
+    @endif
+  </div>
+</section>
+{{-- معرض الصور --}}
+<div id="imageLightbox" class="lightbox">
+  <span class="close">&times;</span>
+  <img id="lightboxImg" src="" alt="عرض الصورة">
+  <button class="prev">&#10094;</button>
+  <button class="next">&#10095;</button>
+</div>
+
+
+
+{{-- نهاية المعرض --}}
+<section class="service-details" style="
+    text-align: center;
+">
+  <div class="container" style="max-width:900px;">
+    <h2>{!! app()->getLocale() == 'en' ? $service->title_en : $service->title !!}</h2>
+    <p>{!! app()->getLocale() == 'en' ? $service->description_en : $service->description !!}</p>
+  </div>
+</section>
+{{-- 🌿 مميزات خدمتنا --}}
+<section class="features-modern py-5" style="background:#f9faf9;">
+  <div class="container">
+    <h2 class="section-title text-center mb-5" style="font-weight:700; color:#1b3b26;">
+      {{ __('messages.Features_of_our_service') }}🌿
+    </h2>
+
+    @if($service->features && $service->features->count() > 0)
+      <div class="row g-4 justify-content-center">
+        @foreach($service->features as $index => $feature)
+          <div class="col-lg-3 col-md-4 col-sm-6 col-10" data-aos="zoom-in" data-aos-delay="{{ $index * 100 }}">
+            <div class="feature-card text-center h-100 p-4" style="
+    text-align: center;
+">
+              <div class="icon-circle mb-3 mx-auto">
+                <i class="{{ $feature->icon ?? 'fa-solid fa-circle-check' }}"></i>
+              </div>
+              <h5 class="fw-bold mb-2">{!! app()->getLocale() == 'en' ? $feature->title_en : $feature->title !!}</h5>
+              @if($feature->description)
+                <p class="text-muted small mb-0">{!! app()->getLocale() == 'en' ? $feature->description_en : $service->description !!}</p>
+              @endif
+            </div>
+          </div>
+        @endforeach
+      </div>
+    @else
+      <p class="text-center text-muted">{{ __('messages.no_registered_features') }}</p>
+    @endif
+  </div>
+</section>
+
 
 <section class="services-flex">
   <div class="container">
-    <h3>خدمات أخرى من شركة المضياف</h3>
+    <h3>{{ __('messages.Other_services') }}</h3>
     <div class="services-wrapper">
       @foreach($related as $item)
       <div class="service-card" data-aos="fade-up">
         <div class="image-box">
           @php $imgPath = $item->images->first()->image ?? 'img/default.jpg'; @endphp
-          <img src="{{ asset($imgPath) }}" alt="{{ $item->title }}">
+          <img src="{{ asset($imgPath) }}" alt="{!! app()->getLocale() == 'en' ? $item->title_en : $item->title !!}">
         </div>
         <div class="content-box">
           <i class="{{ $item->icon ?? 'fa-solid fa-leaf' }}"></i>
-          <h4>{{ $item->title }}</h4>
-          {!! $item->short_description !!}
-          <a href="{{ route('services.show', $item->slug) }}" class="btn-modern">عرض التفاصيل</a>
+          <h4>{!! app()->getLocale() == 'en' ? $item->title_en : $item->title !!}</h4>
+         {!! app()->getLocale() == 'en' ? $item->short_description_en : $item->short_description !!}
+          <a href="{{ route('services.show', $item->slug) }}" class="btn-modern">{{ __('messages.View_details') }}</a>
         </div>
       </div>
       @endforeach
@@ -538,18 +487,28 @@ document.addEventListener('keydown', e => {
 
 <section class="footer-note">
   <div class="container">
-    <h2>ثقة تتجدد مع كل مشروع 🌸</h2>
-    <p>في <strong>شركة المضياف</strong>، نؤمن أن التميز في التفاصيل هو ما يصنع الفرق. هدفنا تقديم خدمات عالية الجودة تليق بثقة عملائنا وتدوم جمالاً وتأثيرًا.</p>
-  </div>
-</section>
+    <h2>{{ __('messages.Renewed_confidence') }}🌸</h2>
+    {{-- <p>في <strong>{!! app()->getLocale() == 'en' ? $setting->name_en : $setting->name !!}</strong>، نؤمن أن التميز في التفاصيل هو ما يصنع الفرق. هدفنا تقديم خدمات عالية الجودة تليق بثقة عملائنا وتدوم جمالاً وتأثيرًا.</p> --}}
+<p>
+    @if(app()->getLocale() == 'en')
+        At <strong>{{ $setting->name_en ?? $setting->name }}</strong>, we believe that excellence comes from attention to detail.
+        Our goal is to deliver high-quality services that earn the trust of our clients and ensure lasting beauty and impact.
+    @else
+        في <strong>{{ $setting->name }}</strong>، نؤمن أن التميز في التفاصيل هو ما يصنع الفرق.
+        هدفنا تقديم خدمات عالية الجودة تليق بثقة عملائنا وتدوم جمالاً وتأثيرًا.
+    @endif
+</p>
 
-<section class="cta-section">
+</div>
+</section>
+<br /><br /><br />
+{{-- <section class="cta-section">
   <div class="container">
     <h2>ابدأ رحلتك الخضراء معنا 🌿</h2>
     <p>تواصل مع فريقنا للحصول على استشارة مجانية لمشروعك الزراعي</p>
     <a href="https://wa.me/{{ $setting->phone ?? '' }}" target="_blank"><i class="fa-brands fa-whatsapp"></i> تواصل عبر واتساب</a>
   </div>
-</section>
+</section> --}}
 
 <!-- ✅ نافذة عرض الصور (Lightbox) -->
 <div id="imageLightbox" class="lightbox">
@@ -599,5 +558,57 @@ document.getElementById('imageLightbox').addEventListener('click', function(e) {
   if (e.target === this) this.style.display = 'none';
 });
 </script>
+
+<script>
+const images = Array.from(document.querySelectorAll('.swiper-slide img'));
+const lightbox = document.getElementById('imageLightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const closeBtn = document.querySelector('.lightbox .close');
+const prevBtn = document.querySelector('.lightbox .prev');
+const nextBtn = document.querySelector('.lightbox .next');
+
+let currentIndex = 0;
+
+// ✅ فتح الصورة عند النقر
+images.forEach((img, index) => {
+  img.addEventListener('click', () => {
+    currentIndex = index;
+    showImage();
+    lightbox.style.display = 'flex';
+  });
+});
+
+// ✅ إغلاق عند النقر على × أو الخلفية
+closeBtn.addEventListener('click', () => lightbox.style.display = 'none');
+lightbox.addEventListener('click', e => {
+  if (e.target === lightbox) lightbox.style.display = 'none';
+});
+
+// ✅ أزرار التنقل
+prevBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  showImage();
+});
+nextBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  currentIndex = (currentIndex + 1) % images.length;
+  showImage();
+});
+
+// ✅ عرض الصورة الحالية
+function showImage() {
+  lightboxImg.src = images[currentIndex].src;
+}
+document.addEventListener('keydown', e => {
+  if (lightbox.style.display === 'flex') {
+    if (e.key === 'ArrowRight') nextBtn.click();
+    if (e.key === 'ArrowLeft') prevBtn.click();
+    if (e.key === 'Escape') lightbox.style.display = 'none';
+  }
+});
+
+</script>
+
 
 @endsection

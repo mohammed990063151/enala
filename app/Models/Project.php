@@ -6,9 +6,19 @@ use Illuminate\Support\Str;
 
 class Project extends Model
 {
+    // protected $fillable = [
+    //     'title','slug','location','completion_date','image','description','short_description'
+    // ];
     protected $fillable = [
-        'title','slug','location','completion_date','image','description','short_description'
-    ];
+    'title','title_en',
+    'slug',
+    'location','location_en',
+    'completion_date',
+    'image',
+    'description','description_en',
+    'short_description','short_description_en',
+];
+
 
     protected static function booted(){
         static::creating(function($model){

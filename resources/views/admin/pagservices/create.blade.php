@@ -98,6 +98,11 @@
                     <i class="fa fa-leaf input-icon"></i>
                     <input class="form-control" name="title" placeholder="مثال: تنسيق حدائق" required>
                 </div>
+                 <div class="col-md-6 mb-3 position-relative">
+                    <label class="form-label">اسم الخدمة (English)</label>
+                    <i class="fa fa-leaf input-icon"></i>
+                    <input class="form-control" name="title_en" placeholder="Example: Garden landscaping" required>
+                </div>
 
                 <!-- أيقونة -->
                 <div class="col-md-6 mb-3 position-relative">
@@ -134,10 +139,20 @@
                     <i class="fa fa-align-right input-icon"></i>
                     <textarea name="description" class="form-control ckeditor" rows="4" placeholder="شرح للخدمة"></textarea>
                 </div>
+                <div class="col-md-12 mb-4 position-relative">
+                    <label class="form-label">الوصف (English)</label>
+                    <i class="fa fa-align-right input-icon"></i>
+                    <textarea name="description_en" class="form-control ckeditor" rows="4" placeholder="شرح للخدمة"></textarea>
+                </div>
                   <div class="col-md-12 mb-4 position-relative">
                     <label class="form-label">الوصف المختصر</label>
                     <i class="fa fa-align-right input-icon"></i>
                     <textarea name="short_description" class="form-control ckeditor" rows="4" placeholder="شرح للخدمة"></textarea>
+                </div>
+                <div class="col-md-12 mb-4 position-relative">
+                    <label class="form-label">الوصف المختصر (English)</label>
+                    <i class="fa fa-align-right input-icon"></i>
+                    <textarea name="short_description_en" class="form-control ckeditor" rows="4" placeholder="شرح للخدمة"></textarea>
                 </div>
 
             </div>
@@ -210,11 +225,17 @@ function addFeature() {
             <div class="col-md-3 mb-2">
                 <input type="text" name="features[${featureCount}][title]" class="form-control" placeholder="عنوان الميزة" required>
             </div>
+             <div class="col-md-3 mb-2">
+                <input type="text" name="features[${featureCount}][title_en]" class="form-control" placeholder="Feature Title" required>
+            </div>
             <div class="col-md-3 mb-2">
                 <input type="text" name="features[${featureCount}][icon]" class="form-control" placeholder="fa-solid fa-leaf">
             </div>
             <div class="col-md-4 mb-2">
                 <input type="text" name="features[${featureCount}][description]" class="form-control" placeholder="وصف الميزة">
+            </div>
+            <div class="col-md-4 mb-2">
+                <input type="text" name="features[${featureCount}][description_en]" class="form-control" placeholder="Feature Description">
             </div>
             <div class="col-md-2 mb-2 text-center">
                 <button type="button" class="btn btn-outline-danger" onclick="this.closest('.feature-box').remove()">
@@ -244,6 +265,35 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     if (typeof CKEDITOR !== 'undefined') {
         CKEDITOR.replace('short_description', {
+            contentsLangDirection: 'rtl',
+            contentsLanguage: 'ar',
+            language: 'ar',
+            height: 250,
+            removeButtons: 'Subscript,Superscript,Anchor,Image', // اختياري
+            toolbarCanCollapse: true
+        });
+    }
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof CKEDITOR !== 'undefined') {
+        CKEDITOR.replace('description_en', {
+            contentsLangDirection: 'rtl',
+            contentsLanguage: 'ar',
+            language: 'ar',
+            height: 250,
+            removeButtons: 'Subscript,Superscript,Anchor,Image', // اختياري
+            toolbarCanCollapse: true
+        });
+    }
+});
+</script>
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof CKEDITOR !== 'undefined') {
+        CKEDITOR.replace('short_description_en', {
             contentsLangDirection: 'rtl',
             contentsLanguage: 'ar',
             language: 'ar',

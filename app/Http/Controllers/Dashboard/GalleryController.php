@@ -23,7 +23,9 @@ class GalleryController extends Controller
     {
         $data = $request->validate([
             'title'       => 'required',
-            'description' => 'required'
+            'description_en' => 'required',
+            'title_en'       => 'required',
+            'description_en' => 'required'
         ]);
 
         $setting = GallerySetting::first();
@@ -37,6 +39,7 @@ class GalleryController extends Controller
         $request->validate([
             'image'  => 'required|image',
             'caption' => 'nullable|max:255',
+            'caption_en' => 'nullable|max:255',
         ]);
 
         $file = $request->file('image');
@@ -50,7 +53,8 @@ class GalleryController extends Controller
 
         GalleryItem::create([
             'image'   => $path,
-            'caption' => $request->caption
+            'caption' => $request->caption,
+            'caption_en' => $request->caption_en
         ]);
 
         return back()->with('success','✅ تم إضافة صورة جديدة');
@@ -75,6 +79,7 @@ public function editItem(Request $request, $id)
 {
     $request->validate([
         'caption' => 'nullable|string|max:255',
+        'caption_en' => 'nullable|string|max:255',
         'image'   => 'nullable|image|mimes:jpeg,png,jpg,gif|max:4096',
     ]);
 
@@ -84,6 +89,7 @@ public function editItem(Request $request, $id)
     // ✅ تعديل العنوان
     if ($request->filled('caption')) {
         $data['caption'] = $request->caption;
+        $data['caption_en'] = $request->caption_en;
     }
 
     // ✅ تعديل الصورة إذا تم رفع صورة جديدة

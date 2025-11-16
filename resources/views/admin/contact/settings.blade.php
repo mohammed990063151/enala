@@ -86,12 +86,23 @@
 
                         <input class="form-control" name="title" value="{{ $settinges->title}}" placeholder="مثال: تواصل معنا">
                     </div>
+                        <div class="col-md-6 mb-3 position-relative">
+                        <label class="form-label">عنوان الصفحة (English)</label>
+                        {{-- <i class="fa fa-heading input-icon"></i> --}}
+
+                        <input class="form-control" name="title_en" value="{{ $settinges->title_en}}" placeholder="Example: Contact us">
+                    </div>
 
                     {{-- الوصف --}}
                     <div class="col-md-6 mb-3 position-relative">
                         <label class="form-label">وصف قصير</label>
                         {{-- <i class="fa fa-align-left input-icon"></i> --}}
                         <input class="form-control" name="subtitle" value="{{ $settinges->subtitle }}" placeholder="كتابة تعريف مختصر">
+                    </div>
+                    <div class="col-md-6 mb-3 position-relative">
+                        <label class="form-label">وصف قصير (English)</label>
+                        {{-- <i class="fa fa-align-left input-icon"></i> --}}
+                        <input class="form-control" name="subtitle_en" value="{{ $settinges->subtitle_en }}" placeholder="Write a brief definition.">
                     </div>
 
                     {{-- الهاتف --}}
@@ -120,6 +131,11 @@
                         <label class="form-label">العنوان</label>
                         {{-- <i class="fa fa-map-marker input-icon"></i> --}}
                         <input class="form-control" name="address" value="{{ $settinges->address }}">
+                    </div>
+                    <div class="col-md-12 mb-3 position-relative">
+                        <label class="form-label">العنوان (English)</label>
+                        {{-- <i class="fa fa-map-marker input-icon"></i> --}}
+                        <input class="form-control" name="address_en" value="{{ $settinges->address_en }}">
                     </div>
 
                     {{-- MAP EMBED --}}

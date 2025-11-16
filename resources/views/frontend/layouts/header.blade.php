@@ -54,7 +54,8 @@
                                                              </path>
                                                          </svg> </span>
                                                      <span
-                                                         class="elementor-icon-list-text">{{ $setting->address ?? '' }}
+                                                         class="elementor-icon-list-text">{{ app()->getLocale() == 'en' ? $setting->address_en : $setting->address }}
+
                                                      </span>
                                                  </li>
                                                  <li class="elementor-icon-list-item elementor-inline-item">
@@ -98,7 +99,8 @@
                                              <div class="wdt-heading-holder " id="wdt-heading-b8849b1">
                                                  <h6
                                                      class="wdt-heading-title-wrapper wdt-heading-align- wdt-heading-deco-wrapper">
-                                                     <span class="wdt-heading-title">We are Social:</span>
+                                                     <span
+                                                         class="wdt-heading-title">{{ __('messages.We_are_Social') }}:</span>
                                                  </h6>
                                              </div>
                                          </div>
@@ -210,74 +212,62 @@
                                                                          <li>
                                                                              <a href="{{ route('frontend.home') }}"
                                                                                  aria-current="page"><span
-                                                                                     data-text="%1$s">الرئيسية</span></a>
+                                                                                     data-text="%1$s">{{ __('messages.home') }}</span></a>
                                                                          </li>
                                                                          <li>
                                                                              <a href="{{ route('projects.items') }}"
                                                                                  aria-current="page"><span
-                                                                                     data-text="%1$s">مشاريعنا
-                                                                                     </span></a>
+                                                                                     data-text="%1$s">{{ __('messages.projects') }}
+                                                                                 </span></a>
 
                                                                          </li>
-                                                                         {{-- <li>
-                                                                             <a href="{{ route('frontend.rooms') }}"><span
-                                                                                     data-text="%1$s">قسم
-                                                                                     الغرف</span></a>
-
-                                                                         </li> --}}
                                                                          <li>
                                                                              <a
                                                                                  href="{{ route('frontend.about-us') }}"><span
-                                                                                     data-text="%1$s">من نحن</span></a>
+                                                                                     data-text="%1$s">{{ __('messages.about') }}</span></a>
 
                                                                          </li>
                                                                          <li>
-                                                                            <a
-                                                                                 href="{{ route('servicepag.show') }}"> <span
-                                                                                     data-text="%1$s">خدماتنا</span></a>
-                                                                             {{-- <ul class="sub-menu is-hidden">
-                                                                                 <li class="close-nav"><a
-                                                                                         href="javascript:void(0);"></a>
-                                                                                 </li>
-                                                                                 <li class="go-back"><a
-                                                                                         href="javascript:void(0);"></a>
-                                                                                 </li>
-                                                                                 <li class="see-all"></li>
+                                                                             <a href="{{ route('servicepag.show') }}">
+                                                                                 <span
+                                                                                     data-text="%1$s">{{ __('messages.services') }}</span></a>
 
-                                                                                 @php
-                                                                                     $pagservices = \App\Models\Pagservice::orderBy(
-                                                                                         'sort_order',
-                                                                                     )->get();
-                                                                                 @endphp
-
-
-                                                                                     @foreach ($pagservices as $service)
-                                                                                         {{-- <li><a
-                                                                                                 href="{{ route('service.show', $service->slug) }}">{{ $service->title }}</a>
-                                                                                         </li> --}
-                                                                                         <li
-                                                                                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16216 menu-item-depth-1">
-                                                                                             <a
-                                                                                                 href="{{ route('servicepag.show', $service->slug) }}"><span
-                                                                                                     data-text="%1$s">{{ $service->title }}</span></a>
-                                                                                         </li>
-                                                                                     @endforeach
-
-
-
-
-                                                                             </ul> --}}
                                                                          <li>
                                                                              <a href="{{ route('pag.contact') }}"><span
-                                                                                     data-text="%1$s">تواصل
-                                                                                     معنا</span></a>
+                                                                                     data-text="%1$s">
+                                                                                     {{ __('messages.contact') }}
+                                                                                 </span></a>
                                                                          </li>
-                                                                         {{-- </ul> --}}
+                                                                         <li
+                                                                             class="menu-item menu-item-depth-1 menu-lang-dropdown">
+                                                                             <a href="javascript:void(0);"
+                                                                                 class="lang-toggle">
+                                                                                 🌐{{ app()->getLocale() == 'en' ? 'English' : 'العربية' }}
+                                                                             </a>
+
+                                                                             <ul class="sub-menu lang-sub is-hidden">
+                                                                                 <li class="menu-item">
+                                                                                     <a
+                                                                                         href="{{ route('switch.language', 'ar') }}">
+                                                                                         🇸🇦<span
+                                                                                             data-text="%1$s">العربية</span>
+                                                                                     </a>
+                                                                                 </li>
+                                                                                 <li class="menu-item">
+                                                                                     <a
+                                                                                         href="{{ route('switch.language', 'en') }}">
+                                                                                         🇬🇧<span
+                                                                                             data-text="%1$s">English</span>
+                                                                                     </a>
+                                                                                 </li>
+                                                                             </ul>
+                                                                         </li>
+
+                                                                         </ul>
                                                                          <div class="sub-menu-overlay"></div>
                                                                  </div>
                                                                  <div class="mobile-nav-container mobile-nav-offcanvas-right"
-                                                                     data-menu="2"><a
-                                                                         href=""
+                                                                     data-menu="2"><a href=""
                                                                          class="menu-trigger menu-trigger-icon"
                                                                          data-menu="2"><i></i><span>Menu</span></a>
                                                                      <div class="mobile-menu" data-menu="2"></div>
@@ -301,8 +291,9 @@
                                                              <div class="wdt-button-holder wdt-template-filled wdt-button-link wdt-button-style-default wdt-button-size-nm wdt-animation- wdt-button-icon-after"
                                                                  id="wdt-button-e395455"><a class="wdt-button"
                                                                      href="{{ route('servicepag.show') }}">
-                                                                     <div class="wdt-button-text"><span>استكشف
-                                                                             خدماتنا</span></div>
+                                                                     <div class="wdt-button-text">
+                                                                         <span>{{ __('messages.Explore_our_service') }}
+                                                                         </span></div>
                                                                  </a></div>
                                                          </div>
                                                      </div>
@@ -313,7 +304,7 @@
                                                          <div class="elementor-widget-container">
                                                              <div class="wdt-header-menu" data-menu="2">
                                                                  <div class="menu-container">
-                                                                        <ul id="menu-main-menu-1"
+                                                                     {{-- <ul id="menu-main-menu-1"
                                                                          class="wdt-primary-nav " data-menu="2">
                                                                          <li class="close-nav"><a
                                                                                  href="javascript:void(0);"></a></li>
@@ -326,89 +317,121 @@
                                                                              <a href="{{ route('projects.items') }}"
                                                                                  aria-current="page"><span
                                                                                      data-text="%1$s">مشاريعنا
-                                                                                     </span></a>
+                                                                                 </span></a>
 
                                                                          </li>
-                                                                         {{-- <li>
-                                                                             <a href="{{ route('frontend.rooms') }}"><span
-                                                                                     data-text="%1$s">قسم
-                                                                                     الغرف</span></a>
-
-                                                                         </li> --}}
                                                                          <li>
                                                                              <a
                                                                                  href="{{ route('frontend.about-us') }}"><span
                                                                                      data-text="%1$s">من نحن</span></a>
 
                                                                          </li>
-                                                                         {{-- <li>
-                                                                             <span
-                                                                                     data-text="%1$s">خدماتنا</span>
-                                                                             <ul class="sub-menu is-hidden">
-                                                                                 <li class="close-nav"><a
-                                                                                         href="javascript:void(0);"></a>
-                                                                                 </li>
-                                                                                 <li class="go-back"><a
-                                                                                         href="javascript:void(0);"></a>
-                                                                                 </li>
-                                                                                 <li class="see-all"></li>
+                                                                         <li>
 
-                                                                                 @php
-                                                                                     $pagservices = \App\Models\Pagservice::orderBy(
-                                                                                         'sort_order',
-                                                                                     )->get();
-                                                                                 @endphp
-
-
-                                                                                     @foreach ($pagservices as $service)
-                                                                                         {{-- <li><a
-                                                                                                 href="{{ route('service.show', $service->slug) }}">{{ $service->title }}</a>
-                                                                                         </li> --}
-                                                                                         <li
-                                                                                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16216 menu-item-depth-1">
-                                                                                             <a
-                                                                                                 href="{{ route('servicepag.show', $service->slug) }}"><span
-                                                                                                     data-text="%1$s">{{ $service->title }}</span></a>
-                                                                                         </li>
-                                                                                     @endforeach
-
-
-
-
-                                                                             </ul>
-                                                                         <li> --}}
-<li class="menu-item menu-item-has-children has-submenu">
-
-  <a href="{{ route('servicepag.show') }}">
-    <span data-text="%1$s">خدماتنا</span>
-  </a>
-
-  {{-- <ul class="sub-menu is-hidden">
-    @php
-        $pagservices = \App\Models\Pagservice::orderBy('sort_order')->get();
-    @endphp
-
-    @foreach ($pagservices as $service)
-      <li class="menu-item">
-        <a href="{{ route('servicepag.show', $service->slug) }}">
-          <span data-text="%1$s">{{ $service->title }}</span>
-        </a>
-      </li>
-    @endforeach
-  </ul> --}}
-</li>
-<li>
+                                                                             <a href="{{ route('servicepag.show') }}">
+                                                                                 <span data-text="%1$s">خدماتنا</span>
+                                                                             </a>
+                                                                         </li>
+                                                                         <li>
 
                                                                              <a href="{{ route('pag.contact') }}"><span
                                                                                      data-text="%1$s">تواصل
                                                                                      معنا</span></a>
                                                                          </li>
 
-                                                                     <div class="sub-menu-overlay"></div>
+
+                                                                         <li
+                                                                             class="menu-item menu-item-has-children has-submenu">
+                                                                             <a href="javascript:void(0);"
+                                                                                 class="lang-toggle">
+                                                                                 🌐{{ app()->getLocale() == 'en' ? 'English' : 'العربية' }}
+                                                                             </a>
+
+                                                                             <ul class="sub-menu lang-sub is-hidden">
+                                                                                 <li class="menu-item">
+                                                                                     <a
+                                                                                         href="{{ route('switch.language', 'ar') }}">
+                                                                                         🇸🇦<span
+                                                                                             data-text="%1$s">العربية</span>
+                                                                                     </a>
+                                                                                 </li>
+                                                                                 <li class="menu-item">
+                                                                                     <a
+                                                                                         href="{{ route('switch.language', 'en') }}">
+                                                                                         🇬🇧<span
+                                                                                             data-text="%1$s">English</span>
+                                                                                     </a>
+                                                                                 </li>
+                                                                             </ul> --}}
+
+
+                                                                             <ul id="menu-main-menu-1"
+                                                                         class="wdt-primary-nav " data-menu="2">
+                                                                         <li class="close-nav"><a
+                                                                                 href="javascript:void(0);"></a></li>
+                                                                         <li>
+                                                                             <a href="{{ route('frontend.home') }}"
+                                                                                 aria-current="page"><span
+                                                                                     data-text="%1$s">{{ __('messages.home') }}</span></a>
+                                                                         </li>
+                                                                         <li>
+                                                                             <a href="{{ route('projects.items') }}"
+                                                                                 aria-current="page"><span
+                                                                                     data-text="%1$s">{{ __('messages.projects') }}
+                                                                                 </span></a>
+
+                                                                         </li>
+                                                                         <li>
+                                                                             <a
+                                                                                 href="{{ route('frontend.about-us') }}"><span
+                                                                                     data-text="%1$s">{{ __('messages.about') }}</span></a>
+
+                                                                         </li>
+                                                                         <li>
+                                                                             <a href="{{ route('servicepag.show') }}">
+                                                                                 <span
+                                                                                     data-text="%1$s">{{ __('messages.services') }}</span></a>
+
+                                                                         <li>
+                                                                             <a href="{{ route('pag.contact') }}"><span
+                                                                                     data-text="%1$s">
+                                                                                     {{ __('messages.contact') }}
+                                                                                 </span></a>
+                                                                         </li>
+                                                                         <li
+                                                                             class="menu-item menu-item-has-children has-submenu">
+                                                                             <a href="javascript:void(0);"
+                                                                                 class="lang-toggle">
+                                                                                 🌐{{ app()->getLocale() == 'en' ? 'English' : 'العربية' }}
+                                                                             </a>
+
+                                                                             <ul class="sub-menu lang-sub is-hidden">
+                                                                                 <li class="menu-item">
+                                                                                     <a
+                                                                                         href="{{ route('switch.language', 'ar') }}">
+                                                                                         🇸🇦<span
+                                                                                             data-text="%1$s">العربية</span>
+                                                                                     </a>
+                                                                                 </li>
+                                                                                 <li class="menu-item">
+                                                                                     <a
+                                                                                         href="{{ route('switch.language', 'en') }}">
+                                                                                         🇬🇧<span
+                                                                                             data-text="%1$s">English</span>
+                                                                                     </a>
+                                                                                 </li>
+                                                                             </ul>
+                                                                         </li>
+
+                                                                         </ul>
+                                                                         {{-- </li> --}}
+
+
+
+                                                                         <div class="sub-menu-overlay"></div>
                                                                  </div>
                                                                  <div class="mobile-nav-container mobile-nav-offcanvas-right"
-                                                                     data-menu="2"><a
-                                                                         href="#"
+                                                                     data-menu="2"><a href="#"
                                                                          class="menu-trigger menu-trigger-icon"
                                                                          data-menu="2"><i></i><span>Menu</span></a>
                                                                      <div class="mobile-menu" data-menu="2"></div>

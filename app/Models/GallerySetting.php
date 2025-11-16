@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class GallerySetting extends Model
 {
-    protected $fillable = ['title', 'description'];
+    protected $fillable = [
+        'title', 'title_en',
+        'description', 'description_en'
+    ];
 }
-
-

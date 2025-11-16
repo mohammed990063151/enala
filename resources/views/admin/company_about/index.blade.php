@@ -1,4 +1,3 @@
-{{-- resources/views/dashboard/company_about/index.blade.php --}}
 @extends('admin.layouts.dashboard.app')
 
 @section('content')
@@ -107,11 +106,21 @@
                         <input type="text" name="title" class="form-control" value="{{ $about->title }}">
                     </div>
 
+                      {{-- العنوان --}}
+                    <div class="col-md-6 mb-3 position-relative">
+                        <label class="form-label">عنوان رئيسي (English)</label>
+                        <input type="text" name="title_en" class="form-control" value="{{ $about->title_en }}">
+                    </div>
                     {{-- سطر مختصر --}}
                     <div class="col-md-6 mb-3 position-relative">
                         <label class="form-label">سطر مختصر</label>
                         {{-- <i class="fa fa-pen input-icon"></i> --}}
                         <input type="text" name="subtitle" class="form-control" value="{{ $about->subtitle }}">
+                    </div>
+                     <div class="col-md-6 mb-3 position-relative">
+                        <label class="form-label">سطر مختصر (English)</label>
+                        {{-- <i class="fa fa-pen input-icon"></i> --}}
+                        <input type="text" name="subtitle_en" class="form-control" value="{{ $about->subtitle_en }}">
                     </div>
 
                     {{-- نبذة --}}
@@ -120,6 +129,11 @@
                         {{-- <i class="fa fa-align-left input-icon"></i> --}}
                         <textarea name="intro" rows="4" class="form-control ckeditor">{{ $about->intro }}</textarea>
                     </div>
+                     <div class="col-md-12 mb-3 position-relative">
+                        <label class="form-label">نبذة تعريفية (English)</label>
+                        {{-- <i class="fa fa-align-left input-icon"></i> --}}
+                        <textarea name="intro_en" rows="4" class="form-control ckeditor">{{ $about->intro_en }}</textarea>
+                    </div>
 
                     {{-- النقاط --}}
                     @foreach([1,2,3,4] as $i)
@@ -127,6 +141,11 @@
                         <label class="form-label">نقطة {{ $i }}</label>
                         {{-- <i class="fa fa-check input-icon"></i> --}}
                         <input type="text" name="point{{ $i }}" class="form-control" value="{{ $about->{'point'.$i} }}">
+                    </div>
+                     <div class="col-md-3 mb-3 position-relative">
+                        <label class="form-label">نقطة {{ $i }}(English)</label>
+                        {{-- <i class="fa fa-check input-icon"></i> --}}
+                        <input type="text" name="point{{ $i }}_en" class="form-control" value="{{ $about->{'point'.$i.'_en'} }}">
                     </div>
                     @endforeach
 
@@ -161,11 +180,23 @@
         <div class="bg-white p-3 rounded shadow-sm">
             <h4>{{ $about->title }}</h4>
             <p>{{ $about->subtitle }}</p>
-            <p>{{ $about->intro }}</p>
-
+            <p>{!! $about->intro !!}</p><br />
+            <div style="direction: ltr">
+            <h4>{{ $about->title_en }}</h4>
+            <p>{{ $about->subtitle_en }}</p>
+            <p>{!! $about->intro_en !!}</p>
+            </div>
             @foreach([1,2,3,4] as $i)
                 @if($about->{'point'.$i})
                     <span class="pill">{{ $about->{'point'.$i} }}</span>
+                    
+                @endif
+            @endforeach
+            <br />
+             @foreach([1,2,3,4] as $i)
+                @if($about->{'point'.$i})
+                   <span class="pill">{{ $about->{'point'.$i.'_en'} }}</span>
+                    
                 @endif
             @endforeach
 
@@ -179,6 +210,19 @@
 document.addEventListener('DOMContentLoaded', function() {
     if (typeof CKEDITOR !== 'undefined') {
         CKEDITOR.replace('intro', {
+            contentsLangDirection: 'rtl',
+            contentsLanguage: 'ar',
+            language: 'ar',
+            height: 250,
+            removeButtons: 'Subscript,Superscript,Anchor,Image', // اختياري
+            toolbarCanCollapse: true
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof CKEDITOR !== 'undefined') {
+        CKEDITOR.replace('intro_en', {
             contentsLangDirection: 'rtl',
             contentsLanguage: 'ar',
             language: 'ar',

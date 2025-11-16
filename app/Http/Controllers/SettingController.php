@@ -20,10 +20,12 @@ class SettingController extends Controller
 
         $request->validate([
             'name' => 'nullable|string|max:255',
+            'name_en' => 'nullable|string|max:255',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'email' => 'nullable|email',
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string',
+            'address_en' => 'nullable|string',
             'facebook' => 'nullable|url',
             'twitter' => 'nullable|url',
             'instagram' => 'nullable|url',

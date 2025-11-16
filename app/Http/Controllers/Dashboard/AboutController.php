@@ -29,20 +29,15 @@ public function update(Request $request)
         'point2'      => 'nullable',
         'point3'      => 'nullable',
         'point4'      => 'nullable',
+        'title_en'       => 'required',
+        'description_en' => 'required',
+        'point1_en'      => 'nullable',
+        'point2_en'      => 'nullable',
+        'point3_en'      => 'nullable',
+        'point4_en'      => 'nullable',
     ]);
 
     $about = About::first(); // نفس السجل
-
-    // // رفع الصور
-    // if ($request->hasFile('image1')) {
-    //     $data['image1'] = $request->file('image1')->store('about', 'public');
-    // }
-
-    // if ($request->hasFile('image2')) {
-    //     $data['image2'] = $request->file('image2')->store('about', 'public');
-    // }
-    // رفع الصورة 1
-// IMAGE 1
 if ($request->hasFile('image1')) {
 
     // حذف القديمة إن وجدت

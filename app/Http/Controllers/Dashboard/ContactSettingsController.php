@@ -20,10 +20,13 @@ class ContactSettingsController extends Controller
         $data = $request->validate([
             'title'     => 'nullable|string',
             'subtitle'  => 'nullable|string',
+            'title_en'     => 'nullable|string',
+            'subtitle_en'  => 'nullable|string',
             'email'     => 'nullable|string',
             'phone'     => 'nullable|string',
             'whatsapp'  => 'nullable|string',
             'address'   => 'nullable|string',
+             'address_en'   => 'nullable|string',
             'map_embed' => 'nullable|string',
         ]);
 

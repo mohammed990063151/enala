@@ -1,100 +1,126 @@
 @extends('admin.layouts.dashboard.app')
 
 @section('content')
-<div class="content-wrapper">
+    <div class="content-wrapper">
 
-    <section class="content-header">
-        <h1>إعدادات لماذا نحن؟</h1>
-    </section>
+        <section class="content-header">
+            <h1>إعدادات لماذا نحن؟</h1>
+        </section>
 
-    <section class="content">
-        <div class="box box-primary">
-            <div class="box-header"><h3 class="box-title">تحديث البيانات</h3></div>
-            <div class="box-body">
+        <section class="content">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">تحديث البيانات</h3>
+                </div>
+                <div class="box-body">
 
-                @if(session('success'))
-                    <div class="alert alert-success">{{ session('success') }}</div>
-                @endif
+                    @if (session('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                    @endif
 
-                @if(session('error'))
-                    <div class="alert alert-danger">{{ session('error') }}</div>
-                @endif
+                    @if (session('error'))
+                        <div class="alert alert-danger">{{ session('error') }}</div>
+                    @endif
 
-                <form action="{{ route('dashboard.whyus.update') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT')
+                    <form action="{{ route('dashboard.whyus.update') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
 
-                    <!-- العنوان -->
-                    <div class="form-group mb-3">
-                        <label>عنوان القسم</label>
-                        <input type="text" name="title" class="form-control"
-                               value="{{ old('title', $whyus->title) }}">
-                    </div>
+                        <!-- العنوان -->
+                        <div class="form-group mb-3">
+                            <label>عنوان القسم</label>
+                            <input type="text" name="title" class="form-control"
+                                value="{{ old('title', $whyus->title) }}">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>عنوان القسم (English)</label>
+                            <input type="text" name="title_en" class="form-control"
+                                value="{{ old('title_en', $whyus->title_en) }}">
+                        </div>
 
-                    <!-- الوصف -->
-                    <div class="form-group mb-3">
-                        <label>الوصف</label>
-                        <textarea name="description" class="form-control ckeditor" rows="3">{{ old('description', $whyus->description) }}</textarea>
-                    </div>
+                        <!-- الوصف -->
+                        <div class="form-group mb-3">
+                            <label>الوصف</label>
+                            <textarea name="description" class="form-control ckeditor" rows="3">{{ old('description', $whyus->description) }}</textarea>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>الوصف (Engliesh)</label>
+                            <textarea name="description_en" class="form-control ckeditor" rows="3">{{ old('description_en', $whyus->description_en) }}</textarea>
+                        </div>
 
-                    <hr>
-<div class="images-section"  style="display: flex;">
-                    <!-- الصورة 1 -->
-                    <div class="form-group mb-3">
-                        <label>الصورة 1</label>
-                        <input type="file" name="image1" class="form-control">
-                        @if($whyus->image1)
-                            <img src="{{ asset($whyus->image1) }}" width="150" class="mt-2 img-thumbnail">
-                        @endif
-                    </div>
+                        <hr>
+                        <div class="images-section" style="display: flex;">
+                            <!-- الصورة 1 -->
+                            <div class="form-group mb-3">
+                                <label>الصورة 1</label>
+                                <input type="file" name="image1" class="form-control">
+                                @if ($whyus->image1)
+                                    <img src="{{ asset($whyus->image1) }}" width="150" class="mt-2 img-thumbnail">
+                                @endif
+                            </div>
 
-                    <!-- الصورة 2 -->
-                    <div class="form-group mb-3">
-                        <label>الصورة 2</label>
-                        <input type="file" name="image2" class="form-control">
-                        @if($whyus->image2)
-                            <img src="{{ asset($whyus->image2) }}" width="150" class="mt-2 img-thumbnail">
-                        @endif
-                    </div>
+                            <!-- الصورة 2 -->
+                            <div class="form-group mb-3">
+                                <label>الصورة 2</label>
+                                <input type="file" name="image2" class="form-control">
+                                @if ($whyus->image2)
+                                    <img src="{{ asset($whyus->image2) }}" width="150" class="mt-2 img-thumbnail">
+                                @endif
+                            </div>
 
-                    <!-- الصورة 3 -->
-                    <div class="form-group mb-3">
-                        <label>الصورة 3</label>
-                        <input type="file" name="image3" class="form-control">
-                        @if($whyus->image3)
-                            <img src="{{ asset($whyus->image3) }}" width="150" class="mt-2 img-thumbnail">
-                        @endif
-                    </div>
+                            <!-- الصورة 3 -->
+                            <div class="form-group mb-3">
+                                <label>الصورة 3</label>
+                                <input type="file" name="image3" class="form-control">
+                                @if ($whyus->image3)
+                                    <img src="{{ asset($whyus->image3) }}" width="150" class="mt-2 img-thumbnail">
+                                @endif
+                            </div>
 
-                    <!-- الصورة 4 -->
-                    <div class="form-group mb-3">
-                        <label>الصورة 4</label>
-                        <input type="file" name="image4" class="form-control">
-                        @if($whyus->image4)
-                            <img src="{{ asset($whyus->image4) }}" width="150" class="mt-2 img-thumbnail">
-                        @endif
-                    </div>
-</div>
-                    <button type="submit" class="btn btn-primary">💾 حفظ التحديثات</button>
+                            <!-- الصورة 4 -->
+                            <div class="form-group mb-3">
+                                <label>الصورة 4</label>
+                                <input type="file" name="image4" class="form-control">
+                                @if ($whyus->image4)
+                                    <img src="{{ asset($whyus->image4) }}" width="150" class="mt-2 img-thumbnail">
+                                @endif
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">💾 حفظ التحديثات</button>
 
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
-    </section>
-</div>
+        </section>
+    </div>
 
-   <script>
-document.addEventListener('DOMContentLoaded', function() {
-    if (typeof CKEDITOR !== 'undefined') {
-        CKEDITOR.replace('description', {
-            contentsLangDirection: 'rtl',
-            contentsLanguage: 'ar',
-            language: 'ar',
-            height: 250,
-            removeButtons: 'Subscript,Superscript,Anchor,Image', // اختياري
-            toolbarCanCollapse: true
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof CKEDITOR !== 'undefined') {
+                CKEDITOR.replace('description', {
+                    contentsLangDirection: 'rtl',
+                    contentsLanguage: 'ar',
+                    language: 'ar',
+                    height: 250,
+                    removeButtons: 'Subscript,Superscript,Anchor,Image', // اختياري
+                    toolbarCanCollapse: true
+                });
+            }
         });
-    }
-});
-</script>
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof CKEDITOR !== 'undefined') {
+                CKEDITOR.replace('description_en', {
+                    contentsLangDirection: 'rtl',
+                    contentsLanguage: 'ar',
+                    language: 'ar',
+                    height: 250,
+                    removeButtons: 'Subscript,Superscript,Anchor,Image', // اختياري
+                    toolbarCanCollapse: true
+                });
+            }
+        });
+    </script>
 @endsection

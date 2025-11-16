@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class GalleryItem extends Model
 {
-    protected $fillable = ['image', 'caption'];
+    protected $fillable = ['image', 'caption', 'caption_en'];
 }
 
 

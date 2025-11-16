@@ -18,17 +18,26 @@ class ServiceController extends Controller
 
     public function update(Request $request)
     {
+        // return $request->all();
         $service = Service::first();
 
         $data = $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'caption1' => 'nullable',
-            'caption2' => 'nullable',
-            'caption3' => 'nullable',
-            'caption4' => 'nullable',
-            'caption5' => 'nullable',
-            'caption6' => 'nullable',
+            'title' => 'nullable|string',
+            'description' => 'nullable|string',
+            'caption1' => 'nullable|string',
+            'caption2' => 'nullable|string',
+            'caption3' => 'nullable|string',
+            'caption4' => 'nullable|string',
+            'caption5' => 'nullable|string',
+            'caption6' => 'nullable|string',
+            'title_en' => 'nullable|string',
+            'description_en' => 'nullable|string',
+            'caption1_en' => 'nullable|string',
+            'caption2_en' => 'nullable|string',
+            'caption3_en' => 'nullable|string',
+            'caption4_en' => 'nullable|string',
+            'caption5_en' => 'nullable|string',
+            'caption6_en' => 'nullable|string',
             'image1' => 'image|mimes:jpg,png,jpeg',
             'image2' => 'image|mimes:jpg,png,jpeg',
             'image3' => 'image|mimes:jpg,png,jpeg',

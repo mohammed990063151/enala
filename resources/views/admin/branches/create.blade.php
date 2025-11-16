@@ -28,11 +28,19 @@
                             <label>اسم الفرع</label>
                             <input type="text" name="name" class="form-control" placeholder="مثال: فرع الرياض" required>
                         </div>
+                         <div class="col-md-6 mb-3">
+                            <label>اسم الفرع (English)</label>
+                            <input type="text" name="name_en" class="form-control" placeholder="Example: Riyadh branch" required>
+                        </div>
 
                         <!-- المدينة -->
                         <div class="col-md-6 mb-3">
                             <label>المدينة</label>
-                            <input type="text" name="city" class="form-control" placeholder="مدينة الفرع">
+                            <input type="text" name="address" class="form-control" placeholder="مدينة الفرع">
+                        </div>
+                         <div class="col-md-6 mb-3">
+                            <label>المدينة (English)</label>
+                            <input type="text" name="address_en" class="form-control" placeholder="Branch City">
                         </div>
 
                         <!-- الهاتف -->

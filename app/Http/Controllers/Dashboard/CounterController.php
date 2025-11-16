@@ -18,12 +18,16 @@ class CounterController extends Controller
     {
         $data = $request->validate([
             'title1' => 'required',
+            'title1_en' => 'required',
             'count1' => 'required|numeric',
             'title2' => 'required',
+            'title2_en' => 'required',
             'count2' => 'required|numeric',
             'title3' => 'required',
+            'title3_en' => 'required',
             'count3' => 'required|numeric',
             'title4' => 'required',
+            'title4_en' => 'required',
             'count4' => 'required|numeric',
         ]);
 

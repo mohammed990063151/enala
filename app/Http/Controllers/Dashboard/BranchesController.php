@@ -24,7 +24,9 @@ class BranchesController extends Controller
     {
         $data = $request->validate([
             'name'=>'required|string',
-            'city'=>'nullable|string',
+            'name_en'=>'required|string',
+            'address'=>'nullable|string',
+            'address_en'=>'nullable|string',
             'phone'=>'nullable|string',
             'email'=>'nullable|string',
             'map_link'=>'nullable|string',
@@ -50,7 +52,9 @@ class BranchesController extends Controller
     {
         $data = $request->validate([
             'name'=>'required|string',
-            'city'=>'nullable|string',
+            'address'=>'nullable|string',
+            'name_en'=>'required|string',
+            'address_en'=>'nullable|string',
             'phone'=>'nullable|string',
             'email'=>'nullable|string',
             'map_link'=>'nullable|string',

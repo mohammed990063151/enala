@@ -13,6 +13,55 @@
     font-family: "Font Awesome 6 Free" !important;
 }
 
+
+.menu-lang-dropdown {
+    position: relative;
+}
+
+.menu-lang-dropdown .lang-sub {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    min-width: 150px;
+    padding: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: 0.3s ease;
+    z-index: 999;
+}
+
+.menu-lang-dropdown:hover .lang-sub {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.menu-lang-dropdown .lang-sub li a {
+    padding: 10px 18px;
+    display: flex;
+    gap: 8px;
+    font-size: 14px;
+    color: #333;
+    transition: 0.2s;
+}
+
+.menu-lang-dropdown .lang-sub li a:hover {
+    background: #f5f5f5;
+    color: #0d6efd;
+}
+
+.menu-lang-dropdown > a.lang-toggle {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+
 </style>
 
 	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
@@ -589,6 +638,10 @@ var woocommerce_params = {"ajax_url":"\/rtl-demo\/wp-admin\/admin-ajax.php","wc_
 .btn:hover {
   background: #3c8c40;
 }
+
+
+
+
 
 
 </style>

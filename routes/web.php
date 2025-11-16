@@ -24,30 +24,40 @@ use App\Http\Controllers\PagContactController;
 use App\Models\Service;
 use App\Http\Controllers\Dashboard\ProjectController as AdminProjectController;
 use App\Http\Controllers\Frontend\ProjectController as FrontProjectController;
+use App\Http\Middleware\SetLocale;
+
+
+
+Route::get('/lang/{lang}', function ($lang) {
+    session(['locale' => $lang]);
+    return redirect()->back();
+})->name('switch.language');
+// 🔹
 Route::get('/custom-login', function() {
     return view('auth.custom-login');
 })->name('custom-login');
 
+Auth::routes(['register' => false]);
+Route::middleware([SetLocale::class])->group(function () {
+Route::get('/pag_service', [BlogController::class, 'Pagservice'])->name('servicepag.show');
+
+Route::get('/projects/{slug}', [FrontProjectController::class,'show'])->name('testimonials');
+Route::get('/projects_items', function () {
+    $projects = App\Models\Project::with('images')->latest()->get();
+return view('frontend.guests-reviews', compact('projects'));
+})->name('projects.items');
+
 // 🔹 الصفحة الرئيسية للموقع (الفرونت إند)
 Route::get('/', [HomeController::class, 'index'])->name('frontend.home');
-Route::get('/pag_service', [BlogController::class, 'Pagservice'])->name('servicepag.show');
-// Route::middleware(['auth', 'web'])->name('dashboard.')->group(function () {
-// // 🔹 مثال لمسار لوحة التحكم (backend)
-// Route::get('/dashboard', function () {
-//     return view('admin.home');
-// })->name('dashboard.welcome');
-// });
-
-Auth::routes(['register' => false]);
 
 Route::get('/contact', function () {
     return view('frontend.Contact');
 })->name('contact');
 
 // // صفحة "خدمتنا"
-Route::get('/our-services', function () {
-    return view('frontend.our_services');
-})->name('frontend.our-services');
+// Route::get('/our-services', function () {
+//     return view('frontend.our_services');
+// })->name('frontend.our-services');
 Route::get('/services/{slug}', [App\Http\Controllers\Frontend\ServiceController::class, 'show'])->name('services.show');
 // Frontend display:
 Route::get('/pag_services', function () {
@@ -91,8 +101,11 @@ Route::get('/rooms', function () {
 })->name('rooms.show');
 
 
+Route::get('/contact/pag',[PagContactController::class,'index'])->name('pag.contact');
+Route::post('/contact-send',[PagContactController::class,'send'])->name('contact.send');
 
 
+});
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
@@ -173,7 +186,6 @@ Route::delete('Pag_services/image/{id}', [App\Http\Controllers\Dashboard\Pagserv
 // Route::put('/gallery/{id}', [GalleryController::class, 'update'])->name('gallery.update');
 
 
-
 });
 // Frontend Contact Form
 // Route::post('contact/send', [ContactController::class, 'send'])->name('contact.send');
@@ -185,8 +197,7 @@ Route::delete('Pag_services/image/{id}', [App\Http\Controllers\Dashboard\Pagserv
 
 
 // frontend
-Route::get('/contact/pag',[PagContactController::class,'index'])->name('pag.contact');
-Route::post('/contact-send',[PagContactController::class,'send'])->name('contact.send');
+
 
 // dashboard
 Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(function () {
@@ -217,13 +228,7 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
 // Route::resource('projects', App\Http\Controllers\Dashboard\ProjectController::class);
 });
 
-Route::get('/projects_items', function () {
-    // $items = App\Models\Testimonial::latest()->get();
-    $projects = App\Models\Project::with('images')->latest()->get();
-return view('frontend.guests-reviews', compact('projects'));
 
-    // return view('frontend.guests-reviews', compact('projects'));
-})->name('projects.items');
 // Route::get('/projects', [App\Http\Controllers\Dashboard\ProjectController::class, 'index'])->name('projects.index');
 
 // routes/web.php
@@ -251,6 +256,6 @@ Route::put('projects/features/{feature}', [\App\Http\Controllers\Dashboard\Proje
 // ===== Frontend =====
 
 
-Route::get('/projects/{slug}', [FrontProjectController::class,'show'])->name('testimonials');
+
 
 

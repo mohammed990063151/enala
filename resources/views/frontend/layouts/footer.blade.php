@@ -50,7 +50,10 @@
                                                            <div class="wdt-heading-holder " id="wdt-heading-fe3a6aa">
                                                                <h2
                                                                    class="wdt-heading-title-wrapper wdt-heading-align- wdt-heading-deco-wrapper">
-                                                                   <span class="wdt-heading-title"> جودة نضمنها دائماً </span></h2>
+                                                                   <span class="wdt-heading-title">
+                                                                       {{ __('messages.Quality_we_always_guarantee') }}
+                                                                   </span>
+                                                               </h2>
                                                            </div>
                                                        </div>
                                                    </div>
@@ -94,7 +97,8 @@
                                                                                </div>
                                                                                <div class="wdt-content-detail-group">
                                                                                    <div class="wdt-content-description">
-                                                                                       <p>{{ $setting->address }}</p>
+                                                                                       <p>{{ app()->getLocale() == 'en' ? $setting->address_en : $setting->address }}
+                                                                                       </p>
                                                                                        {{-- <p>Street, MD, USA 4508</p> --}}
                                                                                    </div>
                                                                                </div>
@@ -144,7 +148,8 @@
                                                                                                    class="wdt-button-text">
                                                                                                    <span>{{ $setting->email }}</span>
                                                                                                </div>
-                                                                                           </a></div>
+                                                                                           </a>
+                                                                                       </div>
                                                                                        <div
                                                                                            class="wdt-content-button wdt-button-clone">
                                                                                            <a
@@ -153,7 +158,8 @@
                                                                                                    class="wdt-button-text">
                                                                                                    <span></span>
                                                                                                </div>
-                                                                                           </a></div>
+                                                                                           </a>
+                                                                                       </div>
                                                                                    </div>
                                                                                </div>
                                                                            </div>
@@ -197,8 +203,10 @@
                                                                                                href="tel:{{ $setting->phone }}">
                                                                                                <div
                                                                                                    class="wdt-button-text">
-                                                                                                   <span>{{ $setting->phone }}</span></div>
-                                                                                           </a></div>
+                                                                                                   <span>{{ $setting->phone }}</span>
+                                                                                               </div>
+                                                                                           </a>
+                                                                                       </div>
                                                                                        <div
                                                                                            class="wdt-content-button wdt-button-clone">
                                                                                            <a
@@ -207,7 +215,8 @@
                                                                                                    class="wdt-button-text">
                                                                                                    <span></span>
                                                                                                </div>
-                                                                                           </a></div>
+                                                                                           </a>
+                                                                                       </div>
                                                                                    </div>
                                                                                </div>
                                                                            </div>
@@ -218,10 +227,10 @@
                                                                    class="wdt-column-pagination wdt-snap-scroll-pagination">
                                                                    <button
                                                                        class="wdt-pagination-prev wdt-module-id-7b165e4 disabled"
-                                                                       style="cursor: not-allowed;">Previous</button>
+                                                                       style="cursor: not-allowed;">{{ __('messages.Previous') }}</button>
                                                                    <button
                                                                        class="wdt-pagination-next wdt-module-id-7b165e4 disabled"
-                                                                       style="cursor: not-allowed;">Next</button>
+                                                                       style="cursor: not-allowed;">{{ __('messages.Next') }}</button>
                                                                </div>
                                                            </div>
                                                        </div>
@@ -257,7 +266,9 @@
                                                        data-widget_type="wdt-heading.default">
                                                        <div class="elementor-widget-container">
                                                            <div class="wdt-heading-holder " id="wdt-heading-20c16b4">
-                                                               <div class="wdt-heading-content-wrapper">شركة مضياف هي شركة سعودية متخصصة في مجال الخدمات الزراعية والبيئية، تأسست بهدف دعم تنمية القطاع الزراعي وتطوير الممارسات المهنية الحديثة. تعمل الشركة وفق أعلى المعايير المعتمدة في مجالات المشاتل الزراعية، تنسيق الحدائق، مكافحة الآفات، وتركيب وتشغيل المضخات والغطاسات.</div>
+                                                               <div class="wdt-heading-content-wrapper">
+                                                                   {{ __('messages.Madhyaf_Company_is_a_Saudi_company') }}
+                                                               </div>
                                                            </div>
                                                        </div>
                                                    </div>
@@ -301,18 +312,22 @@
                                                                        <span class="elementor-icon-list-text"></span>
                                                                    </a>
                                                                </li>
-                                                               <li class="elementor-icon-list-item elementor-inline-item">
-    <a href="{{ $setting->linkedin }}" target="_blank" title="TikTok">
-        <span class="elementor-icon-list-icon">
-            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512" width="20" height="20" fill="currentColor">
-                <path
-                    d="M448,209.6a210,210,0,0,1-122.1-39.1V353.6A158.4,158.4,0,1,1,185.6,198.7v81.3a77.4,77.4,0,1,0,54.3,73.6V0h86a121.8,121.8,0,0,0,2.1,23.4A122.1,122.1,0,0,0,448,144.4Z" />
-            </svg>
-        </span>
-        {{-- <span class="elementor-icon-list-text">TikTok</span> --}}
-    </a>
-</li>
+                                                               <li
+                                                                   class="elementor-icon-list-item elementor-inline-item">
+                                                                   <a href="{{ $setting->linkedin }}" target="_blank"
+                                                                       title="TikTok">
+                                                                       <span class="elementor-icon-list-icon">
+                                                                           <svg aria-hidden="true"
+                                                                               xmlns="http://www.w3.org/2000/svg"
+                                                                               viewBox="0 0 448 512" width="20"
+                                                                               height="20" fill="currentColor">
+                                                                               <path
+                                                                                   d="M448,209.6a210,210,0,0,1-122.1-39.1V353.6A158.4,158.4,0,1,1,185.6,198.7v81.3a77.4,77.4,0,1,0,54.3,73.6V0h86a121.8,121.8,0,0,0,2.1,23.4A122.1,122.1,0,0,0,448,144.4Z" />
+                                                                           </svg>
+                                                                       </span>
+                                                                       {{-- <span class="elementor-icon-list-text">TikTok</span> --}}
+                                                                   </a>
+                                                               </li>
 
                                                                <li
                                                                    class="elementor-icon-list-item elementor-inline-item">
@@ -353,7 +368,8 @@
                                                            <div class="wdt-heading-holder " id="wdt-heading-dc87ddb">
                                                                <h4
                                                                    class="wdt-heading-title-wrapper wdt-heading-align- wdt-heading-deco-wrapper">
-                                                                   <span class="wdt-heading-title">Instagram</span>
+                                                                   <span
+                                                                       class="wdt-heading-title">{{ __('messages.Instagram') }}</span>
                                                                </h4>
                                                            </div>
                                                        </div>
@@ -468,40 +484,7 @@
                                                    </div>
                                                </div>
                                            </div>
-                                           {{-- <div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-992gxy3"
-     data-id="992gxy3" data-element_type="column">
-    <div class="elementor-widget-wrap elementor-element-populated"> --}}
 
-        {{-- ✅ القسم: أخطاء زراعية شائعة --}}
-        {{-- <div class="elementor-element elementor-element-4786dd5 elementor-widget elementor-widget-wdt-accordion-and-toggle"
-            data-id="4786dd6" data-element_type="widget">
-            <div class="elementor-widget-container">
-                <div class="wdt-accordion-toggle-holder wdt-module-toggle accordion ui-accordion">
-                    <div class="wdt-accordion-toggle-wrapper">
-                        <div class="wdt-accordion-toggle-title-holder ui-accordion-header">
-                            <div class="wdt-accordion-toggle-title">أخطاء زراعية شائعة</div>
-                        </div>
-
-                        <div class="wdt-accordion-toggle-description ui-accordion-content" style="display:none;">
-                            <ul style="list-style:none; padding:0; text-align:right;">
-
-                                <li>❌ الإفراط في الري يسبب تعفن الجذور.</li>
-                                <li>⚠️ تجاهل تحليل التربة يقلل جودة المحصول.</li>
-                                <li>🐛 عدم مكافحة الآفات مبكرًا يزيد الضرر.</li>
-                                <li>💧 الري في الظهيرة يسرّع التبخر.</li>
-                                <li>🌱 استخدام بذور مجهولة المصدر خطير جدًا.</li>
-                                <li>🧪 عدم التسميد الدوري يضعف النمو.</li>
-
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div> --}}
 
                                            <div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-609698a"
                                                data-id="609698a" data-element_type="column">
@@ -516,7 +499,9 @@
                                                                <div class="wdt-accordion-toggle-wrapper">
                                                                    <div
                                                                        class="wdt-accordion-toggle-title-holder ui-accordion-header ui-state-default ui-corner-top ui-corner-bottom">
-                                                                       <div class="wdt-accordion-toggle-title">روابط سريعة</div>
+                                                                       <div class="wdt-accordion-toggle-title">
+                                                                           {{ __('messages.Quick_links') }}
+                                                                       </div>
                                                                        <div class="wdt-accordion-toggle-icon">
                                                                            <div
                                                                                class="wdt-accordion-toggle-icon-expand">
@@ -527,7 +512,8 @@
                                                                                    <path
                                                                                        d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z">
                                                                                    </path>
-                                                                               </svg></div>
+                                                                               </svg>
+                                                                           </div>
                                                                            <div
                                                                                class="wdt-accordion-toggle-icon-collapse">
                                                                                <svg aria-hidden="true"
@@ -537,7 +523,8 @@
                                                                                    <path
                                                                                        d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z">
                                                                                    </path>
-                                                                               </svg></div>
+                                                                               </svg>
+                                                                           </div>
                                                                        </div>
                                                                    </div>
                                                                    <div class="wdt-accordion-toggle-description ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom"
@@ -637,27 +624,16 @@
                                                                                                                href="{{ route('projects.items') }}">
 
                                                                                                                <span
-                                                                                                                   class="elementor-icon-list-text"> اراء النزلاء</span>
+                                                                                                                   class="elementor-icon-list-text">{{ __('messages.projects') }}</span>
                                                                                                            </a>
                                                                                                        </li>
-                                                                                                       {{-- <li
-                                                                                                           class="elementor-icon-list-item">
-                                                                                                           <a
-                                                                                                               href="{{ route('frontend.rooms') }}">
-
-                                                                                                               <span
-                                                                                                                   class="elementor-icon-list-text"> قسم الغرف</span>
-                                                                                                           </a>
-                                                                                                       </li> --}}
                                                                                                        <li
                                                                                                            class="elementor-icon-list-item">
                                                                                                            <a
                                                                                                                href="{{ route('frontend.about-us') }}">
 
                                                                                                                <span
-                                                                                                                   class="elementor-icon-list-text">
-
-                                                                                                                   من نحن</span>
+                                                                                                                   class="elementor-icon-list-text">{{ __('messages.about') }}</span>
                                                                                                            </a>
                                                                                                        </li>
                                                                                                        <li
@@ -666,7 +642,9 @@
                                                                                                                href="{{ route('pag.contact') }}">
 
                                                                                                                <span
-                                                                                                                   class="elementor-icon-list-text"> تواصل معنا</span>
+                                                                                                                   class="elementor-icon-list-text">
+                                                                                                                   {{ __('messages.contact') }}
+                                                                                                               </span>
                                                                                                            </a>
                                                                                                        </li>
                                                                                                        <li
@@ -675,7 +653,8 @@
                                                                                                                href="{{ route('servicepag.show') }}">
 
                                                                                                                <span
-                                                                                                                   class="elementor-icon-list-text">  خدماتنا</span>
+                                                                                                                   class="elementor-icon-list-text">
+                                                                                                                   {{ __('messages.services') }}</span>
                                                                                                            </a>
                                                                                                        </li>
 
@@ -687,51 +666,98 @@
                                                                                </div>
                                                                            </section>
                                                                        </div>
+
+
                                                                    </div>
                                                                </div>
                                                            </div>
                                                        </div>
                                                    </div>
                                                </div>
+
+
                                            </div>
 
+
 <div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-7352c06"
-     data-id="7352c06" data-element_type="column">
-    <div class="elementor-widget-wrap elementor-element-populated">
+                                               data-id="7352c06" data-element_type="column">
+                                               <div class="elementor-widget-wrap elementor-element-populated">
 
-        {{-- ✅ القسم: نصائح زراعية --}}
-        <div class="elementor-element elementor-element-4786dd5 elementor-widget elementor-widget-wdt-accordion-and-toggle"
-            data-id="4786dd5" data-element_type="widget">
-            <div class="elementor-widget-container">
-                <div class="wdt-accordion-toggle-holder wdt-module-toggle accordion ui-accordion">
-                    <div class="wdt-accordion-toggle-wrapper">
-                        <div class="wdt-accordion-toggle-title-holder ui-accordion-header">
-                            <div class="wdt-accordion-toggle-title">نصائح زراعية مهمة</div>
-                        </div>
+                                                   {{-- ✅ القسم: نصائح زراعية --}}
+                                                   <div class="elementor-element elementor-element-4786dd5 elementor-widget elementor-widget-wdt-accordion-and-toggle"
+                                                       data-id="4786dd5" data-element_type="widget">
+                                                       <div class="elementor-widget-container">
+                                                           <div
+                                                               class="wdt-accordion-toggle-holder wdt-module-toggle accordion ui-accordion">
+                                                               <div class="wdt-accordion-toggle-wrapper">
+                                                                   <div
+                                                                       class="wdt-accordion-toggle-title-holder ui-accordion-header">
+                                                                       <div class="wdt-accordion-toggle-title"> {{ __('messages.Important_agricultural_tips') }}</div>
+                                                                   </div>
 
-                        <div class="wdt-accordion-toggle-description ui-accordion-content" style="display:none;">
-                            <ul style="list-style:none; padding:0; text-align:right;">
+                                                                   <div class="wdt-accordion-toggle-description ui-accordion-content"
+                                                                       style="display:none;">
+                                                                       <ul
+                                                                           style="list-style:none; padding:0; text-align:right;">
 
-                                <li>✅ الري المنتظم يساعد على زيادة الإنتاج الزراعي.</li>
-                                <li>🌿 اختيار البذور الجيدة يرفع جودة المحصول.</li>
-                                <li>🐞 مكافحة الآفات مبكرًا تمنع خسائر كبيرة.</li>
-                                <li>🚿 تركيب مضخات فعّالة يوفر استهلاك الماء.</li>
-                                <li>💧 حافظ على رطوبة التربة بطرق حديثة.</li>
-                                <li>🌱 الأسمدة العضوية أفضل لصحة الأرض.</li>
+                                                                           <li>✅ {{ __('messages.tip1') }}</li>
+                                                                           <li>🌿 {{ __('messages.tip2') }}</li>
+                                                                           <li>🐞 {{ __('messages.tip3') }}</li>
+                                                                           <li>🚿 {{ __('messages.tip4') }}</li>
+                                                                           <li>💧 {{ __('messages.tip5') }}</li>
+                                                                           <li>🌱 {{ __('messages.tip6') }}</li>
 
-                            </ul>
-                        </div>
 
-                    </div>
-                </div>
-            </div>
-        </div>
+                                                                       </ul>
+                                                                   </div>
 
+                                                               </div>
+                                                           </div>
+                                                       </div>
+                                                   </div>
+
+                                               </div>
+                                           </div>
+
+
+                                           <div class="mudyaf-footer-section">
+    <h3 class="footer-title">{{ __('messages.quick_links') }}</h3>
+
+    <ul class="footer-links">
+        <li><a href="{{ route('projects.items') }}">{{ __('messages.projects') }}</a></li>
+        <li><a href="{{ route('frontend.about-us') }}">{{ __('messages.about') }}</a></li>
+        <li><a href="{{ route('servicepag.show') }}">{{ __('messages.services') }}</a></li>
+        <li><a href="{{ route('pag.contact') }}">{{ __('messages.contact') }}</a></li>
+    </ul>
+
+    <h3 class="footer-title mt-4">{{ __('messages.services') }}</h3>
+
+    <ul class="footer-links">
+        <li><a href="#">{{ __('messages.gardens_design') }}</a></li>
+        <li><a href="#">{{ __('messages.irrigation_systems') }}</a></li>
+        <li><a href="#">{{ __('messages.pest_control') }}</a></li>
+        <li><a href="#">{{ __('messages.water_pumps') }}</a></li>
+    </ul>
+
+    <h3 class="footer-title mt-4">{{ __('messages.contact_us') }}</h3>
+
+    <ul class="footer-links">
+        <li><i class="fa fa-map-marker"></i> الرياض – المملكة العربية السعودية</li>
+        <li><i class="fa fa-phone"></i> 0550000000</li>
+        <li><i class="fa fa-envelope"></i> info@mudyaf.sa</li>
+    </ul>
+
+    <div class="footer-social mt-3">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-x-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
     </div>
 </div>
 
 
                                        </div>
+
                                    </section>
                                    <section
                                        class="elementor-section elementor-inner-section elementor-element elementor-element-1dfcbbe elementor-section-content-middle wdt-dark-bg wdt-section-wrap-col elementor-section-full_width elementor-section-height-default elementor-section-height-default"
@@ -747,7 +773,7 @@
                                                        data-widget_type="text-editor.default">
                                                        <div class="elementor-widget-container">
                                                            <p><a
-                                                                   href="{{ route('frontend.home') }}">{{ $setting->name }}</a>&nbsp;
+                                                                   href="{{ route('frontend.home') }}">{{ app()->getLocale() == 'en' ? $setting->name_en : $setting->name }}</a>&nbsp;
                                                                © 2024 &nbsp; </p>
                                                        </div>
                                                    </div>
@@ -764,8 +790,7 @@
                                                            <img loading="lazy" width="684" height="60"
                                                                src="{{ asset('assets/img/footer-payment.png') }}"
                                                                class="attachment-full size-full wp-image-16391"
-                                                               alt=""
-                                                               srcset="">
+                                                               alt="" srcset="">
                                                        </div>
                                                    </div>
                                                </div>

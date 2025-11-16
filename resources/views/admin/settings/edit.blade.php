@@ -26,6 +26,11 @@
                         <label>اسم الشركة</label>
                         <input type="text" name="name" class="form-control" value="{{ old('name', $setting->name ?? '') }}">
                     </div>
+                    <div class="form-group">
+                        <label>اسم الشركة (English)</label>
+                        <input type="text" name="name_en" class="form-control" value="{{ old('name_en', $setting->name_en ?? '') }}">
+                    </div>
+
 
                     <div class="form-group">
                         <label>لوجو الشركة</label>
@@ -48,6 +53,10 @@
                     <div class="form-group">
                         <label>العنوان</label>
                         <textarea name="address" class="form-control">{{ old('address', $setting->address ?? '') }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>العنوان (English)</label>
+                        <textarea name="address_en" class="form-control">{{ old('address_en', $setting->address_en ?? '') }}</textarea>
                     </div>
 
                     <div class="form-group">
