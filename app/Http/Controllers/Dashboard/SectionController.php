@@ -64,7 +64,7 @@ class SectionController extends Controller
 
     //     return redirect()->back()->with('success', 'تم تحديث القسم بنجاح');
     // }
- public function update(Request $request)
+public function update(Request $request)
 {
     $section = Section::first() ?? new Section();
 
@@ -76,34 +76,44 @@ class SectionController extends Controller
         'button_text'     => 'nullable|string',
         'button_text_en'  => 'nullable|string',
         'clients_count'   => 'nullable|integer',
-        'media'           => 'nullable|mimes:mp4,webm,mov,avi,ogg,wmv|max:500000',
+
+        // ✨ السماح بالصور + الفيديو
+        'media' => 'nullable|mimes:jpg,jpeg,png,webp,gif,mp4,webm,mov,avi,ogg,wmv'
+                   .'|max:512000', // 500MB
     ]);
 
-    // مجلد الحفظ
+    // مسار الحفظ
     $uploadFolder = 'dashboard_files/media/sections';
 
     if ($request->hasFile('media')) {
 
-        // حذف القديم لو موجود
+        // حذف القديم
         if ($section->media && file_exists(public_path($section->media))) {
-            unlink(public_path($section->media));
+            @unlink(public_path($section->media));
         }
 
-        // اسم جديد للفيديو
+        // رفع الملف
         $file = $request->file('media');
         $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
 
-        // حفظ الفيديو في public_html مباشرة
+        // إنشاء الفولدر إذا غير موجود
+        if (!file_exists(public_path($uploadFolder))) {
+            mkdir(public_path($uploadFolder), 0777, true);
+        }
+
+        // نقل الملف
         $file->move(public_path($uploadFolder), $filename);
 
-        // حفظ مسار الملف
+        // تخزين المسار
         $data['media'] = $uploadFolder . '/' . $filename;
     }
 
-    $section->update($data);
+    // تحديث البيانات
+    $section->fill($data)->save();
 
-    return back()->with('success', 'تم تحديث القسم بنجاح');
+    return back()->with('success', '✔️ تم تحديث القسم بنجاح');
 }
+
 
 
 
