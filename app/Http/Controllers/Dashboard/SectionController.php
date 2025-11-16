@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use App\Models\Section;
 
 class SectionController extends Controller
@@ -20,101 +19,78 @@ class SectionController extends Controller
     }
 
     /**
-     * تحديث القسم
+     * تحديث بيانات القسم
      */
     // public function update(Request $request)
     // {
-    //     $section = Section::first() ?? new Section();
-
-    //     // $data = $request->validate([
-    //     //     'title' => 'required|string|max:255',
-    //     //     'description' => 'nullable|string',
-    //     //     'button_text' => 'nullable|string|max:100',
-    //     //     'clients_count' => 'nullable|integer',
-    //     //     'media' => 'nullable|file', // لقبول صورة أو فيديو حتى 10MB
-    //     // ]);
-
-    //     $data = $request->validate([
-    //         'title' => 'nullable|string',
-    //         'title_en' => 'nullable|string',
-    //         'description' => 'nullable|string',
-    //         'description_en' => 'nullable|string',
-    //         'button_text' => 'nullable|string',
-    //         'button_text_en' => 'nullable|string',
-    //         'clients_count' => 'nullable|integer',
-    //         'media' => 'nullable|file',
-    //     ]);
-
-
-    //     if ($request->hasFile('media')) {
-    //         $file = $request->file('media');
-    //         $extension = $file->getClientOriginalExtension();
-    //         $filename = time() . '.' . $extension;
-
-    //         $path = $file->storeAs(
-    //             'dashboard_files/media/sections',
-    //             $filename,
-    //             'public_uploads'
-    //         );
-
-    //         $data['image'] = $path; // نحفظها بنفس العمود
+    //     $section = Section::first();
+    //     if (!$section) {
+    //         $section = new Section();
     //     }
 
+    //     $data = $request->validate([
+    //         'title' => 'required|string|max:255',
+    //         'description' => 'nullable|string',
+    //         'button_text' => 'nullable|string|max:100',
+    //         'clients_count' => 'nullable|integer',
+    //         'image' => 'nullable|image|max:2048',
+    //     ]);
+
+    //     if ($request->hasFile('image')) {
+    //         $data['image'] = $request->file('image')->store('sections', 'public');
+    //     }
+    //     if ($request->hasFile('image')) {
+    //         $data['image'] = $request->file('image')->storeAs(
+    //             'dashboard_files/img/logos',
+    //             time() . '.' . $request->file('image')->getClientOriginalExtension(),
+    //             'public_uploads'
+    //         );
+    //     }
     //     $section->update($data + ['title' => $request->title]);
 
     //     return redirect()->back()->with('success', 'تم تحديث القسم بنجاح');
     // }
-public function update(Request $request)
+    public function update(Request $request)
 {
     $section = Section::first() ?? new Section();
 
     $data = $request->validate([
-        'title'           => 'nullable|string',
-        'title_en'        => 'nullable|string',
-        'description'     => 'nullable|string',
-        'description_en'  => 'nullable|string',
-        'button_text'     => 'nullable|string',
-        'button_text_en'  => 'nullable|string',
-        'clients_count'   => 'nullable|integer',
-
-        // ✨ السماح بالصور + الفيديو
-        'media' => 'nullable|mimes:jpg,jpeg,png,webp,gif,mp4,webm,mov,avi,ogg,wmv'
-                   .'|max:512000', // 500MB
+        'title' => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'button_text' => 'nullable|string|max:100',
+        'title_en' => 'required|string|max:255',
+        'description_en' => 'nullable|string',
+        'button_text_en' => 'nullable|string|max:100',
+        'clients_count' => 'nullable|integer',
+        'media' => 'nullable|file', // لقبول صورة أو فيديو حتى 10MB
     ]);
-
-    // مسار الحفظ
-    $uploadFolder = 'dashboard_files/media/sections';
 
     if ($request->hasFile('media')) {
 
-        // حذف القديم
-        if ($section->media && file_exists(public_path($section->media))) {
-            @unlink(public_path($section->media));
-        }
+    $file = $request->file('media');
+    $extension = $file->getClientOriginalExtension();
+    $filename = time() . '_' . uniqid() . '.' . $extension;
 
-        // رفع الملف
-        $file = $request->file('media');
-        $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-
-        // إنشاء الفولدر إذا غير موجود
-        if (!file_exists(public_path($uploadFolder))) {
-            mkdir(public_path($uploadFolder), 0777, true);
-        }
-
-        // نقل الملف
-        $file->move(public_path($uploadFolder), $filename);
-
-        // تخزين المسار
-        $data['media'] = $uploadFolder . '/' . $filename;
+    // حذف القديم
+    if ($section->image && file_exists(public_path($section->image))) {
+        @unlink(public_path($section->image));
     }
 
-    // تحديث البيانات
-    $section->fill($data)->save();
+    // رفع الملف داخل public_html/ مباشرة
+    $path = $file->storeAs(
+        'dashboard_files/media/sections',   // المجلد
+        $filename,                          // الاسم
+        'public_uploads'                    // disk الصحيح
+    );
 
-    return back()->with('success', '✔️ تم تحديث القسم بنجاح');
+    // حفظ المسار داخل الداتا بيس
+    $data['image'] = $path;
 }
 
 
+    $section->update($data + ['title' => $request->title]);
 
+    return redirect()->back()->with('success', 'تم تحديث القسم بنجاح');
+}
 
 }
