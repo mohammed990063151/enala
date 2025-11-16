@@ -64,28 +64,28 @@ class SectionController extends Controller
         'clients_count' => 'nullable|integer',
         'media' => 'nullable|file', // لقبول صورة أو فيديو حتى 10MB
     ]);
-
-    if ($request->hasFile('media')) {
+if ($request->hasFile('media')) {
 
     $file = $request->file('media');
     $extension = $file->getClientOriginalExtension();
     $filename = time() . '_' . uniqid() . '.' . $extension;
 
     // حذف القديم
-    if ($section->image && file_exists(public_path($section->image))) {
-        @unlink(public_path($section->image));
+    if ($section->image && file_exists(base_path('../public_html/' . $section->image))) {
+        @unlink(base_path('../public_html/' . $section->image));
     }
 
-    // رفع الملف داخل public_html/ مباشرة
+    // رفع جديد داخل public_html
     $path = $file->storeAs(
-        'dashboard_files/media/sections',   // المجلد
-        $filename,                          // الاسم
-        'public_uploads'                    // disk الصحيح
+        'dashboard_files/media/sections',
+        $filename,
+        'public_uploads'
     );
 
-    // حفظ المسار داخل الداتا بيس
     $data['image'] = $path;
 }
+
+
 
 
     $section->update($data + ['title' => $request->title]);

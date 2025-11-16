@@ -15,11 +15,12 @@ return [
 
         // التخزين داخل public_html مباشرة
         'public_uploads' => [
-            'driver' => 'local',
-            'root' => public_path(),  // هنا الصحيح 100%
-            'url' => env('APP_URL'),
-            'visibility' => 'public',
-        ],
+    'driver' => 'local',
+    'root' => base_path('../public_html'),   // المسار الصحيح لـ public_html
+    'url' => env('APP_URL'),
+    'visibility' => 'public',
+],
+
 
         // التخزين الافتراضي للملفات
         'public' => [
