@@ -7,7 +7,7 @@
 <style  type="text/css">
 
 p {
-    color:#fff !important;
+    color:#070707 !important;
 }
 .hotel-about {
     padding: 80px 20px;
