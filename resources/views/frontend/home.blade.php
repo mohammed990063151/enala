@@ -1329,7 +1329,9 @@
         <div class="counter-container">
 
             @foreach([1,2,3,4] as $i)
-            <div class="counter-box">
+            <div class="counter-box" style="
+    text-align: center;
+">
 
                 <div class="counter-icon">
                     @if($i==1) 🚚 @endif

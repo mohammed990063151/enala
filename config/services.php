@@ -34,5 +34,13 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+    'moyasar' => [
+    'mode'              => env('MOYASAR_MODE', 'test'),
+    'publishable_key'   => env('MOYASAR_PUBLISHABLE_KEY'),
+    'secret_key'        => env('MOYASAR_SECRET_KEY'),
+    'currency'          => env('MOYASAR_CURRENCY', 'SAR'),
+    'callback_url'      => env('MOYASAR_CALLBACK_URL'),
+],
+
 
 ];

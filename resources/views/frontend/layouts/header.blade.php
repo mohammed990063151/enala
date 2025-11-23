@@ -238,8 +238,8 @@
                                                                                      {{ __('messages.contact') }}
                                                                                  </span></a>
                                                                          </li>
-                                                                         <li
-                                                                             class="menu-item menu-item-depth-1 menu-lang-dropdown">
+                                                                          <li
+                                                                             class="menu-item menu-item-has-children has-submenu">
                                                                              <a href="javascript:void(0);"
                                                                                  class="lang-toggle">
                                                                                  🌐{{ app()->getLocale() == 'en' ? 'English' : 'العربية' }}
@@ -248,14 +248,26 @@
                                                                              <ul class="sub-menu lang-sub is-hidden">
                                                                                  <li class="menu-item">
                                                                                      <a
-                                                                                         href="{{ route('switch.language', 'ar') }}">
+                                                                                                    href="{{ route('switch.language', 'ar') }}" style="
+                                                                                               /* text-align: center; */
+                                                                                               display: flex;
+                                                                                               flex-wrap: nowrap;
+                                                                                               justify-content: center;
+                                                                                               align-items: center;
+                                                                                           ">
                                                                                          🇸🇦<span
                                                                                              data-text="%1$s">العربية</span>
                                                                                      </a>
                                                                                  </li>
                                                                                  <li class="menu-item">
                                                                                      <a
-                                                                                         href="{{ route('switch.language', 'en') }}">
+                                                                                         href="{{ route('switch.language', 'en') }}" style="
+                                                                                                 /* text-align: center; */
+                                                                                                 display: flex;
+                                                                                                 flex-wrap: nowrap;
+                                                                                                 justify-content: center;
+                                                                                                 align-items: center;
+                                                                                             ">
                                                                                          🇬🇧<span
                                                                                              data-text="%1$s">English</span>
                                                                                      </a>

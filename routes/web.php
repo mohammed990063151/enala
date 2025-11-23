@@ -25,7 +25,20 @@ use App\Models\Service;
 use App\Http\Controllers\Dashboard\ProjectController as AdminProjectController;
 use App\Http\Controllers\Frontend\ProjectController as FrontProjectController;
 use App\Http\Middleware\SetLocale;
+use App\Http\Controllers\BookingController;
 
+use App\Http\Controllers\Payment\MoyasarController;
+
+Route::get('/book-service/{service}', [BookingController::class, 'create'])->name('booking.create');
+Route::post('/book-service/{service}', [BookingController::class, 'store'])->name('booking.store');
+
+Route::get('/bookings/{booking}/pay', [MoyasarController::class, 'showPaymentForm'])
+    ->name('bookings.pay');
+
+Route::get('/payment/moyasar/callback', [MoyasarController::class, 'callback'])
+    ->name('moyasar.callback');
+    Route::get('/payment/moyasar/callback', [MoyasarController::class, 'callback'])
+    ->name('payment.callback');
 
 
 Route::get('/lang/{lang}', function ($lang) {

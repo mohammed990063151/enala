@@ -1,6 +1,10 @@
-
 <meta name="robots" content="noindex, nofollow">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://mudyaf.sa/">
+<link rel="icon" type="image/png" href="https://mudyaf.sa/{{ $setting->logo ?? '' }}">
+
+
+
 
 <style>
     * {
@@ -651,4 +655,41 @@ var woocommerce_params = {"ajax_url":"\/rtl-demo\/wp-admin\/admin-ajax.php","wc_
 <link rel="icon" href="" sizes="192x192">
 <link rel="apple-touch-icon" href="">
 <meta name="msapplication-TileImage" content="">
-<script src="{{ asset('assets/JS/wp-emoji-release.min.js') }}" defer=""></script></head>
+
+{{-- <script type="application/ld+json">
+ json_encode([
+    "@context" => "https://schema.org",
+    "@type" => "LocalBusiness",
+    "name" => "مضياف لتنسيق الحدائق",
+    "image" => asset($setting->logo ?? 'img/default.png'),
+    "@id" => "https://mudyaf.sa/",
+    "url" => "https://mudyaf.sa/",
+    "telephone" => "+966500000000",
+    "address" => [
+        "@type" => "PostalAddress",
+        "streetAddress" => "الرياض",
+        "addressLocality" => "الرياض",
+        "addressRegion" => "منطقة الرياض",
+        "addressCountry" => "SA"
+    ],
+    "geo" => [
+        "@type" => "GeoCoordinates",
+        "latitude" => 24.7136,
+        "longitude" => 46.6753
+    ],
+    "openingHoursSpecification" => [
+        [
+            "@type" => "OpeningHoursSpecification",
+            "dayOfWeek" => ["Sunday","Monday","Tuesday","Wednesday","Thursday"],
+            "opens" => "08:00",
+            "closes" => "18:00"
+        ]
+    ],
+    "description" => "مضياف شركة متخصصة في تنسيق الحدائق وتصميم المسطحات الخضراء وشبكات الري والزراعة التجميلية في السعودية.",
+    "priceRange" => "$$"
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
+</script>
+ --}}
+
+
+</head>

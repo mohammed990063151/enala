@@ -273,6 +273,7 @@
     </div>
 </section>
 
+
 <section class="image-slider py-5">
   <div class="container">
     <h2 class="section-title text-center mb-5"> {{ __('messages.Our_portfolio') }} </h2>
@@ -336,6 +337,12 @@
           <h4> {!! app()->getLocale() == 'en' ? $service->title_en : $service->title !!}</h4>
           <p>{!! app()->getLocale() == 'en' ? $service->short_description_en : $service->short_description !!}</p>
           <a href="{{ route('services.show', $service->slug) }}" class="btn-modern">{{ __('messages.View_details') }}</a>
+{{-- <a href="{{ route('bookings.pay', $booking->id) }}" class="btn btn-success">
+    ادفع الآن عبر ميسر
+</a> --}}
+{{-- <a href="{{ route('booking.create', $service->id) }}" class="btn btn-success">
+    احجز الآن
+</a> --}}
 
         </div>
       </div>
