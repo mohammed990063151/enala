@@ -17,7 +17,7 @@ $bg = $about->header_image ? asset($about->header_image) : asset('img/criticism-
     text-align: center;
     padding: 80px 20px;
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-                url('{{ asset('img/who-2985525_1280.jpg') }}') center/cover no-repeat;
+                url('{{ asset($about->header_image) }}') center/cover no-repeat;
     color: #fff;
 ">
     <h1 style="font-size:3rem; color:#D9EF82; margin-bottom:10px;">
