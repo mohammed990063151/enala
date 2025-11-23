@@ -6,6 +6,9 @@
 ))
 <style  type="text/css">
 
+p {
+    color:#fff !important;
+}
 .hotel-about {
     padding: 80px 20px;
     background: #fff;
@@ -50,7 +53,9 @@
 
 /* النصوص */
 .hotel-text {
-    flex: 1 1 400px;
+    flex: 1 1 400px !important;
+    direction: unset !important;
+    text-align: unset !important;
 }
 
 .hotel-text h2 {
@@ -459,7 +464,7 @@
                                                             </div>
                                                             <h2 class="wdt-heading-title-wrapper wdt-heading-align- "><span
                                                                     class="wdt-heading-title">{!! app()->getLocale() == 'en' ? $whyus->title_en : $whyus->title !!}</span></h2>
-                                                                    <p>{!! app()->getLocale() == 'en' ? $whyus->description_en : $whyus->description !!}</p>
+                                                                    <p style=" color: #fff; !important">{!! app()->getLocale() == 'en' ? $whyus->description_en : $whyus->description !!}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -752,7 +757,9 @@
     text-align: center;
 ">
                     <h1>{!! app()->getLocale() == 'en' ? $settinggallery->title_en : $settinggallery->title !!}</h1>
-                    <p>{!! app()->getLocale() == 'en' ? $settinggallery->description_en : $settinggallery->description !!}</p>
+                    <p style="
+    color: #fff !important;
+">{!! app()->getLocale() == 'en' ? $settinggallery->description_en : $settinggallery->description !!}</p>
                 </div>
                 <div class="owl-carousel owl-theme" id="hotel-gallery">
 

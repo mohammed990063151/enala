@@ -698,7 +698,7 @@
                                                                    <div class="wdt-accordion-toggle-description ui-accordion-content"
                                                                        style="display:none;">
                                                                        <ul
-                                                                           style="list-style:none; padding:0; text-align:right;">
+                                                                           style="list-style:none; padding:0; ">
 
                                                                            <li>✅ {{ __('messages.tip1') }}</li>
                                                                            <li>🌿 {{ __('messages.tip2') }}</li>

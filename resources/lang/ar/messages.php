@@ -48,7 +48,7 @@ return [
     'Service_images'=>'صور الخدمة',
     'No_images'=>'لا توجد صور متاحة لهذه الخدمة حالياً.',
     'no_registered_features'=>'لا توجد مميزات مسجلة لهذه الخدمة حالياً.',
-    'Other_services'=>'خدمات أخرى من شركة المضياف',
+    'Other_services'=>'خدمات أخرى من  ',
     'Renewed_confidence'=>'ثقة تتجدد مع كل مشروع ',
     'always_service'=>'الزراعية في خدمتك دائماً ',
     'Official_contact_information'=>'بيانات التواصل الرسمية',
@@ -62,5 +62,14 @@ return [
      'Send_message'=>'إرسال الرسالة',
      'View_Site'=>'عرض الموقع',
      'Hospitality_Company_branches'=>'فروع',
+     'Project_photos'=>'صور المشاريع',
+     'No_images_are_currently_available_for_this_project'=>'لا توجد صور متاحة لهذا المشروع حالياً.',
+     'There_are_no_features_currently_listed_for_this_service'=>'لا توجد مميزات مسجلة لهذه الخدمة حالياً.',
+     'Other_projects_from'=>'مشاريع أخرى من',
+     'Start your project with us'=>'ابدأ مشروعك معنا',
+     'Contact_our_team_for_a_free_consultation_on_your_next_project'=>'تواصل مع فريقنا للحصول على استشارة مجانية لمشروعك القادم',
+     'Project_Features'=>'مميزات المشروع ',
+     'Features_of_our_service'=>'مميزات خدمتنا',
+
 
 ];

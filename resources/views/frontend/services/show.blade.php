@@ -465,7 +465,11 @@
 
 <section class="services-flex">
   <div class="container">
-    <h3>{{ __('messages.Other_services') }}</h3>
+    <h3>
+        {{-- {{ __('messages.Other_services') }} --}}
+       {{  __('messages.Other_services')}} - {{ app()->getLocale() == 'en' ? $setting->name_en :  $setting->name }}
+
+    </h3>
     <div class="services-wrapper">
       @foreach($related as $item)
       <div class="service-card" data-aos="fade-up">

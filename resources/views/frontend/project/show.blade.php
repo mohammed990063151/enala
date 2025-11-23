@@ -3,13 +3,7 @@
 @section('title', $project->title . ' - مشاريع شركة مضياف')
 
 <style>
-body {
-  font-family: 'Tajawal', sans-serif;
-  direction: rtl;
-  background: #f9faf9;
-  margin: 0;
-  padding: 0;
-}
+
 
 /* 🔹 Header Section */
 .page-header {
@@ -219,25 +213,39 @@ body {
     color: #fff;
     position: relative;
 ">
-  <h1>{{ $project->title }}</h1>
-  <p>تعرف على تفاصيل مشروع <strong>{{ $project->title }}</strong> الذي نفذته <strong>شركة المضياف</strong> بأعلى معايير الجودة والتميز.</p>
+  <h1>{!! app()->getLocale() == 'en' ? $project->title_en : $project->title !!}</h1>
+  {{-- <p>تعرف على تفاصيل مشروع <strong>{{ $project->title }}</strong> الذي نفذته <strong>شركة المضياف</strong> بأعلى معايير الجودة والتميز.</p> --}}
+  @if(app()->getLocale() == 'en')
+    Discover the details of the
+    <strong>{{ $project->title_en }}</strong>
+    executed by
+    <strong>{!! $setting->name_en!!}</strong>
+    with the highest quality and professionalism
+@else
+    تعرف على تفاصيل مشروع
+    <strong>{{ $project->title }}</strong>
+    الذي نفذته
+    <strong> {{ $setting->name  }}</strong>
+ بأعلى معايير الجودة والتميز
+@endif
+
 </section>
 
 <section class="image-slider">
   <div class="container">
-    <h2>صور المشروع</h2>
+    <h2> {{ __('messages.Project_photos') }}</h2>
     @if($project->images && $project->images->count())
       <div class="swiper mySwiperGlobal">
         <div class="swiper-wrapper">
           @foreach($project->images as $img)
           <div class="swiper-slide">
-            <img src="{{ asset($img->image) }}" alt="{{ $project->title }}">
+            <img src="{{ asset($img->image) }}" alt="{!! app()->getLocale() == 'en' ? $project->title : $project->title !!}">
           </div>
           @endforeach
         </div>
       </div>
     @else
-      <p class="text-center text-muted">لا توجد صور متاحة لهذا المشروع حالياً.</p>
+      <p class="text-center text-muted">{{ __('messages.No_images_are_currently_available_for_this_project') }}</p>
     @endif
   </div>
 </section>
@@ -252,8 +260,8 @@ body {
 
 <section class="project-details text-center">
   <div class="container" style="max-width:900px;">
-    <h2>{{ $project->title }}</h2>
-    <p>{!! $project->description !!}</p>
+    <h2>{!! app()->getLocale() == 'en' ? $project->title : $project->title !!}</h2>
+    <p>{!! app()->getLocale() == 'en' ? $project->description_en : $project->description !!}</p>
   </div>
 </section>
 
@@ -262,7 +270,7 @@ body {
 <section class="features-modern py-5" style="background:#f9faf9;">
   <div class="container">
     <h2 class="section-title text-center mb-5" style="font-weight:700; color:#1b3b26;">
-      مميزات المشروع 🌿
+       {{ __('messages.Project_Features') }} 🌿
     </h2>
 
     @if($project->features && $project->features->count() > 0)
@@ -275,16 +283,16 @@ body {
               <div class="icon-circle mb-3 mx-auto">
                 <i class="{{ $feature->icon ?? 'fa-solid fa-circle-check' }}"></i>
               </div>
-              <h5 class="fw-bold mb-2">{{ $feature->title }}</h5>
+              <h5 class="fw-bold mb-2" style="text-align: center;">{!! app()->getLocale() == 'en' ? $feature->title_en : $feature->title !!}</h5>
               @if($feature->description)
-                <p class="text-muted small mb-0">{!! $feature->description !!}</p>
+                <p class="text-muted small mb-0" style="text-align: center;">{!! app()->getLocale() == 'en' ? $feature->description_en : $feature->description !!}</p>
               @endif
             </div>
           </div>
         @endforeach
       </div>
     @else
-      <p class="text-center text-muted">لا توجد مميزات مسجلة لهذه الخدمة حالياً.</p>
+      <p class="text-center text-muted" style="text-align: center;">{{ __('messages.There_are_no_features_currently_listed_for_this_service') }}</p>
     @endif
   </div>
 </section>
@@ -293,17 +301,17 @@ body {
 @if($related && $related->count())
 <section class="projects-flex">
   <div class="container">
-    <h3>مشاريع أخرى من شركة المضياف</h3>
+    <h3>{!! __('messages.Other_projects_from', ['company' => app()->getLocale() == 'en' ? $setting->name_en : $setting->name]) !!}</h3>
     <div class="projects-wrapper">
       @foreach($related as $item)
       <div class="project-card" data-aos="fade-up">
         <div class="image-box">
-          <img src="{{ asset($item->image) }}" alt="{{ $item->title }}">
+          <img src="{{ asset($item->image) }}" alt="{!! app()->getLocale() == 'en' ? $item->title_en : $item->title !!}">
         </div>
         <div class="content-box">
-          <h4>{{ $item->title }}</h4>
-          {!! $item->short_description !!}
-          <a href="{{ route('testimonials', $item->slug) }}" class="btn-modern mt-2">عرض التفاصيل</a>
+          <h4>{!! app()->getLocale() == 'en' ? $item->title_en : $item->title !!}</h4>
+          {!! app()->getLocale() == 'en' ? $item->short_description_en : $item->short_description !!}
+          <a href="{{ route('testimonials', $item->slug) }}" class="btn-modern mt-2">{{ __('messages.View_details') }}</a>
         </div>
       </div>
       @endforeach
@@ -314,10 +322,10 @@ body {
 
 <section class="cta-section">
   <div class="container">
-    <h2>ابدأ مشروعك معنا 🌱</h2>
-    <p>تواصل مع فريقنا للحصول على استشارة مجانية لمشروعك القادم</p>
+    <h2>  {{ __('messages.Start_your_project_with_us') }} 🌱</h2>
+    <p>{{ __('messages.Contact_our_team_for_a_free_consultation_on_your_next_project') }}</p>
     <a href="https://wa.me/{{ $setting->phone ?? '' }}" target="_blank">
-      <i class="fa-brands fa-whatsapp"></i> تواصل عبر واتساب
+      <i class="fa-brands fa-whatsapp"></i>{{ __('messages.Contact_via_WhatsApp') }}
     </a>
   </div>
 </section>

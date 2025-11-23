@@ -54,23 +54,18 @@ Auth::routes(['register' => false]);
 Route::middleware([SetLocale::class])->group(function () {
 Route::get('/pag_service', [BlogController::class, 'Pagservice'])->name('servicepag.show');
 
+
+
+// 🔹 الصفحة الرئيسية للموقع (الفرونت إند)
+Route::get('/', [HomeController::class, 'index'])->name('frontend.home');
 Route::get('/projects/{slug}', [FrontProjectController::class,'show'])->name('testimonials');
 Route::get('/projects_items', function () {
     $projects = App\Models\Project::with('images')->latest()->get();
 return view('frontend.guests-reviews', compact('projects'));
 })->name('projects.items');
-
-// 🔹 الصفحة الرئيسية للموقع (الفرونت إند)
-Route::get('/', [HomeController::class, 'index'])->name('frontend.home');
-
 Route::get('/contact', function () {
     return view('frontend.Contact');
 })->name('contact');
-
-// // صفحة "خدمتنا"
-// Route::get('/our-services', function () {
-//     return view('frontend.our_services');
-// })->name('frontend.our-services');
 Route::get('/services/{slug}', [App\Http\Controllers\Frontend\ServiceController::class, 'show'])->name('services.show');
 // Frontend display:
 Route::get('/pag_services', function () {
@@ -79,10 +74,6 @@ Route::get('/pag_services', function () {
     return view('frontend.our_services', compact('pagservices'));
 })->name('frontend.services');
 
-// صفحة من نحن
-// Route::get('/about-us', function () {
-//     return view('frontend.about-us');
-// })->name('frontend.about-us');
 Route::get('/about-us', function () {
     $about = \App\Models\CompanyAbout::first();
     return view('frontend.about-us', compact('about'));
