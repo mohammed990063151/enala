@@ -8,7 +8,7 @@
 ))
 
 @section('content')
-
+@push('styles')
 <style>
     /* body {
         direction: rtl;
@@ -207,7 +207,7 @@
         box-shadow: 0 5px 20px rgba(0,0,0,.08);
     }
 </style>
-
+@endpush
 {{-- ========== HEADER ========== --}}
 <section class="page-header" style="
     text-align: center;

@@ -5,7 +5,7 @@
     ? ($setting->name_en ?? $setting->name)
     : $setting->name
 ))
-
+@push('styles')
 <style>
 /* body {
   font-family: 'Tajawal', sans-serif;
@@ -122,7 +122,7 @@
   }
 }
 </style>
-
+@endpush
 @section('content')
 
 {{-- 🏗️ Hero Section --}}

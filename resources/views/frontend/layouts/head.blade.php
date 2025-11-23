@@ -691,5 +691,6 @@ var woocommerce_params = {"ajax_url":"\/rtl-demo\/wp-admin\/admin-ajax.php","wc_
 </script>
  --}}
 
+@stack('styles')
 
 </head>

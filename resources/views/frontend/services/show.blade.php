@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('title',  app()->getLocale() == 'en' ? $service->title_en : $service->title. ' - شركة مضياف')
-
+@push('styles')
 <style>
 /* body {
   font-family: 'Tajawal', sans-serif;
@@ -386,7 +386,7 @@
   .features-modern h2 { font-size: 1.5rem; }
 }
 </style>
-
+@endpush
 @section('content')
 
 <section class="page-header">

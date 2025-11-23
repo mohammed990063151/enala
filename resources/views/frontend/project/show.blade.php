@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('title', $project->title . ' - مشاريع شركة مضياف')
-
+@push('styles')
 <style>
 
 
@@ -202,7 +202,7 @@
   .project-card{flex:1 1 100%;max-width:100%;}
 }
 </style>
-
+@endpush
 @section('content')
 
 <section class="page-header" style="

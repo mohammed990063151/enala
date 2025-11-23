@@ -4,6 +4,8 @@
     ? ($setting->name_en ?? $setting->name)
     : $setting->name
 ))
+
+@push('styles')
 <style  type="text/css">
 
 p {
@@ -155,7 +157,7 @@ p {
     }
 }
 </style>
-
+@endpush
 @section('content')
     <div id="main">
 
