@@ -37,16 +37,21 @@ class CompanyAboutController extends Controller
             'header_image'=> 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
         ]);
 
-        if ($request->hasFile('header_image')) {
-            if ($about->header_image && Storage::disk('public_uploads')->exists($about->header_image)) {
-                Storage::disk('public_uploads')->delete($about->header_image);
-            }
-            $file  = $request->file('header_image');
-            $name  = time().'_about_header.'.$file->getClientOriginalExtension();
-            $data['header_image'] = $file->storeAs(
-                'dashboard_files/img/about', $name, 'public_uploads'
-            );
-        }
+        // if ($request->hasFile('header_image')) {
+        //     if ($about->header_image && Storage::disk('public_uploads')->exists($about->header_image)) {
+        //         Storage::disk('public_uploads')->delete($about->header_image);
+        //     }
+        //     $file  = $request->file('header_image');
+        //     $name  = time().'_about_header.'.$file->getClientOriginalExtension();
+        //     $data['header_image'] = $file->storeAs(
+        //         'dashboard_files/img/about', $name, 'public_uploads'
+        //     );
+        // }
+         if ($request->hasFile('header_image')) {
+        $file = $request->file('header_image');
+        $path = $file->store('dashboard_files/img/about', 'public_uploads');
+        $data['header_image'] = $path; // حفظ المسار داخل الجدول الرئيسي
+    }
 
         $about->update($data);
 
