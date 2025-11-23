@@ -30,7 +30,7 @@ $bg = $about->header_image ? asset($about->header_image) : asset('img/criticism-
     {{-- @endif --}}
 </section>
 
-<section class="about-page" style="padding:70px 20px;background:#fafafa;font-family:'Cairo',sans-serif;">
+<section class="about-page" style="padding:70px 20px;background:#fafafa;text-align: center;">
     <div class="container" style="max-width:1100px;margin:auto;">
         <div class="intro" style="background:#fff;border-radius:18px;padding:30px;box-shadow:0 2px 10px rgba(0,0,0,.06);">
             {{-- @if({!! app()->getLocale() == 'en' ? $about->intro_en : $project->intro !!}) --}}
