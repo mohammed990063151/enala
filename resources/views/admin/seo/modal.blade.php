@@ -44,7 +44,7 @@
             <label class="mt-3">صورة OG:</label>
             @if($seo->og_image)
                 <div class="mb-2">
-                    <img src="{{ asset('storage/' . $seo->og_image) }}" width="150" class="rounded border">
+                    <img src="{{ asset($seo->og_image) }}" width="150" class="rounded border">
 
                 </div>
             @endif

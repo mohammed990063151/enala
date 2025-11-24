@@ -26,14 +26,22 @@ class SeoSettingController extends Controller
     ];
 
     // ✔ رفع صورة OG
-    if ($request->hasFile('og_image_file')) {
+    // if ($request->hasFile('og_image_file')) {
 
-        // حفظ الصورة في storage/app/public/seo
-        $path = $request->file('og_image_file')->store('seo', 'public');
+    //     // حفظ الصورة في storage/app/public/seo
+    //     $path = $request->file('og_image_file')->store('seo', 'public');
 
-        // تخزين المسار في قاعدة البيانات
-        $data['og_image'] = $path;   // مثال: seo/XYZ.jpg
+    //     // تخزين المسار في قاعدة البيانات
+    //     $data['og_image'] = $path;   // مثال: seo/XYZ.jpg
+    // }
+     if ($request->hasFile('og_image_file')) {
+           $file = $request->file('og_image_file');
+            $path = $file->store('dashboard_files/img/seo', 'public_uploads');
+            $data['og_image'] = $path;
+
     }
+
+
 
     // تحديث البيانات
     $seo->update($data);
