@@ -66,7 +66,7 @@ return [
      'No_images_are_currently_available_for_this_project'=>'لا توجد صور متاحة لهذا المشروع حالياً.',
      'There_are_no_features_currently_listed_for_this_service'=>'لا توجد مميزات مسجلة لهذه الخدمة حالياً.',
      'Other_projects_from'=>'مشاريع أخرى من',
-     'Start your project with us'=>'ابدأ مشروعك معنا',
+     'Start_your_project_with_us'=>'ابدأ مشروعك معنا',
      'Contact_our_team_for_a_free_consultation_on_your_next_project'=>'تواصل مع فريقنا للحصول على استشارة مجانية لمشروعك القادم',
      'Project_Features'=>'مميزات المشروع ',
      'Features_of_our_service'=>'مميزات خدمتنا',

@@ -77,11 +77,20 @@
 </style>
 
 <div class="content-wrapper">
+
 <section class="content-header">
-    <h2 class="page-title">
-        <i class="fa fa-edit"></i> تعديل بيانات الخدمة
-    </h2>
+    <div class="row" style="display: flex; align-items: center;">
+        <div class="col-xs-8">
+            <h1> <i class="fa fa-edit"></i> تعديل بيانات الخدمة </h1>
+        </div>
+        <div class="col-xs-4 text-left">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#seoModal">
+                ⚙️ تعديل إعدادات SEO
+            </button>
+        </div>
+    </div>
 </section>
+
 
 <section class="box box-primary content">
     <div class="box-wrapper">

@@ -67,8 +67,20 @@
 </style>
 
 <div class="content-wrapper">
-<section class="content-header">
+{{-- <section class="content-header">
     <h2 class="page-title"><i class="fa fa-edit text-success me-2"></i> تعديل المشروع: <span class="text-primary">{{ $project->title }}</span></h2>
+</section> --}}
+<section class="content-header">
+    <div class="row" style="display: flex; align-items: center;">
+        <div class="col-xs-8">
+              <h2 class="page-title"><i class="fa fa-edit text-success me-2"></i> تعديل المشروع: <span class="text-primary">{{ $project->title }}</span></h2>
+        </div>
+        <div class="col-xs-4 text-left">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#seoModal">
+                ⚙️ تعديل إعدادات SEO
+            </button>
+        </div>
+    </div>
 </section>
 
 <section class="content">
@@ -382,32 +394,32 @@ document.getElementById('addNewFeature').addEventListener('click', () => {
         <div class="feature-box border rounded p-3 mb-3 shadow-sm">
 
             <label class="small fw-bold">عنوان الميزة (عربي)</label>
-            <input type="text" 
-                   name="features[${i}][title]" 
+            <input type="text"
+                   name="features[${i}][title]"
                    class="form-control form-control-sm n-title"
                    placeholder="عنوان الميزة">
 
             <label class="small fw-bold mt-2">عنوان الميزة (English)</label>
-            <input type="text" 
-                   name="features[${i}][title_en]" 
+            <input type="text"
+                   name="features[${i}][title_en]"
                    class="form-control form-control-sm n-title-en"
                    placeholder="Feature Title">
 
             <label class="small fw-bold mt-2">أيقونة (FontAwesome)</label>
-            <input type="text" 
-                   name="features[${i}][icon]" 
+            <input type="text"
+                   name="features[${i}][icon]"
                    class="form-control form-control-sm n-icon"
                    placeholder="fa-solid fa-leaf">
 
             <label class="small fw-bold mt-2">الوصف (عربي)</label>
-            <input type="text" 
-                   name="features[${i}][description]" 
+            <input type="text"
+                   name="features[${i}][description]"
                    class="form-control form-control-sm n-desc"
                    placeholder="وصف مختصر">
 
             <label class="small fw-bold mt-2">الوصف (English)</label>
-            <input type="text" 
-                   name="features[${i}][description_en]" 
+            <input type="text"
+                   name="features[${i}][description_en]"
                    class="form-control form-control-sm n-desc-en"
                    placeholder="Short Description">
 
@@ -500,7 +512,7 @@ document.getElementById('saveAllFeatures').addEventListener('click', () => {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ 
+            body: JSON.stringify({
                 title,
                 title_en,
                 icon,

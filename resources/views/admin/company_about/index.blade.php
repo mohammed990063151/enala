@@ -73,9 +73,25 @@
 <div class="content-wrapper" style="min-height: 154px;">
 
     {{-- ====== HEADER ====== --}}
+    {{-- <section class="content-header">
+        <h1><i class="fa fa-address-card"></i> إعدادات صفحة من نحن</h1>
+         <button class="btn btn-primary" data-toggle="modal" data-target="#seoModal">
+    ⚙️ تعديل إعدادات SEO
+</button>
+    </section> --}}
     <section class="content-header">
-        <h1><i class="fa fa-address-card"></i> إعدادات صفحة الشركة</h1>
-    </section>
+    <div class="row" style="display: flex; align-items: center;">
+        <div class="col-xs-8">
+            <h1><i class="fa fa-address-card"></i> إعدادات صفحة من نحن</h1>
+        </div>
+        <div class="col-xs-4 text-left">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#seoModal">
+                ⚙️ تعديل إعدادات SEO
+            </button>
+        </div>
+    </div>
+</section>
+
 
     {{-- ====== FORM ====== --}}
     <section class="box box-primary content">
@@ -189,14 +205,14 @@
             @foreach([1,2,3,4] as $i)
                 @if($about->{'point'.$i})
                     <span class="pill">{{ $about->{'point'.$i} }}</span>
-                    
+
                 @endif
             @endforeach
             <br />
              @foreach([1,2,3,4] as $i)
                 @if($about->{'point'.$i})
                    <span class="pill">{{ $about->{'point'.$i.'_en'} }}</span>
-                    
+
                 @endif
             @endforeach
 

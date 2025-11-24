@@ -3,13 +3,24 @@
 @section('content')
     <div class="content-wrapper">
         <section class="content-header">
-            <h1> إعدادات بانر الصفحة الرئيسية</h1>
-        </section>
+    <div class="row" style="display: flex; align-items: center;">
+        <div class="col-xs-8">
+            <h1><i class="fa fa-address-card"></i>  إعدادات بانر الصفحة الرئيسية</h1>
+        </div>
+        <div class="col-xs-4 text-left">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#seoModal">
+                ⚙️ تعديل إعدادات SEO
+            </button>
+        </div>
+    </div>
+</section>
+
 
         <section class="content">
             <div class="box box-primary">
                 <div class="box-header">
                     <h3 class="box-title">تحديث بيانات بانر</h3>
+
                 </div>
                 <div class="box-body">
                     @include('partials._errors')
@@ -118,6 +129,7 @@
             </div>
         </section>
     </div>
+     {{-- @include('admin.seo.modal') --}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             if (typeof CKEDITOR !== 'undefined') {

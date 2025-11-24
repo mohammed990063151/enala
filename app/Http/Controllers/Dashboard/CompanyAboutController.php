@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 
 use App\Models\CompanyAbout;
+use App\Models\SeoSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -11,8 +12,10 @@ class CompanyAboutController extends Controller
 {
     public function index()
     {
+          $pageKey = 'About me';
+           $seo = SeoSetting::firstOrCreate(['page' => $pageKey]);
         $about = CompanyAbout::first();
-        return view('admin.company_about.index', compact('about'));
+        return view('admin.company_about.index', compact('about','seo'));
     }
 
     public function update(Request $request)

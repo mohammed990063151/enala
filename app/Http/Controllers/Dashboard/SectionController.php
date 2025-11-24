@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Section;
+use App\Models\SeoSetting;
 
 class SectionController extends Controller
 {
@@ -13,9 +14,11 @@ class SectionController extends Controller
      */
     public function edit()
     {
+         $pageKey = 'Home';
+           $seo = SeoSetting::firstOrCreate(['page' => $pageKey]);
         // نأخذ أول قسم فقط
         $section = Section::first();
-        return view('admin.sections.edit', compact('section'));
+        return view('admin.sections.edit', compact('section','seo'));
     }
 
     /**

@@ -256,6 +256,7 @@
         </footer>
 
     </div><!-- end of wrapper -->
+     @include('admin.seo.modal')
 
     {{--<!-- Bootstrap 3.3.7 -->--}}
     <script src="{{ asset('dashboard_files/js/bootstrap.min.js') }}"></script>
@@ -343,7 +344,7 @@
         }); //end of ready
 
     </script>
-    
+
      {{-- @livewireScripts --}}
     @stack('scripts')
 

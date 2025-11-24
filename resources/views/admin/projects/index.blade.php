@@ -54,9 +54,22 @@
 </style>
 
 <div class="content-wrapper">
-<section class="content-header">
+{{-- <section class="content-header">
     <h2 class="page-title"><i class="fa fa-briefcase"></i> إدارة المشاريع</h2>
+</section> --}}
+<section class="content-header">
+    <div class="row" style="display: flex; align-items: center;">
+        <div class="col-xs-8">
+             <h2 class="page-title"><i class="fa fa-briefcase"></i> إدارة المشاريع</h2>
+        </div>
+        <div class="col-xs-4 text-left">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#seoModal">
+                ⚙️ تعديل إعدادات SEO
+            </button>
+        </div>
+    </div>
 </section>
+
 
 <section class="content">
 <div class="box-wrapper">

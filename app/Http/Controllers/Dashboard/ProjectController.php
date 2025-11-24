@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Models\ProjectImage;
 use App\Models\ProjectFeature;
+use App\Models\SeoSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -13,8 +14,10 @@ class ProjectController extends Controller
 {
     public function index()
     {
+         $pageKey = 'Project';
+           $seo = SeoSetting::firstOrCreate(['page' => $pageKey]);
         $projects = Project::latest()->paginate(15);
-        return view('admin.projects.index', compact('projects'));
+        return view('admin.projects.index', compact('projects','seo'));
     }
 
     public function create()
@@ -90,7 +93,9 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $project->load('images', 'features');
-        return view('admin.projects.edit', compact('project'));
+          $pageKey = $project->title_en;
+           $seo = SeoSetting::firstOrCreate(['page' => $pageKey]);
+        return view('admin.projects.edit', compact('project','seo'));
     }
 
 

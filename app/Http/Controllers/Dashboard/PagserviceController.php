@@ -11,13 +11,16 @@ use App\Models\Pagservice;
 use Illuminate\Support\Facades\Storage;
 use App\Models\ServiceImage;
 use App\Models\ServiceFeature;
+use App\Models\SeoSetting;
 
 class PagserviceController extends Controller
 {
     public function index()
     {
+         $pageKey = 'services';
+           $seo = SeoSetting::firstOrCreate(['page' => $pageKey]);
         $services = Pagservice::orderBy('sort_order')->get();
-        return view('admin.pagservices.index', compact('services'));
+        return view('admin.pagservices.index', compact('services','seo'));
     }
 
     public function create()
@@ -139,9 +142,12 @@ public function store(Request $request)
 
     public function edit(Pagservice $Pag_service, Request $request, $s)
     {
+
         $Pag_service =   Pagservice::where('id', $s)->first();
+        $pageKey = $Pag_service->title_en;
+           $seo = SeoSetting::firstOrCreate(['page' => $pageKey]);
         //   return  $Pag_service ;
-        return view('admin.pagservices.edit', compact('Pag_service'));
+        return view('admin.pagservices.edit', compact('Pag_service','seo'));
     }
 
 

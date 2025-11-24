@@ -1,5 +1,23 @@
 @extends('frontend.layouts.master')
+@section('seo')
+@php
+$pageName =  $project->title_en ;
+$seo = \App\Models\SeoSetting::where('page', $pageName)->first();
+@endphp
+@if($seo)
+        <title>{{ $seo->title }}</title>
+        <meta name="description" content="{{ $seo->description }}">
+        <meta name="keywords" content="{{ $seo->keywords }}">
+        @if($seo->canonical)
+            <link rel="canonical" href="{{ $seo->canonical }}">
+        @endif
 
+        <meta property="og:title" content="{{ $seo->title }}">
+        <meta property="og:description" content="{{ $seo->description }}">
+        <meta property="og:image" content="{{ asset($seo->og_image) }}">
+    @endif
+
+@endsection
 @section('title', $project->title . ' - مشاريع شركة مضياف')
 @push('styles')
 <style>

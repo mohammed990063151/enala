@@ -26,6 +26,7 @@ use App\Http\Controllers\Dashboard\ProjectController as AdminProjectController;
 use App\Http\Controllers\Frontend\ProjectController as FrontProjectController;
 use App\Http\Middleware\SetLocale;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\SeoSettingController;
 
 use App\Http\Controllers\Payment\MoyasarController;
 
@@ -118,6 +119,10 @@ Route::post('/contact-send',[PagContactController::class,'send'])->name('contact
 
 // Auth::routes();
 Route::middleware(['auth', 'web'])->prefix('dashboard')->name('dashboard.')->group(function () {
+
+    Route::get('seo/{page}', [SeoSettingController::class, 'edit'])->name('seo.edit');
+Route::post('seo/{page}', [SeoSettingController::class, 'update'])->name('seo.update');
+
         // Route::resource('users', UserController::class);
         // 🧩 عرض جميع المستخدمين
 Route::get('users', [UserController::class, 'index'])->name('users.index');

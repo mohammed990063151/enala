@@ -7,9 +7,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <link rel="profile" href="https://gmpg.org/xfn/11">
+    @yield('seo')  
+    {{-- @php
+    $currentRoute = request()->route() ? request()->route()->getName() : 'home';
+    $seo = \App\Models\SeoSetting::where('page', $currentRoute)->first();
+@endphp
+
+ @php
+        $pageName = request()->route()->getName() ?? 'default';
+        $seo = \App\Models\SeoSetting::where('page', $pageName)->first();
+    @endphp
+
+    @if($seo)
+        <title>{{ $seo->title }}</title>
+        <meta name="description" content="{{ $seo->description }}">
+        <meta name="keywords" content="{{ $seo->keywords }}">
+        @if($seo->canonical)
+            <link rel="canonical" href="{{ $seo->canonical }}">
+        @endif
+
+        <meta property="og:title" content="{{ $seo->title }}">
+        <meta property="og:description" content="{{ $seo->description }}">
+        <meta property="og:image" content="{{ asset($seo->og_image) }}">
+    @endif --}}
 
 
-    {{-- <title> </title> --}}
+
+    {{-- <title> </title>
     <title>{{ $setting->name ?? '' }}   | شركة تنسيق حدائق وتصميم مسطحات خضراء في السعودية</title>
 
 <meta name="description" content="مضياف شركة سعودية متخصصة في تنسيق الحدائق، تصميم المسطحات الخضراء، شبكات الري، زراعة النجيل، وصيانة الحدائق. نقدم خدمات احترافية للمنازل والفلل والاستراحات بأسعار مناسبة وجودة عالية.">
@@ -17,7 +41,7 @@
 <meta name="robots" content="index, follow">
 <meta name="author" content="Mudyaf">
 <meta property="og:title" content="{{ $setting->name ?? '' }}  | شركة تنسيق حدائق وتصميم مسطحات خضراء">
-<meta property="og:description" content="نقدم خدمات تنسيق الحدائق، تصميم المسطحات الخضراء، شبكات الري، النجيل الطبيعي، الجلسات الخارجية، وصيانة الحدائق في السعودية.">
+<meta property="og:description" content="نقدم خدمات تنسيق الحدائق، تصميم المسطحات الخضراء، شبكات الري، النجيل الطبيعي، الجلسات الخارجية، وصيانة الحدائق في السعودية."> --}}
 
 {{-- fb --}}
 <meta property="og:image" content="https://mudyaf.sa/img/{{ $setting->logo ?? '' }} ">

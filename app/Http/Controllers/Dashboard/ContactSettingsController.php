@@ -5,14 +5,17 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ContactSetting;
+use App\Models\SeoSetting;
 
 class ContactSettingsController extends Controller
 {
     public function edit()
     {
+          $pageKey = 'Contact';
+           $seo = SeoSetting::firstOrCreate(['page' => $pageKey]);
         $settinges = ContactSetting::first();
         // return $setting;
-        return view('admin.contact.settings', compact('settinges'));
+        return view('admin.contact.settings', compact('settinges','seo'));
     }
 
     public function update(Request $request)

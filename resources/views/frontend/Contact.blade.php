@@ -1,5 +1,25 @@
 
 @extends('frontend.layouts.master')
+@section('seo')
+
+@php
+$pageName = 'Contact';
+$seo = \App\Models\SeoSetting::where('page', $pageName)->first();
+@endphp
+@if($seo)
+        <title>{{ $seo->title }}</title>
+        <meta name="description" content="{{ $seo->description }}">
+        <meta name="keywords" content="{{ $seo->keywords }}">
+        @if($seo->canonical)
+            <link rel="canonical" href="{{ $seo->canonical }}">
+        @endif
+
+        <meta property="og:title" content="{{ $seo->title }}">
+        <meta property="og:description" content="{{ $seo->description }}">
+        <meta property="og:image" content="{{ asset($seo->og_image) }}">
+    @endif
+
+@endsection
 
 
 @section('title', __('messages.about') . ' - ' . (app()->getLocale() == 'en'
@@ -287,8 +307,9 @@
             style="border-radius:20px;border:0;"
             loading="lazy"
             allowfullscreen
-            src="https://www.google.com/maps?q={{ urlencode($map) }}&output=embed">
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3625.7637538917015!2d46.83074057519352!3d24.666258878056574!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f077e998b8b79%3A0x8a56f072e1ab801a!2sIbn%20Majah%2C%20Riyadh!5e0!3m2!1sen!2ssa!4v1763969285802!5m2!1sen!2ssa">
         </iframe>
+        {{-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3625.7637538917015!2d46.83074057519352!3d24.666258878056574!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f077e998b8b79%3A0x8a56f072e1ab801a!2sIbn%20Majah%2C%20Riyadh!5e0!3m2!1sen!2ssa!4v1763969285802!5m2!1sen!2ssa" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> --}}
     {{-- @endif --}}
 {{-- {{ $settings->map_embed }} --}}
 
